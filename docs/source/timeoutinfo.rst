@@ -3,16 +3,15 @@ Timeout Information
 
 .. container:: note
 
-   Dear HikerAPI Customer
+    We would like to draw your attention to important aspects of working with our API so that you can effectively use its capabilities and avoid possible problems. By default, the volume of requests is limited to 1 million requests per day,  which is equivalent to about 11 requests per second. This limit is introduced to ensure stable operation of the service for all users.
 
-   Default request volume (which could be increased) is 1 million requests per day, which is equivalent to 11 requests per second. To manage your requests more accurately, it is important to keep in mind that this equates to approximately 11 requests per second to perfectly meet your daily limit. If the number of requests exceeds this figure, you may encounter a 429 (Too Many Requests) error, which will temporarily restrict your access to the API. This may affect the total amount of data you can collect in a day, as you will have to wait for the request limits to be lifted.
+    If you exceed the limit of 11 requests per second, the server will return error 429 (Too Many Requests) and your request will be rejected. To avoid such situations, it is important to monitor the frequency of requests and regulate the number of requests.
 
-   To avoid such situations, we recommend that you monitor the frequency of requests and adjust the number of requests if necessary to ensure that your system runs smoothly and our resources are utilized efficiently.
+    For optimal performance with the API, we recommend keeping an eye on the frequency of requests. Make sure you send no more than 11 requests per second. You can use semaphores to limit the number of simultaneous requests and add delays  between requests using await asyncio.sleep(1 / 11). This will help to evenly distribute the load and avoid errors.
 
-   Regards,
-   HikerAPI Team
+    If you do get error 429, pause before resending the request. For example, wait 1-2 seconds and try again. This will allow you to continue without a long downtime.
 
-Example
+    Here is a code example that helps you to respect the request limit:
 
 .. code-block:: python
 
@@ -60,20 +59,27 @@ Example
                 followers = []
 
                 while True:
-                    async with session.get(
-                        url=url, params=params, headers=headers
-                    ) as response:
-                        res = await response.json()
-                        if "response" not in res:
-                            print(f"Ошибка в ответе для user_id={user_id}: {res}")
-                            break
-                        users, page_id = res["response"]["users"], res["next_page_id"]
-                        followers.extend(users)
+                    try:
+                        async with session.get(
+                            url=url, params=params, headers=headers
+                        ) as response:
+                            res = await response.json()
+                            if "response" not in res:
+                                print(
+                                    "Error in response for user_id=%s: %s" % (user_id, res)
+                                )
+                                break
+                            users, page_id = res["response"]["users"], res["next_page_id"]
+                            followers.extend(users)
 
-                        if not page_id:
-                            break
+                            if not page_id:
+                                break
 
-                        params["page_id"] = page_id
+                            params["page_id"] = page_id
+                            await asyncio.sleep(1 / rate_limit)
+                    except Exception as e:
+                        print("Error in response for user_id=%s: %s" % (user_id, e))
+                        break
         return followers
 
 
