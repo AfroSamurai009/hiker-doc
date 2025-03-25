@@ -10,8 +10,8 @@ project = "HikerAPI"
 copyright = "2021, HikerAPI"
 author = "HikerAPI"
 
-release = "1.6.3"
-version = "1.6.3"
+release = "1.6.5"
+version = "1.6.5"
 
 # -- General configuration
 

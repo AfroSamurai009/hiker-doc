@@ -17,4 +17,5 @@ Contents
    python
    response_codes
    timeoutinfo
+   requests_info
    contacts
