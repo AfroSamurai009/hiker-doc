@@ -9,6 +9,8 @@ Each client request to our API may include several internal service calls. The t
 
 Most requests to the API are counted as a single request. However, some complex operations (such as searching for a user by name or ID, where the system first performs an internal request to convert identifiers, checking privacy settings, and other compound operations) require more resources and may involve multiple internal requests. Details of the number of queries used by different endpoints are summarized in the table below.
 
+Note: The "performs privacy checks" step specifically identifies **PrivateAccount** status, which is handled separately from shadow-banned, deleted or suspended accounts in our API logic.
+
 .. list-table::
    :header-rows: 1
    :widths: 20 5 75
