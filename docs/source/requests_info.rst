@@ -7,9 +7,9 @@ Each client request to our API may include several internal service calls. The t
 
    x-hiker-info: reqs=<number>
 
-Most requests to the API are counted as a single request. However, some complex operations (such as searching for a user by name or ID, where the system first performs an internal request to convert identifiers, checking privacy settings, and other compound operations) require more resources and may involve multiple internal requests. Details of the number of queries used by different endpoints are summarized in the table below.
+Most requests to the API are counted as a single request. However, some complex operations (such as searching for a user by username or ID, where the system first performs an internal request to convert identifiers, checking privacy settings, and other compound operations) require more resources and may involve multiple internal requests. Details of the number of queries used by different endpoints are summarized in the table below.
 
-Note: The "performs privacy checks" step specifically identifies **PrivateAccount** status, which is handled separately from shadow-banned, deleted or suspended accounts in our API logic.
+Note: The "performs privacy checks" step specifically identifies **PrivateAccount** exception, which is handled separately from shadow-banned, deleted or suspended accounts in IG.
 
 .. list-table::
    :header-rows: 1
@@ -84,3 +84,15 @@ Note: The "performs privacy checks" step specifically identifies **PrivateAccoun
    * - `/v2/user/explore/businesses/by/id`
      - 2
      - Gets business recommendations by user ID + account details.
+   * - `/gql/user/followers/chunk`
+     - 2
+     - | Gets followers by ID + performs privacy checks.
+       |
+       | **With parameter ("force": "on")**:
+       | Skips privacy checks and reduces reqs (total reqs in this mode is 1 req).
+   * - `/gql/user/following/chunk`
+     - 2
+     - | Gets following by ID + performs privacy checks.
+       |
+       | **With parameter ("force": "on")**:
+       | Skips privacy checks and reduces reqs (total reqs in this mode is 1 req).
