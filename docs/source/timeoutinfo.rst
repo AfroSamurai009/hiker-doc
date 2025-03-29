@@ -15,8 +15,8 @@ Timeout Information
 
 .. code-block:: python
 
+    import httpx
     import asyncio
-    import aiohttp
 
     users_ids = [
         "1553030189",
@@ -41,46 +41,49 @@ Timeout Information
         "52027596085",
     ]
 
-    rate_limit = 11
-    url = "https://api.hikerapi.com/v2/user/followers"
     headers = {
         "x-access-key": "<your_token_here>",
         "accept": "application/json",
     }
-
     all_followers = []
+    rate_limit = httpx.get(
+        "https://api.hikerapi.com/sys/balance", headers=headers, params={}
+    ).json()["rate"]
+    semaphore = asyncio.Semaphore(rate_limit)
 
 
     async def get_followers(user_id):
-        semaphore = asyncio.Semaphore(rate_limit)
-        async with semaphore:
-            async with aiohttp.ClientSession() as session:
-                params = {"user_id": user_id, "page_id": ""}
-                followers = []
+        async with httpx.AsyncClient(timeout=20) as client:
+            params = {"user_id": user_id, "page_id": "", "force": "on"}
+            followers = []
 
-                while True:
+            while True:
+                async with semaphore:
                     try:
-                        async with session.get(
-                            url=url, params=params, headers=headers
-                        ) as response:
-                            res = await response.json()
-                            if "response" not in res:
-                                print(
-                                    "Error in response for user_id=%s: %s" % (user_id, res)
-                                )
-                                break
-                            users, page_id = res["response"]["users"], res["next_page_id"]
-                            followers.extend(users)
+                        response = await client.get(
+                            "https://api.hikerapi.com/v2/user/followers",
+                            params=params,
+                            headers=headers,
+                        )
+                        if response.status_code == 429:
+                            print("Rate limit exceeded, waiting")
+                            await asyncio.sleep(2)
+                            continue
+                        elif response.status_code == 402:
+                            raise Exception("Insufficient balance")
 
-                            if not page_id:
-                                break
+                        res = response.json()
+                        users, page_id = res["response"]["users"], res["next_page_id"]
+                        followers.extend(users)
 
-                            params["page_id"] = page_id
-                            await asyncio.sleep(1 / rate_limit)
+                        if not page_id:
+                            break
+
+                        params["page_id"] = page_id
                     except Exception as e:
-                        print("Error in response for user_id=%s: %s" % (user_id, e))
+                        print(f"Error in response for user_id={user_id}: {e}")
                         break
-        return followers
+            return followers
 
 
     async def main():
