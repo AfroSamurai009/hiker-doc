@@ -52,7 +52,7 @@ Timeout Information
     semaphore = asyncio.Semaphore(rate_limit)
 
 
-    async def get_followers(user_id: str):
+    async def get_followers(user_id: str) -> list:
         async with httpx.AsyncClient(timeout=20) as client:
             params = {"user_id": user_id, "page_id": "", "force": "on"}
             followers = []
