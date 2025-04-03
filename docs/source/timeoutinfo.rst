@@ -1,8 +1,6 @@
 Timeout Information
 ===================================
 
-.. container:: note
-
     We would like to draw your attention to important aspects of working with our API so that you can effectively use its capabilities and avoid possible problems. By default, the volume of requests is limited to 1 million requests per day,  which is equivalent to about 11 requests per second. This limit is introduced to ensure stable operation of the service for all users.
 
     If you exceed the limit of 11 requests per second, the server will return error 429 (Too Many Requests) and your request will be rejected. To avoid such situations, it is important to monitor the frequency of requests and regulate the number of requests.
