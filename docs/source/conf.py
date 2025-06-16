@@ -9,12 +9,14 @@ sys.path.insert(0, os.path.abspath(".."))
 # Add the hikerapi package directory to the path
 sys.path.insert(0, os.path.abspath("../hikerapi"))
 
+from __version__ import __version__
+
 project = "HikerAPI"
 copyright = "2021, HikerAPI"
 author = "HikerAPI"
 
-release = "1.6.5"
-version = "1.6.5"
+release = __version__
+version = __version__
 
 # -- General configuration
 
