@@ -33,16 +33,10 @@ or
 API Reference
 ------------
 
-Client
-~~~~~~
-
 .. autoclass:: hikerapi.Client
    :members:
    :undoc-members:
    :show-inheritance:
-
-AsyncClient
-~~~~~~~~~~
 
 .. autoclass:: hikerapi.AsyncClient
    :members:
