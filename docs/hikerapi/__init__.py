@@ -13,7 +13,7 @@ except ImportError as e:
         import sys
 
         print(
-            "The HikerAPI client could not init because the required "
+            "The hikerapi client could not init because the required "
             "dependencies were not installed.\nMake sure you've installed "
             "everything with: pip install hikerapi"
         )

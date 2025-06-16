@@ -9,6 +9,11 @@ SOURCEDIR     = source
 BUILDDIR      = build
 
 # Put it first so that "make" without argument is like "make help".
+apidoc:
+	sphinx-apidoc -f -o $(SOURCEDIR)/generated hikerapi
+html: apidoc
+	sphinx-build -M html "$(SOURCEDIR)" "$(BUILDDIR)"
+
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 

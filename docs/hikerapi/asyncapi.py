@@ -78,20 +78,26 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def user_followers_chunk_gql(
-        self, user_id: str, end_cursor: Optional[Any] = None
+        self,
+        user_id: str,
+        force: Optional[Any] = None,
+        end_cursor: Optional[Any] = None,
     ) -> Dict:
         """Get a user followers (one request required). Get part (one page) of followers users with cursor"""
-        params = {"user_id": user_id, "end_cursor": end_cursor}
+        params = {"user_id": user_id, "force": force, "end_cursor": end_cursor}
         json = None
         return await self._request(
             "get", "/gql/user/followers/chunk".format(**{}), params=params, json=json
         )
 
     async def user_following_chunk_gql(
-        self, user_id: str, end_cursor: Optional[Any] = None
+        self,
+        user_id: str,
+        force: Optional[Any] = None,
+        end_cursor: Optional[Any] = None,
     ) -> Dict:
         """Get a user following (one request required). Get part (one page) of following users with cursor"""
-        params = {"user_id": user_id, "end_cursor": end_cursor}
+        params = {"user_id": user_id, "force": force, "end_cursor": end_cursor}
         json = None
         return await self._request(
             "get", "/gql/user/following/chunk".format(**{}), params=params, json=json
@@ -150,7 +156,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def user_clips_v1(self, user_id: str, amount: Optional[int] = None) -> Dict:
-        """Get user clips (one request is required for every 50 media). Get user clips"""
+        """Get user clips"""
         params = {"user_id": user_id, "amount": amount}
         json = None
         return await self._request(
@@ -160,7 +166,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
     async def user_clips_chunk_v1(
         self, user_id: str, end_cursor: Optional[Any] = None
     ) -> Dict:
-        """User Clips Chunk. Get part of user clips with cursor (default 50 media per request)"""
+        """User Clips Chunk. Get part of user clips with cursor"""
         params = {"user_id": user_id, "end_cursor": end_cursor}
         json = None
         return await self._request(
@@ -177,39 +183,41 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v1/user/tag/medias/chunk".format(**{}), params=params, json=json
         )
 
-    async def user_stories_v1(self, user_id: str, amount: Optional[int] = None) -> Dict:
+    async def user_stories_v1(
+        self, user_id: str, amount: Optional[int] = None, force: Optional[Any] = None
+    ) -> Dict:
         """User Stories. Get user stories"""
-        params = {"user_id": user_id, "amount": amount}
+        params = {"user_id": user_id, "amount": amount, "force": force}
         json = None
         return await self._request(
             "get", "/v1/user/stories".format(**{}), params=params, json=json
         )
 
     async def user_stories_by_username_v1(
-        self, username: str, amount: Optional[int] = None
+        self, username: str, amount: Optional[int] = None, force: Optional[Any] = None
     ) -> Dict:
         """If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.. Get user stories"""
-        params = {"username": username, "amount": amount}
+        params = {"username": username, "amount": amount, "force": force}
         json = None
         return await self._request(
             "get", "/v1/user/stories/by/username".format(**{}), params=params, json=json
         )
 
     async def user_highlights_v1(
-        self, user_id: str, amount: Optional[int] = None
+        self, user_id: str, amount: Optional[int] = None, force: Optional[Any] = None
     ) -> Dict:
         """User Highlights. Get user highlights"""
-        params = {"user_id": user_id, "amount": amount}
+        params = {"user_id": user_id, "amount": amount, "force": force}
         json = None
         return await self._request(
             "get", "/v1/user/highlights".format(**{}), params=params, json=json
         )
 
     async def user_highlights_by_username_v1(
-        self, username: str, amount: Optional[int] = None
+        self, username: str, amount: Optional[int] = None, force: Optional[Any] = None
     ) -> Dict:
         """If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.. Get user highlights by username"""
-        params = {"username": username, "amount": amount}
+        params = {"username": username, "amount": amount, "force": force}
         json = None
         return await self._request(
             "get",
@@ -218,17 +226,21 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             json=json,
         )
 
-    async def user_search_followers_v1(self, user_id: str, query: str) -> Dict:
+    async def user_search_followers_v1(
+        self, user_id: str, query: str, force: Optional[Any] = None
+    ) -> Dict:
         """Search Followers. Search users by followers"""
-        params = {"user_id": user_id, "query": query}
+        params = {"user_id": user_id, "query": query, "force": force}
         json = None
         return await self._request(
             "get", "/v1/user/search/followers".format(**{}), params=params, json=json
         )
 
-    async def user_search_following_v1(self, user_id: str, query: str) -> Dict:
+    async def user_search_following_v1(
+        self, user_id: str, query: str, force: Optional[Any] = None
+    ) -> Dict:
         """Search Following. Search users by following users"""
-        params = {"user_id": user_id, "query": query}
+        params = {"user_id": user_id, "query": query, "force": force}
         json = None
         return await self._request(
             "get", "/v1/user/search/following".format(**{}), params=params, json=json
@@ -662,17 +674,21 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v2/userstream/by/id".format(**{}), params=params, json=json
         )
 
-    async def user_stories_v2(self, user_id: str) -> Dict:
+    async def user_stories_v2(
+        self, user_id: str, force: Optional[Any] = None, safe_int: Optional[Any] = None
+    ) -> Dict:
         """User Stories. Get user stories"""
-        params = {"user_id": user_id}
+        params = {"user_id": user_id, "force": force, "safe_int": safe_int}
         json = None
         return await self._request(
             "get", "/v2/user/stories".format(**{}), params=params, json=json
         )
 
-    async def user_stories_by_username_v2(self, username: str) -> Dict:
+    async def user_stories_by_username_v2(
+        self, username: str, force: Optional[Any] = None, safe_int: Optional[Any] = None
+    ) -> Dict:
         """If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.. Get user stories"""
-        params = {"username": username}
+        params = {"username": username, "force": force, "safe_int": safe_int}
         json = None
         return await self._request(
             "get", "/v2/user/stories/by/username".format(**{}), params=params, json=json
@@ -801,10 +817,10 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def user_highlights_v2(
-        self, user_id: str, amount: Optional[int] = None
+        self, user_id: str, amount: Optional[int] = None, force: Optional[Any] = None
     ) -> Dict:
         """User Highlights. Get user highlights"""
-        params = {"user_id": user_id, "amount": amount}
+        params = {"user_id": user_id, "amount": amount, "force": force}
         json = None
         return await self._request(
             "get", "/v2/user/highlights".format(**{}), params=params, json=json
@@ -814,12 +830,13 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         self,
         user_id: str,
         amount: Optional[int] = None,
+        force: Optional[Any] = None,
         count: Optional[int] = None,
         container: Optional[List[Dict]] = None,
         max_requests: Optional[int] = None,
     ) -> List[Dict]:
         """User Highlights. Get user highlights"""
-        params = {"user_id": user_id, "amount": amount}
+        params = {"user_id": user_id, "amount": amount, "force": force}
         return await self._paging_request(
             "/v2/user/highlights",
             params=params,
@@ -829,10 +846,10 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def user_highlights_by_username_v2(
-        self, username: str, amount: Optional[int] = None
+        self, username: str, amount: Optional[int] = None, force: Optional[Any] = None
     ) -> Dict:
         """If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.. Get user highlights by username"""
-        params = {"username": username, "amount": amount}
+        params = {"username": username, "amount": amount, "force": force}
         json = None
         return await self._request(
             "get",
@@ -845,12 +862,13 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         self,
         username: str,
         amount: Optional[int] = None,
+        force: Optional[Any] = None,
         count: Optional[int] = None,
         container: Optional[List[Dict]] = None,
         max_requests: Optional[int] = None,
     ) -> List[Dict]:
         """If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.. Get user highlights by username"""
-        params = {"username": username, "amount": amount}
+        params = {"username": username, "amount": amount, "force": force}
         return await self._paging_request(
             "/v2/user/highlights/by/username",
             params=params,
@@ -871,7 +889,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_info_by_id_v2(self, id: str) -> Dict:
-        """Media Info By Id. Get media object"""
+        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided.. Get media object"""
         params = {"id": id}
         json = None
         return await self._request(
@@ -879,7 +897,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_info_by_code_v2(self, code: str) -> Dict:
-        """Media Info By Code. Get media object"""
+        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided.. Get media object"""
         params = {"code": code}
         json = None
         return await self._request(
@@ -887,7 +905,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_info_by_url_v2(self, url: str) -> Dict:
-        """Attention! Use with (https://ins...ram.com/p/CA2aJYrg6cZ/). Get media object"""
+        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/. Get media object"""
         params = {"url": url}
         json = None
         return await self._request(
@@ -1251,10 +1269,17 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def search_reels_v2(
-        self, query: str, reels_max_id: Optional[str] = None
+        self,
+        query: str,
+        reels_max_id: Optional[str] = None,
+        rank_token: Optional[str] = None,
     ) -> Dict:
         """Search Reels. Search top content by keyword"""
-        params = {"query": query, "reels_max_id": reels_max_id}
+        params = {
+            "query": query,
+            "reels_max_id": reels_max_id,
+            "rank_token": rank_token,
+        }
         json = None
         return await self._request(
             "get", "/v2/search/reels".format(**{}), params=params, json=json
