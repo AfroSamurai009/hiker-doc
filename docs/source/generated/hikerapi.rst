@@ -1,4 +1,0 @@
-﻿hikerapi
-========
-
-.. automodule:: hikerapi
