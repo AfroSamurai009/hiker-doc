@@ -30,10 +30,21 @@ or
 >>> await cl.user_by_username_v1("user")
 
 
-Class Methods
----------------
+API Reference
+------------
 
-.. automodule:: hikerapi
+Client
+~~~~~~
+
+.. autoclass:: hikerapi.Client
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+AsyncClient
+~~~~~~~~~~
+
+.. autoclass:: hikerapi.AsyncClient
    :members:
    :undoc-members:
    :show-inheritance:

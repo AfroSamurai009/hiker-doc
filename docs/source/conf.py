@@ -4,7 +4,10 @@
 import os
 import sys
 
+# Add the docs directory to the path
 sys.path.insert(0, os.path.abspath(".."))
+# Add the hikerapi package directory to the path
+sys.path.insert(0, os.path.abspath("../hikerapi"))
 
 project = "HikerAPI"
 copyright = "2021, HikerAPI"
@@ -22,7 +25,17 @@ extensions = [
     "sphinx.ext.autosummary",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autosectionlabel",
+    "sphinx.ext.viewcode",  # Add viewcode extension
 ]
+
+# Add autodoc settings
+autodoc_default_options = {
+    "members": True,
+    "member-order": "bysource",
+    "special-members": "__init__",
+    "undoc-members": True,
+    "exclude-members": "__weakref__",
+}
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
@@ -38,6 +51,6 @@ html_theme = "sphinx_rtd_theme"
 
 # -- Options for EPUB output
 
-epub_show_urls = 'footnote'
+epub_show_urls = "footnote"
 
-pygments_style = 'sphinx'
+pygments_style = "sphinx"
