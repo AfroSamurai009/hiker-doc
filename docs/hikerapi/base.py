@@ -3,34 +3,43 @@ from typing import Any, Dict, List, Optional, TypeVar
 
 import httpx
 
-from .__version__ import __version__, __title__, __domain__
+from .__version__ import __version__, __title__, __host__
 
 
 T = TypeVar("T", bound="BaseAsyncClient")
 USER_AGENT = "python-%s/%s" % (__title__, __version__)
 TOKEN_NAME = "%s_TOKEN" % __title__.upper()
+HOST_NAME = "%s_HOST" % __title__.upper()
 
 
 class BaseClient:
-    def __init__(self, token: Optional[str] = None, timeout: Optional[float] = 10):
+
+    def __init__(
+        self,
+        token: Optional[str] = None,
+        timeout: Optional[float] = 10,
+        host: Optional[str] = "",
+    ):
         if token is None:
             token = os.getenv(TOKEN_NAME)
         assert (
             token is not None
         ), f"Token not found. Use Client(token='<token>') or set env {TOKEN_NAME}=<token>"
-        self._url = f"https://{__domain__}"
+        self._url = f"https://{host or os.getenv(HOST_NAME) or __host__}"
+        self._version = __version__
         self._token = token
         self._timeout = timeout
+        self._user_agent = USER_AGENT
         self._headers = {
             "accept": "application/json",
-            "user-agent": USER_AGENT,
+            "user-agent": self._user_agent,
             "x-access-key": token,
         }
 
 
 class BaseSyncClient(BaseClient):
-    def __init__(self, token: Optional[str] = None, timeout: Optional[float] = 10):
-        super().__init__(token=token, timeout=timeout)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self._client = httpx.Client(base_url=self._url, timeout=self._timeout)
         self._client.headers.update(self._headers)
 
