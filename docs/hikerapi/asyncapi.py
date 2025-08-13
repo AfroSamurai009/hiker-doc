@@ -62,7 +62,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_likers_gql(self, media_id: str) -> Dict:
-        """Media Likers. Get likers on a media (paging is unavailable on this endpoing)"""
+        """Media Likers. Get likers on a media (paging is unavailable on this endpoint)"""
         params = {"media_id": media_id}
         json = None
         return await self._request(
@@ -155,18 +155,13 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v1/user/medias/pinned".format(**{}), params=params, json=json
         )
 
-    async def user_clips_v1(self, user_id: str, amount: Optional[int] = None) -> Dict:
-        """Get user clips"""
-        params = {"user_id": user_id, "amount": amount}
-        json = None
-        return await self._request(
-            "get", "/v1/user/clips".format(**{}), params=params, json=json
-        )
-
     async def user_clips_chunk_v1(
         self, user_id: str, end_cursor: Optional[Any] = None
     ) -> Dict:
-        """User Clips Chunk. Get part of user clips with cursor"""
+        """User Clips Chunk. Get part of user clips with cursor
+        The response includes trial publications
+        https://help.instagram.com/1013292530224018
+        Trial publications have no "reshare_count" field if you need to filter them"""
         params = {"user_id": user_id, "end_cursor": end_cursor}
         json = None
         return await self._request(
@@ -695,10 +690,13 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def user_medias_v2(
-        self, user_id: Optional[str] = None, page_id: Optional[str] = None
+        self,
+        user_id: Optional[str] = None,
+        page_id: Optional[str] = None,
+        safe_int: Optional[Any] = None,
     ) -> Dict:
         """User Medias. Get user medias. Results chunk."""
-        params = {"user_id": user_id, "page_id": page_id}
+        params = {"user_id": user_id, "page_id": page_id, "safe_int": safe_int}
         json = None
         return await self._request(
             "get", "/v2/user/medias".format(**{}), params=params, json=json
@@ -708,25 +706,30 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         self,
         user_id: Optional[str] = None,
         page_id: Optional[str] = None,
+        safe_int: Optional[Any] = None,
         count: Optional[int] = None,
         container: Optional[List[Dict]] = None,
         max_requests: Optional[int] = None,
     ) -> List[Dict]:
         """User Medias. Get user medias. Results chunk."""
-        params = {"user_id": user_id, "page_id": page_id}
+        params = {"user_id": user_id, "page_id": page_id, "safe_int": safe_int}
         return await self._paging_request(
             "/v2/user/medias",
             params=params,
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="items",
         )
 
     async def user_clips_v2(
-        self, user_id: Optional[str] = None, page_id: Optional[str] = None
+        self,
+        user_id: Optional[str] = None,
+        page_id: Optional[str] = None,
+        safe_int: Optional[Any] = None,
     ) -> Dict:
         """User Clips. Get user clips."""
-        params = {"user_id": user_id, "page_id": page_id}
+        params = {"user_id": user_id, "page_id": page_id, "safe_int": safe_int}
         json = None
         return await self._request(
             "get", "/v2/user/clips".format(**{}), params=params, json=json
@@ -736,18 +739,20 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         self,
         user_id: Optional[str] = None,
         page_id: Optional[str] = None,
+        safe_int: Optional[Any] = None,
         count: Optional[int] = None,
         container: Optional[List[Dict]] = None,
         max_requests: Optional[int] = None,
     ) -> List[Dict]:
         """User Clips. Get user clips."""
-        params = {"user_id": user_id, "page_id": page_id}
+        params = {"user_id": user_id, "page_id": page_id, "safe_int": safe_int}
         return await self._paging_request(
             "/v2/user/clips",
             params=params,
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="items",
         )
 
     async def user_following_v2(
@@ -776,6 +781,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="users",
         )
 
     async def user_followers_v2(
@@ -786,6 +792,25 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/user/followers".format(**{}), params=params, json=json
+        )
+
+    async def user_followers(
+        self,
+        user_id: Optional[str] = None,
+        page_id: Optional[str] = None,
+        count: Optional[int] = None,
+        container: Optional[List[Dict]] = None,
+        max_requests: Optional[int] = None,
+    ) -> List[Dict]:
+        """Get a user followers (one request required). Get part (one page) of followers users with cursor"""
+        params = {"user_id": user_id, "page_id": page_id}
+        return await self._paging_request(
+            "/v2/user/followers",
+            params=params,
+            count=count,
+            container=container,
+            max_requests=max_requests,
+            response_key="users",
         )
 
     async def user_tag_medias_v2(
@@ -814,6 +839,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="items",
         )
 
     async def user_highlights_v2(
@@ -843,6 +869,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="tray",
         )
 
     async def user_highlights_by_username_v2(
@@ -856,25 +883,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "/v2/user/highlights/by/username".format(**{}),
             params=params,
             json=json,
-        )
-
-    async def user_highlights_by_username(
-        self,
-        username: str,
-        amount: Optional[int] = None,
-        force: Optional[Any] = None,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.. Get user highlights by username"""
-        params = {"username": username, "amount": amount, "force": force}
-        return await self._paging_request(
-            "/v2/user/highlights/by/username",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
         )
 
     async def user_explore_businesses_by_id_v2(self, user_id: str) -> Dict:
@@ -950,6 +958,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="comments",
         )
 
     async def media_likers_v2(self, id: str) -> Dict:
@@ -974,24 +983,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/media/comment/offensive".format(**{}), params=params, json=json
-        )
-
-    async def media_comment_offensive(
-        self,
-        media_id: str,
-        comment: str,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """Media Check Offensive Comment. Whether to receive an offensive comment"""
-        params = {"media_id": media_id, "comment": comment}
-        return await self._paging_request(
-            "/v2/media/comment/offensive",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
         )
 
     async def story_by_id_v2(self, id: str) -> Dict:
@@ -1020,24 +1011,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v2/track/by/canonical/id".format(**{}), params=params, json=json
         )
 
-    async def track_by_canonical_id(
-        self,
-        canonical_id: str,
-        page_id: Optional[str] = None,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """Track By Canonical Id. Get music track object by canonical_id"""
-        params = {"canonical_id": canonical_id, "page_id": page_id}
-        return await self._paging_request(
-            "/v2/track/by/canonical/id",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
-        )
-
     async def track_by_id_v2(
         self, track_id: str, page_id: Optional[str] = None
     ) -> Dict:
@@ -1048,24 +1021,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v2/track/by/id".format(**{}), params=params, json=json
         )
 
-    async def track_by_id(
-        self,
-        track_id: str,
-        page_id: Optional[str] = None,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """Track By Id. Get music track object by id"""
-        params = {"track_id": track_id, "page_id": page_id}
-        return await self._paging_request(
-            "/v2/track/by/id",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
-        )
-
     async def track_stream_by_id_v2(
         self, track_id: str, page_id: Optional[str] = None
     ) -> Dict:
@@ -1074,24 +1029,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/track/stream/by/id".format(**{}), params=params, json=json
-        )
-
-    async def track_stream_by_id(
-        self,
-        track_id: str,
-        page_id: Optional[str] = None,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """Track Stream By Id. Get music track object by id"""
-        params = {"track_id": track_id, "page_id": page_id}
-        return await self._paging_request(
-            "/v2/track/stream/by/id",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
         )
 
     async def hashtag_by_name_v2(self, name: str) -> Dict:
@@ -1128,6 +1065,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="sections",
         )
 
     async def hashtag_medias_recent_v2(
@@ -1156,6 +1094,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="sections",
         )
 
     async def hashtag_medias_clips_v2(
@@ -1184,6 +1123,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
+            response_key="sections",
         )
 
     async def highlight_by_id_v2(self, id: str) -> Dict:
@@ -1192,23 +1132,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/highlight/by/id".format(**{}), params=params, json=json
-        )
-
-    async def highlight_by_id(
-        self,
-        id: str,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """Highlight By Id. Get highlight object by id"""
-        params = {"id": id}
-        return await self._paging_request(
-            "/v2/highlight/by/id",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
         )
 
     async def search_hashtags_v2(

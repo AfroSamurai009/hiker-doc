@@ -13,7 +13,6 @@ HOST_NAME = "%s_HOST" % __title__.upper()
 
 
 class BaseClient:
-
     def __init__(
         self,
         token: Optional[str] = None,
@@ -76,6 +75,7 @@ class BaseSyncClient(BaseClient):
         page_key: str = "page_id",
         max_requests: Optional[int] = None,
         skip_duplicates: bool = True,
+        response_key: Optional[str] = "items",
     ) -> List[Dict]:
         if params is None:
             params = {}
@@ -90,7 +90,7 @@ class BaseSyncClient(BaseClient):
             if isinstance(res, list) and len(res) == 2:
                 items, npid = res
             else:
-                items = res["response"].get("items", res["response"].get("users"))
+                items = res["response"].get(response_key)
                 npid = res.get("next_page_id")
             if count is not None:
                 rest = count - work_count
@@ -155,6 +155,7 @@ class BaseAsyncClient(BaseClient):
         page_key: str = "page_id",
         max_requests: Optional[int] = None,
         skip_duplicates: bool = True,
+        response_key: Optional[str] = "items",
     ) -> List[Dict]:
         if params is None:
             params = {}
@@ -169,7 +170,7 @@ class BaseAsyncClient(BaseClient):
             if isinstance(res, list) and len(res) == 2:
                 items, npid = res
             else:
-                items = res["response"].get("items", res["response"].get("users"))
+                items = res["response"].get(response_key)
                 npid = res.get("next_page_id")
             if count is not None:
                 rest = count - work_count
