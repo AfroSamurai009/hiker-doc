@@ -75,6 +75,14 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/gql/media/likers".format(**{}), params=params, json=json
         )
 
+    async def media_usertags_gql(self, media_ids: Optional[Any] = None) -> Dict:
+        """Returns users tagged in the video. You can pass up to 10 media ids. Returns users tagged in the video. You can pass up to 10 media ids"""
+        params = {"media_ids": media_ids}
+        json = None
+        return await self._request(
+            "get", "/gql/media/usertags".format(**{}), params=params, json=json
+        )
+
     async def user_related_profiles_gql(self, id: str) -> Dict:
         """Related Profiles. Get related profiles by user id"""
         params = {"id": id}
@@ -107,6 +115,39 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/gql/user/following/chunk".format(**{}), params=params, json=json
+        )
+
+    async def user_reposts_gql(
+        self, user_id: str, repost_next_max_id: Optional[str] = None
+    ) -> Dict:
+        """Get user's reposted content. Get user media reposts"""
+        params = {"user_id": user_id, "repost_next_max_id": repost_next_max_id}
+        json = None
+        return await self._request(
+            "get", "/gql/user/reposts".format(**{}), params=params, json=json
+        )
+
+    async def user_clips_gql(
+        self, target_user_id: int, max_id: Optional[str] = None
+    ) -> Dict:
+        """Returns the user's short video posts (reels).. Get user clips"""
+        params = {"target_user_id": target_user_id, "max_id": max_id}
+        json = None
+        return await self._request(
+            "get", "/gql/user/clips".format(**{}), params=params, json=json
+        )
+
+    async def user_medias_gql(
+        self, user_id: int, profile_grid_items_cursor: Optional[str] = None
+    ) -> Dict:
+        """Returns the user medias. Get user medias"""
+        params = {
+            "user_id": user_id,
+            "profile_grid_items_cursor": profile_grid_items_cursor,
+        }
+        json = None
+        return await self._request(
+            "get", "/gql/user/medias".format(**{}), params=params, json=json
         )
 
     async def user_by_id_v1(self, id: str) -> Dict:
@@ -695,39 +736,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v2/user/stories/by/username".format(**{}), params=params, json=json
         )
 
-    async def user_medias_v2(
-        self,
-        user_id: Optional[str] = None,
-        page_id: Optional[str] = None,
-        safe_int: Optional[Any] = None,
-    ) -> Dict:
-        """User Medias. Get user medias. Results chunk."""
-        params = {"user_id": user_id, "page_id": page_id, "safe_int": safe_int}
-        json = None
-        return await self._request(
-            "get", "/v2/user/medias".format(**{}), params=params, json=json
-        )
-
-    async def user_medias(
-        self,
-        user_id: Optional[str] = None,
-        page_id: Optional[str] = None,
-        safe_int: Optional[Any] = None,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """User Medias. Get user medias. Results chunk."""
-        params = {"user_id": user_id, "page_id": page_id, "safe_int": safe_int}
-        return await self._paging_request(
-            "/v2/user/medias",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
-            response_key="items",
-        )
-
     async def user_clips_v2(
         self,
         user_id: Optional[str] = None,
@@ -903,7 +911,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_info_by_id_v2(self, id: str) -> Dict:
-        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided.. Get media object"""
+        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.. Get media object"""
         params = {"id": id}
         json = None
         return await self._request(
@@ -911,7 +919,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_info_by_code_v2(self, code: str) -> Dict:
-        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided.. Get media object"""
+        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.. Get media object"""
         params = {"code": code}
         json = None
         return await self._request(
@@ -919,7 +927,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def media_info_by_url_v2(self, url: str) -> Dict:
-        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/. Get media object"""
+        """Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/. Get media object"""
         params = {"url": url}
         json = None
         return await self._request(
@@ -1150,16 +1158,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/v2/search/hashtags".format(**{}), params=params, json=json
         )
 
-    async def search_accounts_v2(
-        self, query: str, page_token: Optional[str] = None
-    ) -> Dict:
-        """Search Accounts. Search accounts"""
-        params = {"query": query, "page_token": page_token}
-        json = None
-        return await self._request(
-            "get", "/v2/search/accounts".format(**{}), params=params, json=json
-        )
-
     async def search_music_v2(
         self, query: str, next_max_id: Optional[str] = None
     ) -> Dict:
@@ -1250,4 +1248,42 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/fbsearch/reels".format(**{}), params=params, json=json
+        )
+
+    async def fbsearch_accounts_v3(
+        self, query: str, page_token: Optional[str] = None
+    ) -> Dict:
+        """Fbsearch Accounts. Search accounts"""
+        params = {"query": query, "page_token": page_token}
+        json = None
+        return await self._request(
+            "get", "/v3/fbsearch/accounts".format(**{}), params=params, json=json
+        )
+
+    async def fbsearch_places_v3(self, query: str) -> Dict:
+        """Fbsearch Places. Search places"""
+        params = {"query": query}
+        json = None
+        return await self._request(
+            "get", "/v3/fbsearch/places".format(**{}), params=params, json=json
+        )
+
+    async def fbsearch_topsearch_v3(
+        self, query: str, next_max_id: Optional[str] = None
+    ) -> Dict:
+        """Fbsearch Top. Search top content by keyword"""
+        params = {"query": query, "next_max_id": next_max_id}
+        json = None
+        return await self._request(
+            "get", "/v3/fbsearch/topsearch".format(**{}), params=params, json=json
+        )
+
+    async def fbsearch_reels_v3(
+        self, query: str, reels_max_id: Optional[str] = None
+    ) -> Dict:
+        """Fbsearch Reels. Search top content by keyword"""
+        params = {"query": query, "reels_max_id": reels_max_id}
+        json = None
+        return await self._request(
+            "get", "/v3/fbsearch/reels".format(**{}), params=params, json=json
         )
