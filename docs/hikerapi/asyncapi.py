@@ -2,6 +2,12 @@ from typing import Any, Dict, List, Optional
 
 from .base import BaseAsyncClient
 from .helpers import AsyncHelperMixin
+from .extractors import (
+    extract_hashtag_medias_top,
+    extract_hashtag_medias_recent,
+    extract_hashtag_medias_clips,
+    extract_user_clips,
+)
 
 
 class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
@@ -752,7 +758,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="items",
+            extract_func=extract_user_clips,
         )
 
     async def user_following_v2(
@@ -1065,7 +1071,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            extract_func=extract_hashtag_medias_top,
         )
 
     async def hashtag_medias_recent_v2(
@@ -1094,7 +1100,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            extract_func=extract_hashtag_medias_recent,
         )
 
     async def hashtag_medias_clips_v2(
@@ -1123,7 +1129,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            extract_func=extract_hashtag_medias_clips,
         )
 
     async def highlight_by_id_v2(self, id: str) -> Dict:
