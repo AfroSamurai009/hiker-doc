@@ -1,5 +1,5 @@
 import os
-from typing import Any, Dict, List, Optional, TypeVar, Callable
+from typing import Any, Dict, List, Optional, TypeVar
 
 import httpx
 
@@ -76,7 +76,6 @@ class BaseSyncClient(BaseClient):
         max_requests: Optional[int] = None,
         skip_duplicates: bool = True,
         response_key: Optional[str] = "items",
-        extract_func: Callable = None,
     ) -> List[Dict]:
         if params is None:
             params = {}
@@ -90,8 +89,6 @@ class BaseSyncClient(BaseClient):
             request_count += 1
             if isinstance(res, list) and len(res) == 2:
                 items, npid = res
-            elif extract_func:
-                items, npid = extract_func(res)
             else:
                 items = res["response"].get(response_key)
                 npid = res.get("next_page_id")
@@ -159,7 +156,6 @@ class BaseAsyncClient(BaseClient):
         max_requests: Optional[int] = None,
         skip_duplicates: bool = True,
         response_key: Optional[str] = "items",
-        extract_func: Callable = None,
     ) -> List[Dict]:
         if params is None:
             params = {}
@@ -173,20 +169,6 @@ class BaseAsyncClient(BaseClient):
             request_count += 1
             if isinstance(res, list) and len(res) == 2:
                 items, npid = res
-            elif extract_func:
-                items, npid = extract_func(
-                    res,
-                    self=self,
-                    path=path,
-                    params=params,
-                    count=count,
-                    container=container,
-                    page_key=page_key,
-                    max_requests=max_requests,
-                    skip_duplicates=skip_duplicates,
-                    response_key=response_key,
-                    extract_func=extract_func,
-                )
             else:
                 items = res["response"].get(response_key)
                 npid = res.get("next_page_id")
