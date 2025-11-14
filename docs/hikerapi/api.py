@@ -75,14 +75,6 @@ class Client(BaseSyncClient, HelperMixin):
             "get", "/gql/media/usertags".format(**{}), params=params, json=json
         )
 
-    def user_related_profiles_gql(self, id: str) -> Dict:
-        """Related Profiles. Get related profiles by user id"""
-        params = {"id": id}
-        json = None
-        return self._request(
-            "get", "/gql/user/related/profiles".format(**{}), params=params, json=json
-        )
-
     def user_followers_chunk_gql(
         self,
         user_id: str,
@@ -119,21 +111,25 @@ class Client(BaseSyncClient, HelperMixin):
             "get", "/gql/user/reposts".format(**{}), params=params, json=json
         )
 
-    def user_clips_gql(self, target_user_id: int, max_id: Optional[str] = None) -> Dict:
+    def user_clips_gql(self, user_id: str, max_id: Optional[str] = None) -> Dict:
         """Returns the user's short video posts (reels).. Get user clips"""
-        params = {"target_user_id": target_user_id, "max_id": max_id}
+        params = {"user_id": user_id, "max_id": max_id}
         json = None
         return self._request(
             "get", "/gql/user/clips".format(**{}), params=params, json=json
         )
 
     def user_medias_gql(
-        self, user_id: int, profile_grid_items_cursor: Optional[str] = None
+        self,
+        user_id: str,
+        profile_grid_items_cursor: Optional[str] = None,
+        flat: Optional[Any] = None,
     ) -> Dict:
         """Returns the user medias. Get user medias"""
         params = {
             "user_id": user_id,
             "profile_grid_items_cursor": profile_grid_items_cursor,
+            "flat": flat,
         }
         json = None
         return self._request(
@@ -892,6 +888,16 @@ class Client(BaseSyncClient, HelperMixin):
             "/v2/user/explore/businesses/by/id".format(**{}),
             params=params,
             json=json,
+        )
+
+    def user_suggested_profiles_v2(
+        self, user_id: str, expand_suggestion: Optional[Any] = None
+    ) -> Dict:
+        """Fetch Suggestion Details. Fetch suggested users details by target_id. expand_suggestion=True for more detailed response"""
+        params = {"user_id": user_id, "expand_suggestion": expand_suggestion}
+        json = None
+        return self._request(
+            "get", "/v2/user/suggested/profiles".format(**{}), params=params, json=json
         )
 
     def media_info_by_id_v2(self, id: str) -> Dict:

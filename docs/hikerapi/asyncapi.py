@@ -2,12 +2,6 @@ from typing import Any, Dict, List, Optional
 
 from .base import BaseAsyncClient
 from .helpers import AsyncHelperMixin
-from .extractors import (
-    extract_hashtag_medias_top,
-    extract_hashtag_medias_recent,
-    extract_hashtag_medias_clips,
-    extract_user_clips,
-)
 
 
 class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
@@ -83,14 +77,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/gql/media/usertags".format(**{}), params=params, json=json
         )
 
-    async def user_related_profiles_gql(self, id: str) -> Dict:
-        """Related Profiles. Get related profiles by user id"""
-        params = {"id": id}
-        json = None
-        return await self._request(
-            "get", "/gql/user/related/profiles".format(**{}), params=params, json=json
-        )
-
     async def user_followers_chunk_gql(
         self,
         user_id: str,
@@ -127,23 +113,25 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/gql/user/reposts".format(**{}), params=params, json=json
         )
 
-    async def user_clips_gql(
-        self, target_user_id: int, max_id: Optional[str] = None
-    ) -> Dict:
+    async def user_clips_gql(self, user_id: str, max_id: Optional[str] = None) -> Dict:
         """Returns the user's short video posts (reels).. Get user clips"""
-        params = {"target_user_id": target_user_id, "max_id": max_id}
+        params = {"user_id": user_id, "max_id": max_id}
         json = None
         return await self._request(
             "get", "/gql/user/clips".format(**{}), params=params, json=json
         )
 
     async def user_medias_gql(
-        self, user_id: int, profile_grid_items_cursor: Optional[str] = None
+        self,
+        user_id: str,
+        profile_grid_items_cursor: Optional[str] = None,
+        flat: Optional[Any] = None,
     ) -> Dict:
         """Returns the user medias. Get user medias"""
         params = {
             "user_id": user_id,
             "profile_grid_items_cursor": profile_grid_items_cursor,
+            "flat": flat,
         }
         json = None
         return await self._request(
@@ -766,7 +754,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            extract_func=extract_user_clips,
+            response_key="items",
         )
 
     async def user_following_v2(
@@ -908,6 +896,16 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "/v2/user/explore/businesses/by/id".format(**{}),
             params=params,
             json=json,
+        )
+
+    async def user_suggested_profiles_v2(
+        self, user_id: str, expand_suggestion: Optional[Any] = None
+    ) -> Dict:
+        """Fetch Suggestion Details. Fetch suggested users details by target_id. expand_suggestion=True for more detailed response"""
+        params = {"user_id": user_id, "expand_suggestion": expand_suggestion}
+        json = None
+        return await self._request(
+            "get", "/v2/user/suggested/profiles".format(**{}), params=params, json=json
         )
 
     async def media_info_by_id_v2(self, id: str) -> Dict:
@@ -1079,7 +1077,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            extract_func=extract_hashtag_medias_top,
+            response_key="sections",
         )
 
     async def hashtag_medias_recent_v2(
@@ -1108,36 +1106,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            extract_func=extract_hashtag_medias_recent,
-        )
-
-    async def hashtag_medias_clips_v2(
-        self, name: str, page_id: Optional[str] = None
-    ) -> Dict:
-        """Hashtag Medias Clips Chunk. Get hashtag chunk of clips (reels)"""
-        params = {"name": name, "page_id": page_id}
-        json = None
-        return await self._request(
-            "get", "/v2/hashtag/medias/clips".format(**{}), params=params, json=json
-        )
-
-    async def hashtag_medias_clips(
-        self,
-        name: str,
-        page_id: Optional[str] = None,
-        count: Optional[int] = None,
-        container: Optional[List[Dict]] = None,
-        max_requests: Optional[int] = None,
-    ) -> List[Dict]:
-        """Hashtag Medias Clips Chunk. Get hashtag chunk of clips (reels)"""
-        params = {"name": name, "page_id": page_id}
-        return await self._paging_request(
-            "/v2/hashtag/medias/clips",
-            params=params,
-            count=count,
-            container=container,
-            max_requests=max_requests,
-            extract_func=extract_hashtag_medias_clips,
+            response_key="sections",
         )
 
     async def highlight_by_id_v2(self, id: str) -> Dict:
