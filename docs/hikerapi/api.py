@@ -103,10 +103,17 @@ class Client(BaseSyncClient, HelperMixin):
         )
 
     def user_reposts_gql(
-        self, user_id: str, repost_next_max_id: Optional[str] = None
+        self,
+        user_id: str,
+        repost_next_max_id: Optional[str] = None,
+        flat: Optional[Any] = None,
     ) -> Dict:
         """Get user's reposted content. Get user media reposts"""
-        params = {"user_id": user_id, "repost_next_max_id": repost_next_max_id}
+        params = {
+            "user_id": user_id,
+            "repost_next_max_id": repost_next_max_id,
+            "flat": flat,
+        }
         json = None
         return self._request(
             "get", "/gql/user/reposts".format(**{}), params=params, json=json
@@ -117,9 +124,15 @@ class Client(BaseSyncClient, HelperMixin):
         user_id: str,
         max_id: Optional[str] = None,
         sort_by_views: Optional[Any] = None,
+        flat: Optional[Any] = None,
     ) -> Dict:
         """Returns the user's short video posts (reels).. Get user clips"""
-        params = {"user_id": user_id, "max_id": max_id, "sort_by_views": sort_by_views}
+        params = {
+            "user_id": user_id,
+            "max_id": max_id,
+            "sort_by_views": sort_by_views,
+            "flat": flat,
+        }
         json = None
         return self._request(
             "get", "/gql/user/clips".format(**{}), params=params, json=json
@@ -904,7 +917,8 @@ class Client(BaseSyncClient, HelperMixin):
     def user_suggested_profiles_v2(
         self, user_id: str, expand_suggestion: Optional[Any] = None
     ) -> Dict:
-        """Fetch Suggestion Details. Fetch suggested users details by target_id. expand_suggestion=True for more detailed response"""
+        """Fetch Suggestion Details. Fetch suggested users details by target_id.
+        expand_suggestion=True for more detailed response"""
         params = {"user_id": user_id, "expand_suggestion": expand_suggestion}
         json = None
         return self._request(
@@ -1143,50 +1157,6 @@ class Client(BaseSyncClient, HelperMixin):
         json = None
         return self._request(
             "get", "/v2/search/music".format(**{}), params=params, json=json
-        )
-
-    def search_places_v2(self, query: str) -> Dict:
-        """Search Places. Search places"""
-        params = {"query": query}
-        json = None
-        return self._request(
-            "get", "/v2/search/places".format(**{}), params=params, json=json
-        )
-
-    def search_topsearch_v2(
-        self,
-        query: str,
-        next_max_id: Optional[str] = None,
-        rank_token: Optional[str] = None,
-        reels_max_id: Optional[str] = None,
-    ) -> Dict:
-        """Search Top. Search top content by keyword"""
-        params = {
-            "query": query,
-            "next_max_id": next_max_id,
-            "rank_token": rank_token,
-            "reels_max_id": reels_max_id,
-        }
-        json = None
-        return self._request(
-            "get", "/v2/search/topsearch".format(**{}), params=params, json=json
-        )
-
-    def search_reels_v2(
-        self,
-        query: str,
-        reels_max_id: Optional[str] = None,
-        rank_token: Optional[str] = None,
-    ) -> Dict:
-        """Search Reels. Search top content by keyword"""
-        params = {
-            "query": query,
-            "reels_max_id": reels_max_id,
-            "rank_token": rank_token,
-        }
-        json = None
-        return self._request(
-            "get", "/v2/search/reels".format(**{}), params=params, json=json
         )
 
     def fbsearch_accounts_v2(
