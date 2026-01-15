@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Optional
 
 from .base import BaseAsyncClient
 from .helpers import AsyncHelperMixin
+from .extractors import *
 
 
 class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
@@ -113,9 +114,14 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             "get", "/gql/user/reposts".format(**{}), params=params, json=json
         )
 
-    async def user_clips_gql(self, user_id: str, max_id: Optional[str] = None) -> Dict:
+    async def user_clips_gql(
+        self,
+        user_id: str,
+        max_id: Optional[str] = None,
+        sort_by_views: Optional[Any] = None,
+    ) -> Dict:
         """Returns the user's short video posts (reels).. Get user clips"""
-        params = {"user_id": user_id, "max_id": max_id}
+        params = {"user_id": user_id, "max_id": max_id, "sort_by_views": sort_by_views}
         json = None
         return await self._request(
             "get", "/gql/user/clips".format(**{}), params=params, json=json
@@ -754,7 +760,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="items",
+            response_key=None,
+            extract_func=extract_user_clips,
         )
 
     async def user_following_v2(
@@ -784,6 +791,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="users",
+            extract_func=None,
         )
 
     async def user_followers_v2(
@@ -813,6 +821,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="users",
+            extract_func=None,
         )
 
     async def user_tag_medias_v2(
@@ -842,6 +851,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="items",
+            extract_func=None,
         )
 
     async def user_highlights_v2(
@@ -872,6 +882,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="tray",
+            extract_func=None,
         )
 
     async def user_highlights_by_username_v2(
@@ -971,6 +982,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="comments",
+            extract_func=None,
         )
 
     async def media_likers_v2(self, id: str) -> Dict:
@@ -995,6 +1007,16 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/media/comment/offensive".format(**{}), params=params, json=json
+        )
+
+    async def media_comments_replies_v2(
+        self, media_id: str, comment_id: str, min_id: Optional[str] = None
+    ) -> Dict:
+        """Media Comments Replies. Get media comment replies with pagination by min_id"""
+        params = {"media_id": media_id, "comment_id": comment_id, "min_id": min_id}
+        json = None
+        return await self._request(
+            "get", "/v2/media/comments/replies".format(**{}), params=params, json=json
         )
 
     async def story_by_id_v2(self, id: str) -> Dict:
@@ -1077,7 +1099,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            response_key=None,
+            extract_func=extract_hashtag_medias_top,
         )
 
     async def hashtag_medias_recent_v2(
@@ -1106,7 +1129,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            response_key=None,
+            extract_func=extract_hashtag_medias_recent,
         )
 
     async def highlight_by_id_v2(self, id: str) -> Dict:
