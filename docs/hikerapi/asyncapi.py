@@ -2,6 +2,7 @@ from typing import Any, Dict, List, Optional
 
 from .base import BaseAsyncClient
 from .helpers import AsyncHelperMixin
+from .extractors import *
 
 
 class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
@@ -104,18 +105,36 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         )
 
     async def user_reposts_gql(
-        self, user_id: str, repost_next_max_id: Optional[str] = None
+        self,
+        user_id: str,
+        repost_next_max_id: Optional[str] = None,
+        flat: Optional[Any] = None,
     ) -> Dict:
         """Get user's reposted content. Get user media reposts"""
-        params = {"user_id": user_id, "repost_next_max_id": repost_next_max_id}
+        params = {
+            "user_id": user_id,
+            "repost_next_max_id": repost_next_max_id,
+            "flat": flat,
+        }
         json = None
         return await self._request(
             "get", "/gql/user/reposts".format(**{}), params=params, json=json
         )
 
-    async def user_clips_gql(self, user_id: str, max_id: Optional[str] = None) -> Dict:
+    async def user_clips_gql(
+        self,
+        user_id: str,
+        max_id: Optional[str] = None,
+        sort_by_views: Optional[Any] = None,
+        flat: Optional[Any] = None,
+    ) -> Dict:
         """Returns the user's short video posts (reels).. Get user clips"""
-        params = {"user_id": user_id, "max_id": max_id}
+        params = {
+            "user_id": user_id,
+            "max_id": max_id,
+            "sort_by_views": sort_by_views,
+            "flat": flat,
+        }
         json = None
         return await self._request(
             "get", "/gql/user/clips".format(**{}), params=params, json=json
@@ -754,7 +773,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="items",
+            response_key=None,
+            extract_func=extract_user_clips,
         )
 
     async def user_following_v2(
@@ -784,6 +804,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="users",
+            extract_func=None,
         )
 
     async def user_followers_v2(
@@ -813,6 +834,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="users",
+            extract_func=None,
         )
 
     async def user_tag_medias_v2(
@@ -842,6 +864,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="items",
+            extract_func=None,
         )
 
     async def user_highlights_v2(
@@ -872,6 +895,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="tray",
+            extract_func=None,
         )
 
     async def user_highlights_by_username_v2(
@@ -901,7 +925,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
     async def user_suggested_profiles_v2(
         self, user_id: str, expand_suggestion: Optional[Any] = None
     ) -> Dict:
-        """Fetch Suggestion Details. Fetch suggested users details by target_id. expand_suggestion=True for more detailed response"""
+        """Fetch Suggestion Details. Fetch suggested users details by target_id.
+        expand_suggestion=True for more detailed response"""
         params = {"user_id": user_id, "expand_suggestion": expand_suggestion}
         json = None
         return await self._request(
@@ -971,6 +996,7 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             container=container,
             max_requests=max_requests,
             response_key="comments",
+            extract_func=None,
         )
 
     async def media_likers_v2(self, id: str) -> Dict:
@@ -995,6 +1021,16 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/media/comment/offensive".format(**{}), params=params, json=json
+        )
+
+    async def media_comments_replies_v2(
+        self, media_id: str, comment_id: str, min_id: Optional[str] = None
+    ) -> Dict:
+        """Media Comments Replies. Get media comment replies with pagination by min_id"""
+        params = {"media_id": media_id, "comment_id": comment_id, "min_id": min_id}
+        json = None
+        return await self._request(
+            "get", "/v2/media/comments/replies".format(**{}), params=params, json=json
         )
 
     async def story_by_id_v2(self, id: str) -> Dict:
@@ -1077,7 +1113,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            response_key=None,
+            extract_func=extract_hashtag_medias_top,
         )
 
     async def hashtag_medias_recent_v2(
@@ -1106,7 +1143,8 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
             count=count,
             container=container,
             max_requests=max_requests,
-            response_key="sections",
+            response_key=None,
+            extract_func=extract_hashtag_medias_recent,
         )
 
     async def highlight_by_id_v2(self, id: str) -> Dict:
@@ -1135,50 +1173,6 @@ class AsyncClient(BaseAsyncClient, AsyncHelperMixin):
         json = None
         return await self._request(
             "get", "/v2/search/music".format(**{}), params=params, json=json
-        )
-
-    async def search_places_v2(self, query: str) -> Dict:
-        """Search Places. Search places"""
-        params = {"query": query}
-        json = None
-        return await self._request(
-            "get", "/v2/search/places".format(**{}), params=params, json=json
-        )
-
-    async def search_topsearch_v2(
-        self,
-        query: str,
-        next_max_id: Optional[str] = None,
-        rank_token: Optional[str] = None,
-        reels_max_id: Optional[str] = None,
-    ) -> Dict:
-        """Search Top. Search top content by keyword"""
-        params = {
-            "query": query,
-            "next_max_id": next_max_id,
-            "rank_token": rank_token,
-            "reels_max_id": reels_max_id,
-        }
-        json = None
-        return await self._request(
-            "get", "/v2/search/topsearch".format(**{}), params=params, json=json
-        )
-
-    async def search_reels_v2(
-        self,
-        query: str,
-        reels_max_id: Optional[str] = None,
-        rank_token: Optional[str] = None,
-    ) -> Dict:
-        """Search Reels. Search top content by keyword"""
-        params = {
-            "query": query,
-            "reels_max_id": reels_max_id,
-            "rank_token": rank_token,
-        }
-        json = None
-        return await self._request(
-            "get", "/v2/search/reels".format(**{}), params=params, json=json
         )
 
     async def fbsearch_accounts_v2(
