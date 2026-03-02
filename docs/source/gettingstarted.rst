@@ -6,8 +6,8 @@ Getting Started
 First Steps
 ------------------------------------
 
-With HikerAPI, you have several options to use it. 
-You can handle your needs with our API `HikerAPI SaaS <https://hikerapi.com/p/894GyDoD>`_,
+With HikerAPI, you have several options to use it.
+You can handle your needs with our API `HikerAPI SaaS <https://hikerapi.com/p/hybef5jn>`_,
 or use our :ref:`Python library <Python>`.
 
 .. code-block:: console
@@ -17,12 +17,12 @@ or use our :ref:`Python library <Python>`.
 Trial version
 ------------------------------------
 
-Have a trial by a following link `HikerAPI SaaS <https://hikerapi.com/p/894GyDoD>`_
+Have a trial by a following link `HikerAPI SaaS <https://hikerapi.com/p/hybef5jn>`_
 
 A demonstration of an example
 ------------------------------------
 
-In order to show what HikerAPI brings into the table, 
+In order to show what HikerAPI brings into the table,
 we'll walk you through an example of a Python-HikerAPI usage.
 
 
@@ -142,7 +142,7 @@ Second example
                 break
 
 
-If you don't have a user_id, you can get one by doing the following. 
+If you don't have a user_id, you can get one by doing the following.
 
 .. code-block:: python
 
@@ -159,15 +159,12 @@ https://api.hikerapi.com/v1/user/by/username?username=ronaldo
 What just happened?
 ------------------------------------
 
-The user's followers have been successfully extracted and organized into a list/csv. 
+The user's followers have been successfully extracted and organized into a list/csv.
 
-This allows for easy access and analysis of the data, 
-as well as potential for further processing such as sorting by various 
-criteria or filtering out interesting accounts. 
+This allows for easy access and analysis of the data,
+as well as potential for further processing such as sorting by various
+criteria or filtering out interesting accounts.
 
-With this information, 
-the user may gain insights into their audience and identify potential 
+With this information,
+the user may gain insights into their audience and identify potential
 new followers or target demographics.
-
-
-
