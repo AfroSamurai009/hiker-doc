@@ -151,6 +151,8 @@
 4. Коммит: `feat: replace Why HikerAPI table with stat cards`
 
 ## Task 13: Home — layout polish
+- Status: done
+- Commits: 741ffab
 
 **Что сделать:**
 
