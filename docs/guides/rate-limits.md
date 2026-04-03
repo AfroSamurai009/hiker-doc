@@ -90,4 +90,4 @@ asyncio.run(main())
 ```
 
 !!! tip "Need higher limits?"
-    [Contact us](../support/contacts.md) to discuss custom rate limits for your use case. Starting at $0.0006/request — [see pricing →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+    [Contact us](../support/contacts.md) to discuss custom rate limits for your use case. Starting at $0.0006/request — [see pricing →](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=rate-limits-pricing){ target=_blank }

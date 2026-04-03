@@ -4,7 +4,7 @@ All HikerAPI requests require an API key passed via the `x-access-key` header.
 
 ## Get your API key
 
-1. [Sign up at hikerapi.com](https://hikerapi.com/p/hybef5jn){ target=_blank }
+1. [Sign up at hikerapi.com](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=auth-signup){ target=_blank }
 2. Confirm via Telegram
 3. Get your token from the [dashboard](https://hikerapi.com/tokens){ target=_blank }
 

@@ -76,7 +76,7 @@ curl -H "x-access-key: YOUR_TOKEN" \
 
 **Ready to start?** Get 100 free requests after signup — no credit card required.
 
-[Start Free Trial](https://hikerapi.com/p/hybef5jn){ .md-button .md-button--primary target=_blank }
+[Start Free Trial](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=home-cta){ .md-button .md-button--primary target=_blank }
 [View API Reference](api-reference/v1/index.md){ .md-button }
 
 </div>

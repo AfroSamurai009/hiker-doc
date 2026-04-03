@@ -8,4 +8,4 @@ Search users, hashtags, places, and businesses.
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** First 100 requests free — [Get your API key →](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=api-v2-search){ target=_blank }

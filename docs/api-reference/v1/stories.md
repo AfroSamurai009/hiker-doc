@@ -8,4 +8,4 @@ Get user stories and story items by ID or URL.
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** First 100 requests free — [Get your API key →](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=api-v1-stories){ target=_blank }
