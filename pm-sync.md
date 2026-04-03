@@ -625,3 +625,43 @@ markdown_extensions:
 - Status: done
 - Commits: 28f7cd5
 - Notes: Tags/externalDocs удалены из specs и из каждого endpoint. GraphQL overview создан в gql/index.md. TOC: neoteroi генерит h3 теги, но Material TOC их не подхватывает (HTML injection vs markdown parsing). Решение: добавлен **Endpoints:** список кликабельных ссылок вверху каждой ресурсной страницы (14 страниц). toc_depth: 3 не помогает — пробовал. Strict build 0 warnings.
+
+## Task 22: Обновить Rate Limits — актуальные данные по тарифам
+
+**Проблема:** На странице Rate Limits написано "Default: 1,000,000 req/day, ~11 req/sec". Это устаревшие данные. По БД:
+- Все публичные тарифы: **15 req/sec**
+- Триал/бесплатный: **1 req/sec**
+
+**Что сделать:**
+
+Обновить `docs/guides/rate-limits.md`. Заменить секцию "Default limits" на подробную таблицу по тарифам:
+
+```markdown
+# Rate Limits & Retry Logic
+
+## Limits by plan
+
+| Plan | Price/request | Requests included | Rate limit |
+|------|--------------|-------------------|------------|
+| **Free trial** | free | 100 | 1 req/sec |
+| **Start** | $0.02 | 1,000 | 15 req/sec |
+| **Standard** | $0.001 | 100,000 | 15 req/sec |
+| **Business** | $0.00069 | 434,000 | 15 req/sec |
+| **Ultra** | $0.0006 | ~1,000,000 | 15 req/sec |
+
+All paid plans share the same rate limit of **15 requests per second**. The free trial is limited to 1 req/sec.
+
+Need higher limits? [Contact us](../support/contacts.md).
+
+## Check your current rate limit
+```
+
+Остальное на странице (Handling rate limits, async example) — оставить как есть, но:
+- Заменить `rate_limit` в примере с 11 на 15
+- Обновить текст "If you exceed the per-second limit" — убрать упоминание "11"
+- Ссылку на pricing обновить: "Starting at $0.0006/request" (уже сделано)
+
+Коммит: `fix: update rate limits with actual plan data (15 req/sec)`
+
+- Status: done
+- Commits: d48fc72
