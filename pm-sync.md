@@ -16,3 +16,8 @@
 - Status: done
 - Commits: c9624ce
 - Notes: mkdocs.yml, requirements.txt, .readthedocs.yaml, docs/index.md, docs/overrides/ — build OK
+
+## Task 2: Home page with CTA
+- Status: done
+- Commits: 6e8a77b
+- Notes: Grid cards, trust signals table, CTA box with custom CSS, dark mode support
