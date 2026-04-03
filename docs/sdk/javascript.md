@@ -52,4 +52,4 @@ const response = await fetch(
 const user = await response.json();
 ```
 
-See [API Reference](../api-reference/rest-v1.md) for all endpoints.
+See [API Reference](../api-reference/v1/index.md) for all endpoints.

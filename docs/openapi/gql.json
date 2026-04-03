@@ -1,0 +1,1493 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HikerAPI REST",
+    "description": "Instagram API",
+    "version": "1.7.7"
+  },
+  "paths": {
+    "/gql/user/medias": {
+      "get": {
+        "tags": [
+          "Top 5",
+          "User Profile"
+        ],
+        "summary": "Returns the user medias",
+        "description": "Get user medias",
+        "operationId": "user_medias_gql_user_medias_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "profile_grid_items_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Profile Grid Items Cursor"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested media objects into a single list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested media objects into a single list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_medias_gql (\n    user_id=\"123123\", profile_grid_items_cursor=None\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/following/chunk": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user following (one request required)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_following_chunk_gql_user_following_chunk_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following)",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_chunk_gql(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_chunk_gql(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/gql/user/followers/chunk": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user followers (one request required)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_followers_chunk_gql_user_followers_chunk_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_chunk_gql(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_chunk_gql(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/gql/user/reposts": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get user's reposted content",
+        "description": "Get user media reposts",
+        "operationId": "fetch_user_reposts_query_gql_user_reposts_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "repost_next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Repost Next Max Id"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested response into simple items list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested response into simple items list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_reposts_gql(user_id=\"4255960887\")",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/clips": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Returns the user's short video posts (reels).",
+        "description": "Get user clips",
+        "operationId": "user_clips_gql_user_clips_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Max Id"
+            }
+          },
+          {
+            "name": "sort_by_views",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Sort By Views"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested media objects into a single list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested media objects into a single list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedia = await cl.user_clips_gql(target_user_id=\"26064198596\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/g2/user/followers": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user followers (one request required)",
+        "description": "Get part (one page) of followers users with cursor",
+        "operationId": "user_followers_g2_user_followers_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of followers",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/g2/user/following": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user following (one request required)",
+        "description": "Get part (one page) of following users with cursor",
+        "operationId": "user_following_g2_user_following_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of following users",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/web_profile_info": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get user profile info GraphQL",
+        "description": "Get user profile info by user id (GraphQL web_profile_info)",
+        "operationId": "user_web_profile_info_gql_user_web_profile_info_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_web_profile_info_gql(user_id=\"95561\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/media/usertags": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Returns users tagged in the video. You can pass up to 10 media ids",
+        "description": "Returns users tagged in the video. You can pass up to 10 media ids",
+        "operationId": "graphql_query_getfulldatacomputingmediadictquery_chapi_gql_media_usertags_get",
+        "parameters": [
+          {
+            "name": "media_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Media Ids"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_usertags_gql(media_id=\"3162273595027945978\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/media/likers": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Media Likers",
+        "description": "Get likers on a media (paging is unavailable on this endpoint)",
+        "operationId": "media_likers_gql_media_likers_get",
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nlikers = await cl.media_likers_gql(media_id=\"3162273595027945978\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/chunk": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Media Comments Chunk",
+        "description": "Get comments on a media",
+        "operationId": "media_comments_chunk_gql_comments_chunk_get",
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "recent",
+                    "popular"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "recent",
+              "title": "Sort Order"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = await cl.comments_chunk_gql(\n    media_id=\"3162273595027945978\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/threaded/chunk": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Media Comments Threaded Chunk",
+        "description": "Get threaded comments for comment",
+        "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = cl.comments_threaded_chunk_gql(comment_id=\"2321157652140500761\", end_cursor=None)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_threaded_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comment/likers/chunk": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Comment Likers Chunk",
+        "description": "Get likers on a comment",
+        "operationId": "comment_likers_chunk_gql_comment_likers_chunk_get",
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "deprecated": true,
+              "title": "Media Id"
+            },
+            "deprecated": true
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nlikers, end_cursor = cl.comment_likers_chunk_gql(media_id=\"3162273595027945978\", end_cursor=None)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comment_likers_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/topsearch": {
+      "get": {
+        "tags": [
+          "Comments",
+          "Search"
+        ],
+        "summary": "Topsearch",
+        "description": "Search top content by keyword (GraphQL TopSerpQuery)",
+        "operationId": "topsearch_gql_topsearch_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "End Cursor"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested response into simple items list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested response into simple items list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/gql/comments": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Preferable to use /gql/comments/chunk",
+        "description": "Get comments on a media",
+        "operationId": "media_comments_gql_comments_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "recent",
+                    "popular"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "recent",
+              "title": "Sort Order"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "max_requests",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Max Requests"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.comments_gql(media_id=\"3162273595027945978\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comment/likers": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Preferable to use /gql/comment/likers/chunk",
+        "description": "Get likers on a comment",
+        "operationId": "comment_likers_gql_comment_likers_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.comment_likers_gql(media_id=\"3162273595027945978\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/related/profiles": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using v2/user/suggested/profiles as this endpoint will be completely deprecated soon",
+        "description": "Get related profiles by user id",
+        "operationId": "related_profiles_gql_user_related_profiles_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_related_profiles_gql(id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/threaded": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Preferable to use /gql/comments/chunk",
+        "description": "Get threaded comments for comment",
+        "operationId": "media_comments_threaded_gql_comments_threaded_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments = await cl.comments_threaded_gql(comment_id=\"17868057941916088\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/by/id": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "User By Id",
+        "description": "Get user object by id",
+        "operationId": "user_by_id_gql_user_by_id_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/by/username": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Get user object by username (one request required)",
+        "description": "Get user object by username",
+        "operationId": "user_by_username_gql_user_by_username_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/followers": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_followers_gql_user_followers_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 46,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_followers_gql(user_id=\"123123\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/gql/user/following": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Use /v2/user/following. Get a user following (one request is required for every 46 following)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_following_gql_user_following_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following)",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_following_gql(user_id=\"123123\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Top 5",
+      "description": "Most popular endpoints - start here"
+    },
+    {
+      "name": "User Profile",
+      "description": "Get user info, followers, following, posts & reels, stories",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
+      }
+    },
+    {
+      "name": "Post Details",
+      "description": "Get media/post info by ID, code or URL. Likers, insights",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
+      }
+    },
+    {
+      "name": "Comments",
+      "description": "Get comments on posts, comment likers, replies",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
+      }
+    },
+    {
+      "name": "Search",
+      "description": "Search users, hashtags, locations, music",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
+      }
+    },
+    {
+      "name": "Hashtags",
+      "description": "Get hashtag info and medias (top, recent, clips)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
+      }
+    },
+    {
+      "name": "Audio",
+      "description": "Music and audio related endpoints",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
+      }
+    },
+    {
+      "name": "Location",
+      "description": "Location info and medias",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
+      }
+    },
+    {
+      "name": "Stories",
+      "description": "Stories by ID/URL, story download",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
+      }
+    },
+    {
+      "name": "Highlights",
+      "description": "Highlights by ID/URL",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
+      }
+    },
+    {
+      "name": "Share",
+      "description": "Resolve share links (/s/, /reel/ URLs)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "System",
+      "description": "System endpoints, balance, health checks",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "Legacy",
+      "description": "Deprecated - use recommended alternatives"
+    }
+  ],
+  "externalDocs": {
+    "description": "Get the access_key",
+    "url": "https://hikerapi.com/tokens"
+  }
+}

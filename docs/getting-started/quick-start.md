@@ -126,6 +126,6 @@ with open("users.csv", "w", newline="") as f:
 ---
 
 !!! tip "What's next?"
-    - Browse the [API Reference](../api-reference/rest-v1.md) for all 147 endpoints
+    - Browse the [API Reference](../api-reference/v1/index.md) for all 147 endpoints
     - Check [Rate Limits](../guides/rate-limits.md) to optimize your integration
     - See [SDKs](../sdk/python.md) for language-specific clients

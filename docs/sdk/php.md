@@ -37,4 +37,4 @@ $response = json_decode(curl_exec($ch), true);
 curl_close($ch);
 ```
 
-See [API Reference](../api-reference/rest-v1.md) for all endpoints.
+See [API Reference](../api-reference/v1/index.md) for all endpoints.

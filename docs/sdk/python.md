@@ -62,7 +62,7 @@ SDK methods map 1:1 to API endpoints:
 | `GET /v2/user/followers` | `cl.user_followers_v2()` |
 | `GET /gql/comments/chunk` | `cl.comments_chunk_gql()` |
 
-Pattern: `endpoint_path_version()` — see [API Reference](../api-reference/rest-v1.md) for all endpoints.
+Pattern: `endpoint_path_version()` — see [API Reference](../api-reference/v1/index.md) for all endpoints.
 
 ## Source code
 

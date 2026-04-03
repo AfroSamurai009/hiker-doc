@@ -1,0 +1,491 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HikerAPI REST",
+    "description": "Instagram API",
+    "version": "1.7.7"
+  },
+  "paths": {
+    "/v1/location/medias/recent/chunk": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location Medias Recent Chunk",
+        "description": "Get location chunk of recent medias",
+        "operationId": "location_medias_recent_chunk_v1_location_medias_recent_chunk_get",
+        "parameters": [
+          {
+            "name": "location_pk",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Location Pk"
+            }
+          },
+          {
+            "name": "max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedias, max_id = await cl.location_medias_recent_chunk_v1(\n    location_pk=\"213131048\", max_id=None\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/location/medias/recent": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location Medias Recent V1",
+        "description": "Get location recent medias",
+        "operationId": "location_medias_recent_v1_v1_location_medias_recent_get",
+        "parameters": [
+          {
+            "name": "location_pk",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Location Pk"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 63,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedias = await cl.location_medias_recent_v1(location_pk=\"213131048\", amount=10)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nmax_id = None\nwhile True:\n    items, max_id = cl.location_medias_recent_chunk_v1(\"213131048\", max_id=max_id)\n    items_list.extend(items)\n    if not max_id:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/location/search": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location Search",
+        "description": "Get locations using lat and long",
+        "operationId": "location_search_v1_location_search_get",
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "title": "Lng"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.location_search_v1(lat=None, lng=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/location/medias/top": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location Medias Top V1",
+        "description": "Get location top medias",
+        "operationId": "location_medias_top_v1_v1_location_medias_top_get",
+        "parameters": [
+          {
+            "name": "location_pk",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Location Pk"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 21,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.location_medias_top_v1(location_pk=\"213131048\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/location/medias/top/chunk": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location Medias Top Chunk",
+        "description": "Get location chunk of top medias",
+        "operationId": "location_medias_top_chunk_v1_location_medias_top_chunk_get",
+        "parameters": [
+          {
+            "name": "location_pk",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Location Pk"
+            }
+          },
+          {
+            "name": "max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedias, max_id = await cl.location_medias_top_chunk_v1(\n    location_pk=\"213131048\", max_id=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nmax_id = None\nwhile True:\n    items, max_id = cl.location_medias_top_chunk_v1(\"213131048\", max_id=max_id)\n    items_list.extend(items)\n    if not max_id:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/location/by/id": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location By Id",
+        "description": "Get location object by id",
+        "operationId": "location_by_id_v1_location_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.location_by_id_v1(id=\"213131048\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/location/guides": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Location Guides V1",
+        "description": "Get location guides",
+        "operationId": "location_guides_v1_v1_location_guides_get",
+        "parameters": [
+          {
+            "name": "location_pk",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Location Pk"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.location_guides_v1(location_pk=\"213131048\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Top 5",
+      "description": "Most popular endpoints - start here"
+    },
+    {
+      "name": "User Profile",
+      "description": "Get user info, followers, following, posts & reels, stories",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
+      }
+    },
+    {
+      "name": "Post Details",
+      "description": "Get media/post info by ID, code or URL. Likers, insights",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
+      }
+    },
+    {
+      "name": "Comments",
+      "description": "Get comments on posts, comment likers, replies",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
+      }
+    },
+    {
+      "name": "Search",
+      "description": "Search users, hashtags, locations, music",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
+      }
+    },
+    {
+      "name": "Hashtags",
+      "description": "Get hashtag info and medias (top, recent, clips)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
+      }
+    },
+    {
+      "name": "Audio",
+      "description": "Music and audio related endpoints",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
+      }
+    },
+    {
+      "name": "Location",
+      "description": "Location info and medias",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
+      }
+    },
+    {
+      "name": "Stories",
+      "description": "Stories by ID/URL, story download",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
+      }
+    },
+    {
+      "name": "Highlights",
+      "description": "Highlights by ID/URL",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
+      }
+    },
+    {
+      "name": "Share",
+      "description": "Resolve share links (/s/, /reel/ URLs)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "System",
+      "description": "System endpoints, balance, health checks",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "Legacy",
+      "description": "Deprecated - use recommended alternatives"
+    }
+  ],
+  "externalDocs": {
+    "description": "Get the access_key",
+    "url": "https://hikerapi.com/tokens"
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HikerAPI REST",
+    "description": "Instagram API",
+    "version": "1.7.7"
+  },
+  "paths": {
+    "/v1/user/stories": {
+      "get": {
+        "tags": [
+          "User Profile",
+          "/v1/story"
+        ],
+        "summary": "User Stories",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_stories_v1_user_stories_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_stories_v1(user_id=\"123123\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/v1/user/stories/by/username": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get user stories",
+        "operationId": "user_stories_by_username_v1_user_stories_by_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/v1/story/by/url": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Attention! To work with /s/ links, call /v1/share/by/url first",
+        "description": "Get story object by id",
+        "operationId": "story_by_url_v1_story_by_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.story_by_url_v1(url=\"url_to_story\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/story/by/id": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Story By Id",
+        "description": "Get story object by id",
+        "operationId": "story_by_id_v1_story_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.story_by_id_v1(id=\"3170083532687367998\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/story/download": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Story Download",
+        "description": "Download story media by story id",
+        "operationId": "story_download_v1_story_download_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.story_download_v1(id=\"3170083532687367998\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/story/download/by/url": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Download story file by URL to file",
+        "description": "Download story file by URL to file\n(you can take it from \"/v1/story/by/id\" or \"/v1/story/by/url\")\n\nExample: https://scontent-lga3-1.cdnins...ram.com/v/t66.30100-16/\n    310890533_1622838408176007_5601749632271872566_n.mp4?efg=...",
+        "operationId": "story_download_by_url_v1_story_download_by_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.story_download_by_url_v1(url=\"url_to_story\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/story/download/by/story/url": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Download story file by story URL",
+        "description": "Download story file by story URL\n\nExample: https://ins...ram.com/stories/example/30038568123745341231284",
+        "operationId": "story_download_by_story_url_v1_story_download_by_story_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {}
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.story_download_by_story_url_v1(url=\"url_to_story\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Top 5",
+      "description": "Most popular endpoints - start here"
+    },
+    {
+      "name": "User Profile",
+      "description": "Get user info, followers, following, posts & reels, stories",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
+      }
+    },
+    {
+      "name": "Post Details",
+      "description": "Get media/post info by ID, code or URL. Likers, insights",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
+      }
+    },
+    {
+      "name": "Comments",
+      "description": "Get comments on posts, comment likers, replies",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
+      }
+    },
+    {
+      "name": "Search",
+      "description": "Search users, hashtags, locations, music",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
+      }
+    },
+    {
+      "name": "Hashtags",
+      "description": "Get hashtag info and medias (top, recent, clips)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
+      }
+    },
+    {
+      "name": "Audio",
+      "description": "Music and audio related endpoints",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
+      }
+    },
+    {
+      "name": "Location",
+      "description": "Location info and medias",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
+      }
+    },
+    {
+      "name": "Stories",
+      "description": "Stories by ID/URL, story download",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
+      }
+    },
+    {
+      "name": "Highlights",
+      "description": "Highlights by ID/URL",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
+      }
+    },
+    {
+      "name": "Share",
+      "description": "Resolve share links (/s/, /reel/ URLs)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "System",
+      "description": "System endpoints, balance, health checks",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "Legacy",
+      "description": "Deprecated - use recommended alternatives"
+    }
+  ],
+  "externalDocs": {
+    "description": "Get the access_key",
+    "url": "https://hikerapi.com/tokens"
+  }
+}

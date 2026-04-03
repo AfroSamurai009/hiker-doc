@@ -43,7 +43,7 @@ Example response:
 
 ## All GraphQL endpoints (22)
 
-[OAD(../openapi-gql.json)]
+[OAD(../openapi/gql.json)]
 
 ---
 

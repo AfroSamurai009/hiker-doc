@@ -24,7 +24,7 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
     147 endpoints — REST v1, v2, and GraphQL
 
-    [:octicons-arrow-right-24: Explore endpoints](api-reference/rest-v1.md)
+    [:octicons-arrow-right-24: Explore endpoints](api-reference/v1/index.md)
 
 -   :material-language-python:{ .lg .middle } **SDKs**
 
@@ -77,6 +77,6 @@ curl -H "x-access-key: YOUR_TOKEN" \
 **Ready to start?** Get 100 free requests after signup — no credit card required.
 
 [Start Free Trial](https://hikerapi.com/p/hybef5jn){ .md-button .md-button--primary target=_blank }
-[View API Reference](api-reference/rest-v1.md){ .md-button }
+[View API Reference](api-reference/v1/index.md){ .md-button }
 
 </div>

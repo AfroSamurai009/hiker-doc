@@ -61,8 +61,22 @@ nav:
     - Quick Start: getting-started/quick-start.md
     - Authentication: getting-started/authentication.md
   - API Reference:
-    - REST API v1: api-reference/rest-v1.md
-    - REST API v2: api-reference/rest-v2.md
+    - v1 Overview: api-reference/v1/index.md
+    - v1 User: api-reference/v1/user.md
+    - v1 Media: api-reference/v1/media.md
+    - v1 Stories: api-reference/v1/stories.md
+    - v1 Highlights: api-reference/v1/highlights.md
+    - v1 Hashtags: api-reference/v1/hashtags.md
+    - v1 Locations: api-reference/v1/locations.md
+    - v1 Search: api-reference/v1/search.md
+    - v2 Overview: api-reference/v2/index.md
+    - v2 User: api-reference/v2/user.md
+    - v2 Media: api-reference/v2/media.md
+    - v2 Stories: api-reference/v2/stories.md
+    - v2 Highlights: api-reference/v2/highlights.md
+    - v2 Hashtags: api-reference/v2/hashtags.md
+    - v2 Search: api-reference/v2/search.md
+    - v2 Track: api-reference/v2/track.md
     - GraphQL API: api-reference/graphql.md
     - Response Codes: api-reference/response-codes.md
   - SDKs:

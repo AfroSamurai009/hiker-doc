@@ -39,4 +39,4 @@ req.Header.Set("x-access-key", "YOUR_TOKEN")
 resp, _ := http.DefaultClient.Do(req)
 ```
 
-See [API Reference](../api-reference/rest-v1.md) for all endpoints.
+See [API Reference](../api-reference/v1/index.md) for all endpoints.
