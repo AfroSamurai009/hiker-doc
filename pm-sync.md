@@ -174,6 +174,8 @@ curl -H "x-access-key: YOUR_TOKEN" \
 2. Коммит: `feat: add code snippet preview on home page`
 
 ## Task 14: Navigation polish — breadcrumbs + footer
+- Status: done
+- Commits: daa7f7d
 
 **Что сделать:**
 
