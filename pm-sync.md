@@ -211,3 +211,110 @@ extra:
 1. Запустить `mkdocs build --strict` — 0 ошибок, 0 warnings
 2. Запустить `mkdocs serve` и пройтись по всем страницам
 3. Написать статус в pm-sync
+
+---
+
+# Round 3 — API Reference без Swagger UI
+
+Ревьюер обновил данные на Home и Rate Limits (коммит 1d33a12 — 10M+ req/day, $0.0006/req).
+
+## Task 16: Заменить Swagger UI на neoteroi-mkdocs OpenAPI renderer
+
+**Проблема:** Swagger UI на страницах API Reference выглядит как врезанная чужая страница — кнопка Authorize, Servers dropdown, Models/Schemas секция. Ни один крупный API-продукт (Stripe, Twilio, OpenAI) так не делает. Нужен чистый нативный рендер эндпоинтов в стиле Material theme.
+
+**Решение:** Плагин `neoteroi-mkdocs` (`mkdocsoad`) — читает OpenAPI JSON и рендерит нативный Markdown с бейджами методов, таблицами параметров, collapsible секциями request/response.
+
+**Что сделать:**
+
+1. Установить зависимость:
+```bash
+uv pip install neoteroi-mkdocs
+```
+
+2. Добавить в `docs/requirements.txt`:
+```
+mkdocs-material>=9.5
+mkdocs-swagger-ui-tag>=0.6
+neoteroi-mkdocs>=1.2.0
+```
+
+3. В `mkdocs.yml` добавить plugin:
+```yaml
+plugins:
+  - search
+  - neoteroi.mkdocsoad
+```
+
+4. В `mkdocs.yml` добавить CSS для neoteroi (в `extra_css`):
+```yaml
+extra_css:
+  - overrides/extra.css
+  - css/neoteroi-mkdocs.css
+```
+
+5. Скопировать CSS neoteroi для кастомизации:
+```bash
+# Найти файл:
+python3 -c "import neoteroi.mkdocsoad; import os; print(os.path.dirname(neoteroi.mkdocsoad.__file__))"
+# Скопировать mkdocsoad.css в docs/css/neoteroi-mkdocs.css
+# Или создать docs/css/neoteroi-mkdocs.css с нужными стилями
+```
+
+Если CSS файл не находится автоматически — создать `docs/css/neoteroi-mkdocs.css` и подключить. Документация: https://www.neoteroi.dev/mkdocs-plugins/web/oad/
+
+6. Обновить `docs/api-reference/rest-v1.md`:
+```markdown
+# REST API v1
+
+Mobile API endpoints for anonymous Instagram data retrieval. v1 endpoints return raw Instagram data structures with minimal transformation.
+
+All endpoints use `GET` method and require the `x-access-key` header. See [Authentication](../getting-started/authentication.md).
+
+## Endpoint groups
+
+| Group | Description | Example |
+|-------|-------------|---------|
+| **User** | Profiles, followers, following, search | `/v1/user/by/username` |
+| **Media** | Posts, reels, likes, comments | `/v1/media/by/code` |
+| **Stories** | User stories and story items | `/v1/user/stories` |
+| **Highlights** | Story highlights and covers | `/v1/user/highlights` |
+| **Hashtags** | Hashtag info and recent media | `/v1/hashtag/by/name` |
+| **Locations** | Location info and media | `/v1/location/by/id` |
+| **Search** | Global search across users, hashtags, locations | `/v1/search` |
+
+## All v1 endpoints (72)
+
+[OAD(../openapi-v1.json)]
+
+---
+
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+```
+
+7. Аналогично обновить `docs/api-reference/rest-v2.md` — заменить `<swagger-ui .../>` на `[OAD(../openapi-v2.json)]`
+
+8. Аналогично обновить `docs/api-reference/graphql.md` — заменить `<swagger-ui .../>` на `[OAD(../openapi-gql.json)]`. Оставить пример с табами curl/Python выше OAD.
+
+9. После замены всех Swagger UI — можно удалить `mkdocs-swagger-ui-tag` из зависимостей и плагинов в mkdocs.yml (но только после проверки что OAD работает!).
+
+10. Запустить `mkdocs serve` и проверить:
+    - Эндпоинты рендерятся нативно в стиле Material
+    - Бейджи методов (GET зелёный)
+    - Параметры в таблицах
+    - Нет Swagger UI элементов (Authorize, Servers, Models)
+    - Dark mode работает
+
+11. Коммит: `feat: replace Swagger UI with neoteroi OpenAPI renderer`
+
+**Важно:** Если `neoteroi-mkdocs` не устраивает визуально или есть проблемы — НЕ коммитить, написать в pm-sync что именно не так. Мы рассмотрим альтернативы.
+
+- Status: done
+- Commits: 73cdabc
+- Notes: neoteroi.mkdocsoad рендерит эндпоинты нативно. swagger-ui-tag удалён из plugins и requirements. CSS инжектится автоматически (нет отдельного файла). Build strict — 0 warnings.
+
+## Task 17: Final build verification Round 3
+
+1. `mkdocs build --strict` — 0 ошибок
+2. `mkdocs serve` — пройтись по v1, v2, gql страницам
+3. Проверить dark/light mode
+4. Написать статус в pm-sync
