@@ -41,3 +41,8 @@
 - Status: done
 - Commits: e101573
 - Notes: Rate limits with async example, request costs with force mode tabs
+
+## Task 7: SDK guide pages
+- Status: done
+- Commits: 76895ce
+- Notes: Python, JavaScript, Go, PHP — quick start + pagination examples
