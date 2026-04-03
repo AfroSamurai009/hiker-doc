@@ -36,3 +36,8 @@
 - Status: done
 - Commits: 6dcd1c9
 - Notes: 147 paths from openapi.json, REST v1/v2, GraphQL, Response Codes pages with Swagger UI
+
+## Task 6: Guides — Rate Limits and Request Costs
+- Status: done
+- Commits: e101573
+- Notes: Rate limits with async example, request costs with force mode tabs
