@@ -34,25 +34,29 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
     [:octicons-arrow-right-24: View SDKs](sdk/python.md)
 
--   :material-currency-usd:{ .lg .middle } **Pricing**
-
-    ---
-
-    Starting at $0.001/request. 100 free requests on signup.
-
-    [:octicons-arrow-right-24: Start free trial](https://hikerapi.com/p/hybef5jn){ target=_blank }
-
 </div>
 
 ## Why HikerAPI?
 
-| | |
-|---|---|
-| **10,000+ developers** | Trusted worldwide for Instagram data extraction |
-| **147 endpoints** | REST v1/v2, GraphQL, and Facebook Search APIs |
-| **4-5M requests/day** | Battle-tested infrastructure, 300+ req/sec capacity |
-| **No rate limits** | No blocks, no OAuth required, anonymous access |
-| **$0.001/request** | Pay only for what you use. Free trial available |
+<div class="grid cards" markdown>
+
+-   **10,000+**{ .stat-number }
+
+    developers worldwide
+
+-   **147**{ .stat-number }
+
+    API endpoints
+
+-   **4-5M**{ .stat-number }
+
+    requests per day
+
+-   **$0.001**{ .stat-number }
+
+    per request
+
+</div>
 
 ---
 
