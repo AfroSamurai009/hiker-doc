@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v2/media/comments": {
@@ -14,7 +13,7 @@
           "Comments"
         ],
         "summary": "Get media comments (one request return 15 comments)",
-        "description": "Get comments on a media",
+        "description": "Get comments on a media. Returns a list of Comment objects.",
         "operationId": "media_comments_v2_media_comments_get",
         "parameters": [
           {
@@ -58,24 +57,7 @@
               "title": "Page Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of comments",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/media/info/by/code": {
@@ -97,23 +79,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -131,7 +96,7 @@
           "Comments"
         ],
         "summary": "Media Comments Replies",
-        "description": "Get media comment replies with pagination by min_id",
+        "description": "Get media comment replies with pagination by min_id. Returns a list of Comment objects.",
         "operationId": "media_comments_replies_v2_media_comments_replies_get",
         "parameters": [
           {
@@ -162,23 +127,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -195,7 +143,7 @@
           "Post Details"
         ],
         "summary": "Media Likers",
-        "description": "Get user's likers",
+        "description": "Get user's likers. Returns a list of User objects.",
         "operationId": "media_likers_v2_media_likers_get",
         "parameters": [
           {
@@ -208,23 +156,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -254,23 +185,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -300,23 +214,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -356,23 +253,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -402,23 +282,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -435,7 +298,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /v2/media/info/by/code as this endpoint will be completely deprecated soon",
-        "description": "Get media object",
+        "description": "Get media object. Returns a Media object.",
         "operationId": "media_by_code_v2_media_by_code_get",
         "deprecated": true,
         "parameters": [
@@ -449,23 +312,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -482,7 +328,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /v2/media/info/by/id as this endpoint will be completely deprecated soon",
-        "description": "Get media object",
+        "description": "Get media object. Returns a Media object.",
         "operationId": "media_by_id_v2_media_by_id_get",
         "deprecated": true,
         "parameters": [
@@ -496,23 +342,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -529,7 +358,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /v2/media/info/by/url as this endpoint will be completely deprecated soon",
-        "description": "Get media object",
+        "description": "Get media object. Returns a Media object.",
         "operationId": "media_by_url_v2_media_by_url_get",
         "deprecated": true,
         "parameters": [
@@ -543,23 +372,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

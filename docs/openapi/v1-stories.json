@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v1/user/stories": {
@@ -13,7 +12,7 @@
           "/v1/story"
         ],
         "summary": "User Stories",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects. Returns a list of Story objects.",
         "operationId": "user_stories_v1_user_stories_get",
         "parameters": [
           {
@@ -54,23 +53,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -88,7 +70,7 @@
           "User Profile"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get user stories",
+        "description": "Get user stories. Returns a list of Story objects. Returns a list of Story objects.",
         "operationId": "user_stories_by_username_v1_user_stories_by_username_get",
         "parameters": [
           {
@@ -128,24 +110,7 @@
             },
             "description": "Skip account privacy check"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v1/story/by/url": {
@@ -154,7 +119,7 @@
           "Stories"
         ],
         "summary": "Attention! To work with /s/ links, call /v1/share/by/url first",
-        "description": "Get story object by id",
+        "description": "Get story object by id. Returns a Story object.",
         "operationId": "story_by_url_v1_story_by_url_get",
         "parameters": [
           {
@@ -167,23 +132,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -200,7 +148,7 @@
           "Stories"
         ],
         "summary": "Story By Id",
-        "description": "Get story object by id",
+        "description": "Get story object by id. Returns a Story object.",
         "operationId": "story_by_id_v1_story_by_id_get",
         "parameters": [
           {
@@ -213,23 +161,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -246,7 +177,7 @@
           "Stories"
         ],
         "summary": "Story Download",
-        "description": "Download story media by story id",
+        "description": "Download story media by story id. Returns story download data.",
         "operationId": "story_download_v1_story_download_get",
         "parameters": [
           {
@@ -259,23 +190,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -292,7 +206,7 @@
           "Stories"
         ],
         "summary": "Download story file by URL to file",
-        "description": "Download story file by URL to file\n(you can take it from \"/v1/story/by/id\" or \"/v1/story/by/url\")\n\nExample: https://scontent-lga3-1.cdnins...ram.com/v/t66.30100-16/\n    310890533_1622838408176007_5601749632271872566_n.mp4?efg=...",
+        "description": "Download story file by URL to file\n(you can take it from \"/v1/story/by/id\" or \"/v1/story/by/url\")\n\nExample: https://scontent-lga3-1.cdnins...ram.com/v/t66.30100-16/\n    310890533_1622838408176007_5601749632271872566_n.mp4?efg=... Returns story download data.",
         "operationId": "story_download_by_url_v1_story_download_by_url_get",
         "parameters": [
           {
@@ -305,23 +219,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -338,7 +235,7 @@
           "Stories"
         ],
         "summary": "Download story file by story URL",
-        "description": "Download story file by story URL\n\nExample: https://ins...ram.com/stories/example/30038568123745341231284",
+        "description": "Download story file by story URL\n\nExample: https://ins...ram.com/stories/example/30038568123745341231284. Returns story download data.",
         "operationId": "story_download_by_story_url_v1_story_download_by_story_url_get",
         "parameters": [
           {
@@ -351,23 +248,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

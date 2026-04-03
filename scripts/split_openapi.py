@@ -17,11 +17,19 @@ V1_RESOURCES = {
     "v1-highlights.json": ["/v1/highlight/", "/v1/user/highlights"],
     "v1-hashtags.json": ["/v1/hashtag/"],
     "v1-locations.json": ["/v1/location/"],
-    "v1-search.json": ["/v1/search/", "/v1/fbsearch/", "/v1/share/"],
+    "v1-search.json": [
+        "/v1/search/",
+        "/v1/fbsearch/",
+        "/v1/share/",
+    ],
 }
 
 V2_RESOURCES = {
-    "v2-user.json": ["/v2/user/", "/a2/user", "/v2/userstream/"],
+    "v2-user.json": [
+        "/v2/user/",
+        "/a2/user",
+        "/v2/userstream/",
+    ],
     "v2-media.json": ["/v2/media/"],
     "v2-stories.json": ["/v2/story/"],
     "v2-highlights.json": ["/v2/highlight/"],
@@ -35,6 +43,45 @@ GQL_RESOURCES = {
     "gql.json": ["/gql/", "/g2/"],
 }
 
+# Response description patterns (order matters — first match wins)
+RESPONSE_DESCRIPTIONS = [
+    ("/user/by/username", "Returns a User object."),
+    ("/user/by/id", "Returns a User object."),
+    ("/user/by/url", "Returns a User object."),
+    ("/user/about", "Returns user about info."),
+    ("/user/followers", "Returns a list of User objects."),
+    ("/user/following", "Returns a list of User objects."),
+    ("/user/medias", "Returns a list of Media objects."),
+    ("/user/clips", "Returns a list of Media objects (Reels)."),
+    ("/user/stories", "Returns a list of Story objects."),
+    ("/user/highlights", "Returns a list of Highlight objects."),
+    ("/user/search", "Returns matching User objects."),
+    ("/user/tagged", "Returns a list of Media objects."),
+    ("/user/guide", "Returns guide data."),
+    ("/user/explore", "Returns recommended accounts."),
+    ("/userstream/", "Returns user stream data."),
+    ("/media/by/", "Returns a Media object."),
+    ("/media/comments", "Returns a list of Comment objects."),
+    ("/media/likers", "Returns a list of User objects."),
+    ("/media/related", "Returns a list of related Media objects."),
+    ("/story/by/", "Returns a Story object."),
+    ("/story/download", "Returns story download data."),
+    ("/story/viewers", "Returns a list of User objects."),
+    ("/highlight/by/", "Returns a Highlight object."),
+    ("/hashtag/by/", "Returns a Hashtag object."),
+    ("/hashtag/medias", "Returns a list of Media objects."),
+    ("/location/medias", "Returns a list of Media objects."),
+    ("/location/by/", "Returns a Location object."),
+    ("/location/guide", "Returns location guide data."),
+    ("/search/", "Returns a list of matching results."),
+    ("/fbsearch/", "Returns a list of matching results."),
+    ("/share/", "Returns shared content data."),
+    ("/track/", "Returns audio track data."),
+    ("/comments/chunk", "Returns Comment objects with cursor."),
+    ("/followers/chunk", "Returns User objects with cursor."),
+    ("/following/chunk", "Returns User objects with cursor."),
+]
+
 
 def _is_api_key_header(param):
     """Check if param is the APIKeyHeader security param."""
@@ -42,11 +89,18 @@ def _is_api_key_header(param):
     return is_key and param.get("in") == "header"
 
 
+def _get_response_desc(path):
+    """Get response description based on path pattern."""
+    for pattern, desc in RESPONSE_DESCRIPTIONS:
+        if pattern in path:
+            return desc
+    return None
+
+
 def clean_spec(spec):
-    """Remove noise from spec: APIKeyHeader, response schemas, metadata."""
-    # Remove info noise
-    for key in ("termsOfService", "license", "x-logo"):
-        spec.get("info", {}).pop(key, None)
+    """Remove noise and enhance endpoint descriptions."""
+    # Minimize info block
+    spec["info"] = {"title": "", "version": ""}
 
     # Remove servers
     spec.pop("servers", None)
@@ -66,16 +120,23 @@ def clean_spec(spec):
                 else:
                     del operation["parameters"]
 
-            # Remove security references (auth is described separately)
+            # Remove security references
             operation.pop("security", None)
 
-            # Remove response schemas (keep status codes but clear schema)
-            for status, resp in operation.get("responses", {}).items():
-                content = resp.get("content", {})
-                for media_type, media in content.items():
-                    media.pop("schema", None)
+            # Remove responses entirely
+            operation.pop("responses", None)
 
-    # Remove components if present (no longer referenced)
+            # Add response description
+            resp_desc = _get_response_desc(path)
+            if resp_desc:
+                existing = operation.get("description", "")
+                if existing:
+                    sep = "" if existing.endswith(".") else "."
+                    operation["description"] = f"{existing}{sep} {resp_desc}"
+                else:
+                    operation["description"] = resp_desc
+
+    # Remove components
     spec.pop("components", None)
 
     return spec

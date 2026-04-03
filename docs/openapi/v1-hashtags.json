@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v1/hashtag/medias/top/chunk": {
@@ -12,7 +11,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Top Chunk",
-        "description": "Get hashtag chunk of top medias",
+        "description": "Get hashtag chunk of top medias. Returns a list of Media objects.",
         "operationId": "hashtag_medias_top_chunk_v1_hashtag_medias_top_chunk_get",
         "parameters": [
           {
@@ -36,23 +35,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -74,7 +56,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag By Name",
-        "description": "Get hashtag object by name",
+        "description": "Get hashtag object by name. Returns a Hashtag object.",
         "operationId": "hashtag_by_name_v1_hashtag_by_name_get",
         "parameters": [
           {
@@ -89,23 +71,6 @@
             "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, 공구 \n\n**Bad one**: #dog, sea_., tanjung.., #공구. "
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -122,7 +87,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Clips",
-        "description": "Get hashtag clips (reels)",
+        "description": "Get hashtag clips (reels). Returns a list of Media objects.",
         "operationId": "hashtag_medias_clips_v1_hashtag_medias_clips_get",
         "parameters": [
           {
@@ -147,23 +112,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -180,7 +128,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Clips Chunk",
-        "description": "Get hashtag chunk of clips (reels)",
+        "description": "Get hashtag chunk of clips (reels). Returns a list of Media objects.",
         "operationId": "hashtag_medias_clips_chunk_v1_hashtag_medias_clips_chunk_get",
         "parameters": [
           {
@@ -204,23 +152,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -237,7 +168,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Top",
-        "description": "Get hashtag medias top",
+        "description": "Get hashtag medias top. Returns a list of Media objects.",
         "operationId": "hashtag_medias_top_v1_hashtag_medias_top_get",
         "parameters": [
           {
@@ -262,23 +193,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -295,7 +209,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Top Recent Chunk",
-        "description": "Get hashtag chunk of recent medias",
+        "description": "Get hashtag chunk of recent medias. Returns a list of Media objects.",
         "operationId": "hashtag_medias_top_recent_chunk_v1_hashtag_medias_top_recent_chunk_get",
         "parameters": [
           {
@@ -319,23 +233,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -352,7 +249,7 @@
           "Legacy"
         ],
         "summary": "Hashtag Medias Recent",
-        "description": "Get hashtag medias top",
+        "description": "Get hashtag medias top. Returns a list of Media objects.",
         "operationId": "hashtag_medias_recent_v1_hashtag_medias_recent_get",
         "deprecated": true,
         "parameters": [
@@ -378,23 +275,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -411,7 +291,7 @@
           "Legacy"
         ],
         "summary": "Hashtag Medias Recent Chunk",
-        "description": "Get hashtag chunk of recent medias",
+        "description": "Get hashtag chunk of recent medias. Returns a list of Media objects.",
         "operationId": "hashtag_medias_recent_chunk_v1_hashtag_medias_recent_chunk_get",
         "deprecated": true,
         "parameters": [
@@ -436,23 +316,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

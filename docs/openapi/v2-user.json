@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v2/user/by/username": {
@@ -13,7 +12,7 @@
           "User Profile"
         ],
         "summary": "Get user object by username (one request required). If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get user object by username",
+        "description": "Get user object by username. Returns a User object.",
         "operationId": "user_by_username_v2_user_by_username_get",
         "parameters": [
           {
@@ -26,23 +25,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -61,7 +43,7 @@
           "/v2/story"
         ],
         "summary": "User Stories",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects.",
         "operationId": "user_stories_v2_user_stories_get",
         "parameters": [
           {
@@ -110,23 +92,6 @@
             "description": "Convert all big integers to strings"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -144,7 +109,7 @@
           "User Profile"
         ],
         "summary": "User By Id",
-        "description": "Get user object by id",
+        "description": "Get user object by id. Returns a User object.",
         "operationId": "user_by_id_v2_user_by_id_get",
         "parameters": [
           {
@@ -157,23 +122,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -190,7 +138,7 @@
           "User Profile"
         ],
         "summary": "Get a user followers (one request required). Prefer /g2/user/followers",
-        "description": "Get part (one page) of followers users with cursor",
+        "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
         "operationId": "user_followers_v2_user_followers_get",
         "parameters": [
           {
@@ -218,23 +166,6 @@
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -251,7 +182,7 @@
           "User Profile"
         ],
         "summary": "Get a user following (one request required). Prefer /g2/user/following",
-        "description": "Get part (one page) of following users",
+        "description": "Get part (one page) of following users. Returns a list of User objects.",
         "operationId": "user_following_v2_user_following_get",
         "parameters": [
           {
@@ -279,23 +210,6 @@
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (following)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -313,7 +227,7 @@
           "/v2/media"
         ],
         "summary": "User Clips",
-        "description": "Get user clips.",
+        "description": "Get user clips. Returns a list of Media objects (Reels).",
         "operationId": "user_clips_v2_user_clips_get",
         "parameters": [
           {
@@ -359,23 +273,6 @@
             "description": "Convert all big integers to strings"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -393,7 +290,7 @@
           "/v2/story"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "⚠️ Billing: 3 requests per call.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Story objects.",
         "operationId": "user_stories_by_username_v2_user_stories_by_username_get",
         "parameters": [
           {
@@ -442,23 +339,6 @@
             "description": "Convert all big integers to strings"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -503,24 +383,7 @@
             },
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/a2/user": {
@@ -541,24 +404,7 @@
               "title": "Username"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/user/highlights": {
@@ -568,7 +414,7 @@
           "/v2/highlight"
         ],
         "summary": "User Highlights",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_v2_user_highlights_get",
         "parameters": [
           {
@@ -609,23 +455,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -644,7 +473,7 @@
           "/v2/highlight"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "⚠️ Billing: 3 requests per call.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_by_username_v2_user_highlights_by_username_get",
         "parameters": [
           {
@@ -685,23 +514,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -719,7 +531,7 @@
           "User Profile"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get userstream (info) by username",
+        "description": "Get userstream (info) by username. Returns user stream data.",
         "operationId": "userstream_by_username_v2_userstream_by_username_get",
         "parameters": [
           {
@@ -732,23 +544,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -765,7 +560,7 @@
           "User Profile"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get userstream (info) by id",
+        "description": "Get userstream (info) by id. Returns user stream data.",
         "operationId": "userstream_by_id_v2_userstream_by_id_get",
         "parameters": [
           {
@@ -778,23 +573,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -834,23 +612,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -867,7 +628,7 @@
           "User Profile"
         ],
         "summary": "Get recommended accounts for category by user id",
-        "description": "Get list of recommended accounts for business category of the user by his id",
+        "description": "Get list of recommended accounts for business category of the user by his id. Returns recommended accounts.",
         "operationId": "explore_businesses_by_id_v2_user_explore_businesses_by_id_get",
         "parameters": [
           {
@@ -879,24 +640,7 @@
               "title": "User Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of users (Business accounts)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/user/medias": {
@@ -905,7 +649,7 @@
           "Legacy"
         ],
         "summary": "Prefer /gql/user/medias - this endpoint will be deprecated",
-        "description": "Get user medias. Results chunk.",
+        "description": "Get user medias. Results chunk. Returns a list of Media objects.",
         "operationId": "user_medias_v2_user_medias_get",
         "deprecated": true,
         "parameters": [
@@ -952,23 +696,6 @@
             "description": "Convert all big integers to strings"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1014,23 +741,6 @@
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

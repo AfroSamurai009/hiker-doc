@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v1/user/highlights": {
@@ -13,7 +12,7 @@
           "/v1/highlight"
         ],
         "summary": "User Highlights",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects. Returns a list of Highlight objects.",
         "operationId": "user_highlights_v1_user_highlights_get",
         "parameters": [
           {
@@ -54,23 +53,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -89,7 +71,7 @@
           "/v1/highlight"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "⚠️ Billing: 3 requests per call.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects. Returns a list of Highlight objects.",
         "operationId": "user_highlights_by_username_v1_user_highlights_by_username_get",
         "parameters": [
           {
@@ -130,23 +112,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -164,7 +129,7 @@
           "Highlights"
         ],
         "summary": "Attention! To work with /s/ links, call /v1/share/by/url first",
-        "description": "Get highlight object by id",
+        "description": "Get highlight object by id. Returns a Highlight object.",
         "operationId": "highlight_by_url_v1_highlight_by_url_get",
         "parameters": [
           {
@@ -177,23 +142,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -210,7 +158,7 @@
           "Legacy"
         ],
         "summary": "Highlight By Id",
-        "description": "Prefer v2/highlight/by/id",
+        "description": "Prefer v2/highlight/by/id. Returns a Highlight object.",
         "operationId": "highlight_by_id_v1_highlight_by_id_get",
         "deprecated": true,
         "parameters": [
@@ -224,23 +172,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

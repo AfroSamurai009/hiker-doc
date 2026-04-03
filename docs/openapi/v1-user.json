@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v1/user/by/username": {
@@ -12,7 +11,7 @@
           "User Profile"
         ],
         "summary": "Get user object by username (one request required). If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get user object by username",
+        "description": "Get user object by username. Returns a User object.",
         "operationId": "user_by_username_v1_user_by_username_get",
         "parameters": [
           {
@@ -25,23 +24,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -58,7 +40,7 @@
           "User Profile"
         ],
         "summary": "User By Id",
-        "description": "Get user object by id",
+        "description": "Get user object by id. Returns a User object.",
         "operationId": "user_by_id_v1_user_by_id_get",
         "parameters": [
           {
@@ -71,23 +53,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -104,7 +69,7 @@
           "User Profile"
         ],
         "summary": "User About",
-        "description": "Get user object by id",
+        "description": "Get user object by id. Returns user about info.",
         "operationId": "user_about_v1_user_about_get",
         "parameters": [
           {
@@ -116,24 +81,7 @@
               "title": "Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v1/user/medias/chunk": {
@@ -142,7 +90,7 @@
           "User Profile"
         ],
         "summary": "User Medias Chunk",
-        "description": "Get part of user medias with cursor",
+        "description": "Get part of user medias with cursor. Returns a list of Media objects.",
         "operationId": "user_medias_chunk_v1_user_medias_chunk_get",
         "parameters": [
           {
@@ -171,23 +119,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -205,7 +136,7 @@
           "/v1/story"
         ],
         "summary": "User Stories",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects.",
         "operationId": "user_stories_v1_user_stories_get",
         "parameters": [
           {
@@ -246,23 +177,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -281,7 +195,7 @@
           "/v1/media"
         ],
         "summary": "User Clips Chunk",
-        "description": "Get part of user clips with cursor \n\nThe response includes trial publications\nhttps://help.instagram.com/1013292530224018 \n\nTrial publications have no \"reshare_count\" field if you need to filter them",
+        "description": "Get part of user clips with cursor \n\nThe response includes trial publications\nhttps://help.instagram.com/1013292530224018 \n\nTrial publications have no \"reshare_count\" field if you need to filter them. Returns a list of Media objects (Reels).",
         "operationId": "user_clips_chunk_v1_user_clips_chunk_get",
         "parameters": [
           {
@@ -310,23 +224,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -343,7 +240,7 @@
           "User Profile"
         ],
         "summary": "Get user object by URL (one request required)",
-        "description": "Get user object by URL",
+        "description": "Get user object by URL. Returns a User object.",
         "operationId": "user_by_url_v1_user_by_url_get",
         "parameters": [
           {
@@ -356,23 +253,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -389,7 +269,7 @@
           "User Profile"
         ],
         "summary": "Search Following",
-        "description": "Search users by following users",
+        "description": "Search users by following users. Returns matching User objects.",
         "operationId": "search_following_v1_user_search_following_get",
         "parameters": [
           {
@@ -429,23 +309,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -462,7 +325,7 @@
           "User Profile"
         ],
         "summary": "Search Followers",
-        "description": "Search users by followers",
+        "description": "Search users by followers. Returns matching User objects.",
         "operationId": "search_followers_v1_user_search_followers_get",
         "parameters": [
           {
@@ -502,23 +365,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -535,7 +381,7 @@
           "User Profile"
         ],
         "summary": "Get a user following (one request required)",
-        "description": "Get part (one page) of following users with cursor",
+        "description": "Get part (one page) of following users with cursor. Returns a list of User objects.",
         "operationId": "user_following_chunk_v1_user_following_chunk_get",
         "parameters": [
           {
@@ -558,23 +404,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (following)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -591,7 +420,7 @@
           "User Profile"
         ],
         "summary": "Get a user followers (one request required)",
-        "description": "Get part (one page) of followers users with cursor",
+        "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
         "operationId": "user_followers_chunk_v1_user_followers_chunk_get",
         "parameters": [
           {
@@ -614,23 +443,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -648,7 +460,7 @@
           "/v1/highlight"
         ],
         "summary": "User Highlights",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_v1_user_highlights_get",
         "parameters": [
           {
@@ -689,23 +501,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -724,7 +519,7 @@
           "/v1/highlight"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "⚠️ Billing: 3 requests per call.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_by_username_v1_user_highlights_by_username_get",
         "parameters": [
           {
@@ -765,23 +560,6 @@
             "description": "Skip account privacy check"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -799,7 +577,7 @@
           "User Profile"
         ],
         "summary": "Get pinned medias",
-        "description": "Get user medias",
+        "description": "Get user medias. Returns a list of Media objects.",
         "operationId": "user_pinned_medias_v1_user_medias_pinned_get",
         "parameters": [
           {
@@ -822,23 +600,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of medias",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -855,7 +616,7 @@
           "User Profile"
         ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get user stories",
+        "description": "Get user stories. Returns a list of Story objects.",
         "operationId": "user_stories_by_username_v1_user_stories_by_username_get",
         "parameters": [
           {
@@ -895,24 +656,7 @@
             },
             "description": "Skip account privacy check"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v1/user/tag/medias/chunk": {
@@ -944,23 +688,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -990,23 +717,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1023,7 +733,7 @@
           "Legacy"
         ],
         "summary": "WARNING: Use v1/user/clips/chunk. Get user clips - first page",
-        "description": "Get user clips",
+        "description": "Get user clips. Returns a list of Media objects (Reels).",
         "operationId": "user_clips_v1_user_clips_get",
         "deprecated": true,
         "parameters": [
@@ -1047,23 +757,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of clips",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1080,7 +773,7 @@
           "Legacy"
         ],
         "summary": "WARNING: Use /v2/user/followers of /v1/user/followers/chunk. Get first page user followers",
-        "description": "Get followers users",
+        "description": "Get followers users. Returns a list of User objects.",
         "operationId": "user_followers_v1_user_followers_get",
         "deprecated": true,
         "parameters": [
@@ -1104,23 +797,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1137,7 +813,7 @@
           "Legacy"
         ],
         "summary": "WARNING: Use /v2/user/following or /v1/user/following/chunk. Get first page user following",
-        "description": "Get following users",
+        "description": "Get following users. Returns a list of User objects.",
         "operationId": "user_following_v1_user_following_get",
         "deprecated": true,
         "parameters": [
@@ -1161,23 +837,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (followings)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1194,7 +853,7 @@
           "Legacy"
         ],
         "summary": "User Guides V1",
-        "description": "Get user guides",
+        "description": "Get user guides. Returns guide data.",
         "operationId": "user_guides_v1_v1_user_guides_get",
         "deprecated": true,
         "parameters": [
@@ -1208,23 +867,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1241,7 +883,7 @@
           "Legacy"
         ],
         "summary": "WARNING: Use /v2/user/medias (better) or /v1/user/medias/chunk. Get user medias - first page",
-        "description": "Get user medias",
+        "description": "Get user medias. Returns a list of Media objects.",
         "operationId": "user_medias_v1_user_medias_get",
         "deprecated": true,
         "parameters": [
@@ -1265,23 +907,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of medias",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1321,24 +946,7 @@
               "title": "Amount"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v1/user/videos": {
@@ -1371,23 +979,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of videos",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1434,23 +1025,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

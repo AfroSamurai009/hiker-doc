@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v3/fbsearch/accounts": {
@@ -12,7 +11,7 @@
           "Search"
         ],
         "summary": "Fbsearch Accounts",
-        "description": "Search accounts",
+        "description": "Search accounts. Returns a list of matching results.",
         "operationId": "fbsearch_accounts_v3_fbsearch_accounts_get",
         "parameters": [
           {
@@ -33,24 +32,7 @@
               "title": "Page Token"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v3/fbsearch/places": {
@@ -59,7 +41,7 @@
           "Search"
         ],
         "summary": "Fbsearch Places",
-        "description": "Search places",
+        "description": "Search places. Returns a list of matching results.",
         "operationId": "fbsearch_places_v3_fbsearch_places_get",
         "parameters": [
           {
@@ -71,24 +53,7 @@
               "title": "Query"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/track/by/id": {
@@ -97,7 +62,7 @@
           "Audio"
         ],
         "summary": "Track By Id",
-        "description": "Get music track object by id",
+        "description": "Get music track object by id. Returns audio track data.",
         "operationId": "track_by_id_v2_track_by_id_get",
         "parameters": [
           {
@@ -122,23 +87,6 @@
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -155,7 +103,7 @@
           "Audio"
         ],
         "summary": "Track Stream By Id",
-        "description": "Get music track object by id",
+        "description": "Get music track object by id. Returns audio track data.",
         "operationId": "track_stream_by_id_v2_track_stream_by_id_get",
         "parameters": [
           {
@@ -180,23 +128,6 @@
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -213,7 +144,7 @@
           "Audio"
         ],
         "summary": "Track By Canonical Id",
-        "description": "Get music track object by canonical_id",
+        "description": "Get music track object by canonical_id. Returns audio track data.",
         "operationId": "track_by_canonical_id_v2_track_by_canonical_id_get",
         "parameters": [
           {
@@ -238,23 +169,6 @@
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -271,7 +185,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /gql/topsearch as this endpoint has pagination issues with duplicate results",
-        "description": "Search top content by keyword",
+        "description": "Search top content by keyword. Returns a list of matching results.",
         "operationId": "fbsearch_top_v3_fbsearch_topsearch_get",
         "deprecated": true,
         "parameters": [
@@ -293,24 +207,7 @@
               "title": "Next Max Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v3/fbsearch/reels": {
@@ -319,7 +216,7 @@
           "Legacy"
         ],
         "summary": "Deprecated due to pagination issues with duplicate results",
-        "description": "Search reels by keyword",
+        "description": "Search reels by keyword. Returns a list of matching results.",
         "operationId": "fbsearch_reels_v3_fbsearch_reels_get",
         "deprecated": true,
         "parameters": [
@@ -341,24 +238,7 @@
               "title": "Reels Max Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     }
   },

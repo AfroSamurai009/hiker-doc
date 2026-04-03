@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v2/fbsearch/topsearch": {
@@ -13,7 +12,7 @@
           "Search"
         ],
         "summary": "Fbsearch Top",
-        "description": "Search top content by keyword",
+        "description": "Search top content by keyword. Returns a list of matching results.",
         "operationId": "fbsearch_top_v2_fbsearch_topsearch_get",
         "parameters": [
           {
@@ -35,23 +34,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -68,7 +50,7 @@
           "Search"
         ],
         "summary": "Fbsearch Reels",
-        "description": "Search top content by keyword",
+        "description": "Search top content by keyword. Returns a list of matching results.",
         "operationId": "fbsearch_reels_v2_fbsearch_reels_get",
         "parameters": [
           {
@@ -90,23 +72,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -123,7 +88,7 @@
           "Search"
         ],
         "summary": "Fbsearch Accounts",
-        "description": "Search accounts",
+        "description": "Search accounts. Returns a list of matching results.",
         "operationId": "fbsearch_accounts_v2_fbsearch_accounts_get",
         "parameters": [
           {
@@ -145,23 +110,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -178,7 +126,7 @@
           "Search"
         ],
         "summary": "Search Music",
-        "description": "Search music",
+        "description": "Search music. Returns a list of matching results.",
         "operationId": "search_music_v2_search_music_get",
         "parameters": [
           {
@@ -200,23 +148,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -233,7 +164,7 @@
           "Search"
         ],
         "summary": "Search Hashtags",
-        "description": "Search hashtags",
+        "description": "Search hashtags. Returns a list of matching results.",
         "operationId": "search_hashtags_v2_search_hashtags_get",
         "parameters": [
           {
@@ -255,23 +186,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -288,7 +202,7 @@
           "Search"
         ],
         "summary": "Fbsearch Places",
-        "description": "Search places",
+        "description": "Search places. Returns a list of matching results.",
         "operationId": "fbsearch_places_v2_fbsearch_places_get",
         "parameters": [
           {
@@ -301,23 +215,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -334,7 +231,7 @@
           "Legacy"
         ],
         "summary": "Switch to /v2/fbsearch/accounts — this endpoint will be deprecated soon. The current route doesn't support paging.",
-        "description": "Search accounts",
+        "description": "Search accounts. Returns a list of matching results.",
         "operationId": "search_accounts_v2_search_accounts_get",
         "deprecated": true,
         "parameters": [
@@ -357,23 +254,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -390,7 +270,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /v3/fbsearch/topsearch as this endpoint will be deprecated soon",
-        "description": "Search top content by keyword",
+        "description": "Search top content by keyword. Returns a list of matching results.",
         "operationId": "search_top_v2_search_topsearch_get",
         "deprecated": true,
         "parameters": [
@@ -431,23 +311,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -464,7 +327,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /v3/fbsearch/reels as this endpoint will be deprecated soon",
-        "description": "Search top content by keyword",
+        "description": "Search top content by keyword. Returns a list of matching results.",
         "operationId": "search_reels_v2_search_reels_get",
         "deprecated": true,
         "parameters": [
@@ -496,23 +359,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -529,7 +375,7 @@
           "Legacy"
         ],
         "summary": "Prefer using /v3/fbsearch/places as this endpoint will be deprecated soon",
-        "description": "Search places",
+        "description": "Search places. Returns a list of matching results.",
         "operationId": "search_places_v2_search_places_get",
         "deprecated": true,
         "parameters": [
@@ -543,23 +389,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

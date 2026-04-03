@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v2/story/by/url": {
@@ -12,7 +11,7 @@
           "Stories"
         ],
         "summary": "Attention! To work with /s/ links, call /v1/share/by/url first",
-        "description": "Get story object by id",
+        "description": "Get story object by id. Returns a Story object.",
         "operationId": "story_by_url_v2_story_by_url_get",
         "parameters": [
           {
@@ -24,24 +23,7 @@
               "title": "Url"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/story/by/id": {
@@ -50,7 +32,7 @@
           "Stories"
         ],
         "summary": "Story By Id",
-        "description": "Get story object by id",
+        "description": "Get story object by id. Returns a Story object.",
         "operationId": "story_by_id_v2_story_by_id_get",
         "parameters": [
           {
@@ -62,24 +44,7 @@
               "title": "Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     }
   },

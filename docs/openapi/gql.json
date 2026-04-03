@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/gql/user/medias": {
@@ -13,7 +12,7 @@
           "User Profile"
         ],
         "summary": "Returns the user medias",
-        "description": "Get user medias",
+        "description": "Get user medias. Returns a list of Media objects.",
         "operationId": "user_medias_gql_user_medias_get",
         "parameters": [
           {
@@ -47,23 +46,6 @@
             "description": "Flatten nested media objects into a single list"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -80,7 +62,7 @@
           "User Profile"
         ],
         "summary": "Get a user following (one request required)",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_following_chunk_gql_user_following_chunk_get",
         "parameters": [
           {
@@ -127,23 +109,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (following)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -166,7 +131,7 @@
           "User Profile"
         ],
         "summary": "Get a user followers (one request required)",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_followers_chunk_gql_user_followers_chunk_get",
         "parameters": [
           {
@@ -213,23 +178,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -286,23 +234,6 @@
             "description": "Flatten nested response into simple items list"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -319,7 +250,7 @@
           "User Profile"
         ],
         "summary": "Returns the user's short video posts (reels).",
-        "description": "Get user clips",
+        "description": "Get user clips. Returns a list of Media objects (Reels).",
         "operationId": "user_clips_gql_user_clips_get",
         "parameters": [
           {
@@ -363,23 +294,6 @@
             "description": "Flatten nested media objects into a single list"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -396,7 +310,7 @@
           "User Profile"
         ],
         "summary": "Get a user followers (one request required)",
-        "description": "Get part (one page) of followers users with cursor",
+        "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
         "operationId": "user_followers_g2_user_followers_get",
         "parameters": [
           {
@@ -417,24 +331,7 @@
               "title": "Page Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of followers",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/g2/user/following": {
@@ -443,7 +340,7 @@
           "User Profile"
         ],
         "summary": "Get a user following (one request required)",
-        "description": "Get part (one page) of following users with cursor",
+        "description": "Get part (one page) of following users with cursor. Returns a list of User objects.",
         "operationId": "user_following_g2_user_following_get",
         "parameters": [
           {
@@ -464,24 +361,7 @@
               "title": "Page Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of following users",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/gql/user/web_profile_info": {
@@ -503,23 +383,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -552,23 +415,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -585,7 +431,7 @@
           "Post Details"
         ],
         "summary": "Media Likers",
-        "description": "Get likers on a media (paging is unavailable on this endpoint)",
+        "description": "Get likers on a media (paging is unavailable on this endpoint). Returns a list of User objects.",
         "operationId": "media_likers_gql_media_likers_get",
         "parameters": [
           {
@@ -598,23 +444,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -631,7 +460,7 @@
           "Comments"
         ],
         "summary": "Media Comments Chunk",
-        "description": "Get comments on a media",
+        "description": "Get comments on a media. Returns Comment objects with cursor.",
         "operationId": "media_comments_chunk_gql_comments_chunk_get",
         "parameters": [
           {
@@ -681,23 +510,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -757,23 +569,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -843,23 +638,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -915,24 +693,7 @@
             },
             "description": "Flatten nested response into simple items list"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/gql/comments": {
@@ -996,23 +757,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1053,23 +797,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1100,23 +827,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1166,23 +876,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1199,7 +892,7 @@
           "Legacy"
         ],
         "summary": "User By Id",
-        "description": "Get user object by id",
+        "description": "Get user object by id. Returns a User object.",
         "operationId": "user_by_id_gql_user_by_id_get",
         "deprecated": true,
         "parameters": [
@@ -1212,24 +905,7 @@
               "title": "Id"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/gql/user/by/username": {
@@ -1238,7 +914,7 @@
           "Legacy"
         ],
         "summary": "Get user object by username (one request required)",
-        "description": "Get user object by username",
+        "description": "Get user object by username. Returns a User object.",
         "operationId": "user_by_username_gql_user_by_username_get",
         "deprecated": true,
         "parameters": [
@@ -1251,24 +927,7 @@
               "title": "Username"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/gql/user/followers": {
@@ -1277,7 +936,7 @@
           "Legacy"
         ],
         "summary": "WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_followers_gql_user_followers_get",
         "deprecated": true,
         "parameters": [
@@ -1301,23 +960,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -1335,7 +977,7 @@
           "Legacy"
         ],
         "summary": "WARNING: Use /v2/user/following. Get a user following (one request is required for every 46 following)",
-        "description": "⚠️ Billing: 2 requests per call.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_following_gql_user_following_get",
         "deprecated": true,
         "parameters": [
@@ -1359,23 +1001,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "List of users (following)",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v1/location/medias/recent/chunk": {
@@ -12,7 +11,7 @@
           "Location"
         ],
         "summary": "Location Medias Recent Chunk",
-        "description": "Get location chunk of recent medias",
+        "description": "Get location chunk of recent medias. Returns a list of Media objects.",
         "operationId": "location_medias_recent_chunk_v1_location_medias_recent_chunk_get",
         "parameters": [
           {
@@ -34,23 +33,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -67,7 +49,7 @@
           "Location"
         ],
         "summary": "Location Medias Recent V1",
-        "description": "Get location recent medias",
+        "description": "Get location recent medias. Returns a list of Media objects.",
         "operationId": "location_medias_recent_v1_v1_location_medias_recent_get",
         "parameters": [
           {
@@ -90,23 +72,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -150,23 +115,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -183,7 +131,7 @@
           "Location"
         ],
         "summary": "Location Medias Top V1",
-        "description": "Get location top medias",
+        "description": "Get location top medias. Returns a list of Media objects.",
         "operationId": "location_medias_top_v1_v1_location_medias_top_get",
         "parameters": [
           {
@@ -206,23 +154,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -239,7 +170,7 @@
           "Location"
         ],
         "summary": "Location Medias Top Chunk",
-        "description": "Get location chunk of top medias",
+        "description": "Get location chunk of top medias. Returns a list of Media objects.",
         "operationId": "location_medias_top_chunk_v1_location_medias_top_chunk_get",
         "parameters": [
           {
@@ -261,23 +192,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -299,7 +213,7 @@
           "Location"
         ],
         "summary": "Location By Id",
-        "description": "Get location object by id",
+        "description": "Get location object by id. Returns a Location object.",
         "operationId": "location_by_id_v1_location_by_id_get",
         "parameters": [
           {
@@ -312,23 +226,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
@@ -345,7 +242,7 @@
           "Location"
         ],
         "summary": "Location Guides V1",
-        "description": "Get location guides",
+        "description": "Get location guides. Returns location guide data.",
         "operationId": "location_guides_v1_v1_location_guides_get",
         "parameters": [
           {
@@ -358,23 +255,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",

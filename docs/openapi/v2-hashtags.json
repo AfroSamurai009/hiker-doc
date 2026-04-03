@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v2/hashtag/medias/top": {
@@ -12,7 +11,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Top Chunk",
-        "description": "Get hashtag chunk of top medias",
+        "description": "Get hashtag chunk of top medias. Returns a list of Media objects.",
         "operationId": "hashtag_medias_top_chunk_v2_hashtag_medias_top_get",
         "parameters": [
           {
@@ -36,24 +35,7 @@
             },
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/hashtag/medias/recent": {
@@ -62,7 +44,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag Medias Recent Chunk",
-        "description": "Get hashtag chunk of recent medias",
+        "description": "Get hashtag chunk of recent medias. Returns a list of Media objects.",
         "operationId": "hashtag_medias_recent_chunk_v2_hashtag_medias_recent_get",
         "parameters": [
           {
@@ -86,24 +68,7 @@
             },
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/hashtag/by/name": {
@@ -112,7 +77,7 @@
           "Hashtags"
         ],
         "summary": "Hashtag By Name",
-        "description": "Get hashtag object by name",
+        "description": "Get hashtag object by name. Returns a Hashtag object.",
         "operationId": "hashtag_by_name_v2_hashtag_by_name_get",
         "parameters": [
           {
@@ -124,24 +89,7 @@
               "title": "Name"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     },
     "/v2/hashtag/medias/clips": {
@@ -150,7 +98,7 @@
           "Legacy"
         ],
         "summary": "Switch to /v2/fbsearch/reels — this endpoint will be deprecated soon. It currently returns all media types, not just reels.",
-        "description": "Get hashtag chunk of clips (reels)",
+        "description": "Get hashtag chunk of clips (reels). Returns a list of Media objects.",
         "operationId": "hashtag_medias_clips_chunk_v2_hashtag_medias_clips_get",
         "deprecated": true,
         "parameters": [
@@ -175,24 +123,7 @@
             },
             "description": "Use value of field `next_page_id` from response for getting next page"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        }
+        ]
       }
     }
   },

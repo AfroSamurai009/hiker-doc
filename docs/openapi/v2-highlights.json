@@ -1,9 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "HikerAPI REST",
-    "description": "Instagram API",
-    "version": "1.7.7"
+    "title": "",
+    "version": ""
   },
   "paths": {
     "/v2/highlight/by/id": {
@@ -12,7 +11,7 @@
           "Highlights"
         ],
         "summary": "Highlight By Id",
-        "description": "Get highlight object by id",
+        "description": "Get highlight object by id. Returns a Highlight object.",
         "operationId": "highlight_by_id_v2_highlight_by_id_get",
         "parameters": [
           {
@@ -25,23 +24,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {}
-            }
-          },
-          "404": {
-            "description": "Not found"
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {}
-            }
-          }
-        },
         "x-codeSamples": [
           {
             "lang": "Python",
