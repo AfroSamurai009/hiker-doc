@@ -470,6 +470,7 @@ mkdocs serve
 - Notes: v1: 7 ресурсных страниц (user/media/stories/highlights/hashtags/locations/search), v2: 8 страниц (+track). Cleaned specs: no APIKeyHeader, no response schemas, no servers/license. 28 pages total. Strict build 0 warnings. Обновлены ссылки в index/quick-start/sdk pages.
 
 ## Task 19: Final verification Round 4
+- Status: done
 
 1. `mkdocs build --strict`
 2. `mkdocs serve` — пройтись по всем страницам ресурсов
