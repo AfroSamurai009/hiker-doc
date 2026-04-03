@@ -31,3 +31,8 @@
 - Status: done
 - Commits: 1d84ab5
 - Notes: Quick Start (5-step guide, 4 language tabs) + Authentication page
+
+## Task 5: API Reference — OpenAPI render
+- Status: done
+- Commits: 6dcd1c9
+- Notes: 147 paths from openapi.json, REST v1/v2, GraphQL, Response Codes pages with Swagger UI
