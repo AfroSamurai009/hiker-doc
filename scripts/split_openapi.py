@@ -43,6 +43,15 @@ GQL_RESOURCES = {
     "gql.json": ["/gql/", "/g2/"],
 }
 
+SYS_RESOURCES = {
+    "sys.json": ["/sys/"],
+}
+
+# Paths to exclude from v1-user (they belong in stories/highlights)
+V1_USER_EXCLUDE = {
+    "v1-user.json": ["/v1/user/stories", "/v1/user/highlights"],
+}
+
 # Response description patterns (order matters — first match wins)
 RESPONSE_DESCRIPTIONS = [
     ("/user/by/username", "Returns a User object."),
@@ -151,14 +160,17 @@ def clean_spec(spec):
     return spec
 
 
-def split_to_files(spec, resources, out_dir):
+def split_to_files(spec, resources, out_dir, exclude=None):
     """Split spec by resource prefixes and write cleaned files."""
+    exclude = exclude or {}
     for filename, prefixes in resources.items():
+        excl = exclude.get(filename, [])
         out = copy.deepcopy(spec)
         out["paths"] = {
             path: ops
             for path, ops in spec["paths"].items()
             if any(path.startswith(p) for p in prefixes)
+            and not any(path.startswith(e) for e in excl)
         }
         if not out["paths"]:
             continue
@@ -176,13 +188,16 @@ def main():
         spec = json.load(f)
 
     print("v1 resources:")
-    split_to_files(spec, V1_RESOURCES, OUT_DIR)
+    split_to_files(spec, V1_RESOURCES, OUT_DIR, exclude=V1_USER_EXCLUDE)
 
     print("v2 resources:")
     split_to_files(spec, V2_RESOURCES, OUT_DIR)
 
     print("gql:")
     split_to_files(spec, GQL_RESOURCES, OUT_DIR)
+
+    print("sys:")
+    split_to_files(spec, SYS_RESOURCES, OUT_DIR)
 
 
 if __name__ == "__main__":

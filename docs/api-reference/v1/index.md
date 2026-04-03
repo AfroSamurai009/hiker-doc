@@ -6,7 +6,7 @@ All endpoints use `GET` method and require the `x-access-key` header. See [Authe
 
 | Resource | Description | Endpoints |
 |----------|-------------|-----------|
-| [User](user.md) | Profiles, followers, following | 25 |
+| [User](user.md) | Profiles, followers, following | 21 |
 | [Media](media.md) | Posts, reels, likes, comments | 16 |
 | [Stories](stories.md) | User stories | 7 |
 | [Highlights](highlights.md) | Story highlights | 4 |

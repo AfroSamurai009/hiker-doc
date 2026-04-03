@@ -46,10 +46,14 @@ Response:
 
 ```json
 {
-  "balance": 99.94,
-  "rate": 11
+  "requests": 100000,
+  "rate": 15,
+  "currency": "USD",
+  "amount": 100.00
 }
 ```
 
-- `balance` — remaining request units
+- `requests` — remaining request units
 - `rate` — your current rate limit (requests/second)
+- `currency` — account currency
+- `amount` — remaining balance

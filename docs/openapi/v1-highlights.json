@@ -8,7 +8,7 @@
     "/v1/user/highlights": {
       "get": {
         "summary": "User Highlights",
-        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects. Returns a list of Highlight objects.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_v1_user_highlights_get",
         "parameters": [
           {
@@ -63,7 +63,7 @@
     "/v1/user/highlights/by/username": {
       "get": {
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects. Returns a list of Highlight objects.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_by_username_v1_user_highlights_by_username_get",
         "parameters": [
           {

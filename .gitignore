@@ -162,4 +162,8 @@ cython_debug/
 # Screenshots and temp images
 *.png
 
+# Internal work artifacts
+pm-sync.md
+docs/superpowers/
+
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks

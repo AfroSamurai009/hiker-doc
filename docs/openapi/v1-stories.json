@@ -8,7 +8,7 @@
     "/v1/user/stories": {
       "get": {
         "summary": "User Stories",
-        "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects. Returns a list of Story objects.",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects.",
         "operationId": "user_stories_v1_user_stories_get",
         "parameters": [
           {
@@ -63,7 +63,7 @@
     "/v1/user/stories/by/username": {
       "get": {
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
-        "description": "Get user stories. Returns a list of Story objects. Returns a list of Story objects.",
+        "description": "Get user stories. Returns a list of Story objects.",
         "operationId": "user_stories_by_username_v1_user_stories_by_username_get",
         "parameters": [
           {

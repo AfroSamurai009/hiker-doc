@@ -1,0 +1,15 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/sys/balance": {
+      "get": {
+        "summary": "Balance",
+        "operationId": "balance_sys_balance_get"
+      }
+    }
+  }
+}

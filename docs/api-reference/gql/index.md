@@ -53,6 +53,10 @@ Example response:
 
 ## All GraphQL endpoints (22)
 
+
+!!! info "Authentication & errors"
+    All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
+
 [OAD(../../openapi/gql.json)]
 
 ---

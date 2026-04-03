@@ -4,6 +4,10 @@ Get user stories by ID or URL.
 
 **Endpoints:** [`/v2/story/by/id`](#get-v2storybyid) | [`/v2/story/by/url`](#get-v2storybyurl)
 
+
+!!! info "Authentication & errors"
+    All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
+
 [OAD(../../openapi/v2-stories.json)]
 
 ---
