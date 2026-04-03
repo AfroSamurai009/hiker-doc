@@ -26,3 +26,8 @@
 - Status: done
 - Commits: 6fc5348
 - Notes: Dismissible banner with free trial CTA on all pages
+
+## Task 4: Getting Started pages
+- Status: done
+- Commits: 1d84ab5
+- Notes: Quick Start (5-step guide, 4 language tabs) + Authentication page
