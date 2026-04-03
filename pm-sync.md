@@ -46,3 +46,8 @@
 - Status: done
 - Commits: 76895ce
 - Notes: Python, JavaScript, Go, PHP — quick start + pagination examples
+
+## Task 8: Support page
+- Status: done
+- Commits: 91d0c20
+- Notes: Contacts with email + Telegram, feature requests, full nav complete
