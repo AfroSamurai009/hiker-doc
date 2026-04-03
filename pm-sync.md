@@ -319,3 +319,159 @@ All endpoints use `GET` method and require the `x-access-key` header. See [Authe
 2. `mkdocs serve` — пройтись по v1, v2, gql страницам
 3. Проверить dark/light mode
 4. Написать статус в pm-sync
+
+---
+
+# Round 4 — API Reference по ресурсам (как Stripe/OpenAI)
+
+**Контекст:** Ревьюер сравнил нашу доку с Stripe и OpenAI API Reference. У топов:
+- Каждый ресурс (User, Media, Chat) — **отдельная страница** с 3-10 эндпоинтами
+- Sidebar навигация по ресурсам
+- Нет огромного списка всех эндпоинтов на одной странице
+- Нет APIKeyHeader в параметрах (auth описана отдельно)
+- Response — реальный пример JSON, не schema с null
+
+## Task 18: Разбить API Reference на страницы по ресурсам
+
+**Проблема:** 72 v1 эндпоинта на одной странице — юзер скроллит 5 минут. APIKeyHeader в каждом эндпоинте. Schema ответа с null бесполезна.
+
+**Что сделать:**
+
+### 18.1 Доработать `scripts/split_openapi.py`
+
+Добавить возможность разбивать spec не только по версии (v1/v2/gql), но и по **тегу/ресурсу**. Скрипт должен создавать:
+
+Для v1:
+- `docs/openapi/v1-user.json` — пути `/v1/user/*` + `/v1/user*`
+- `docs/openapi/v1-media.json` — пути `/v1/media/*`
+- `docs/openapi/v1-story.json` — пути `/v1/story/*` + `/v1/user/stories*`
+- `docs/openapi/v1-highlight.json` — пути `/v1/highlight/*` + `/v1/user/highlights*`
+- `docs/openapi/v1-hashtag.json` — пути `/v1/hashtag/*`
+- `docs/openapi/v1-location.json` — пути `/v1/location/*`
+- `docs/openapi/v1-search.json` — пути `/v1/search/*` + `/v1/fbsearch/*` + `/v1/share/*`
+
+Для v2 — аналогичная структура по тегам.
+Для gql — можно оставить одной страницей (22 эндпоинта — нормально).
+
+**Важно:** В каждом spec-файле:
+1. **Убрать параметр APIKeyHeader** из всех эндпоинтов (это security scheme, а не query param). Фильтр: удалить из `parameters` любой параметр где `name == "APIKeyHeader"` и `in == "header"`.
+2. **Убрать response schemas** (свойство `responses.200.content.application/json.schema`) — заменить на пустой объект `{}` или удалить. Мы добавим реальные примеры позже, отдельной задачей.
+3. Убрать из `info` блока поля `termsOfService`, `license`, `x-logo` — они рендерятся как мусор на странице.
+4. Убрать секцию `servers` — у нас один сервер, он уже описан в Authentication.
+5. Убрать секцию `components` если она не нужна после удаления response schemas.
+
+### 18.2 Создать страницы для v1 ресурсов
+
+Создать директорию `docs/api-reference/v1/` с файлами:
+
+**`docs/api-reference/v1/index.md`** — обзорная страница:
+```markdown
+# REST API v1
+
+Mobile API endpoints for anonymous Instagram data retrieval.
+
+All endpoints use `GET` method and require the `x-access-key` header. See [Authentication](../../getting-started/authentication.md).
+
+| Resource | Description | Endpoints |
+|----------|-------------|-----------|
+| [User](user.md) | Profiles, followers, following | 16 |
+| [Media](media.md) | Posts, reels, likes, comments | 8 |
+| [Stories](stories.md) | User stories | 4 |
+| [Highlights](highlights.md) | Story highlights | 4 |
+| [Hashtags](hashtags.md) | Hashtag info and media | 6 |
+| [Locations](locations.md) | Location info and media | 4 |
+| [Search](search.md) | Search users, hashtags, places | 6 |
+```
+
+**`docs/api-reference/v1/user.md`:**
+```markdown
+# User Endpoints
+
+Get user profiles, followers, following lists, and search within followers.
+
+[OAD(../../openapi/v1-user.json)]
+
+---
+
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+```
+
+Аналогично для media.md, stories.md, highlights.md, hashtags.md, locations.md, search.md.
+
+### 18.3 Аналогично для v2
+
+Создать `docs/api-reference/v2/` с тем же подходом. Файлы по ресурсам.
+
+### 18.4 GraphQL — оставить одной страницей
+
+22 эндпоинта — нормально. Но тоже убрать APIKeyHeader и response schemas.
+
+### 18.5 Обновить nav в mkdocs.yml
+
+```yaml
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: getting-started/quick-start.md
+    - Authentication: getting-started/authentication.md
+  - API Reference:
+    - v1 Overview: api-reference/v1/index.md
+    - v1 User: api-reference/v1/user.md
+    - v1 Media: api-reference/v1/media.md
+    - v1 Stories: api-reference/v1/stories.md
+    - v1 Highlights: api-reference/v1/highlights.md
+    - v1 Hashtags: api-reference/v1/hashtags.md
+    - v1 Locations: api-reference/v1/locations.md
+    - v1 Search: api-reference/v1/search.md
+    - v2 Overview: api-reference/v2/index.md
+    - v2 User: api-reference/v2/user.md
+    - v2 Media: api-reference/v2/media.md
+    - v2 Search: api-reference/v2/search.md
+    - GraphQL API: api-reference/graphql.md
+    - Response Codes: api-reference/response-codes.md
+  - SDKs:
+    - Python: sdk/python.md
+    - JavaScript: sdk/javascript.md
+    - Go: sdk/go.md
+    - PHP: sdk/php.md
+  - Guides:
+    - Rate Limits: guides/rate-limits.md
+    - Request Costs: guides/request-costs.md
+  - Support:
+    - Contacts: support/contacts.md
+```
+
+### 18.6 Удалить старые файлы
+
+```bash
+rm -f docs/openapi-v1.json docs/openapi-v2.json docs/openapi-gql.json
+rm -f docs/api-reference/rest-v1.md docs/api-reference/rest-v2.md
+```
+Оставить docs/openapi.json (исходник) и docs/api-reference/graphql.md (обновлённый) и docs/api-reference/response-codes.md.
+
+### 18.7 Verify + Commit
+
+```bash
+mkdocs build --strict
+mkdocs serve
+```
+
+Проверить:
+- Sidebar: каждый ресурс отдельно (как у Stripe)
+- На странице User — только user эндпоинты (не 72)
+- Нет APIKeyHeader в параметрах
+- Нет response schema с null
+- Нет Servers / Terms of Service / License секций
+
+Коммит: `feat: split API Reference into per-resource pages (Stripe-style)`
+
+- Status: done
+- Commits: d46a866
+- Notes: v1: 7 ресурсных страниц (user/media/stories/highlights/hashtags/locations/search), v2: 8 страниц (+track). Cleaned specs: no APIKeyHeader, no response schemas, no servers/license. 28 pages total. Strict build 0 warnings. Обновлены ссылки в index/quick-start/sdk pages.
+
+## Task 19: Final verification Round 4
+
+1. `mkdocs build --strict`
+2. `mkdocs serve` — пройтись по всем страницам ресурсов
+3. Проверить навигацию sidebar
+4. Написать статус в pm-sync
