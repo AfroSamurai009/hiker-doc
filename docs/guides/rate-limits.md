@@ -20,6 +20,8 @@ If you exceed the per-second limit, the server returns **429 Too Many Requests**
 2. **On 429** — pause 1-2 seconds, then retry
 3. **Use semaphores** — limit concurrent requests in async code
 
+Need more than 15 req/sec? [Contact our team](../support/contacts.md) — we offer custom rate limits for high-volume integrations.
+
 ## Check your current rate limit
 
 ```bash
