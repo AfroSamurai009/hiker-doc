@@ -69,6 +69,8 @@ nav:
   - Guides:
     - Rate Limits: guides/rate-limits.md
     - Request Costs: guides/request-costs.md
+  - Support:
+    - Contacts: support/contacts.md
 
 extra:
   social:
