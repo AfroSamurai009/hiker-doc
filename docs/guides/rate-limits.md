@@ -1,10 +1,16 @@
 # Rate Limits & Retry Logic
 
-## Default limits
+## Limits by plan
 
-| Plan | Requests/day | Requests/second |
-|------|-------------|-----------------|
-| Default | 1,000,000 | ~11 |
+| Plan | Price/request | Requests included | Rate limit |
+|------|--------------|-------------------|------------|
+| **Free trial** | free | 100 | 1 req/sec |
+| **Start** | $0.02 | 1,000 | 15 req/sec |
+| **Standard** | $0.001 | 100,000 | 15 req/sec |
+| **Business** | $0.00069 | 434,000 | 15 req/sec |
+| **Ultra** | $0.0006 | ~1,000,000 | 15 req/sec |
+
+All paid plans share the same rate limit of **15 requests per second**. The free trial is limited to 1 req/sec.
 
 If you exceed the per-second limit, the server returns **429 Too Many Requests**.
 
