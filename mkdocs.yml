@@ -53,6 +53,9 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Getting Started:
+    - Quick Start: getting-started/quick-start.md
+    - Authentication: getting-started/authentication.md
 
 extra:
   social:
