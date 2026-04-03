@@ -58,6 +58,18 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
 </div>
 
+## See it in action
+
+```bash
+curl -H "x-access-key: YOUR_TOKEN" \
+  "https://api.hikerapi.com/v1/user/by/username?username=ronaldo"
+```
+
+```json
+{"pk": "173560420", "username": "ronaldo", "full_name": "Cristiano Ronaldo",
+ "is_verified": true, "follower_count": 612000000, ...}
+```
+
 ---
 
 <div class="cta-box" markdown>
