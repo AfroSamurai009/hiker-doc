@@ -288,7 +288,7 @@ All endpoints use `GET` method and require the `x-access-key` header. See [Authe
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 ```
 
 7. Аналогично обновить `docs/api-reference/rest-v2.md` — заменить `<swagger-ui .../>` на `[OAD(../openapi-v2.json)]`
@@ -393,7 +393,7 @@ Get user profiles, followers, following lists, and search within followers.
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 ```
 
 Аналогично для media.md, stories.md, highlights.md, hashtags.md, locations.md, search.md.
@@ -771,3 +771,131 @@ Need higher limits? [Contact us](../support/contacts.md).
 - **FAIL:** 0
 - **SKIP:** 3 (Go/PHP runtime, CSV export)
 - **Фиксы в процессе:** 1 (broken anchor `web_profile_info` — исправлен)
+
+---
+
+# Final Polish
+
+## Task 23: UTM метки на все ссылки hikerapi.com
+
+GA4 уже парсит UTM. Добавить на все ссылки ведущие на hikerapi.com.
+
+**Формат:** `?utm_source=docs&utm_medium=cta&utm_content=<placement>`
+
+**Маппинг:**
+
+| Файл | utm_content |
+|------|-------------|
+| `docs/overrides/main.html` (announcement bar) | `banner` |
+| `docs/index.md` ("Start Free Trial" кнопка) | `home-cta` |
+| `docs/getting-started/quick-start.md` ("Sign up") | `quickstart-signup` |
+| `docs/getting-started/authentication.md` ("Sign up") | `auth-signup` |
+| `docs/guides/rate-limits.md` ("see pricing") | `rate-limits-pricing` |
+| `docs/api-reference/v1/user.md` | `api-v1-user` |
+| `docs/api-reference/v1/media.md` | `api-v1-media` |
+| `docs/api-reference/v1/stories.md` | `api-v1-stories` |
+| `docs/api-reference/v1/highlights.md` | `api-v1-highlights` |
+| `docs/api-reference/v1/hashtags.md` | `api-v1-hashtags` |
+| `docs/api-reference/v1/locations.md` | `api-v1-locations` |
+| `docs/api-reference/v1/search.md` | `api-v1-search` |
+| `docs/api-reference/v2/user.md` | `api-v2-user` |
+| `docs/api-reference/v2/media.md` | `api-v2-media` |
+| `docs/api-reference/v2/stories.md` | `api-v2-stories` |
+| `docs/api-reference/v2/highlights.md` | `api-v2-highlights` |
+| `docs/api-reference/v2/hashtags.md` | `api-v2-hashtags` |
+| `docs/api-reference/v2/search.md` | `api-v2-search` |
+| `docs/api-reference/v2/track.md` | `api-v2-track` |
+| `docs/api-reference/gql/index.md` | `api-gql` |
+| `mkdocs.yml` (footer шарик) | `footer` |
+
+**Пример:**
+```
+https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=banner
+```
+
+**НЕ трогать:** `docs/superpowers/` (исторические файлы).
+
+### Дополнительно: обновить CTA текст на API Reference страницах
+
+На всех ~15 API Reference страницах (v1/*, v2/*, gql) заменить:
+
+```markdown
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/7it8oc2i...){ target=_blank }
+```
+
+На:
+
+```markdown
+**Ready to integrate?** First 100 requests free — [Get your API key →](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=api-v1-user){ target=_blank }
+```
+
+(utm_content подставлять из маппинга выше)
+
+**ВАЖНО:** Промокод теперь `7it8oc2i` (не `hybef5jn`). Заменить ВО ВСЕХ файлах.
+
+Коммит: `feat: add UTM tracking + "first 100 free" CTA, update promo code`
+
+## Task 24: Cleanup + squash для деплоя
+
+**После** Task 23 выполнить:
+
+1. Удалить старые Sphinx файлы:
+```bash
+rm -rf docs/source/ docs/hikerapi/ docs/build/
+rm -f docs/Makefile docs/make.bat Makefile Makefile.bak
+```
+
+2. Удалить временные файлы:
+```bash
+rm -rf site/ .playwright-mcp/
+rm -f hikerapi-homepage.png review*.png ref-*.png
+```
+
+3. Добавить в `.gitignore`:
+```
+site/
+.playwright-mcp/
+*.png
+```
+
+4. Коммит: `chore: remove old Sphinx files and temp artifacts`
+
+5. Проверить `.readthedocs.yaml` — должен быть:
+```yaml
+version: 2
+build:
+  os: ubuntu-24.04
+  tools:
+    python: "3.12"
+python:
+  install:
+    - requirements: docs/requirements.txt
+mkdocs:
+  configuration: mkdocs.yml
+```
+
+6. Проверить `docs/requirements.txt` — все зависимости для RTD:
+```
+mkdocs-material>=9.5
+neoteroi-mkdocs>=1.2.0
+```
+
+7. Финальный билд: `mkdocs build --strict` — 0 errors, 0 warnings
+
+8. Коммит всё, отписать в pm-sync
+
+9. **НЕ пушить и НЕ мержить!** Отписать в pm-sync что готово — ревьюер создаст squash MR в master.
+
+Все 48+ коммитов уже в ветке `feature/185-docs-rebrand`. Будет один MR с squash — один коммит в master, легко откатить если что.
+
+### Task 23 status
+- Status: done
+- Commits: ea070eb
+- Notes: Промокод hybef5jn→7it8oc2i во всех 21 файле. UTM метки с уникальным utm_content на каждой странице. CTA текст на 15 API reference страницах обновлён на "First 100 requests free — Get your API key →". Strict build 0 warnings.
+
+### Task 24 status
+- Status: done
+- Commits: (this commit)
+- Notes: Удалены Sphinx файлы (docs/source/, docs/hikerapi/, Makefile*). Добавлены .playwright-mcp/ и *.png в .gitignore. readthedocs.yaml и requirements.txt — ок. Финальный `mkdocs build --strict` — 0 errors, 0 warnings. Ручная очистка нужна: `rm -rf docs/build/ .playwright-mcp/ *.png` (user denied rm).
+
+**Ветка готова к ревью. НЕ пушил, НЕ мержил.**
