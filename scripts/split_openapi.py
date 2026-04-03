@@ -132,8 +132,21 @@ def clean_spec(spec):
             # Remove security references
             operation.pop("security", None)
 
-            # Remove responses entirely
-            operation.pop("responses", None)
+            # Clean responses: keep 200 with real schema, drop empty
+            responses = operation.get("responses", {})
+            cleaned_responses = {}
+            for code, resp in responses.items():
+                schema = (
+                    resp.get("content", {})
+                    .get("application/json", {})
+                    .get("schema", {})
+                )
+                if schema:
+                    cleaned_responses[code] = resp
+            if cleaned_responses:
+                operation["responses"] = cleaned_responses
+            else:
+                operation.pop("responses", None)
 
             # Add response description
             resp_desc = _get_response_desc(path)
@@ -154,10 +167,59 @@ def clean_spec(spec):
                 op.pop("externalDocs", None)
                 op.pop("tags", None)
 
-    # Remove components
-    spec.pop("components", None)
+    # Keep only referenced components (schemas used by $ref)
+    _prune_components(spec)
 
     return spec
+
+
+def _collect_refs(obj):
+    """Recursively collect all $ref values from a JSON structure."""
+    refs = set()
+    if isinstance(obj, dict):
+        if "$ref" in obj:
+            refs.add(obj["$ref"])
+        for v in obj.values():
+            refs |= _collect_refs(v)
+    elif isinstance(obj, list):
+        for item in obj:
+            refs |= _collect_refs(item)
+    return refs
+
+
+def _prune_components(spec):
+    """Keep only components/schemas that are referenced by paths."""
+    all_schemas = spec.get("components", {}).get("schemas", {})
+    if not all_schemas:
+        spec.pop("components", None)
+        return
+
+    # Collect all $refs from paths, then resolve transitive refs
+    refs = _collect_refs(spec.get("paths", {}))
+    needed = set()
+    for ref in refs:
+        if ref.startswith("#/components/schemas/"):
+            needed.add(ref.split("/")[-1])
+
+    # Resolve transitive: schemas that reference other schemas
+    changed = True
+    while changed:
+        changed = False
+        for name in list(needed):
+            if name in all_schemas:
+                sub_refs = _collect_refs(all_schemas[name])
+                for ref in sub_refs:
+                    if ref.startswith("#/components/schemas/"):
+                        sub_name = ref.split("/")[-1]
+                        if sub_name not in needed:
+                            needed.add(sub_name)
+                            changed = True
+
+    if needed:
+        pruned = {k: v for k, v in all_schemas.items() if k in needed}
+        spec["components"] = {"schemas": pruned}
+    else:
+        spec.pop("components", None)
 
 
 def split_to_files(spec, resources, out_dir, exclude=None):

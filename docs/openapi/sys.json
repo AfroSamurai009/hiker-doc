@@ -8,7 +8,21 @@
     "/sys/balance": {
       "get": {
         "summary": "Balance",
-        "operationId": "balance_sys_balance_get"
+        "operationId": "balance_sys_balance_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "type": "object",
+                  "title": "Response Balance Sys Balance Get"
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

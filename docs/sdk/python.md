@@ -28,12 +28,18 @@ for media in medias:
 ## Async client
 
 ```python
+import asyncio
 from hikerapi import AsyncClient
 
-cl = AsyncClient(token="YOUR_TOKEN")
 
-user = await cl.user_by_username_v1("ronaldo")
-followers, end_cursor = await cl.user_followers_chunk_gql(user_id=user["pk"])
+async def main():
+    cl = AsyncClient(token="YOUR_TOKEN")
+    user = await cl.user_by_username_v1("ronaldo")
+    followers, end_cursor = await cl.user_followers_chunk_gql(user_id=user["pk"])
+    print(f"Got {len(followers)} followers")
+
+
+asyncio.run(main())
 ```
 
 ## Pagination

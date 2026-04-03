@@ -78,6 +78,7 @@ nav:
     - v2 Search: api-reference/v2/search.md
     - v2 Track: api-reference/v2/track.md
     - GraphQL API: api-reference/gql/index.md
+    - System: api-reference/system.md
     - Response Codes: api-reference/response-codes.md
   - SDKs:
     - Python: sdk/python.md
