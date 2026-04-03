@@ -132,17 +132,21 @@ def clean_spec(spec):
             # Remove security references
             operation.pop("security", None)
 
-            # Clean responses: keep 200 with real schema, drop empty
+            # Clean responses: always keep 200, drop error codes
+            # without useful content (404/422 with empty body)
             responses = operation.get("responses", {})
             cleaned_responses = {}
             for code, resp in responses.items():
-                schema = (
-                    resp.get("content", {})
-                    .get("application/json", {})
-                    .get("schema", {})
-                )
-                if schema:
+                if code == "200":
                     cleaned_responses[code] = resp
+                else:
+                    schema = (
+                        resp.get("content", {})
+                        .get("application/json", {})
+                        .get("schema", {})
+                    )
+                    if schema:
+                        cleaned_responses[code] = resp
             if cleaned_responses:
                 operation["responses"] = cleaned_responses
             else:
