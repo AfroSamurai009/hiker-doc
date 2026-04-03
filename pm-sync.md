@@ -105,6 +105,8 @@
 - Notes: scripts/split_openapi.py создан. 3 spec-файла: v1(72), v2(52), gql(22). Все 3 страницы обновлены с описаниями групп.
 
 ## Task 12: Home — stat-карточки вместо таблицы "Why HikerAPI?"
+- Status: done
+- Commits: 97f3666
 
 **Проблема:** Таблица "Why HikerAPI?" — обычная markdown-таблица на ~40% ширины. Данные мощные (10K+ devs, 4-5M req/day), но выглядит скромно.
 
