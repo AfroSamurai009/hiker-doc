@@ -313,6 +313,7 @@ All endpoints use `GET` method and require the `x-access-key` header. See [Authe
 - Notes: neoteroi.mkdocsoad рендерит эндпоинты нативно. swagger-ui-tag удалён из plugins и requirements. CSS инжектится автоматически (нет отдельного файла). Build strict — 0 warnings.
 
 ## Task 17: Final build verification Round 3
+- Status: done
 
 1. `mkdocs build --strict` — 0 ошибок
 2. `mkdocs serve` — пройтись по v1, v2, gql страницам
