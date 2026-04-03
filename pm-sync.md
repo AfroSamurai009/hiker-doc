@@ -56,3 +56,8 @@
 - Status: done (partial)
 - Commits: 30778e5
 - Notes: Added exclude_docs for superpowers/. Strict build passes. Old Sphinx files NOT removed — user denied rm permission. Need manual: `rm -rf docs/source/ docs/hikerapi/ docs/build/ docs/Makefile docs/make.bat Makefile Makefile.bak`
+
+## Task 10: Final verification
+- Status: done
+- Commits: (no changes needed)
+- Notes: `mkdocs build --strict` passes with 0 errors/warnings. 16 pages generated. Swagger UI on 3 API pages. Announcement bar + CTA box confirmed in HTML output.
