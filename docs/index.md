@@ -48,11 +48,11 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
     API endpoints
 
--   **4-5M**{ .stat-number }
+-   **10M+**{ .stat-number }
 
     requests per day
 
--   **$0.001**{ .stat-number }
+-   **$0.0006**{ .stat-number }
 
     per request
 
