@@ -556,3 +556,72 @@ if "components" in spec:
 - Status: done
 - Commits: bd4233d
 - Notes: info минимизирован (пустой title/version), responses удалены полностью (нет пустых schema/404/422), security убран, return descriptions добавлены по паттерну пути (16+ endpoints с "Returns a ..."). Strict build 0 warnings.
+
+## Task 21: Убрать Tags/externalDocs + включить TOC на ресурсных страницах
+
+**Проблема 1:** Внизу каждой ресурсной страницы рендерятся таблица Tags (User Profile, Comments, Search...) и "More documentation / Get the access_key / https://hikerapi.com/tokens". Это мусор из OpenAPI spec.
+
+**Проблема 2:** Нет GraphQL Overview страницы (как для v1/v2).
+
+**Проблема 3:** Нет TOC (Table of Contents) справа на ресурсных страницах. Когда на странице 16+ эндпоинтов, пользователь не может быстро прыгнуть к нужному. Material показывает TOC из h2/h3 заголовков — но neoteroi возможно рендерит заголовки эндпоинтов не как h2/h3 а иначе.
+
+**Что сделать:**
+
+### 21.1 В `scripts/split_openapi.py` добавить очистку:
+
+```python
+# Убрать tags
+if "tags" in spec:
+    del spec["tags"]
+
+# Убрать externalDocs
+if "externalDocs" in spec:
+    del spec["externalDocs"]
+
+# Убрать externalDocs из каждого path/method
+for path_data in spec["paths"].values():
+    for method_data in path_data.values():
+        if isinstance(method_data, dict) and "externalDocs" in method_data:
+            del method_data["externalDocs"]
+```
+
+Перегенерировать все spec-файлы.
+
+### 21.2 GraphQL Overview
+
+Создать `docs/api-reference/gql/index.md` по аналогии с v1/v2 overview — таблица ресурсов + описание. Переместить текущий graphql.md в gql/ директорию или разбить по ресурсам если больше 15 эндпоинтов на странице.
+
+### 21.3 TOC на ресурсных страницах
+
+Проверить рендер neoteroi — какие HTML-теги он генерит для заголовков эндпоинтов. Если это `<h3>`, Material подхватит в TOC. Если нет — нужен один из вариантов:
+
+**Вариант A:** В mkdocs.yml настроить `toc` extension на нужный уровень:
+```yaml
+markdown_extensions:
+  - toc:
+      toc_depth: 4
+```
+
+**Вариант B:** Если neoteroi не генерит heading-теги — добавить вручную перед `[OAD(...)]` список якорей / содержание. Например на странице user.md перед OAD блоком:
+```markdown
+**On this page:** [by/username](#get-v1userbyusername) | [by/id](#get-v1userbyid) | [about](#get-v1userabout) | [medias/chunk](#get-v1usermediaschunk) | ...
+```
+
+**Вариант C:** Если neoteroi генерит заголовки но Material их не видит (потому что они в HTML а не в markdown) — это известная проблема. Обходной путь: добавить `toc` extension с `toc_depth: 3` и посмотреть.
+
+Попробуй вариант A сначала. Если не работает — вариант B.
+
+### 21.4 Verify + Commit
+
+- Нет Tags таблицы внизу
+- Нет "More documentation" секции
+- TOC справа показывает эндпоинты (или хотя бы ручной список)
+- GraphQL overview есть
+
+Коммит: `fix: remove tags/externalDocs, add TOC for resource pages`
+
+**Отпиши статус. Ревьюер проверит.**
+
+- Status: done
+- Commits: 28f7cd5
+- Notes: Tags/externalDocs удалены из specs и из каждого endpoint. GraphQL overview создан в gql/index.md. TOC: neoteroi генерит h3 теги, но Material TOC их не подхватывает (HTML injection vs markdown parsing). Решение: добавлен **Endpoints:** список кликабельных ссылок вверху каждой ресурсной страницы (14 страниц). toc_depth: 3 не помогает — пробовал. Strict build 0 warnings.
