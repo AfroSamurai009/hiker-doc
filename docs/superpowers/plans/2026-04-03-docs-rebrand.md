@@ -218,7 +218,7 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
     Starting at $0.001/request. 100 free requests on signup.
 
-    [:octicons-arrow-right-24: Start free trial](https://hikerapi.com/p/hybef5jn){ target=_blank }
+    [:octicons-arrow-right-24: Start free trial](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 
 </div>
 
@@ -238,7 +238,7 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
 **Ready to start?** Get 100 free requests after signup — no credit card required.
 
-[Start Free Trial](https://hikerapi.com/p/hybef5jn){ .md-button .md-button--primary target=_blank }
+[Start Free Trial](https://hikerapi.com/p/7it8oc2i){ .md-button .md-button--primary target=_blank }
 [View API Reference](api-reference/rest-v1.md){ .md-button }
 
 </div>
@@ -315,7 +315,7 @@ Create `docs/overrides/main.html`:
   }
 </style>
 Get 100 free requests —
-<a href="https://hikerapi.com/p/hybef5jn" target="_blank" class="announce-cta">
+<a href="https://hikerapi.com/p/7it8oc2i" target="_blank" class="announce-cta">
   Start your free trial &rarr;
 </a>
 {% endblock %}
@@ -365,7 +365,7 @@ Make your first HikerAPI request in 5 minutes.
 
 ## 1. Get your API key
 
-[Sign up at hikerapi.com](https://hikerapi.com/p/hybef5jn){ target=_blank } and grab your token from the [dashboard](https://hikerapi.com/tokens){ target=_blank }.
+[Sign up at hikerapi.com](https://hikerapi.com/p/7it8oc2i){ target=_blank } and grab your token from the [dashboard](https://hikerapi.com/tokens){ target=_blank }.
 
 ## 2. Make a request
 
@@ -503,7 +503,7 @@ All HikerAPI requests require an API key passed via the `x-access-key` header.
 
 ## Get your API key
 
-1. [Sign up at hikerapi.com](https://hikerapi.com/p/hybef5jn){ target=_blank }
+1. [Sign up at hikerapi.com](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 2. Confirm via Telegram
 3. Get your token from the [dashboard](https://hikerapi.com/tokens){ target=_blank }
 
@@ -639,7 +639,7 @@ All endpoints use `GET` method and require the `x-access-key` header. See [Authe
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 ```
 
 - [ ] **Step 3: Write REST v2 page**
@@ -664,7 +664,7 @@ v2 endpoints return structured responses with `next_page_id` for pagination, mak
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 ```
 
 - [ ] **Step 4: Write GraphQL page**
@@ -723,7 +723,7 @@ Example response:
 
 ---
 
-**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+**Ready to integrate?** [Get your API key →](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 ```
 
 - [ ] **Step 5: Write Response Codes page**
@@ -904,7 +904,7 @@ asyncio.run(main())
 ```
 
 !!! tip "Need higher limits?"
-    [Contact us](../support/contacts.md) to discuss custom rate limits for your use case. Starting at $0.001/request — [see pricing →](https://hikerapi.com/p/hybef5jn){ target=_blank }
+    [Contact us](../support/contacts.md) to discuss custom rate limits for your use case. Starting at $0.001/request — [see pricing →](https://hikerapi.com/p/7it8oc2i){ target=_blank }
 ```
 
 - [ ] **Step 3: Write Request Costs page**
