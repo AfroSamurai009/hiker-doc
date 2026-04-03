@@ -1,0 +1,299 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v2/hashtag/medias/top": {
+      "get": {
+        "summary": "Hashtag Medias Top Chunk",
+        "description": "Get hashtag chunk of top medias. Returns a list of Media objects.",
+        "operationId": "hashtag_medias_top_chunk_v2_hashtag_medias_top_get",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/hashtag/medias/recent": {
+      "get": {
+        "summary": "Hashtag Medias Recent Chunk",
+        "description": "Get hashtag chunk of recent medias. Returns a list of Media objects.",
+        "operationId": "hashtag_medias_recent_chunk_v2_hashtag_medias_recent_get",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/hashtag/by/name": {
+      "get": {
+        "summary": "Hashtag By Name",
+        "description": "Get hashtag object by name. Returns a Hashtag object.",
+        "operationId": "hashtag_by_name_v2_hashtag_by_name_get",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Hashtag By Name V2 Hashtag By Name Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/hashtag/medias/clips": {
+      "get": {
+        "summary": "Switch to /v2/fbsearch/reels — this endpoint will be deprecated soon. It currently returns all media types, not just reels.",
+        "description": "Get hashtag chunk of clips (reels). Returns a list of Media objects.",
+        "operationId": "hashtag_medias_clips_chunk_v2_hashtag_medias_clips_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

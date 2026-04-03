@@ -1,0 +1,662 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v2/fbsearch/topsearch": {
+      "get": {
+        "summary": "Fbsearch Top",
+        "description": "Search top content by keyword. Returns a list of matching results.",
+        "operationId": "fbsearch_top_v2_fbsearch_topsearch_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Top V2 Fbsearch Topsearch Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_top_v2(query=\"rock\", next_max_id=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/fbsearch/reels": {
+      "get": {
+        "summary": "Fbsearch Reels",
+        "description": "Search top content by keyword. Returns a list of matching results.",
+        "operationId": "fbsearch_reels_v2_fbsearch_reels_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Reels V2 Fbsearch Reels Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_reels_top_v2(query=\"rock\", reels_max_id=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/fbsearch/accounts": {
+      "get": {
+        "summary": "Fbsearch Accounts",
+        "description": "Search accounts. Returns a list of matching results.",
+        "operationId": "fbsearch_accounts_v2_fbsearch_accounts_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Accounts V2 Fbsearch Accounts Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_accounts_v2(query=\"rock\", page_token=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/music": {
+      "get": {
+        "summary": "Search Music",
+        "description": "Search music. Returns a list of matching results.",
+        "operationId": "search_music_v2_search_music_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Music V2 Search Music Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_music_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/hashtags": {
+      "get": {
+        "summary": "Search Hashtags",
+        "description": "Search hashtags. Returns a list of matching results.",
+        "operationId": "search_hashtags_v2_search_hashtags_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Hashtags V2 Search Hashtags Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_hashtags_v2(query=\"love\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/fbsearch/places": {
+      "get": {
+        "summary": "Fbsearch Places",
+        "description": "Search places. Returns a list of matching results.",
+        "operationId": "fbsearch_places_v2_fbsearch_places_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Places V2 Fbsearch Places Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/accounts": {
+      "get": {
+        "summary": "Switch to /v2/fbsearch/accounts — this endpoint will be deprecated soon. The current route doesn't support paging.",
+        "description": "Search accounts. Returns a list of matching results.",
+        "operationId": "search_accounts_v2_search_accounts_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Accounts V2 Search Accounts Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_accounts_v2(query=\"rock\", page_token=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/topsearch": {
+      "get": {
+        "summary": "Prefer using /v3/fbsearch/topsearch as this endpoint will be deprecated soon",
+        "description": "Search top content by keyword. Returns a list of matching results.",
+        "operationId": "search_top_v2_search_topsearch_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          },
+          {
+            "name": "rank_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Rank Token"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Top V2 Search Topsearch Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_top_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/reels": {
+      "get": {
+        "summary": "Prefer using /v3/fbsearch/reels as this endpoint will be deprecated soon",
+        "description": "Search top content by keyword. Returns a list of matching results.",
+        "operationId": "search_reels_v2_search_reels_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          },
+          {
+            "name": "rank_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Rank Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Reels V2 Search Reels Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_reels_top_v2(query=\"rock\", reels_max_id=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/places": {
+      "get": {
+        "summary": "Prefer using /v3/fbsearch/places as this endpoint will be deprecated soon",
+        "description": "Search places. Returns a list of matching results.",
+        "operationId": "search_places_v2_search_places_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Places V2 Search Places Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

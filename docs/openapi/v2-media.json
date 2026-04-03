@@ -1,0 +1,696 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v2/media/comments": {
+      "get": {
+        "summary": "Get media comments (one request return 15 comments)",
+        "description": "Get comments on a media. Returns a list of Comment objects.",
+        "operationId": "media_comments_v2_media_comments_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          },
+          {
+            "name": "can_support_threading",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Can Support Threading"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Page Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/media/info/by/code": {
+      "get": {
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+        "description": "Get media object",
+        "operationId": "media_info_by_code_v2_media_info_by_code_get",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Info By Code V2 Media Info By Code Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_code_v2(code=\"CvipxSKPPn6\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/comments/replies": {
+      "get": {
+        "summary": "Media Comments Replies",
+        "description": "Get media comment replies with pagination by min_id. Returns a list of Comment objects.",
+        "operationId": "media_comments_replies_v2_media_comments_replies_get",
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "min_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Min Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nreplies = await cl.media_comments_replies_v2(\n    media_id=\"3770903101839112303_185336999\", comment_id=\"18120112390529134\"\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/likers": {
+      "get": {
+        "summary": "Media Likers",
+        "description": "Get user's likers. Returns a list of User objects.",
+        "operationId": "media_likers_v2_media_likers_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Likers V2 Media Likers Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_likers_v2(id=\"2588864825828721736\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/info/by/url": {
+      "get": {
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/",
+        "description": "Get media object",
+        "operationId": "media_info_by_url_v2_media_info_by_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Info By Url V2 Media Info By Url Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_url_v2(url=\"https://ins...ram.com/p/CA2aJYrg6cZ/\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/info/by/id": {
+      "get": {
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+        "description": "Get media object",
+        "operationId": "media_info_by_id_v2_media_info_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Info By Id V2 Media Info By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_id_v2(id=\"2588864825828721736\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/comment/offensive": {
+      "get": {
+        "summary": "Media Check Offensive Comment",
+        "description": "Whether to receive an offensive comment",
+        "operationId": "media_check_offensive_comment_v2_media_comment_offensive_get",
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\noffensive_comment = await cl.media_offensive_comment_v2(\n    media_id=\"3162273595027945978\", comment=\"offensiveword\"\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/template": {
+      "get": {
+        "summary": "Media Template",
+        "description": "Get media template",
+        "operationId": "media_template_v2_media_template_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Template V2 Media Template Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_template_v2(id=\"2934927996541863400\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/by/code": {
+      "get": {
+        "summary": "Prefer using /v2/media/info/by/code as this endpoint will be completely deprecated soon",
+        "description": "Get media object. Returns a Media object.",
+        "operationId": "media_by_code_v2_media_by_code_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media By Code V2 Media By Code Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_code_v2(code=\"CvipxSKPPn6\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/by/id": {
+      "get": {
+        "summary": "Prefer using /v2/media/info/by/id as this endpoint will be completely deprecated soon",
+        "description": "Get media object. Returns a Media object.",
+        "operationId": "media_by_id_v2_media_by_id_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media By Id V2 Media By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_id_v2(id=\"2588864825828721736\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/by/url": {
+      "get": {
+        "summary": "Prefer using /v2/media/info/by/url as this endpoint will be completely deprecated soon",
+        "description": "Get media object. Returns a Media object.",
+        "operationId": "media_by_url_v2_media_by_url_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media By Url V2 Media By Url Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_url_v2(url=\"https://ins...ram.com/p/CA2aJYrg6cZ/\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

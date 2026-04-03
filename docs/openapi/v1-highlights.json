@@ -1,0 +1,1343 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v1/user/highlights": {
+      "get": {
+        "summary": "User Highlights",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects.",
+        "operationId": "user_highlights_v1_user_highlights_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Highlight"
+                  },
+                  "title": "Response User Highlights V1 User Highlights Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_highlights_v1(user_id=\"123123\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/v1/user/highlights/by/username": {
+      "get": {
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects.",
+        "operationId": "user_highlights_by_username_v1_user_highlights_by_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Highlight"
+                  },
+                  "title": "Response User Highlights By Username V1 User Highlights By Username Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_highlights_by_username_v1(username=\"sun\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 3,
+        "required": false
+      }
+    },
+    "/v1/highlight/by/url": {
+      "get": {
+        "summary": "Attention! To work with /s/ links, call /v1/share/by/url first",
+        "description": "Get highlight object by id. Returns a Highlight object.",
+        "operationId": "highlight_by_url_v1_highlight_by_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Highlight"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.highlight_by_url_v1(url=\"url_to_highlight\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/highlight/by/id": {
+      "get": {
+        "summary": "Highlight By Id",
+        "description": "Prefer v2/highlight/by/id. Returns a Highlight object.",
+        "operationId": "highlight_by_id_v1_highlight_by_id_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Highlight"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.highlight_by_id_v1(id=\"386916469\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Hashtag": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "media_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Count"
+          },
+          "allow_following": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allow Following"
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Hashtag"
+      },
+      "Highlight": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "latest_reel_media": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Reel Media"
+          },
+          "cover_media": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Media"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "is_pinned_highlight": {
+            "type": "boolean",
+            "title": "Is Pinned Highlight"
+          },
+          "media_count": {
+            "type": "integer",
+            "title": "Media Count"
+          },
+          "media_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Media Ids",
+            "default": []
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "type": "array",
+            "title": "Items",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "user",
+          "title",
+          "created_at",
+          "is_pinned_highlight",
+          "media_count"
+        ],
+        "title": "Highlight"
+      },
+      "Location": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pk"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "default": ""
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website",
+            "default": ""
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category",
+            "default": ""
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours",
+            "default": {}
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address",
+            "default": ""
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City",
+            "default": ""
+          },
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip",
+            "default": ""
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "external_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id"
+          },
+          "external_id_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Location"
+      },
+      "Story": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "taken_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Taken At"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type",
+            "default": ""
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "video_duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Duration",
+            "default": 0.0
+          },
+          "sponsor_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UserShort"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sponsor Tags",
+            "default": []
+          },
+          "mentions": {
+            "items": {
+              "$ref": "#/components/schemas/StoryMention"
+            },
+            "type": "array",
+            "title": "Mentions"
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/StoryLink"
+            },
+            "type": "array",
+            "title": "Links"
+          },
+          "hashtags": {
+            "items": {
+              "$ref": "#/components/schemas/StoryHashtag"
+            },
+            "type": "array",
+            "title": "Hashtags"
+          },
+          "locations": {
+            "items": {
+              "$ref": "#/components/schemas/StoryLocation"
+            },
+            "type": "array",
+            "title": "Locations"
+          },
+          "stickers": {
+            "items": {
+              "$ref": "#/components/schemas/StorySticker"
+            },
+            "type": "array",
+            "title": "Stickers"
+          },
+          "medias": {
+            "items": {
+              "$ref": "#/components/schemas/StoryMedia"
+            },
+            "type": "array",
+            "title": "Medias",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "code",
+          "taken_at",
+          "user",
+          "mentions",
+          "links",
+          "hashtags",
+          "locations",
+          "stickers"
+        ],
+        "title": "Story"
+      },
+      "StoryHashtag": {
+        "properties": {
+          "hashtag": {
+            "$ref": "#/components/schemas/Hashtag"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hashtag"
+        ],
+        "title": "StoryHashtag"
+      },
+      "StoryLink": {
+        "properties": {
+          "webUri": {
+            "type": "string",
+            "title": "Weburi"
+          },
+          "x": {
+            "type": "number",
+            "title": "X",
+            "default": 0.5126011
+          },
+          "y": {
+            "type": "number",
+            "title": "Y",
+            "default": 0.5168225
+          },
+          "z": {
+            "type": "number",
+            "title": "Z",
+            "default": 0.0
+          },
+          "width": {
+            "type": "number",
+            "title": "Width",
+            "default": 0.50998676
+          },
+          "height": {
+            "type": "number",
+            "title": "Height",
+            "default": 0.25875
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "webUri"
+        ],
+        "title": "StoryLink"
+      },
+      "StoryLocation": {
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "title": "StoryLocation"
+      },
+      "StoryMedia": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "title": "X",
+            "default": 0.5
+          },
+          "y": {
+            "type": "number",
+            "title": "Y",
+            "default": 0.4997396
+          },
+          "z": {
+            "type": "number",
+            "title": "Z",
+            "default": 0
+          },
+          "width": {
+            "type": "number",
+            "title": "Width",
+            "default": 0.8
+          },
+          "height": {
+            "type": "number",
+            "title": "Height",
+            "default": 0.60572916
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          },
+          "is_pinned": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Pinned"
+          },
+          "is_hidden": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Hidden"
+          },
+          "is_sticker": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Sticker"
+          },
+          "is_fb_sticker": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Fb Sticker"
+          },
+          "media_pk": {
+            "type": "string",
+            "title": "Media Pk"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type"
+          },
+          "media_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "media_pk"
+        ],
+        "title": "StoryMedia"
+      },
+      "StoryMention": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user"
+        ],
+        "title": "StoryMention"
+      },
+      "StorySticker": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "default": "gif"
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          },
+          "z": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Z",
+            "default": 1000005
+          },
+          "width": {
+            "type": "number",
+            "title": "Width"
+          },
+          "height": {
+            "type": "number",
+            "title": "Height"
+          },
+          "rotation": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rotation",
+            "default": 0.0
+          },
+          "story_link": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StoryStickerLink"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extra": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extra",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "title": "StorySticker"
+      },
+      "StoryStickerLink": {
+        "properties": {
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          },
+          "link_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Title"
+          },
+          "link_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Type"
+          },
+          "display_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Url"
+          }
+        },
+        "type": "object",
+        "title": "StoryStickerLink"
+      },
+      "UserShort": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name",
+            "default": ""
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk"
+        ],
+        "title": "UserShort"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

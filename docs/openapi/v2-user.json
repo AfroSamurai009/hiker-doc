@@ -1,0 +1,1176 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v2/user/by/username": {
+      "get": {
+        "summary": "Get user object by username (one request required). If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get user object by username. Returns a User object.",
+        "operationId": "user_by_username_v2_user_by_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User By Username V2 User By Username Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_by_username_v2(username=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/stories": {
+      "get": {
+        "summary": "User Stories",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects.",
+        "operationId": "user_stories_v2_user_stories_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User Stories V2 User Stories Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nstories = await cl.user_stories_v2(user_id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/v2/user/by/id": {
+      "get": {
+        "summary": "User By Id",
+        "description": "Get user object by id. Returns a User object.",
+        "operationId": "user_by_id_v2_user_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User By Id V2 User By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_by_id_v2(id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/followers": {
+      "get": {
+        "summary": "Get a user followers (one request required). Prefer /g2/user/followers",
+        "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
+        "operationId": "user_followers_v2_user_followers_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, next_page_id = await cl.user_followers_v2(\n    user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/following": {
+      "get": {
+        "summary": "Get a user following (one request required). Prefer /g2/user/following",
+        "description": "Get part (one page) of following users. Returns a list of User objects.",
+        "operationId": "user_following_v2_user_following_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, next_page_id = await cl.user_following_v2(\n    user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/clips": {
+      "get": {
+        "summary": "User Clips",
+        "description": "Get user clips. Returns a list of Media objects (Reels).",
+        "operationId": "user_clips_v2_user_clips_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nclips, next_page_id = await cl.user_clips_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/stories/by/username": {
+      "get": {
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Story objects.",
+        "operationId": "user_stories_by_username_v2_user_stories_by_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User Stories By Username V2 User Stories By Username Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nstories = await cl.user_stories_by_username_v2(username=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 3,
+        "required": false
+      }
+    },
+    "/v2/user/tag/medias": {
+      "get": {
+        "summary": "Get medias where user is tagged",
+        "description": "Get usertag medias",
+        "operationId": "usertag_medias_v2_user_tag_medias_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/a2/user": {
+      "get": {
+        "summary": "User",
+        "description": "Get user object",
+        "operationId": "user_a2_user_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User A2 User Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/user/highlights": {
+      "get": {
+        "summary": "User Highlights",
+        "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects.",
+        "operationId": "user_highlights_v2_user_highlights_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nhighlights = await cl.user_highlights_v2(user_id=\"45915962111\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/v2/user/highlights/by/username": {
+      "get": {
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects.",
+        "operationId": "user_highlights_by_username_v2_user_highlights_by_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nhighlights = await cl.user_highlights_by_username_v2(username=\"leomessi\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 3,
+        "required": false
+      }
+    },
+    "/v2/userstream/by/username": {
+      "get": {
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get userstream (info) by username. Returns user stream data.",
+        "operationId": "userstream_by_username_v2_userstream_by_username_get",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Userstream By Username V2 Userstream By Username Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.userstream_by_username_v2(username=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/userstream/by/id": {
+      "get": {
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get userstream (info) by id. Returns user stream data.",
+        "operationId": "userstream_by_id_v2_userstream_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Userstream By Id V2 Userstream By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.userstream_by_id_v2(id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/suggested/profiles": {
+      "get": {
+        "summary": "Fetch Suggestion Details",
+        "description": "Fetch suggested users details by target_id.\n\nexpand_suggestion=True for more detailed response",
+        "operationId": "fetch_suggestion_details_v2_user_suggested_profiles_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "expand_suggestion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Expand Suggestion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nusers = await cl.user_suggested_profiles_v2(\n    user_id=\"1338246453\", expand_suggestion=True)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/explore/businesses/by/id": {
+      "get": {
+        "summary": "Get recommended accounts for category by user id",
+        "description": "Get list of recommended accounts for business category of the user by his id. Returns recommended accounts.",
+        "operationId": "explore_businesses_by_id_v2_user_explore_businesses_by_id_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (Business accounts)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Explore Businesses By Id V2 User Explore Businesses By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/user/medias": {
+      "get": {
+        "summary": "Prefer /gql/user/medias - this endpoint will be deprecated",
+        "description": "Get user medias. Results chunk. Returns a list of Media objects.",
+        "operationId": "user_medias_v2_user_medias_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedias, next_page_id = await cl.user_medias_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/videos": {
+      "get": {
+        "summary": "Prefer using /v2/user/clips or /v2/user/medias instead",
+        "description": "Get part of user videos with cursor (default 50 media per request)",
+        "operationId": "user_videos_v2_user_videos_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nvideos, next_page_id = await cl.user_videos_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

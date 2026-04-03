@@ -1,17 +1,82 @@
-# Welcome to MkDocs
+---
+hide:
+  - navigation
+  - toc
+---
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+# Instagram Data API for Developers
 
-## Commands
+Access public Instagram profiles, posts, stories, reels, comments, followers, hashtags, and locations through one developer-friendly REST API.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+<div class="grid cards" markdown>
 
-## Project layout
+-   :material-rocket-launch:{ .lg .middle } **Quick Start**
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+    ---
+
+    Make your first API request in 5 minutes
+
+    [:octicons-arrow-right-24: Get started](getting-started/quick-start.md)
+
+-   :material-api:{ .lg .middle } **API Reference**
+
+    ---
+
+    147 endpoints — REST v1, v2, and GraphQL
+
+    [:octicons-arrow-right-24: Explore endpoints](api-reference/v1/index.md)
+
+-   :material-language-python:{ .lg .middle } **SDKs**
+
+    ---
+
+    Official clients for Python, JavaScript, Go, and PHP
+
+    [:octicons-arrow-right-24: View SDKs](sdk/python.md)
+
+</div>
+
+## Why HikerAPI?
+
+<div class="grid cards" markdown>
+
+-   **10,000+**{ .stat-number }
+
+    developers worldwide
+
+-   **147**{ .stat-number }
+
+    API endpoints
+
+-   **10M+**{ .stat-number }
+
+    requests per day
+
+-   **$0.0006**{ .stat-number }
+
+    per request
+
+</div>
+
+## See it in action
+
+```bash
+curl -H "x-access-key: YOUR_TOKEN" \
+  "https://api.hikerapi.com/v1/user/by/username?username=ronaldo"
+```
+
+```json
+{"pk": "173560420", "username": "ronaldo", "full_name": "Cristiano Ronaldo",
+ "is_verified": true, "follower_count": 612000000, ...}
+```
+
+---
+
+<div class="cta-box" markdown>
+
+**Ready to start?** Get 100 free requests after signup — no credit card required.
+
+[Start Free Trial](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=home-cta){ .md-button .md-button--primary target=_blank }
+[View API Reference](api-reference/v1/index.md){ .md-button }
+
+</div>

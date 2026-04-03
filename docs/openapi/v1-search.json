@@ -1,0 +1,1030 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v1/search/hashtags": {
+      "get": {
+        "summary": "Search Hashtags",
+        "description": "Search hashtags. Returns a list of matching results.",
+        "operationId": "search_hashtags_v1_search_hashtags_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Hashtag"
+                  },
+                  "title": "Response Search Hashtags V1 Search Hashtags Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_hashtags_v1(query=\"love\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/search/users": {
+      "get": {
+        "summary": "It is recommended to use /v2/search/accounts as this endpoint will soon be deprecated.",
+        "description": "Search users. Returns a list of matching results.",
+        "operationId": "search_users_v1_search_users_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserShort"
+                  },
+                  "title": "Response Search Users V1 Search Users Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_users_v1(query=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/fbsearch/topsearch": {
+      "get": {
+        "summary": "Fbsearch Topsearch",
+        "description": "Topsearch. Returns a list of matching results.",
+        "operationId": "fbsearch_topsearch_v1_fbsearch_topsearch_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Fbsearch Topsearch V1 Fbsearch Topsearch Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_topsearch_v1(query=\"Berlin\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/fbsearch/places": {
+      "get": {
+        "summary": "Fbsearch Places",
+        "description": "Search locations. Returns a list of matching results.",
+        "operationId": "fbsearch_places_v1_fbsearch_places_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": 40.74,
+              "title": "Lat"
+            }
+          },
+          {
+            "name": "lng",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": -73.94,
+              "title": "Lng"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Location"
+                  },
+                  "title": "Response Fbsearch Places V1 Fbsearch Places Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_v1(query=\"Berlin\", lat=None, lng=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/search/music": {
+      "get": {
+        "summary": "Search Music",
+        "description": "Search music. Returns a list of matching results.",
+        "operationId": "search_music_v1_search_music_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Track"
+                  },
+                  "title": "Response Search Music V1 Search Music Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_music_v1(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/fbsearch/topsearch/hashtags": {
+      "get": {
+        "summary": "Web Search Topsearch Hashtags",
+        "description": "Search hashtags via topsearch. Returns a list of matching results.",
+        "operationId": "web_search_topsearch_hashtags_v1_fbsearch_topsearch_hashtags_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Hashtag"
+                  },
+                  "title": "Response Web Search Topsearch Hashtags V1 Fbsearch Topsearch Hashtags Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_topsearch_hashtags_v1(query=\"Berlin\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/share/reel/by/url": {
+      "get": {
+        "summary": "Works for reel (clips) only",
+        "operationId": "share_reel_by_url_v1_share_reel_by_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "title": "Response Share Reel By Url V1 Share Reel By Url Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.share_reel_by_url_v1(\n    url=\"https://www.instagram.com/share/reel/BBX9-xjv1r\"\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false,
+        "description": "Returns shared content data."
+      }
+    },
+    "/v1/share/by/code": {
+      "get": {
+        "summary": "Works for stories and highlights only or use (/v1/media/by/url, /v1/story/by/url)",
+        "description": "Get share object by code (aGlnaGxpZ2h0OjE4MTQ2MjE2Njk4MDIyMTc0 ->\n{\"pk\": 18146216698022176, \"type\": \"highlight\"}). Returns shared content data.",
+        "operationId": "share_by_code_v1_share_by_code_get",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Share"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.share_by_code_v1(code=\"aGlnaGxpZ2h0OjE4MTQ2MjE2Njk4MDIyMTc0\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v1/share/by/url": {
+      "get": {
+        "summary": "Works for stories and highlights only ig...m.com/s/aGln(link must contain /s/) or use (/v1/media/by/url, /v1/story/by/url)",
+        "description": "Get share object by url (\nhttps://www.ins...ram.com/s/aGlnaGxpZ2h0OjE4MTQ2MjE2Njk4MDIyMTc0 ->\n{\"pk\": 18146216698022176, \"type\": \"highlight\"}). Returns shared content data.",
+        "operationId": "share_by_url_v1_share_by_url_get",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Share By Url V1 Share By Url Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.share_by_url_v1(\n    url=\"https://www.ins...ram.com/s/aGlnaGxpZ2h0OjE4MTQ2MjE2Njk4MDIyMTc0\"\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Hashtag": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "media_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Count"
+          },
+          "allow_following": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allow Following"
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Hashtag"
+      },
+      "Location": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pk"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "default": ""
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website",
+            "default": ""
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category",
+            "default": ""
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours",
+            "default": {}
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address",
+            "default": ""
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City",
+            "default": ""
+          },
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip",
+            "default": ""
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "external_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id"
+          },
+          "external_id_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Location"
+      },
+      "Share": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "type"
+        ],
+        "title": "Share"
+      },
+      "Track": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "subtitle": {
+            "type": "string",
+            "title": "Subtitle"
+          },
+          "display_artist": {
+            "type": "string",
+            "title": "Display Artist"
+          },
+          "audio_cluster_id": {
+            "type": "string",
+            "title": "Audio Cluster Id"
+          },
+          "artist_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artist Id"
+          },
+          "cover_artwork_uri": {
+            "type": "string",
+            "title": "Cover Artwork Uri"
+          },
+          "cover_artwork_thumbnail_uri": {
+            "type": "string",
+            "title": "Cover Artwork Thumbnail Uri"
+          },
+          "progressive_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progressive Download Url"
+          },
+          "fast_start_progressive_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fast Start Progressive Download Url"
+          },
+          "reactive_audio_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reactive Audio Download Url"
+          },
+          "highlight_start_times_in_ms": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Highlight Start Times In Ms"
+          },
+          "is_explicit": {
+            "type": "boolean",
+            "title": "Is Explicit"
+          },
+          "dash_manifest": {
+            "type": "string",
+            "title": "Dash Manifest"
+          },
+          "has_lyrics": {
+            "type": "boolean",
+            "title": "Has Lyrics"
+          },
+          "audio_asset_id": {
+            "type": "string",
+            "title": "Audio Asset Id"
+          },
+          "duration_in_ms": {
+            "type": "integer",
+            "title": "Duration In Ms"
+          },
+          "dark_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dark Message"
+          },
+          "allows_saving": {
+            "type": "boolean",
+            "title": "Allows Saving"
+          },
+          "territory_validity_periods": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Territory Validity Periods"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "subtitle",
+          "display_artist",
+          "audio_cluster_id",
+          "cover_artwork_uri",
+          "cover_artwork_thumbnail_uri",
+          "highlight_start_times_in_ms",
+          "is_explicit",
+          "dash_manifest",
+          "has_lyrics",
+          "audio_asset_id",
+          "duration_in_ms",
+          "allows_saving"
+        ],
+        "title": "Track"
+      },
+      "UserShort": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name",
+            "default": ""
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk"
+        ],
+        "title": "UserShort"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

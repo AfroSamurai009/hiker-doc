@@ -1,1 +1,106 @@
-site_name: My Docs
+site_name: HikerAPI Documentation
+site_url: https://hikerapi.readthedocs.io/
+site_description: Instagram Data API — profiles, posts, stories, reels, comments, followers, hashtags, locations
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.copy
+    - announce.dismiss
+    - navigation.path
+  icon:
+    logo: material/api
+
+exclude_docs: |
+  superpowers/
+
+plugins:
+  - search
+  - neoteroi.mkdocsoad
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quick Start: getting-started/quick-start.md
+    - Authentication: getting-started/authentication.md
+  - API Reference:
+    - v1 Overview: api-reference/v1/index.md
+    - v1 User: api-reference/v1/user.md
+    - v1 Media: api-reference/v1/media.md
+    - v1 Stories: api-reference/v1/stories.md
+    - v1 Highlights: api-reference/v1/highlights.md
+    - v1 Hashtags: api-reference/v1/hashtags.md
+    - v1 Locations: api-reference/v1/locations.md
+    - v1 Search: api-reference/v1/search.md
+    - v2 Overview: api-reference/v2/index.md
+    - v2 User: api-reference/v2/user.md
+    - v2 Media: api-reference/v2/media.md
+    - v2 Stories: api-reference/v2/stories.md
+    - v2 Highlights: api-reference/v2/highlights.md
+    - v2 Hashtags: api-reference/v2/hashtags.md
+    - v2 Search: api-reference/v2/search.md
+    - v2 Track: api-reference/v2/track.md
+    - GraphQL API: api-reference/gql/index.md
+    - System: api-reference/system.md
+    - Response Codes: api-reference/response-codes.md
+  - SDKs:
+    - Python: sdk/python.md
+    - JavaScript: sdk/javascript.md
+    - Go: sdk/go.md
+    - PHP: sdk/php.md
+  - Guides:
+    - Rate Limits: guides/rate-limits.md
+    - Request Costs: guides/request-costs.md
+  - Support:
+    - Contacts: support/contacts.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/hikerapi
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/hikerapi/
+    - icon: material/web
+      link: https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=footer
+      name: HikerAPI — Start Free Trial
+  generator: false
+
+extra_css:
+  - overrides/extra.css

@@ -1,0 +1,477 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v3/fbsearch/accounts": {
+      "get": {
+        "summary": "Fbsearch Accounts",
+        "description": "Search accounts. Returns a list of matching results.",
+        "operationId": "fbsearch_accounts_v3_fbsearch_accounts_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Accounts V3 Fbsearch Accounts Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/fbsearch/places": {
+      "get": {
+        "summary": "Fbsearch Places",
+        "description": "Search places. Returns a list of matching results.",
+        "operationId": "fbsearch_places_v3_fbsearch_places_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Places V3 Fbsearch Places Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/track/by/id": {
+      "get": {
+        "summary": "Track By Id",
+        "description": "Get music track object by id. Returns audio track data.",
+        "operationId": "track_by_id_v2_track_by_id_get",
+        "parameters": [
+          {
+            "name": "track_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Track Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.track_by_id_v2(track_id=\"1592175977822689\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/track/stream/by/id": {
+      "get": {
+        "summary": "Track Stream By Id",
+        "description": "Get music track object by id. Returns audio track data.",
+        "operationId": "track_stream_by_id_v2_track_stream_by_id_get",
+        "parameters": [
+          {
+            "name": "track_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Track Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.track_by_id_v2(track_id=\"1592175977822689\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/track/by/canonical/id": {
+      "get": {
+        "summary": "Track By Canonical Id",
+        "description": "Get music track object by canonical_id. Returns audio track data.",
+        "operationId": "track_by_canonical_id_v2_track_by_canonical_id_get",
+        "parameters": [
+          {
+            "name": "canonical_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Canonical Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.track_by_canonical_id_v2(canonical_id=\"1592175977822689\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v3/fbsearch/topsearch": {
+      "get": {
+        "summary": "Prefer using /gql/topsearch as this endpoint has pagination issues with duplicate results",
+        "description": "Search top content by keyword. Returns a list of matching results.",
+        "operationId": "fbsearch_top_v3_fbsearch_topsearch_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Top V3 Fbsearch Topsearch Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/fbsearch/reels": {
+      "get": {
+        "summary": "Deprecated due to pagination issues with duplicate results",
+        "description": "Search reels by keyword. Returns a list of matching results.",
+        "operationId": "fbsearch_reels_v3_fbsearch_reels_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Reels V3 Fbsearch Reels Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

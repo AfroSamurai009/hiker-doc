@@ -1,0 +1,157 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/v2/highlight/by/id": {
+      "get": {
+        "summary": "Highlight By Id",
+        "description": "Get highlight object by id. Returns a Highlight object.",
+        "operationId": "highlight_by_id_v2_highlight_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PageResponse"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ],
+                  "title": "Response Highlight By Id V2 Highlight By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.highlight_by_id_v2(id=\"386916469\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
