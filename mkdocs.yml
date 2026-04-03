@@ -61,6 +61,9 @@ nav:
     - REST API v2: api-reference/rest-v2.md
     - GraphQL API: api-reference/graphql.md
     - Response Codes: api-reference/response-codes.md
+  - Guides:
+    - Rate Limits: guides/rate-limits.md
+    - Request Costs: guides/request-costs.md
 
 extra:
   social:
