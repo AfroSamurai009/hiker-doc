@@ -16,3 +16,29 @@ Get 100 free requests —
   Start your free trial &rarr;
 </a>
 {% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+  /* Collapse response sections by default — click h3 to expand */
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll("h3").forEach(function(h3) {
+      if (!/^response\s+\d/i.test(h3.textContent)) return;
+      var content = [];
+      var el = h3.nextElementSibling;
+      while (el && el.tagName !== "H3" && el.tagName !== "H2") {
+        content.push(el);
+        el = el.nextElementSibling;
+      }
+      if (!content.length) return;
+      var details = document.createElement("details");
+      var summary = document.createElement("summary");
+      summary.innerHTML = h3.innerHTML;
+      summary.style.cssText = "cursor:pointer;font-size:1.125em;font-weight:700;margin:1em 0 .5em;";
+      details.appendChild(summary);
+      content.forEach(function(node) { details.appendChild(node); });
+      h3.replaceWith(details);
+    });
+  });
+  </script>
+{% endblock %}

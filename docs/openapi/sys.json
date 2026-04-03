@@ -15,9 +15,31 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
                   "type": "object",
-                  "title": "Response Balance Sys Balance Get"
+                  "properties": {
+                    "requests": {
+                      "type": "integer",
+                      "description": "Remaining request units"
+                    },
+                    "rate": {
+                      "type": "integer",
+                      "description": "Rate limit (requests/second)"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "Account currency"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "description": "Remaining balance"
+                    }
+                  },
+                  "example": {
+                    "requests": 100000,
+                    "rate": 15,
+                    "currency": "USD",
+                    "amount": 100.0
+                  }
                 }
               }
             }

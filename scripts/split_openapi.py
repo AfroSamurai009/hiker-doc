@@ -106,6 +106,38 @@ def _get_response_desc(path):
     return None
 
 
+# Override weak schemas with real ones
+SCHEMA_OVERRIDES = {
+    "/sys/balance": {
+        "type": "object",
+        "properties": {
+            "requests": {
+                "type": "integer",
+                "description": "Remaining request units",
+            },
+            "rate": {
+                "type": "integer",
+                "description": "Rate limit (requests/second)",
+            },
+            "currency": {
+                "type": "string",
+                "description": "Account currency",
+            },
+            "amount": {
+                "type": "number",
+                "description": "Remaining balance",
+            },
+        },
+        "example": {
+            "requests": 100000,
+            "rate": 15,
+            "currency": "USD",
+            "amount": 100.00,
+        },
+    },
+}
+
+
 def clean_spec(spec):
     """Remove noise and enhance endpoint descriptions."""
     # Minimize info block
@@ -131,6 +163,18 @@ def clean_spec(spec):
 
             # Remove security references
             operation.pop("security", None)
+
+            # Apply schema overrides for weak/empty schemas
+            if path in SCHEMA_OVERRIDES:
+                override = SCHEMA_OVERRIDES[path]
+                resp200 = (
+                    operation.get("responses", {})
+                    .get("200", {})
+                    .get("content", {})
+                    .get("application/json", {})
+                )
+                if resp200:
+                    resp200["schema"] = override
 
             # Clean responses: always keep 200, drop error codes
             # without useful content (404/422 with empty body)
