@@ -51,3 +51,8 @@
 - Status: done
 - Commits: 91d0c20
 - Notes: Contacts with email + Telegram, feature requests, full nav complete
+
+## Task 9: Cleanup — remove old Sphinx files
+- Status: done (partial)
+- Commits: 30778e5
+- Notes: Added exclude_docs for superpowers/. Strict build passes. Old Sphinx files NOT removed — user denied rm permission. Need manual: `rm -rf docs/source/ docs/hikerapi/ docs/build/ docs/Makefile docs/make.bat Makefile Makefile.bak`
