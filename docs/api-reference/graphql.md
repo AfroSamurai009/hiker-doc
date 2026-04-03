@@ -43,7 +43,7 @@ Example response:
 
 ## All GraphQL endpoints (22)
 
-<swagger-ui src="../openapi-gql.json" docExpansion="list" filter="true"/>
+[OAD(../openapi-gql.json)]
 
 ---
 

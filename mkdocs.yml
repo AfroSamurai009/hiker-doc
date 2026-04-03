@@ -37,10 +37,7 @@ exclude_docs: |
 
 plugins:
   - search
-  - swagger-ui-tag:
-      docExpansion: list
-      syntaxHighlightTheme: monokai
-      tryItOutEnabled: false
+  - neoteroi.mkdocsoad
 
 markdown_extensions:
   - admonition

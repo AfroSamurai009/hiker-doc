@@ -18,7 +18,7 @@ All endpoints use `GET` method and require the `x-access-key` header. See [Authe
 
 ## All v1 endpoints (72)
 
-<swagger-ui src="../openapi-v1.json" docExpansion="list" filter="true"/>
+[OAD(../openapi-v1.json)]
 
 ---
 

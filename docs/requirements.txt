@@ -1,2 +1,2 @@
 mkdocs-material>=9.5
-mkdocs-swagger-ui-tag>=0.6
+neoteroi-mkdocs>=1.2.0
