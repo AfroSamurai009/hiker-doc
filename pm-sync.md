@@ -206,6 +206,7 @@ extra:
 4. Коммит: `feat: add breadcrumbs and footer links`
 
 ## Task 15: Final build verification
+- Status: done
 
 1. Запустить `mkdocs build --strict` — 0 ошибок, 0 warnings
 2. Запустить `mkdocs serve` и пройтись по всем страницам
