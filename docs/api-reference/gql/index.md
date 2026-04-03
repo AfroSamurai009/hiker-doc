@@ -4,6 +4,16 @@ Anonymous data retrieval via Instagram's GraphQL API.
 
 GraphQL endpoints use cursor-based pagination (`end_cursor`) and return data in Instagram's native graph format. Includes both `gql/` and `g2/` endpoint families.
 
+All endpoints use `GET` method and require the `x-access-key` header. See [Authentication](../../getting-started/authentication.md).
+
+| Group | Description | Endpoints |
+|-------|-------------|-----------|
+| User | Profiles, followers, following, clips, reposts | 12 |
+| Comments | Post comments, threaded replies, likers | 5 |
+| Media | Media likers, usertags | 2 |
+| Search | Global top search | 1 |
+| g2 | Extended follower/following data | 2 |
+
 ## Pagination
 
 Most GraphQL endpoints return `(data, end_cursor)`. Pass `end_cursor` to the next request to get the next page. When `end_cursor` is `null`, you've reached the end.
@@ -43,7 +53,7 @@ Example response:
 
 ## All GraphQL endpoints (22)
 
-[OAD(../openapi/gql.json)]
+[OAD(../../openapi/gql.json)]
 
 ---
 

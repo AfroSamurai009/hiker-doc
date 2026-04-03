@@ -7,10 +7,6 @@
   "paths": {
     "/gql/user/medias": {
       "get": {
-        "tags": [
-          "Top 5",
-          "User Profile"
-        ],
         "summary": "Returns the user medias",
         "description": "Get user medias. Returns a list of Media objects.",
         "operationId": "user_medias_gql_user_medias_get",
@@ -58,9 +54,6 @@
     },
     "/gql/user/following/chunk": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get a user following (one request required)",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_following_chunk_gql_user_following_chunk_get",
@@ -127,9 +120,6 @@
     },
     "/gql/user/followers/chunk": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get a user followers (one request required)",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_followers_chunk_gql_user_followers_chunk_get",
@@ -196,9 +186,6 @@
     },
     "/gql/user/reposts": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get user's reposted content",
         "description": "Get user media reposts",
         "operationId": "fetch_user_reposts_query_gql_user_reposts_get",
@@ -246,9 +233,6 @@
     },
     "/gql/user/clips": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Returns the user's short video posts (reels).",
         "description": "Get user clips. Returns a list of Media objects (Reels).",
         "operationId": "user_clips_gql_user_clips_get",
@@ -306,9 +290,6 @@
     },
     "/g2/user/followers": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get a user followers (one request required)",
         "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
         "operationId": "user_followers_g2_user_followers_get",
@@ -336,9 +317,6 @@
     },
     "/g2/user/following": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get a user following (one request required)",
         "description": "Get part (one page) of following users with cursor. Returns a list of User objects.",
         "operationId": "user_following_g2_user_following_get",
@@ -366,9 +344,6 @@
     },
     "/gql/user/web_profile_info": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get user profile info GraphQL",
         "description": "Get user profile info by user id (GraphQL web_profile_info)",
         "operationId": "user_web_profile_info_gql_user_web_profile_info_get",
@@ -395,9 +370,6 @@
     },
     "/gql/media/usertags": {
       "get": {
-        "tags": [
-          "Post Details"
-        ],
         "summary": "Returns users tagged in the video. You can pass up to 10 media ids",
         "description": "Returns users tagged in the video. You can pass up to 10 media ids",
         "operationId": "graphql_query_getfulldatacomputingmediadictquery_chapi_gql_media_usertags_get",
@@ -427,9 +399,6 @@
     },
     "/gql/media/likers": {
       "get": {
-        "tags": [
-          "Post Details"
-        ],
         "summary": "Media Likers",
         "description": "Get likers on a media (paging is unavailable on this endpoint). Returns a list of User objects.",
         "operationId": "media_likers_gql_media_likers_get",
@@ -456,9 +425,6 @@
     },
     "/gql/comments/chunk": {
       "get": {
-        "tags": [
-          "Comments"
-        ],
         "summary": "Media Comments Chunk",
         "description": "Get comments on a media. Returns Comment objects with cursor.",
         "operationId": "media_comments_chunk_gql_comments_chunk_get",
@@ -527,9 +493,6 @@
     },
     "/gql/comments/threaded/chunk": {
       "get": {
-        "tags": [
-          "Comments"
-        ],
         "summary": "Media Comments Threaded Chunk",
         "description": "Get threaded comments for comment",
         "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
@@ -586,9 +549,6 @@
     },
     "/gql/comment/likers/chunk": {
       "get": {
-        "tags": [
-          "Comments"
-        ],
         "summary": "Comment Likers Chunk",
         "description": "Get likers on a comment",
         "operationId": "comment_likers_chunk_gql_comment_likers_chunk_get",
@@ -655,10 +615,6 @@
     },
     "/gql/topsearch": {
       "get": {
-        "tags": [
-          "Comments",
-          "Search"
-        ],
         "summary": "Topsearch",
         "description": "Search top content by keyword (GraphQL TopSerpQuery)",
         "operationId": "topsearch_gql_topsearch_get",
@@ -698,9 +654,6 @@
     },
     "/gql/comments": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "WARNING: Preferable to use /gql/comments/chunk",
         "description": "Get comments on a media",
         "operationId": "media_comments_gql_comments_get",
@@ -769,9 +722,6 @@
     },
     "/gql/comment/likers": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "WARNING: Preferable to use /gql/comment/likers/chunk",
         "description": "Get likers on a comment",
         "operationId": "comment_likers_gql_comment_likers_get",
@@ -809,9 +759,6 @@
     },
     "/gql/user/related/profiles": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "Prefer using v2/user/suggested/profiles as this endpoint will be completely deprecated soon",
         "description": "Get related profiles by user id",
         "operationId": "related_profiles_gql_user_related_profiles_get",
@@ -839,9 +786,6 @@
     },
     "/gql/comments/threaded": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "WARNING: Preferable to use /gql/comments/chunk",
         "description": "Get threaded comments for comment",
         "operationId": "media_comments_threaded_gql_comments_threaded_get",
@@ -888,9 +832,6 @@
     },
     "/gql/user/by/id": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "User By Id",
         "description": "Get user object by id. Returns a User object.",
         "operationId": "user_by_id_gql_user_by_id_get",
@@ -910,9 +851,6 @@
     },
     "/gql/user/by/username": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "Get user object by username (one request required)",
         "description": "Get user object by username. Returns a User object.",
         "operationId": "user_by_username_gql_user_by_username_get",
@@ -932,9 +870,6 @@
     },
     "/gql/user/followers": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_followers_gql_user_followers_get",
@@ -973,9 +908,6 @@
     },
     "/gql/user/following": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "WARNING: Use /v2/user/following. Get a user following (one request is required for every 46 following)",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_following_gql_user_following_get",
@@ -1012,107 +944,5 @@
         "required": false
       }
     }
-  },
-  "tags": [
-    {
-      "name": "Top 5",
-      "description": "Most popular endpoints - start here"
-    },
-    {
-      "name": "User Profile",
-      "description": "Get user info, followers, following, posts & reels, stories",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
-      }
-    },
-    {
-      "name": "Post Details",
-      "description": "Get media/post info by ID, code or URL. Likers, insights",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
-      }
-    },
-    {
-      "name": "Comments",
-      "description": "Get comments on posts, comment likers, replies",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
-      }
-    },
-    {
-      "name": "Search",
-      "description": "Search users, hashtags, locations, music",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
-      }
-    },
-    {
-      "name": "Hashtags",
-      "description": "Get hashtag info and medias (top, recent, clips)",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
-      }
-    },
-    {
-      "name": "Audio",
-      "description": "Music and audio related endpoints",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
-      }
-    },
-    {
-      "name": "Location",
-      "description": "Location info and medias",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
-      }
-    },
-    {
-      "name": "Stories",
-      "description": "Stories by ID/URL, story download",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
-      }
-    },
-    {
-      "name": "Highlights",
-      "description": "Highlights by ID/URL",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
-      }
-    },
-    {
-      "name": "Share",
-      "description": "Resolve share links (/s/, /reel/ URLs)",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
-      }
-    },
-    {
-      "name": "System",
-      "description": "System endpoints, balance, health checks",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
-      }
-    },
-    {
-      "name": "Legacy",
-      "description": "Deprecated - use recommended alternatives"
-    }
-  ],
-  "externalDocs": {
-    "description": "Get the access_key",
-    "url": "https://hikerapi.com/tokens"
   }
 }

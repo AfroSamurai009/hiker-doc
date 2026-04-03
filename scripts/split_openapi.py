@@ -136,6 +136,15 @@ def clean_spec(spec):
                 else:
                     operation["description"] = resp_desc
 
+    # Remove tags and externalDocs
+    spec.pop("tags", None)
+    spec.pop("externalDocs", None)
+    for methods in spec.get("paths", {}).values():
+        for op in methods.values():
+            if isinstance(op, dict):
+                op.pop("externalDocs", None)
+                op.pop("tags", None)
+
     # Remove components
     spec.pop("components", None)
 

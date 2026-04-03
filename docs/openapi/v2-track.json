@@ -7,9 +7,6 @@
   "paths": {
     "/v3/fbsearch/accounts": {
       "get": {
-        "tags": [
-          "Search"
-        ],
         "summary": "Fbsearch Accounts",
         "description": "Search accounts. Returns a list of matching results.",
         "operationId": "fbsearch_accounts_v3_fbsearch_accounts_get",
@@ -37,9 +34,6 @@
     },
     "/v3/fbsearch/places": {
       "get": {
-        "tags": [
-          "Search"
-        ],
         "summary": "Fbsearch Places",
         "description": "Search places. Returns a list of matching results.",
         "operationId": "fbsearch_places_v3_fbsearch_places_get",
@@ -58,9 +52,6 @@
     },
     "/v2/track/by/id": {
       "get": {
-        "tags": [
-          "Audio"
-        ],
         "summary": "Track By Id",
         "description": "Get music track object by id. Returns audio track data.",
         "operationId": "track_by_id_v2_track_by_id_get",
@@ -99,9 +90,6 @@
     },
     "/v2/track/stream/by/id": {
       "get": {
-        "tags": [
-          "Audio"
-        ],
         "summary": "Track Stream By Id",
         "description": "Get music track object by id. Returns audio track data.",
         "operationId": "track_stream_by_id_v2_track_stream_by_id_get",
@@ -140,9 +128,6 @@
     },
     "/v2/track/by/canonical/id": {
       "get": {
-        "tags": [
-          "Audio"
-        ],
         "summary": "Track By Canonical Id",
         "description": "Get music track object by canonical_id. Returns audio track data.",
         "operationId": "track_by_canonical_id_v2_track_by_canonical_id_get",
@@ -181,9 +166,6 @@
     },
     "/v3/fbsearch/topsearch": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "Prefer using /gql/topsearch as this endpoint has pagination issues with duplicate results",
         "description": "Search top content by keyword. Returns a list of matching results.",
         "operationId": "fbsearch_top_v3_fbsearch_topsearch_get",
@@ -212,9 +194,6 @@
     },
     "/v3/fbsearch/reels": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "Deprecated due to pagination issues with duplicate results",
         "description": "Search reels by keyword. Returns a list of matching results.",
         "operationId": "fbsearch_reels_v3_fbsearch_reels_get",
@@ -241,107 +220,5 @@
         ]
       }
     }
-  },
-  "tags": [
-    {
-      "name": "Top 5",
-      "description": "Most popular endpoints - start here"
-    },
-    {
-      "name": "User Profile",
-      "description": "Get user info, followers, following, posts & reels, stories",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
-      }
-    },
-    {
-      "name": "Post Details",
-      "description": "Get media/post info by ID, code or URL. Likers, insights",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
-      }
-    },
-    {
-      "name": "Comments",
-      "description": "Get comments on posts, comment likers, replies",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
-      }
-    },
-    {
-      "name": "Search",
-      "description": "Search users, hashtags, locations, music",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
-      }
-    },
-    {
-      "name": "Hashtags",
-      "description": "Get hashtag info and medias (top, recent, clips)",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
-      }
-    },
-    {
-      "name": "Audio",
-      "description": "Music and audio related endpoints",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
-      }
-    },
-    {
-      "name": "Location",
-      "description": "Location info and medias",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
-      }
-    },
-    {
-      "name": "Stories",
-      "description": "Stories by ID/URL, story download",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
-      }
-    },
-    {
-      "name": "Highlights",
-      "description": "Highlights by ID/URL",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
-      }
-    },
-    {
-      "name": "Share",
-      "description": "Resolve share links (/s/, /reel/ URLs)",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
-      }
-    },
-    {
-      "name": "System",
-      "description": "System endpoints, balance, health checks",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
-      }
-    },
-    {
-      "name": "Legacy",
-      "description": "Deprecated - use recommended alternatives"
-    }
-  ],
-  "externalDocs": {
-    "description": "Get the access_key",
-    "url": "https://hikerapi.com/tokens"
   }
 }

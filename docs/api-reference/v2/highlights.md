@@ -2,6 +2,8 @@
 
 Get story highlights by ID.
 
+**Endpoints:** [`/v2/highlight/by/id`](#get-v2highlightbyid)
+
 [OAD(../../openapi/v2-highlights.json)]
 
 ---

@@ -7,10 +7,6 @@
   "paths": {
     "/v2/user/by/username": {
       "get": {
-        "tags": [
-          "Top 5",
-          "User Profile"
-        ],
         "summary": "Get user object by username (one request required). If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
         "description": "Get user object by username. Returns a User object.",
         "operationId": "user_by_username_v2_user_by_username_get",
@@ -37,11 +33,6 @@
     },
     "/v2/user/stories": {
       "get": {
-        "tags": [
-          "Top 5",
-          "User Profile",
-          "/v2/story"
-        ],
         "summary": "User Stories",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of Story objects.",
         "operationId": "user_stories_v2_user_stories_get",
@@ -105,9 +96,6 @@
     },
     "/v2/user/by/id": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "User By Id",
         "description": "Get user object by id. Returns a User object.",
         "operationId": "user_by_id_v2_user_by_id_get",
@@ -134,9 +122,6 @@
     },
     "/v2/user/followers": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get a user followers (one request required). Prefer /g2/user/followers",
         "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
         "operationId": "user_followers_v2_user_followers_get",
@@ -178,9 +163,6 @@
     },
     "/v2/user/following": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get a user following (one request required). Prefer /g2/user/following",
         "description": "Get part (one page) of following users. Returns a list of User objects.",
         "operationId": "user_following_v2_user_following_get",
@@ -222,10 +204,6 @@
     },
     "/v2/user/clips": {
       "get": {
-        "tags": [
-          "User Profile",
-          "/v2/media"
-        ],
         "summary": "User Clips",
         "description": "Get user clips. Returns a list of Media objects (Reels).",
         "operationId": "user_clips_v2_user_clips_get",
@@ -285,10 +263,6 @@
     },
     "/v2/user/stories/by/username": {
       "get": {
-        "tags": [
-          "User Profile",
-          "/v2/story"
-        ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
         "description": "⚠️ Billing: 3 requests per call. Returns a list of Story objects.",
         "operationId": "user_stories_by_username_v2_user_stories_by_username_get",
@@ -352,9 +326,6 @@
     },
     "/v2/user/tag/medias": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get medias where user is tagged",
         "description": "Get usertag medias",
         "operationId": "usertag_medias_v2_user_tag_medias_get",
@@ -388,9 +359,6 @@
     },
     "/a2/user": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "User",
         "description": "Get user object",
         "operationId": "user_a2_user_get",
@@ -409,10 +377,6 @@
     },
     "/v2/user/highlights": {
       "get": {
-        "tags": [
-          "User Profile",
-          "/v2/highlight"
-        ],
         "summary": "User Highlights",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_v2_user_highlights_get",
@@ -468,10 +432,6 @@
     },
     "/v2/user/highlights/by/username": {
       "get": {
-        "tags": [
-          "User Profile",
-          "/v2/highlight"
-        ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
         "description": "⚠️ Billing: 3 requests per call. Returns a list of Highlight objects.",
         "operationId": "user_highlights_by_username_v2_user_highlights_by_username_get",
@@ -527,9 +487,6 @@
     },
     "/v2/userstream/by/username": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
         "description": "Get userstream (info) by username. Returns user stream data.",
         "operationId": "userstream_by_username_v2_userstream_by_username_get",
@@ -556,9 +513,6 @@
     },
     "/v2/userstream/by/id": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
         "description": "Get userstream (info) by id. Returns user stream data.",
         "operationId": "userstream_by_id_v2_userstream_by_id_get",
@@ -585,9 +539,6 @@
     },
     "/v2/user/suggested/profiles": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Fetch Suggestion Details",
         "description": "Fetch suggested users details by target_id.\n\nexpand_suggestion=True for more detailed response",
         "operationId": "fetch_suggestion_details_v2_user_suggested_profiles_get",
@@ -624,9 +575,6 @@
     },
     "/v2/user/explore/businesses/by/id": {
       "get": {
-        "tags": [
-          "User Profile"
-        ],
         "summary": "Get recommended accounts for category by user id",
         "description": "Get list of recommended accounts for business category of the user by his id. Returns recommended accounts.",
         "operationId": "explore_businesses_by_id_v2_user_explore_businesses_by_id_get",
@@ -645,9 +593,6 @@
     },
     "/v2/user/medias": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "Prefer /gql/user/medias - this endpoint will be deprecated",
         "description": "Get user medias. Results chunk. Returns a list of Media objects.",
         "operationId": "user_medias_v2_user_medias_get",
@@ -708,9 +653,6 @@
     },
     "/v2/user/videos": {
       "get": {
-        "tags": [
-          "Legacy"
-        ],
         "summary": "Prefer using /v2/user/clips or /v2/user/medias instead",
         "description": "Get part of user videos with cursor (default 50 media per request)",
         "operationId": "user_videos_v2_user_videos_get",
@@ -751,107 +693,5 @@
         "required": false
       }
     }
-  },
-  "tags": [
-    {
-      "name": "Top 5",
-      "description": "Most popular endpoints - start here"
-    },
-    {
-      "name": "User Profile",
-      "description": "Get user info, followers, following, posts & reels, stories",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
-      }
-    },
-    {
-      "name": "Post Details",
-      "description": "Get media/post info by ID, code or URL. Likers, insights",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
-      }
-    },
-    {
-      "name": "Comments",
-      "description": "Get comments on posts, comment likers, replies",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
-      }
-    },
-    {
-      "name": "Search",
-      "description": "Search users, hashtags, locations, music",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
-      }
-    },
-    {
-      "name": "Hashtags",
-      "description": "Get hashtag info and medias (top, recent, clips)",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
-      }
-    },
-    {
-      "name": "Audio",
-      "description": "Music and audio related endpoints",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
-      }
-    },
-    {
-      "name": "Location",
-      "description": "Location info and medias",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
-      }
-    },
-    {
-      "name": "Stories",
-      "description": "Stories by ID/URL, story download",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
-      }
-    },
-    {
-      "name": "Highlights",
-      "description": "Highlights by ID/URL",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
-      }
-    },
-    {
-      "name": "Share",
-      "description": "Resolve share links (/s/, /reel/ URLs)",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
-      }
-    },
-    {
-      "name": "System",
-      "description": "System endpoints, balance, health checks",
-      "externalDocs": {
-        "description": "Documentation",
-        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
-      }
-    },
-    {
-      "name": "Legacy",
-      "description": "Deprecated - use recommended alternatives"
-    }
-  ],
-  "externalDocs": {
-    "description": "Get the access_key",
-    "url": "https://hikerapi.com/tokens"
   }
 }
