@@ -21,3 +21,8 @@
 - Status: done
 - Commits: 6e8a77b
 - Notes: Grid cards, trust signals table, CTA box with custom CSS, dark mode support
+
+## Task 3: Announcement bar
+- Status: done
+- Commits: 6fc5348
+- Notes: Dismissible banner with free trial CTA on all pages
