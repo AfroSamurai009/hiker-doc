@@ -476,3 +476,83 @@ mkdocs serve
 2. `mkdocs serve` — пройтись по всем страницам ресурсов
 3. Проверить навигацию sidebar
 4. Написать статус в pm-sync
+
+---
+
+# Round 5 — Чистка рендера эндпоинтов
+
+Ревьюер нашёл 4 проблемы после сравнения со Stripe/OpenAI:
+
+## Task 20: Почистить OpenAPI spec-файлы и рендер
+
+**Проблема 1: "HikerAPI REST 1.7.7 / Instagram API"** — мусор из info блока рендерится вверху каждой страницы ресурса.
+
+**Проблема 2: Пустые response schema** — "Response 200 OK / Schema of the response body" с пустым серым блоком. Бесполезно и выглядит как баг.
+
+**Проблема 3: Response 404, 422** — рендерятся с пустыми блоками. Шум.
+
+**Проблема 4: Нет краткого описания ответа** — у Stripe/OpenAI каждый эндпоинт говорит что возвращает: "Returns a User object", "Returns a list of Media objects". У нас — ничего.
+
+**Что сделать в `scripts/split_openapi.py`:**
+
+1. **Минимизировать `info` блок** — поставить пустые значения:
+```python
+spec["info"] = {"title": "", "version": ""}
+```
+
+2. **Убрать `responses` полностью из каждого path** — это избавит от пустых schema блоков и 404/422:
+```python
+for path_data in spec["paths"].values():
+    for method_data in path_data.values():
+        if "responses" in method_data:
+            del method_data["responses"]
+```
+
+3. **Добавить краткое описание ответа в `description`** каждого эндпоинта. Маппинг по паттерну пути:
+
+| Path pattern | Append to description |
+|---|---|
+| `/user/by/username` | Returns a User object. |
+| `/user/by/id` | Returns a User object. |
+| `/user/followers*` | Returns a list of User objects and pagination cursor. |
+| `/user/following*` | Returns a list of User objects and pagination cursor. |
+| `/user/medias*` | Returns a list of Media objects and pagination cursor. |
+| `/user/clips*` | Returns a list of Media objects (Reels) and pagination cursor. |
+| `/user/stories*` | Returns a list of Story objects. |
+| `/user/highlights*` | Returns a list of Highlight objects. |
+| `/media/by/*` | Returns a Media object. |
+| `/media/comments*` | Returns a list of Comment objects and pagination cursor. |
+| `/media/likers*` | Returns a list of User objects. |
+| `/hashtag/by/*` | Returns a Hashtag object. |
+| `/hashtag/medias*` | Returns a list of Media objects and pagination cursor. |
+| `/location/medias*` | Returns a list of Media objects and pagination cursor. |
+| `/search/*`, `/fbsearch/*` | Returns a list of matching results. |
+| `/share/*` | Returns shared content data. |
+| `*chunk*` | Returns paginated results with end_cursor. |
+
+Если у эндпоинта уже есть description — добавить в конец через ` `. Если нет — поставить.
+
+4. **Убрать `components`** из каждого spec-файла (больше не нужен без response schemas):
+```python
+if "components" in spec:
+    del spec["components"]
+```
+
+5. Перегенерировать все spec-файлы: `python3 scripts/split_openapi.py`
+
+6. **Verify:**
+- `mkdocs build --strict`
+- `mkdocs serve` — проверить:
+  - НЕТ "HikerAPI REST 1.7.7" заголовка
+  - НЕТ пустых response блоков
+  - НЕТ Response 404/422
+  - ЕСТЬ краткое описание что возвращает эндпоинт
+  - Sidebar ресурсов работает
+
+7. Коммит: `fix: clean OpenAPI render — remove empty schemas, add response descriptions`
+
+**Отпиши статус в pm-sync. Ревьюер проверит и если что-то не так — будет ещё итерация.**
+
+- Status: done
+- Commits: bd4233d
+- Notes: info минимизирован (пустой title/version), responses удалены полностью (нет пустых schema/404/422), security убран, return descriptions добавлены по паттерну пути (16+ endpoints с "Returns a ..."). Strict build 0 warnings.
