@@ -31,6 +31,9 @@ theme:
   icon:
     logo: material/api
 
+exclude_docs: |
+  superpowers/
+
 plugins:
   - search
   - swagger-ui-tag:
