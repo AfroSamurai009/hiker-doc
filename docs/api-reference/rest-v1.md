@@ -1,20 +1,24 @@
 # REST API v1
 
-Mobile API endpoints for anonymous Instagram data retrieval.
-
-Endpoints cover: user profiles, media, stories, highlights, followers/following, hashtags, locations, and search.
+Mobile API endpoints for anonymous Instagram data retrieval. v1 endpoints return raw Instagram data structures with minimal transformation.
 
 All endpoints use `GET` method and require the `x-access-key` header. See [Authentication](../getting-started/authentication.md).
 
-<swagger-ui src="../openapi.json"
-  filter="true"
-  operationsSorter="alpha"
-  tagsSorter="alpha"
-  docExpansion="list"
-/>
+## Endpoint groups
 
-!!! note "Filtering"
-    Use the filter box above to search for specific endpoints. Type `v1/user` to see all v1 user endpoints.
+| Group | Description | Example |
+|-------|-------------|---------|
+| **User** | Profiles, followers, following, search | `/v1/user/by/username` |
+| **Media** | Posts, reels, likes, comments | `/v1/media/by/code` |
+| **Stories** | User stories and story items | `/v1/user/stories` |
+| **Highlights** | Story highlights and covers | `/v1/user/highlights` |
+| **Hashtags** | Hashtag info and recent media | `/v1/hashtag/by/name` |
+| **Locations** | Location info and media | `/v1/location/by/id` |
+| **Search** | Global search across users, hashtags, locations | `/v1/search` |
+
+## All v1 endpoints (72)
+
+<swagger-ui src="../openapi-v1.json" docExpansion="list" filter="true"/>
 
 ---
 

@@ -1,0 +1,4442 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HikerAPI REST",
+    "description": "Instagram API",
+    "termsOfService": "https://hikerapi.com/help/terms-of-service",
+    "license": {
+      "name": "Pricing",
+      "url": "https://hikerapi.com/pricing"
+    },
+    "version": "1.7.7"
+  },
+  "paths": {
+    "/gql/user/medias": {
+      "get": {
+        "tags": [
+          "Top 5",
+          "User Profile"
+        ],
+        "summary": "Returns the user medias",
+        "description": "Get user medias",
+        "operationId": "user_medias_gql_user_medias_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "profile_grid_items_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Profile Grid Items Cursor"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested media objects into a single list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested media objects into a single list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_medias_gql (\n    user_id=\"123123\", profile_grid_items_cursor=None\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/following/chunk": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user following (one request required)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_following_chunk_gql_user_following_chunk_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserShort"
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response User Following Chunk Gql User Following Chunk Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_chunk_gql(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_chunk_gql(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/gql/user/followers/chunk": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user followers (one request required)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_followers_chunk_gql_user_followers_chunk_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserShortWithReel"
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response User Followers Chunk Gql User Followers Chunk Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_chunk_gql(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_chunk_gql(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/gql/user/reposts": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get user's reposted content",
+        "description": "Get user media reposts",
+        "operationId": "fetch_user_reposts_query_gql_user_reposts_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "repost_next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Repost Next Max Id"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested response into simple items list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested response into simple items list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_reposts_gql(user_id=\"4255960887\")",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/clips": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Returns the user's short video posts (reels).",
+        "description": "Get user clips",
+        "operationId": "user_clips_gql_user_clips_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Max Id"
+            }
+          },
+          {
+            "name": "sort_by_views",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Sort By Views"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested media objects into a single list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested media objects into a single list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedia = await cl.user_clips_gql(target_user_id=\"26064198596\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/g2/user/followers": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user followers (one request required)",
+        "description": "Get part (one page) of followers users with cursor",
+        "operationId": "user_followers_g2_user_followers_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of followers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/g2/user/following": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user following (one request required)",
+        "description": "Get part (one page) of following users with cursor",
+        "operationId": "user_following_g2_user_following_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of following users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/web_profile_info": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get user profile info GraphQL",
+        "description": "Get user profile info by user id (GraphQL web_profile_info)",
+        "operationId": "user_web_profile_info_gql_user_web_profile_info_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_web_profile_info_gql(user_id=\"95561\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/media/usertags": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Returns users tagged in the video. You can pass up to 10 media ids",
+        "description": "Returns users tagged in the video. You can pass up to 10 media ids",
+        "operationId": "graphql_query_getfulldatacomputingmediadictquery_chapi_gql_media_usertags_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_ids",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Media Ids"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_usertags_gql(media_id=\"3162273595027945978\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/media/likers": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Media Likers",
+        "description": "Get likers on a media (paging is unavailable on this endpoint)",
+        "operationId": "media_likers_gql_media_likers_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Media Likers Gql Media Likers Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nlikers = await cl.media_likers_gql(media_id=\"3162273595027945978\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/chunk": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Media Comments Chunk",
+        "description": "Get comments on a media",
+        "operationId": "media_comments_chunk_gql_comments_chunk_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "recent",
+                    "popular"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "recent",
+              "title": "Sort Order"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response Media Comments Chunk Gql Comments Chunk Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = await cl.comments_chunk_gql(\n    media_id=\"3162273595027945978\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/threaded/chunk": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Media Comments Threaded Chunk",
+        "description": "Get threaded comments for comment",
+        "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response Media Comments Threaded Chunk Gql Comments Threaded Chunk Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = cl.comments_threaded_chunk_gql(comment_id=\"2321157652140500761\", end_cursor=None)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_threaded_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comment/likers/chunk": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Comment Likers Chunk",
+        "description": "Get likers on a comment",
+        "operationId": "comment_likers_chunk_gql_comment_likers_chunk_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "deprecated": true,
+              "title": "Media Id"
+            },
+            "deprecated": true
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response Comment Likers Chunk Gql Comment Likers Chunk Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nlikers, end_cursor = cl.comment_likers_chunk_gql(media_id=\"3162273595027945978\", end_cursor=None)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comment_likers_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/topsearch": {
+      "get": {
+        "tags": [
+          "Comments",
+          "Search"
+        ],
+        "summary": "Topsearch",
+        "description": "Search top content by keyword (GraphQL TopSerpQuery)",
+        "operationId": "topsearch_gql_topsearch_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "End Cursor"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Flatten nested response into simple items list",
+              "default": false,
+              "title": "Flat"
+            },
+            "description": "Flatten nested response into simple items list"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Topsearch Gql Topsearch Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gql/comments": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Preferable to use /gql/comments/chunk",
+        "description": "Get comments on a media",
+        "operationId": "media_comments_gql_comments_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "recent",
+                    "popular"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "recent",
+              "title": "Sort Order"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "max_requests",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Max Requests"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Media Comments Gql Comments Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.comments_gql(media_id=\"3162273595027945978\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comment/likers": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Preferable to use /gql/comment/likers/chunk",
+        "description": "Get likers on a comment",
+        "operationId": "comment_likers_gql_comment_likers_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Comment Likers Gql Comment Likers Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.comment_likers_gql(media_id=\"3162273595027945978\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/related/profiles": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using v2/user/suggested/profiles as this endpoint will be completely deprecated soon",
+        "description": "Get related profiles by user id",
+        "operationId": "related_profiles_gql_user_related_profiles_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserShort"
+                  },
+                  "title": "Response Related Profiles Gql User Related Profiles Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_related_profiles_gql(id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/threaded": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Preferable to use /gql/comments/chunk",
+        "description": "Get threaded comments for comment",
+        "operationId": "media_comments_threaded_gql_comments_threaded_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  "title": "Response Media Comments Threaded Gql Comments Threaded Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments = await cl.comments_threaded_gql(comment_id=\"17868057941916088\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/user/by/id": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "User By Id",
+        "description": "Get user object by id",
+        "operationId": "user_by_id_gql_user_by_id_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/by/username": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Get user object by username (one request required)",
+        "description": "Get user object by username",
+        "operationId": "user_by_username_gql_user_by_username_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/followers": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_followers_gql_user_followers_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 46,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserShort"
+                  },
+                  "title": "Response User Followers Gql User Followers Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_followers_gql(user_id=\"123123\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/gql/user/following": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "WARNING: Use /v2/user/following. Get a user following (one request is required for every 46 following)",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_following_gql_user_following_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Amount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserShort"
+                  },
+                  "title": "Response User Following Gql User Following Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_following_gql(user_id=\"123123\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "About": {
+        "properties": {
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "default": ""
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified",
+            "default": false
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country",
+            "default": ""
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date",
+            "default": ""
+          },
+          "former_usernames": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Former Usernames",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "About"
+      },
+      "Comment": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "created_at_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At Utc"
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Content Type"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "has_liked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Liked"
+          },
+          "like_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Like Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "text",
+          "user",
+          "created_at_utc",
+          "content_type",
+          "status"
+        ],
+        "title": "Comment"
+      },
+      "Guide": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "cover_media": {
+            "$ref": "#/components/schemas/Media"
+          },
+          "feedback_item": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feedback Item"
+          }
+        },
+        "type": "object",
+        "required": [
+          "description",
+          "cover_media"
+        ],
+        "title": "Guide"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Hashtag": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "media_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Count"
+          },
+          "allow_following": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allow Following"
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Hashtag"
+      },
+      "Highlight": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "latest_reel_media": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Reel Media"
+          },
+          "cover_media": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Media"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "is_pinned_highlight": {
+            "type": "boolean",
+            "title": "Is Pinned Highlight"
+          },
+          "media_count": {
+            "type": "integer",
+            "title": "Media Count"
+          },
+          "media_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Media Ids",
+            "default": []
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "type": "array",
+            "title": "Items",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "user",
+          "title",
+          "created_at",
+          "is_pinned_highlight",
+          "media_count"
+        ],
+        "title": "Highlight"
+      },
+      "Location": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pk"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "default": ""
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website",
+            "default": ""
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category",
+            "default": ""
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours",
+            "default": {}
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address",
+            "default": ""
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City",
+            "default": ""
+          },
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip",
+            "default": ""
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "external_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id"
+          },
+          "external_id_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Location"
+      },
+      "Media": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "taken_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Taken At"
+          },
+          "taken_at_ts": {
+            "type": "integer",
+            "title": "Taken At Ts"
+          },
+          "media_type": {
+            "type": "integer",
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type",
+            "default": ""
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Location"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "comment_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment Count",
+            "default": 0
+          },
+          "comments_disabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comments Disabled",
+            "default": false
+          },
+          "like_count": {
+            "type": "integer",
+            "title": "Like Count"
+          },
+          "play_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Play Count"
+          },
+          "has_liked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Liked"
+          },
+          "caption_text": {
+            "type": "string",
+            "title": "Caption Text"
+          },
+          "accessibility_caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accessibility Caption"
+          },
+          "usertags": {
+            "items": {
+              "$ref": "#/components/schemas/Usertag"
+            },
+            "type": "array",
+            "title": "Usertags"
+          },
+          "sponsor_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UserShort"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sponsor Tags",
+            "default": []
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "view_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "View Count",
+            "default": 0
+          },
+          "video_duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Duration",
+            "default": 0.0
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title",
+            "default": ""
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "type": "array",
+            "title": "Resources",
+            "default": []
+          },
+          "image_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Image Versions",
+            "default": []
+          },
+          "video_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Video Versions",
+            "default": []
+          },
+          "clips_metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Clips Metadata",
+            "default": {}
+          },
+          "video_dash_manifest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Dash Manifest",
+            "default": ""
+          },
+          "like_and_view_counts_disabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Like And View Counts Disabled"
+          },
+          "coauthor_producers": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Coauthor Producers",
+            "default": []
+          },
+          "is_paid_partnership": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Paid Partnership"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "code",
+          "taken_at",
+          "taken_at_ts",
+          "media_type",
+          "user",
+          "like_count",
+          "caption_text",
+          "usertags"
+        ],
+        "title": "Media"
+      },
+      "MediaOembed": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "author_name": {
+            "type": "string",
+            "title": "Author Name"
+          },
+          "author_url": {
+            "type": "string",
+            "title": "Author Url"
+          },
+          "author_id": {
+            "type": "string",
+            "title": "Author Id"
+          },
+          "media_id": {
+            "type": "string",
+            "title": "Media Id"
+          },
+          "provider_name": {
+            "type": "string",
+            "title": "Provider Name"
+          },
+          "provider_url": {
+            "type": "string",
+            "title": "Provider Url"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          },
+          "html": {
+            "type": "string",
+            "title": "Html"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "title": "Thumbnail Url"
+          },
+          "thumbnail_width": {
+            "type": "integer",
+            "title": "Thumbnail Width"
+          },
+          "thumbnail_height": {
+            "type": "integer",
+            "title": "Thumbnail Height"
+          },
+          "can_view": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Can View"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "author_name",
+          "author_url",
+          "author_id",
+          "media_id",
+          "provider_name",
+          "provider_url",
+          "type",
+          "html",
+          "thumbnail_url",
+          "thumbnail_width",
+          "thumbnail_height"
+        ],
+        "title": "MediaOembed"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ReelOwner": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "profile_pic_url": {
+            "type": "string",
+            "title": "Profile Pic Url"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "profile_pic_url",
+          "username"
+        ],
+        "title": "ReelOwner"
+      },
+      "Resource": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "title": "Thumbnail Url"
+          },
+          "media_type": {
+            "type": "integer",
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type"
+          },
+          "image_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Image Versions",
+            "default": []
+          },
+          "video_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Video Versions",
+            "default": []
+          },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview"
+          },
+          "carousel_parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Carousel Parent Id"
+          },
+          "commerciality_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commerciality Status"
+          },
+          "taken_at": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taken At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "thumbnail_url",
+          "media_type"
+        ],
+        "title": "Resource"
+      },
+      "Share": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "type"
+        ],
+        "title": "Share"
+      },
+      "Story": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "taken_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Taken At"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type",
+            "default": ""
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "video_duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Duration",
+            "default": 0.0
+          },
+          "sponsor_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UserShort"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sponsor Tags",
+            "default": []
+          },
+          "mentions": {
+            "items": {
+              "$ref": "#/components/schemas/StoryMention"
+            },
+            "type": "array",
+            "title": "Mentions"
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/StoryLink"
+            },
+            "type": "array",
+            "title": "Links"
+          },
+          "hashtags": {
+            "items": {
+              "$ref": "#/components/schemas/StoryHashtag"
+            },
+            "type": "array",
+            "title": "Hashtags"
+          },
+          "locations": {
+            "items": {
+              "$ref": "#/components/schemas/StoryLocation"
+            },
+            "type": "array",
+            "title": "Locations"
+          },
+          "stickers": {
+            "items": {
+              "$ref": "#/components/schemas/StorySticker"
+            },
+            "type": "array",
+            "title": "Stickers"
+          },
+          "medias": {
+            "items": {
+              "$ref": "#/components/schemas/StoryMedia"
+            },
+            "type": "array",
+            "title": "Medias",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "code",
+          "taken_at",
+          "user",
+          "mentions",
+          "links",
+          "hashtags",
+          "locations",
+          "stickers"
+        ],
+        "title": "Story"
+      },
+      "StoryHashtag": {
+        "properties": {
+          "hashtag": {
+            "$ref": "#/components/schemas/Hashtag"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hashtag"
+        ],
+        "title": "StoryHashtag"
+      },
+      "StoryLink": {
+        "properties": {
+          "webUri": {
+            "type": "string",
+            "title": "Weburi"
+          },
+          "x": {
+            "type": "number",
+            "title": "X",
+            "default": 0.5126011
+          },
+          "y": {
+            "type": "number",
+            "title": "Y",
+            "default": 0.5168225
+          },
+          "z": {
+            "type": "number",
+            "title": "Z",
+            "default": 0.0
+          },
+          "width": {
+            "type": "number",
+            "title": "Width",
+            "default": 0.50998676
+          },
+          "height": {
+            "type": "number",
+            "title": "Height",
+            "default": 0.25875
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "webUri"
+        ],
+        "title": "StoryLink"
+      },
+      "StoryLocation": {
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "title": "StoryLocation"
+      },
+      "StoryMedia": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "title": "X",
+            "default": 0.5
+          },
+          "y": {
+            "type": "number",
+            "title": "Y",
+            "default": 0.4997396
+          },
+          "z": {
+            "type": "number",
+            "title": "Z",
+            "default": 0
+          },
+          "width": {
+            "type": "number",
+            "title": "Width",
+            "default": 0.8
+          },
+          "height": {
+            "type": "number",
+            "title": "Height",
+            "default": 0.60572916
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          },
+          "is_pinned": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Pinned"
+          },
+          "is_hidden": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Hidden"
+          },
+          "is_sticker": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Sticker"
+          },
+          "is_fb_sticker": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Fb Sticker"
+          },
+          "media_pk": {
+            "type": "string",
+            "title": "Media Pk"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type"
+          },
+          "media_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "media_pk"
+        ],
+        "title": "StoryMedia"
+      },
+      "StoryMention": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user"
+        ],
+        "title": "StoryMention"
+      },
+      "StorySticker": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "default": "gif"
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          },
+          "z": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Z",
+            "default": 1000005
+          },
+          "width": {
+            "type": "number",
+            "title": "Width"
+          },
+          "height": {
+            "type": "number",
+            "title": "Height"
+          },
+          "rotation": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rotation",
+            "default": 0.0
+          },
+          "story_link": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StoryStickerLink"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extra": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extra",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "title": "StorySticker"
+      },
+      "StoryStickerLink": {
+        "properties": {
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          },
+          "link_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Title"
+          },
+          "link_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Type"
+          },
+          "display_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Url"
+          }
+        },
+        "type": "object",
+        "title": "StoryStickerLink"
+      },
+      "Track": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "subtitle": {
+            "type": "string",
+            "title": "Subtitle"
+          },
+          "display_artist": {
+            "type": "string",
+            "title": "Display Artist"
+          },
+          "audio_cluster_id": {
+            "type": "string",
+            "title": "Audio Cluster Id"
+          },
+          "artist_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artist Id"
+          },
+          "cover_artwork_uri": {
+            "type": "string",
+            "title": "Cover Artwork Uri"
+          },
+          "cover_artwork_thumbnail_uri": {
+            "type": "string",
+            "title": "Cover Artwork Thumbnail Uri"
+          },
+          "progressive_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progressive Download Url"
+          },
+          "fast_start_progressive_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fast Start Progressive Download Url"
+          },
+          "reactive_audio_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reactive Audio Download Url"
+          },
+          "highlight_start_times_in_ms": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Highlight Start Times In Ms"
+          },
+          "is_explicit": {
+            "type": "boolean",
+            "title": "Is Explicit"
+          },
+          "dash_manifest": {
+            "type": "string",
+            "title": "Dash Manifest"
+          },
+          "has_lyrics": {
+            "type": "boolean",
+            "title": "Has Lyrics"
+          },
+          "audio_asset_id": {
+            "type": "string",
+            "title": "Audio Asset Id"
+          },
+          "duration_in_ms": {
+            "type": "integer",
+            "title": "Duration In Ms"
+          },
+          "dark_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dark Message"
+          },
+          "allows_saving": {
+            "type": "boolean",
+            "title": "Allows Saving"
+          },
+          "territory_validity_periods": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Territory Validity Periods"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "subtitle",
+          "display_artist",
+          "audio_cluster_id",
+          "cover_artwork_uri",
+          "cover_artwork_thumbnail_uri",
+          "highlight_start_times_in_ms",
+          "is_explicit",
+          "dash_manifest",
+          "has_lyrics",
+          "audio_asset_id",
+          "duration_in_ms",
+          "allows_saving"
+        ],
+        "title": "Track"
+      },
+      "User": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          },
+          "media_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Count"
+          },
+          "follower_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Follower Count"
+          },
+          "following_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Following Count"
+          },
+          "biography": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Biography",
+            "default": ""
+          },
+          "external_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Url"
+          },
+          "account_type": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Type"
+          },
+          "is_business": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Business"
+          },
+          "public_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Email"
+          },
+          "contact_phone_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone Number"
+          },
+          "public_phone_country_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Phone Country Code"
+          },
+          "public_phone_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Phone Number"
+          },
+          "business_contact_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Business Contact Method"
+          },
+          "business_category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Business Category Name"
+          },
+          "category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Name"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "address_street": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Street"
+          },
+          "city_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Id"
+          },
+          "city_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Name"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude"
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude"
+          },
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip"
+          },
+          "instagram_location_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instagram Location Id"
+          },
+          "interop_messaging_user_fbid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interop Messaging User Fbid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk"
+        ],
+        "title": "User"
+      },
+      "UserReel": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "expiring_at": {
+            "type": "integer",
+            "title": "Expiring At"
+          },
+          "has_pride_media": {
+            "type": "boolean",
+            "title": "Has Pride Media"
+          },
+          "latest_reel_media": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Reel Media"
+          },
+          "seen": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seen"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/ReelOwner"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "expiring_at",
+          "has_pride_media",
+          "owner"
+        ],
+        "title": "UserReel"
+      },
+      "UserShort": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name",
+            "default": ""
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk"
+        ],
+        "title": "UserShort"
+      },
+      "UserShortWithReel": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name",
+            "default": ""
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          },
+          "reel": {
+            "$ref": "#/components/schemas/UserReel"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "reel"
+        ],
+        "title": "UserShortWithReel"
+      },
+      "Usertag": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "x",
+          "y"
+        ],
+        "title": "Usertag"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-access-key"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Top 5",
+      "description": "Most popular endpoints - start here"
+    },
+    {
+      "name": "User Profile",
+      "description": "Get user info, followers, following, posts & reels, stories",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
+      }
+    },
+    {
+      "name": "Post Details",
+      "description": "Get media/post info by ID, code or URL. Likers, insights",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
+      }
+    },
+    {
+      "name": "Comments",
+      "description": "Get comments on posts, comment likers, replies",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
+      }
+    },
+    {
+      "name": "Search",
+      "description": "Search users, hashtags, locations, music",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
+      }
+    },
+    {
+      "name": "Hashtags",
+      "description": "Get hashtag info and medias (top, recent, clips)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
+      }
+    },
+    {
+      "name": "Audio",
+      "description": "Music and audio related endpoints",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
+      }
+    },
+    {
+      "name": "Location",
+      "description": "Location info and medias",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
+      }
+    },
+    {
+      "name": "Stories",
+      "description": "Stories by ID/URL, story download",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
+      }
+    },
+    {
+      "name": "Highlights",
+      "description": "Highlights by ID/URL",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
+      }
+    },
+    {
+      "name": "Share",
+      "description": "Resolve share links (/s/, /reel/ URLs)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "System",
+      "description": "System endpoints, balance, health checks",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "Legacy",
+      "description": "Deprecated - use recommended alternatives"
+    }
+  ],
+  "externalDocs": {
+    "description": "Get the access_key",
+    "url": "https://hikerapi.com/tokens"
+  },
+  "servers": [
+    {
+      "url": "https://api.hikerapi.com",
+      "description": "via Cloudflare"
+    },
+    {
+      "url": "https://api.instagrapi.com",
+      "description": "without Cloudflare"
+    }
+  ]
+}

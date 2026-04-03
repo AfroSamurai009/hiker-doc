@@ -1,0 +1,6219 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "HikerAPI REST",
+    "description": "Instagram API",
+    "termsOfService": "https://hikerapi.com/help/terms-of-service",
+    "license": {
+      "name": "Pricing",
+      "url": "https://hikerapi.com/pricing"
+    },
+    "version": "1.7.7"
+  },
+  "paths": {
+    "/v2/fbsearch/topsearch": {
+      "get": {
+        "tags": [
+          "Top 5",
+          "Search"
+        ],
+        "summary": "Fbsearch Top",
+        "description": "Search top content by keyword",
+        "operationId": "fbsearch_top_v2_fbsearch_topsearch_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Top V2 Fbsearch Topsearch Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_top_v2(query=\"rock\", next_max_id=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/comments": {
+      "get": {
+        "tags": [
+          "Top 5",
+          "Post Details",
+          "Comments"
+        ],
+        "summary": "Get media comments (one request return 15 comments)",
+        "description": "Get comments on a media",
+        "operationId": "media_comments_v2_media_comments_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          },
+          {
+            "name": "can_support_threading",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Can Support Threading"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Page Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of comments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/user/by/username": {
+      "get": {
+        "tags": [
+          "Top 5",
+          "User Profile"
+        ],
+        "summary": "Get user object by username (one request required). If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get user object by username",
+        "operationId": "user_by_username_v2_user_by_username_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User By Username V2 User By Username Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_by_username_v2(username=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/stories": {
+      "get": {
+        "tags": [
+          "Top 5",
+          "User Profile",
+          "/v2/story"
+        ],
+        "summary": "User Stories",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_stories_v2_user_stories_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User Stories V2 User Stories Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nstories = await cl.user_stories_v2(user_id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/v2/user/by/id": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "User By Id",
+        "description": "Get user object by id",
+        "operationId": "user_by_id_v2_user_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User By Id V2 User By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_by_id_v2(id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/followers": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user followers (one request required). Prefer /g2/user/followers",
+        "description": "Get part (one page) of followers users with cursor",
+        "operationId": "user_followers_v2_user_followers_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, next_page_id = await cl.user_followers_v2(\n    user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/following": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get a user following (one request required). Prefer /g2/user/following",
+        "description": "Get part (one page) of following users",
+        "operationId": "user_following_v2_user_following_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, next_page_id = await cl.user_following_v2(\n    user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/clips": {
+      "get": {
+        "tags": [
+          "User Profile",
+          "/v2/media"
+        ],
+        "summary": "User Clips",
+        "description": "Get user clips.",
+        "operationId": "user_clips_v2_user_clips_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nclips, next_page_id = await cl.user_clips_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/stories/by/username": {
+      "get": {
+        "tags": [
+          "User Profile",
+          "/v2/story"
+        ],
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "⚠️ Billing: 3 requests per call.",
+        "operationId": "user_stories_by_username_v2_user_stories_by_username_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User Stories By Username V2 User Stories By Username Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nstories = await cl.user_stories_by_username_v2(username=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 3,
+        "required": false
+      }
+    },
+    "/v2/user/tag/medias": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get medias where user is tagged",
+        "description": "Get usertag medias",
+        "operationId": "usertag_medias_v2_user_tag_medias_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/a2/user": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "User",
+        "description": "Get user object",
+        "operationId": "user_a2_user_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response User A2 User Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/user/highlights": {
+      "get": {
+        "tags": [
+          "User Profile",
+          "/v2/highlight"
+        ],
+        "summary": "User Highlights",
+        "description": "⚠️ Billing: 2 requests per call.",
+        "operationId": "user_highlights_v2_user_highlights_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nhighlights = await cl.user_highlights_v2(user_id=\"45915962111\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 2,
+        "required": false
+      }
+    },
+    "/v2/user/highlights/by/username": {
+      "get": {
+        "tags": [
+          "User Profile",
+          "/v2/highlight"
+        ],
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "⚠️ Billing: 3 requests per call.",
+        "operationId": "user_highlights_by_username_v2_user_highlights_by_username_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Amount"
+            }
+          },
+          {
+            "name": "force",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Skip account privacy check",
+              "title": "Force"
+            },
+            "description": "Skip account privacy check"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nhighlights = await cl.user_highlights_by_username_v2(username=\"leomessi\")\n",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 3,
+        "required": false
+      }
+    },
+    "/v2/userstream/by/username": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get userstream (info) by username",
+        "operationId": "userstream_by_username_v2_userstream_by_username_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Username"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Userstream By Username V2 Userstream By Username Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.userstream_by_username_v2(username=\"sun\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/userstream/by/id": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "If speed is crucial, it's more efficient to use the by/id endpoint for quicker responses.",
+        "description": "Get userstream (info) by id",
+        "operationId": "userstream_by_id_v2_userstream_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Userstream By Id V2 Userstream By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.userstream_by_id_v2(id=\"123123\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/suggested/profiles": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Fetch Suggestion Details",
+        "description": "Fetch suggested users details by target_id.\n\nexpand_suggestion=True for more detailed response",
+        "operationId": "fetch_suggestion_details_v2_user_suggested_profiles_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "expand_suggestion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Expand Suggestion"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nusers = await cl.user_suggested_profiles_v2(\n    user_id=\"1338246453\", expand_suggestion=True)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/explore/businesses/by/id": {
+      "get": {
+        "tags": [
+          "User Profile"
+        ],
+        "summary": "Get recommended accounts for category by user id",
+        "description": "Get list of recommended accounts for business category of the user by his id",
+        "operationId": "explore_businesses_by_id_v2_user_explore_businesses_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (Business accounts)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Explore Businesses By Id V2 User Explore Businesses By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/media/info/by/code": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+        "description": "Get media object",
+        "operationId": "media_info_by_code_v2_media_info_by_code_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Info By Code V2 Media Info By Code Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_code_v2(code=\"CvipxSKPPn6\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/comments/replies": {
+      "get": {
+        "tags": [
+          "Post Details",
+          "Comments"
+        ],
+        "summary": "Media Comments Replies",
+        "description": "Get media comment replies with pagination by min_id",
+        "operationId": "media_comments_replies_v2_media_comments_replies_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "min_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Min Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nreplies = await cl.media_comments_replies_v2(\n    media_id=\"3770903101839112303_185336999\", comment_id=\"18120112390529134\"\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/likers": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Media Likers",
+        "description": "Get user's likers",
+        "operationId": "media_likers_v2_media_likers_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Likers V2 Media Likers Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_likers_v2(id=\"2588864825828721736\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/info/by/url": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/",
+        "description": "Get media object",
+        "operationId": "media_info_by_url_v2_media_info_by_url_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Info By Url V2 Media Info By Url Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_url_v2(url=\"https://ins...ram.com/p/CA2aJYrg6cZ/\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/info/by/id": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+        "description": "Get media object",
+        "operationId": "media_info_by_id_v2_media_info_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Info By Id V2 Media Info By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_id_v2(id=\"2588864825828721736\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/comment/offensive": {
+      "get": {
+        "tags": [
+          "Post Details",
+          "Comments"
+        ],
+        "summary": "Media Check Offensive Comment",
+        "description": "Whether to receive an offensive comment",
+        "operationId": "media_check_offensive_comment_v2_media_comment_offensive_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\noffensive_comment = await cl.media_offensive_comment_v2(\n    media_id=\"3162273595027945978\", comment=\"offensiveword\"\n)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/template": {
+      "get": {
+        "tags": [
+          "Post Details"
+        ],
+        "summary": "Media Template",
+        "description": "Get media template",
+        "operationId": "media_template_v2_media_template_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media Template V2 Media Template Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_template_v2(id=\"2934927996541863400\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v3/fbsearch/accounts": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Fbsearch Accounts",
+        "description": "Search accounts",
+        "operationId": "fbsearch_accounts_v3_fbsearch_accounts_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Accounts V3 Fbsearch Accounts Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/fbsearch/reels": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Fbsearch Reels",
+        "description": "Search top content by keyword",
+        "operationId": "fbsearch_reels_v2_fbsearch_reels_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Reels V2 Fbsearch Reels Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_reels_top_v2(query=\"rock\", reels_max_id=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/fbsearch/accounts": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Fbsearch Accounts",
+        "description": "Search accounts",
+        "operationId": "fbsearch_accounts_v2_fbsearch_accounts_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Accounts V2 Fbsearch Accounts Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_accounts_v2(query=\"rock\", page_token=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/music": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Search Music",
+        "description": "Search music",
+        "operationId": "search_music_v2_search_music_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Music V2 Search Music Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_music_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/hashtags": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Search Hashtags",
+        "description": "Search hashtags",
+        "operationId": "search_hashtags_v2_search_hashtags_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Hashtags V2 Search Hashtags Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.search_hashtags_v2(query=\"love\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v3/fbsearch/places": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Fbsearch Places",
+        "description": "Search places",
+        "operationId": "fbsearch_places_v3_fbsearch_places_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Places V3 Fbsearch Places Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/fbsearch/places": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Fbsearch Places",
+        "description": "Search places",
+        "operationId": "fbsearch_places_v2_fbsearch_places_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Places V2 Fbsearch Places Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/hashtag/medias/top": {
+      "get": {
+        "tags": [
+          "Hashtags"
+        ],
+        "summary": "Hashtag Medias Top Chunk",
+        "description": "Get hashtag chunk of top medias",
+        "operationId": "hashtag_medias_top_chunk_v2_hashtag_medias_top_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/hashtag/medias/recent": {
+      "get": {
+        "tags": [
+          "Hashtags"
+        ],
+        "summary": "Hashtag Medias Recent Chunk",
+        "description": "Get hashtag chunk of recent medias",
+        "operationId": "hashtag_medias_recent_chunk_v2_hashtag_medias_recent_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/hashtag/by/name": {
+      "get": {
+        "tags": [
+          "Hashtags"
+        ],
+        "summary": "Hashtag By Name",
+        "description": "Get hashtag object by name",
+        "operationId": "hashtag_by_name_v2_hashtag_by_name_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Hashtag By Name V2 Hashtag By Name Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/track/by/id": {
+      "get": {
+        "tags": [
+          "Audio"
+        ],
+        "summary": "Track By Id",
+        "description": "Get music track object by id",
+        "operationId": "track_by_id_v2_track_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "track_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Track Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.track_by_id_v2(track_id=\"1592175977822689\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/track/stream/by/id": {
+      "get": {
+        "tags": [
+          "Audio"
+        ],
+        "summary": "Track Stream By Id",
+        "description": "Get music track object by id",
+        "operationId": "track_stream_by_id_v2_track_stream_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "track_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Track Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.track_by_id_v2(track_id=\"1592175977822689\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/track/by/canonical/id": {
+      "get": {
+        "tags": [
+          "Audio"
+        ],
+        "summary": "Track By Canonical Id",
+        "description": "Get music track object by canonical_id",
+        "operationId": "track_by_canonical_id_v2_track_by_canonical_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "canonical_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Canonical Id"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.track_by_canonical_id_v2(canonical_id=\"1592175977822689\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/story/by/url": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Attention! To work with /s/ links, call /v1/share/by/url first",
+        "description": "Get story object by id",
+        "operationId": "story_by_url_v2_story_by_url_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Story By Url V2 Story By Url Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/story/by/id": {
+      "get": {
+        "tags": [
+          "Stories"
+        ],
+        "summary": "Story By Id",
+        "description": "Get story object by id",
+        "operationId": "story_by_id_v2_story_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Story By Id V2 Story By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/highlight/by/id": {
+      "get": {
+        "tags": [
+          "Highlights"
+        ],
+        "summary": "Highlight By Id",
+        "description": "Get highlight object by id",
+        "operationId": "highlight_by_id_v2_highlight_by_id_get",
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/PageResponse"
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": true
+                    }
+                  ],
+                  "title": "Response Highlight By Id V2 Highlight By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.highlight_by_id_v2(id=\"386916469\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/hashtag/medias/clips": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Switch to /v2/fbsearch/reels — this endpoint will be deprecated soon. It currently returns all media types, not just reels.",
+        "description": "Get hashtag chunk of clips (reels)",
+        "operationId": "hashtag_medias_clips_chunk_v2_hashtag_medias_clips_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/fbsearch/topsearch": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /gql/topsearch as this endpoint has pagination issues with duplicate results",
+        "description": "Search top content by keyword",
+        "operationId": "fbsearch_top_v3_fbsearch_topsearch_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Top V3 Fbsearch Topsearch Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v3/fbsearch/reels": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Deprecated due to pagination issues with duplicate results",
+        "description": "Search reels by keyword",
+        "operationId": "fbsearch_reels_v3_fbsearch_reels_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Fbsearch Reels V3 Fbsearch Reels Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v2/search/accounts": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Switch to /v2/fbsearch/accounts — this endpoint will be deprecated soon. The current route doesn't support paging.",
+        "description": "Search accounts",
+        "operationId": "search_accounts_v2_search_accounts_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "page_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Page Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Accounts V2 Search Accounts Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_accounts_v2(query=\"rock\", page_token=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/topsearch": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v3/fbsearch/topsearch as this endpoint will be deprecated soon",
+        "description": "Search top content by keyword",
+        "operationId": "search_top_v2_search_topsearch_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "next_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Max Id"
+            }
+          },
+          {
+            "name": "rank_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Rank Token"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Top V2 Search Topsearch Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_top_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/medias": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer /gql/user/medias - this endpoint will be deprecated",
+        "description": "Get user medias. Results chunk.",
+        "operationId": "user_medias_v2_user_medias_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedias, next_page_id = await cl.user_medias_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/reels": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v3/fbsearch/reels as this endpoint will be deprecated soon",
+        "description": "Search top content by keyword",
+        "operationId": "search_reels_v2_search_reels_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          },
+          {
+            "name": "reels_max_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Reels Max Id"
+            }
+          },
+          {
+            "name": "rank_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Rank Token"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Reels V2 Search Reels Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_reels_top_v2(query=\"rock\", reels_max_id=None)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/search/places": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v3/fbsearch/places as this endpoint will be deprecated soon",
+        "description": "Search places",
+        "operationId": "search_places_v2_search_places_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Search Places V2 Search Places Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_v2(query=\"rock\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/by/code": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v2/media/info/by/code as this endpoint will be completely deprecated soon",
+        "description": "Get media object",
+        "operationId": "media_by_code_v2_media_by_code_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media By Code V2 Media By Code Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_code_v2(code=\"CvipxSKPPn6\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/by/id": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v2/media/info/by/id as this endpoint will be completely deprecated soon",
+        "description": "Get media object",
+        "operationId": "media_by_id_v2_media_by_id_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media By Id V2 Media By Id Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_id_v2(id=\"2588864825828721736\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/media/by/url": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v2/media/info/by/url as this endpoint will be completely deprecated soon",
+        "description": "Get media object",
+        "operationId": "media_by_url_v2_media_by_url_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Url"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Media By Url V2 Media By Url Get"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_url_v2(url=\"https://ins...ram.com/p/CA2aJYrg6cZ/\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/videos": {
+      "get": {
+        "tags": [
+          "Legacy"
+        ],
+        "summary": "Prefer using /v2/user/clips or /v2/user/medias instead",
+        "description": "Get part of user videos with cursor (default 50 media per request)",
+        "operationId": "user_videos_v2_user_videos_get",
+        "deprecated": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nvideos, next_page_id = await cl.user_videos_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "About": {
+        "properties": {
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "default": ""
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified",
+            "default": false
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country",
+            "default": ""
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date",
+            "default": ""
+          },
+          "former_usernames": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Former Usernames",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "About"
+      },
+      "Comment": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "created_at_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At Utc"
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Content Type"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "has_liked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Liked"
+          },
+          "like_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Like Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "text",
+          "user",
+          "created_at_utc",
+          "content_type",
+          "status"
+        ],
+        "title": "Comment"
+      },
+      "Guide": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "cover_media": {
+            "$ref": "#/components/schemas/Media"
+          },
+          "feedback_item": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Feedback Item"
+          }
+        },
+        "type": "object",
+        "required": [
+          "description",
+          "cover_media"
+        ],
+        "title": "Guide"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Hashtag": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "media_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Count"
+          },
+          "allow_following": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allow Following"
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Hashtag"
+      },
+      "Highlight": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "latest_reel_media": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Reel Media"
+          },
+          "cover_media": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Media"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "is_pinned_highlight": {
+            "type": "boolean",
+            "title": "Is Pinned Highlight"
+          },
+          "media_count": {
+            "type": "integer",
+            "title": "Media Count"
+          },
+          "media_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Media Ids",
+            "default": []
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Story"
+            },
+            "type": "array",
+            "title": "Items",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "user",
+          "title",
+          "created_at",
+          "is_pinned_highlight",
+          "media_count"
+        ],
+        "title": "Highlight"
+      },
+      "Location": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pk"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone",
+            "default": ""
+          },
+          "website": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Website",
+            "default": ""
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category",
+            "default": ""
+          },
+          "hours": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hours",
+            "default": {}
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address",
+            "default": ""
+          },
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City",
+            "default": ""
+          },
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip",
+            "default": ""
+          },
+          "lng": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lng"
+          },
+          "lat": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lat"
+          },
+          "external_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id"
+          },
+          "external_id_source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Id Source"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "Location"
+      },
+      "Media": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "taken_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Taken At"
+          },
+          "taken_at_ts": {
+            "type": "integer",
+            "title": "Taken At Ts"
+          },
+          "media_type": {
+            "type": "integer",
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type",
+            "default": ""
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Location"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "comment_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment Count",
+            "default": 0
+          },
+          "comments_disabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comments Disabled",
+            "default": false
+          },
+          "like_count": {
+            "type": "integer",
+            "title": "Like Count"
+          },
+          "play_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Play Count"
+          },
+          "has_liked": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Has Liked"
+          },
+          "caption_text": {
+            "type": "string",
+            "title": "Caption Text"
+          },
+          "accessibility_caption": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accessibility Caption"
+          },
+          "usertags": {
+            "items": {
+              "$ref": "#/components/schemas/Usertag"
+            },
+            "type": "array",
+            "title": "Usertags"
+          },
+          "sponsor_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UserShort"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sponsor Tags",
+            "default": []
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "view_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "View Count",
+            "default": 0
+          },
+          "video_duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Duration",
+            "default": 0.0
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title",
+            "default": ""
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "type": "array",
+            "title": "Resources",
+            "default": []
+          },
+          "image_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Image Versions",
+            "default": []
+          },
+          "video_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Video Versions",
+            "default": []
+          },
+          "clips_metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Clips Metadata",
+            "default": {}
+          },
+          "video_dash_manifest": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Dash Manifest",
+            "default": ""
+          },
+          "like_and_view_counts_disabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Like And View Counts Disabled"
+          },
+          "coauthor_producers": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Coauthor Producers",
+            "default": []
+          },
+          "is_paid_partnership": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Paid Partnership"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "code",
+          "taken_at",
+          "taken_at_ts",
+          "media_type",
+          "user",
+          "like_count",
+          "caption_text",
+          "usertags"
+        ],
+        "title": "Media"
+      },
+      "MediaOembed": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "author_name": {
+            "type": "string",
+            "title": "Author Name"
+          },
+          "author_url": {
+            "type": "string",
+            "title": "Author Url"
+          },
+          "author_id": {
+            "type": "string",
+            "title": "Author Id"
+          },
+          "media_id": {
+            "type": "string",
+            "title": "Media Id"
+          },
+          "provider_name": {
+            "type": "string",
+            "title": "Provider Name"
+          },
+          "provider_url": {
+            "type": "string",
+            "title": "Provider Url"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          },
+          "html": {
+            "type": "string",
+            "title": "Html"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "title": "Thumbnail Url"
+          },
+          "thumbnail_width": {
+            "type": "integer",
+            "title": "Thumbnail Width"
+          },
+          "thumbnail_height": {
+            "type": "integer",
+            "title": "Thumbnail Height"
+          },
+          "can_view": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Can View"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "author_name",
+          "author_url",
+          "author_id",
+          "media_id",
+          "provider_name",
+          "provider_url",
+          "type",
+          "html",
+          "thumbnail_url",
+          "thumbnail_width",
+          "thumbnail_height"
+        ],
+        "title": "MediaOembed"
+      },
+      "PageResponse": {
+        "properties": {
+          "response": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Response",
+            "description": "Dict with full response.",
+            "examples": [
+              {
+                "...": "...",
+                "items": [
+                  {
+                    "...": "..."
+                  }
+                ]
+              }
+            ]
+          },
+          "next_page_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page Id",
+            "description": "Next Page ID. Use it value for next request",
+            "examples": [
+              "QEFerVFGGdsfd_1234567890"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "response",
+          "next_page_id"
+        ],
+        "title": "PageResponse"
+      },
+      "ReelOwner": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "profile_pic_url": {
+            "type": "string",
+            "title": "Profile Pic Url"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "profile_pic_url",
+          "username"
+        ],
+        "title": "ReelOwner"
+      },
+      "Resource": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "title": "Thumbnail Url"
+          },
+          "media_type": {
+            "type": "integer",
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type"
+          },
+          "image_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Image Versions",
+            "default": []
+          },
+          "video_versions": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Video Versions",
+            "default": []
+          },
+          "preview": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preview"
+          },
+          "carousel_parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Carousel Parent Id"
+          },
+          "commerciality_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Commerciality Status"
+          },
+          "taken_at": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taken At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "thumbnail_url",
+          "media_type"
+        ],
+        "title": "Resource"
+      },
+      "Share": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "type"
+        ],
+        "title": "Share"
+      },
+      "Story": {
+        "properties": {
+          "pk": {
+            "type": "string",
+            "title": "Pk"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "taken_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Taken At"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type",
+            "default": ""
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "video_duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Duration",
+            "default": 0.0
+          },
+          "sponsor_tags": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/UserShort"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sponsor Tags",
+            "default": []
+          },
+          "mentions": {
+            "items": {
+              "$ref": "#/components/schemas/StoryMention"
+            },
+            "type": "array",
+            "title": "Mentions"
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/StoryLink"
+            },
+            "type": "array",
+            "title": "Links"
+          },
+          "hashtags": {
+            "items": {
+              "$ref": "#/components/schemas/StoryHashtag"
+            },
+            "type": "array",
+            "title": "Hashtags"
+          },
+          "locations": {
+            "items": {
+              "$ref": "#/components/schemas/StoryLocation"
+            },
+            "type": "array",
+            "title": "Locations"
+          },
+          "stickers": {
+            "items": {
+              "$ref": "#/components/schemas/StorySticker"
+            },
+            "type": "array",
+            "title": "Stickers"
+          },
+          "medias": {
+            "items": {
+              "$ref": "#/components/schemas/StoryMedia"
+            },
+            "type": "array",
+            "title": "Medias",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "id",
+          "code",
+          "taken_at",
+          "user",
+          "mentions",
+          "links",
+          "hashtags",
+          "locations",
+          "stickers"
+        ],
+        "title": "Story"
+      },
+      "StoryHashtag": {
+        "properties": {
+          "hashtag": {
+            "$ref": "#/components/schemas/Hashtag"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hashtag"
+        ],
+        "title": "StoryHashtag"
+      },
+      "StoryLink": {
+        "properties": {
+          "webUri": {
+            "type": "string",
+            "title": "Weburi"
+          },
+          "x": {
+            "type": "number",
+            "title": "X",
+            "default": 0.5126011
+          },
+          "y": {
+            "type": "number",
+            "title": "Y",
+            "default": 0.5168225
+          },
+          "z": {
+            "type": "number",
+            "title": "Z",
+            "default": 0.0
+          },
+          "width": {
+            "type": "number",
+            "title": "Width",
+            "default": 0.50998676
+          },
+          "height": {
+            "type": "number",
+            "title": "Height",
+            "default": 0.25875
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          }
+        },
+        "type": "object",
+        "required": [
+          "webUri"
+        ],
+        "title": "StoryLink"
+      },
+      "StoryLocation": {
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "title": "StoryLocation"
+      },
+      "StoryMedia": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "title": "X",
+            "default": 0.5
+          },
+          "y": {
+            "type": "number",
+            "title": "Y",
+            "default": 0.4997396
+          },
+          "z": {
+            "type": "number",
+            "title": "Z",
+            "default": 0
+          },
+          "width": {
+            "type": "number",
+            "title": "Width",
+            "default": 0.8
+          },
+          "height": {
+            "type": "number",
+            "title": "Height",
+            "default": 0.60572916
+          },
+          "rotation": {
+            "type": "number",
+            "title": "Rotation",
+            "default": 0.0
+          },
+          "is_pinned": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Pinned"
+          },
+          "is_hidden": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Hidden"
+          },
+          "is_sticker": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Sticker"
+          },
+          "is_fb_sticker": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Fb Sticker"
+          },
+          "media_pk": {
+            "type": "string",
+            "title": "Media Pk"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "product_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Product Type"
+          },
+          "media_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "media_pk"
+        ],
+        "title": "StoryMedia"
+      },
+      "StoryMention": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          },
+          "width": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Width"
+          },
+          "height": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Height"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user"
+        ],
+        "title": "StoryMention"
+      },
+      "StorySticker": {
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Type",
+            "default": "gif"
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          },
+          "z": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Z",
+            "default": 1000005
+          },
+          "width": {
+            "type": "number",
+            "title": "Width"
+          },
+          "height": {
+            "type": "number",
+            "title": "Height"
+          },
+          "rotation": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rotation",
+            "default": 0.0
+          },
+          "story_link": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StoryStickerLink"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extra": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Extra",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "title": "StorySticker"
+      },
+      "StoryStickerLink": {
+        "properties": {
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          },
+          "link_title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Title"
+          },
+          "link_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Link Type"
+          },
+          "display_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Url"
+          }
+        },
+        "type": "object",
+        "title": "StoryStickerLink"
+      },
+      "Track": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "subtitle": {
+            "type": "string",
+            "title": "Subtitle"
+          },
+          "display_artist": {
+            "type": "string",
+            "title": "Display Artist"
+          },
+          "audio_cluster_id": {
+            "type": "string",
+            "title": "Audio Cluster Id"
+          },
+          "artist_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artist Id"
+          },
+          "cover_artwork_uri": {
+            "type": "string",
+            "title": "Cover Artwork Uri"
+          },
+          "cover_artwork_thumbnail_uri": {
+            "type": "string",
+            "title": "Cover Artwork Thumbnail Uri"
+          },
+          "progressive_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Progressive Download Url"
+          },
+          "fast_start_progressive_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fast Start Progressive Download Url"
+          },
+          "reactive_audio_download_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reactive Audio Download Url"
+          },
+          "highlight_start_times_in_ms": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Highlight Start Times In Ms"
+          },
+          "is_explicit": {
+            "type": "boolean",
+            "title": "Is Explicit"
+          },
+          "dash_manifest": {
+            "type": "string",
+            "title": "Dash Manifest"
+          },
+          "has_lyrics": {
+            "type": "boolean",
+            "title": "Has Lyrics"
+          },
+          "audio_asset_id": {
+            "type": "string",
+            "title": "Audio Asset Id"
+          },
+          "duration_in_ms": {
+            "type": "integer",
+            "title": "Duration In Ms"
+          },
+          "dark_message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dark Message"
+          },
+          "allows_saving": {
+            "type": "boolean",
+            "title": "Allows Saving"
+          },
+          "territory_validity_periods": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Territory Validity Periods"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "subtitle",
+          "display_artist",
+          "audio_cluster_id",
+          "cover_artwork_uri",
+          "cover_artwork_thumbnail_uri",
+          "highlight_start_times_in_ms",
+          "is_explicit",
+          "dash_manifest",
+          "has_lyrics",
+          "audio_asset_id",
+          "duration_in_ms",
+          "allows_saving"
+        ],
+        "title": "Track"
+      },
+      "User": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          },
+          "media_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Count"
+          },
+          "follower_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Follower Count"
+          },
+          "following_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Following Count"
+          },
+          "biography": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Biography",
+            "default": ""
+          },
+          "external_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "External Url"
+          },
+          "account_type": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Type"
+          },
+          "is_business": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Business"
+          },
+          "public_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Email"
+          },
+          "contact_phone_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone Number"
+          },
+          "public_phone_country_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Phone Country Code"
+          },
+          "public_phone_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Public Phone Number"
+          },
+          "business_contact_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Business Contact Method"
+          },
+          "business_category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Business Category Name"
+          },
+          "category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category Name"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "address_street": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address Street"
+          },
+          "city_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Id"
+          },
+          "city_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City Name"
+          },
+          "latitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitude"
+          },
+          "longitude": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitude"
+          },
+          "zip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zip"
+          },
+          "instagram_location_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Instagram Location Id"
+          },
+          "interop_messaging_user_fbid": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interop Messaging User Fbid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk"
+        ],
+        "title": "User"
+      },
+      "UserReel": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "expiring_at": {
+            "type": "integer",
+            "title": "Expiring At"
+          },
+          "has_pride_media": {
+            "type": "boolean",
+            "title": "Has Pride Media"
+          },
+          "latest_reel_media": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Reel Media"
+          },
+          "seen": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seen"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/ReelOwner"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "expiring_at",
+          "has_pride_media",
+          "owner"
+        ],
+        "title": "UserReel"
+      },
+      "UserShort": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name",
+            "default": ""
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk"
+        ],
+        "title": "UserShort"
+      },
+      "UserShortWithReel": {
+        "properties": {
+          "pk": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "title": "Pk"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name",
+            "default": ""
+          },
+          "profile_pic_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url"
+          },
+          "profile_pic_url_hd": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Profile Pic Url Hd"
+          },
+          "is_private": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Private"
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified"
+          },
+          "reel": {
+            "$ref": "#/components/schemas/UserReel"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pk",
+          "reel"
+        ],
+        "title": "UserShortWithReel"
+      },
+      "Usertag": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserShort"
+          },
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "x",
+          "y"
+        ],
+        "title": "Usertag"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyHeader": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-access-key"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Top 5",
+      "description": "Most popular endpoints - start here"
+    },
+    {
+      "name": "User Profile",
+      "description": "Get user info, followers, following, posts & reels, stories",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.user_by_id_v1"
+      }
+    },
+    {
+      "name": "Post Details",
+      "description": "Get media/post info by ID, code or URL. Likers, insights",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_by_id_v1"
+      }
+    },
+    {
+      "name": "Comments",
+      "description": "Get comments on posts, comment likers, replies",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.media_comments_v1"
+      }
+    },
+    {
+      "name": "Search",
+      "description": "Search users, hashtags, locations, music",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.search_hashtags_v1"
+      }
+    },
+    {
+      "name": "Hashtags",
+      "description": "Get hashtag info and medias (top, recent, clips)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.hashtag_by_name_v1"
+      }
+    },
+    {
+      "name": "Audio",
+      "description": "Music and audio related endpoints",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.track_by_canonical_id_v2"
+      }
+    },
+    {
+      "name": "Location",
+      "description": "Location info and medias",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.location_by_id_v1"
+      }
+    },
+    {
+      "name": "Stories",
+      "description": "Stories by ID/URL, story download",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.story_by_id_v1"
+      }
+    },
+    {
+      "name": "Highlights",
+      "description": "Highlights by ID/URL",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
+      }
+    },
+    {
+      "name": "Share",
+      "description": "Resolve share links (/s/, /reel/ URLs)",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "System",
+      "description": "System endpoints, balance, health checks",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
+      }
+    },
+    {
+      "name": "Legacy",
+      "description": "Deprecated - use recommended alternatives"
+    }
+  ],
+  "externalDocs": {
+    "description": "Get the access_key",
+    "url": "https://hikerapi.com/tokens"
+  },
+  "servers": [
+    {
+      "url": "https://api.hikerapi.com",
+      "description": "via Cloudflare"
+    },
+    {
+      "url": "https://api.instagrapi.com",
+      "description": "without Cloudflare"
+    }
+  ]
+}

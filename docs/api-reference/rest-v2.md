@@ -1,17 +1,25 @@
 # REST API v2
 
-Enhanced API v2 endpoints with pagination support and extended data.
+Enhanced API endpoints with structured pagination and extended data.
 
-v2 endpoints return structured responses with `next_page_id` for pagination, making it easier to iterate through large datasets.
+v2 endpoints return responses with `next_page_id` for easy pagination — no need to parse cursors manually. Also includes v3 and a2 endpoints with additional features.
 
-<swagger-ui src="../openapi.json"
-  filter="true"
-  operationsSorter="alpha"
-  docExpansion="list"
-/>
+All endpoints use `GET` method and require the `x-access-key` header. See [Authentication](../getting-started/authentication.md).
 
-!!! tip "v1 vs v2"
-    v2 endpoints generally offer better pagination and richer response data. Use v2 when available.
+## v2 vs v1
+
+| Feature | v1 | v2 |
+|---------|----|----|
+| Pagination | `end_cursor` (opaque) | `next_page_id` (simple) |
+| Response format | Raw Instagram data | Structured `{ response, next_page_id }` |
+| Data richness | Basic fields | Extended fields |
+
+!!! tip
+    Use v2 when available. Fall back to v1 for endpoints not yet in v2.
+
+## All v2/v3/a2 endpoints (52)
+
+<swagger-ui src="../openapi-v2.json" docExpansion="list" filter="true"/>
 
 ---
 
