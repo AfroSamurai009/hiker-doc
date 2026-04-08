@@ -70,6 +70,8 @@ curl -H "x-access-key: YOUR_TOKEN" \
  "is_verified": true, "follower_count": 612000000, ...}
 ```
 
+<small>Don't have a token yet? [Get 100 free requests →](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=home-snippet){ target=_blank }</small>
+
 ---
 
 <div class="cta-box" markdown>
