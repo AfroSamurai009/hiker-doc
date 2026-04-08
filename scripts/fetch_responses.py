@@ -127,6 +127,7 @@ def main():
                 skipped += 1
                 continue
 
+            data = truncate_arrays(data, max_items=3)
             cache_file = EXAMPLES_DIR / path_to_filename(endpoint_path)
             cache_file.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
             print(f"  OK    {endpoint_path} -> {cache_file.name}")
