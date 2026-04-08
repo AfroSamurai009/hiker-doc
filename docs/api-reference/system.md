@@ -47,10 +47,10 @@ Balance
 
 ```json
 {
-  "requests": 2176377,
+  "requests": 1992006,
   "rate": 15,
   "currency": "USD",
-  "amount": 914.2117
+  "amount": 916.3235
 }
 ```
 

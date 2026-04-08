@@ -28,7 +28,7 @@ def path_to_filename(endpoint_path: str) -> str:
     return endpoint_path.lstrip("/").replace("/", "-") + ".json"
 
 
-def truncate_arrays(obj, max_items: int = 2):
+def truncate_arrays(obj, max_items: int = 3):
     """Recursively truncate all lists to max_items elements."""
     if isinstance(obj, list):
         truncated = obj[:max_items]
@@ -36,6 +36,60 @@ def truncate_arrays(obj, max_items: int = 2):
     if isinstance(obj, dict):
         return {k: truncate_arrays(v, max_items) for k, v in obj.items()}
     return obj
+
+
+# Fields to strip entirely — large blobs useless for developers
+STRIP_FIELDS = {
+    "video_dash_manifest",
+    "dash_manifest",
+    "clips_metadata",
+    "friendship_status",
+    "progressive_download_url",
+}
+
+# Array fields to keep only first element
+KEEP_FIRST_FIELDS = {
+    "video_versions",
+    "image_versions",
+}
+
+
+def _shorten_url(url):
+    """Shorten CDN URLs: keep scheme + host + /..."""
+    if not isinstance(url, str) or not url.startswith("http"):
+        return url
+    try:
+        from urllib.parse import urlparse
+
+        parsed = urlparse(url)
+        return f"{parsed.scheme}://{parsed.netloc}/..."
+    except Exception:
+        return url
+
+
+def clean_response(obj):
+    """Remove noisy fields and shorten URLs for docs."""
+    if isinstance(obj, list):
+        return [clean_response(item) for item in obj]
+    if not isinstance(obj, dict):
+        return obj
+
+    cleaned = {}
+    for key, value in obj.items():
+        # Strip heavy/useless fields
+        if key in STRIP_FIELDS:
+            continue
+
+        # Keep only first element in video/image versions
+        if key in KEEP_FIRST_FIELDS and isinstance(value, list):
+            value = value[:1]
+
+        # Shorten CDN URLs (profile pics, thumbnails, video)
+        if isinstance(value, str) and "cdninstagram.com" in value:
+            value = _shorten_url(value)
+
+        cleaned[key] = clean_response(value)
+    return cleaned
 
 
 def fetch_endpoint(
@@ -128,6 +182,7 @@ def main():
                 continue
 
             data = truncate_arrays(data, max_items=3)
+            data = clean_response(data)
             cache_file = EXAMPLES_DIR / path_to_filename(endpoint_path)
             cache_file.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
             print(f"  OK    {endpoint_path} -> {cache_file.name}")
