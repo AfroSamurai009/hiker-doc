@@ -141,7 +141,123 @@ Get highlight object by id. Returns a Highlight object.
                   "profile_pic_url": "https://scontent-sjc6-1.cdninstagram.com/v/t51.82787-19/574400438_18538966897034610_4563057389814688225_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDc5LmMyIn0&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGjDuAtDBssQ1VNb5vdw7yrv4PkJ3t7B_di78SkHiTRaevv269SjeKb6Cd_fv05FBU&_nc_ohc=MW84984-PUoQ7kNvwGNLS_n&_nc_gid=veINrrRMSbYuNJhDLqgxQg&edm=ANmP7GQBAAAA&ccb=7-5&ig_cache_key=GLanPCJyhWaYF91BAOEpoBmFPFM-bmNDAQAB1501500j-ccb7-5&oh=00_Af0MtHowWjyeK5j2-QFhlNzZUWmwvHf5mIsK41hGDFQtvA&oe=69DC3924&_nc_sid=982cc7",
                   "profile_pic_url_hd": null,
                   "is_private": false,
-  // ... truncated
+                  "is_verified": true
+                },
+                "x": 0.0,
+                "y": 0.0,
+                "width": 0.0,
+                "height": 0.0
+              },
+              {
+                "user": {
+                  "pk": "1822594644",
+                  "id": "1822594644",
+                  "username": "chrishemsworth",
+                  "full_name": "Chris Hemsworth",
+                  "profile_pic_url": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/91933099_242760747110457_2301125283991781376_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42NTAuYzIifQ&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGjDuAtDBssQ1VNb5vdw7yrv4PkJ3t7B_di78SkHiTRaevv269SjeKb6Cd_fv05FBU&_nc_ohc=bzOXlq22QsMQ7kNvwEAE4AR&_nc_gid=veINrrRMSbYuNJhDLqgxQg&edm=ANmP7GQBAAAA&ccb=7-5&ig_cache_key=GKvJegU50BgkytwAAAAAAABBPe8fbkULAAAB1501500j-ccb7-5&oh=00_Af3M_F6TL70zExVJsp6k_v2wHsDyYYkOGPLGGxQChzx6Zg&oe=69DC42B4&_nc_sid=982cc7",
+                  "profile_pic_url_hd": null,
+                  "is_private": false,
+                  "is_verified": true
+                },
+                "x": 0.0,
+                "y": 0.0,
+                "width": 0.0,
+                "height": 0.0
+              }
+            ],
+            "links": [],
+            "hashtags": [],
+            "locations": [],
+            "stickers": [],
+            "medias": []
+          },
+          {
+            "pk": "3679012649209069648",
+            "id": "3679012649209069648_787132",
+            "code": "DMOeoMgRoBQ",
+            "taken_at": "2025-07-17T22:48:24Z",
+            "media_type": 2,
+            "product_type": "story",
+            "thumbnail_url": "https://scontent-sjc6-1.cdninstagram.com/v/t51.71878-15/520932106_1074395437998704_3460922945219049185_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=104&ig_cache_key=MzY3OTAxMjY0OTIwOTA2OTY0OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjY0MHgxMTM2LnNkci5DMyJ9&_nc_ohc=orZlXTxXLKcQ7kNvwHJWlmf&_nc_oc=Adrm1RgWgPeRUZqfHTfiXivsIZChbRM6jflmp9k5vjG3thKdacOPabnSntIOzxko_R0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_gid=veINrrRMSbYuNJhDLqgxQg&_nc_ss=7a3ba&oh=00_Af32R8WGhxqpVfLfmXYAQoXHqAvUankRsA1jbN3H7IQGRg&oe=69DC2E3A",
+            "user": {
+              "pk": "787132",
+              "id": "787132",
+              "username": null,
+              "full_name": "",
+              "profile_pic_url": null,
+              "profile_pic_url_hd": null,
+              "is_private": false,
+              "is_verified": null
+            },
+            "video_url": "https://scontent-sjc3-1.cdninstagram.com/o1/v/t2/f2/m367/AQNX2SZ7rolsa2mMNfU8rrXbW77J-aIkmrrs5QrABSLE5UKZ5dqbjsg2VMeVrVotOhxt7LY94eJ5jgwXwFBATXOprzYn-Jpza96v9IQ.mp4?_nc_cat=105&_nc_sid=5e9851&_nc_ht=scontent-sjc3-1.cdninstagram.com&_nc_ohc=f1S4tEkU7ZMQ7kNvwE8WxAn&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uU1RPUlkuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSIsInhwdl9hc3NldF9pZCI6MTIxNzE0ODIyNjg1MzIzNywiYXNzZXRfYWdlX2RheXMiOjI2NCwidmlfdXNlY2FzZV9pZCI6MTA4MjYsImR1cmF0aW9uX3MiOjQsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=933dbe7741e9fd11&_nc_vs=HBksFQIYQGlnX2VwaGVtZXJhbC85MzQwNUM0MkZCMThERDY2Rjc1MEQwQzEyOERENEE5Q192aWRlb19kYXNoaW5pdC5tcDQVAALIARIAFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HTW9ZSFJfRk0zRGI5cDhDQUpOMW5FVUdRdzBlYnBrd0FBQUYVAgLIARIAKAAYABsCiAd1c2Vfb2lsATEScHJvZ3Jlc3NpdmVfcmVjaXBlATEVAAAm6uWa-6y_qQQVAigCQzMsF0AQR64UeuFIGBJkYXNoX2Jhc2VsaW5lXzFfdjERAHXoB2WUqQEA&_nc_gid=veINrrRMSbYuNJhDLqgxQg&_nc_zt=28&_nc_ss=7a3ba&oh=00_Af1wIz9bdE9ka_3DkCpum6rdYqG2fCpdB-UERuajKq91kQ&oe=69DC433A",
+            "video_duration": 4.070000171661377,
+            "sponsor_tags": [],
+            "mentions": [
+              {
+                "user": {
+                  "pk": "1170082468",
+                  "id": "1170082468",
+                  "username": "elsapataky",
+                  "full_name": "Elsa Pataky",
+                  "profile_pic_url": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/432119372_1106101867197260_7840673845755369260_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gGjDuAtDBssQ1VNb5vdw7yrv4PkJ3t7B_di78SkHiTRaevv269SjeKb6Cd_fv05FBU&_nc_ohc=wfJ2ujo9ZGYQ7kNvwFAoer6&_nc_gid=veINrrRMSbYuNJhDLqgxQg&edm=ANmP7GQBAAAA&ccb=7-5&ig_cache_key=GEyewRlMM_Fo-u0DACzX8S9Sq89sbkULAAAB1501500j-ccb7-5&oh=00_Af034uPl5xrmcR6bKLnhMIVvw3Ut9NzT-UQqTTG3lNY14g&oe=69DC3139&_nc_sid=982cc7",
+                  "profile_pic_url_hd": null,
+                  "is_private": false,
+                  "is_verified": true
+                },
+                "x": 0.0,
+                "y": 0.0,
+                "width": 0.0,
+                "height": 0.0
+              },
+              {
+                "user": {
+                  "pk": "1822594644",
+                  "id": "1822594644",
+                  "username": "chrishemsworth",
+                  "full_name": "Chris Hemsworth",
+                  "profile_pic_url": "https://scontent-sjc6-1.cdninstagram.com/v/t51.2885-19/91933099_242760747110457_2301125283991781376_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby42NTAuYzIifQ&_nc_ht=scontent-sjc6-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGjDuAtDBssQ1VNb5vdw7yrv4PkJ3t7B_di78SkHiTRaevv269SjeKb6Cd_fv05FBU&_nc_ohc=bzOXlq22QsMQ7kNvwEAE4AR&_nc_gid=veINrrRMSbYuNJhDLqgxQg&edm=ANmP7GQBAAAA&ccb=7-5&ig_cache_key=GKvJegU50BgkytwAAAAAAABBPe8fbkULAAAB1501500j-ccb7-5&oh=00_Af3M_F6TL70zExVJsp6k_v2wHsDyYYkOGPLGGxQChzx6Zg&oe=69DC42B4&_nc_sid=982cc7",
+                  "profile_pic_url_hd": null,
+                  "is_private": false,
+                  "is_verified": true
+                },
+                "x": 0.0,
+                "y": 0.0,
+                "width": 0.0,
+                "height": 0.0
+              }
+            ],
+            "links": [],
+            "hashtags": [],
+            "locations": [],
+            "stickers": [],
+            "medias": []
+          }
+        ],
+        "is_nux": false,
+        "title": "Limitless",
+        "created_at": 1754674432,
+        "is_pinned_highlight": false,
+        "media_count": 11,
+        "media_ids": [
+          3679002956306686062,
+          3679012649209069648
+        ],
+        "is_cacheable": true,
+        "is_converted_to_clips": false,
+        "disabled_reply_types": [
+          "story_remix_reply",
+          "story_selfie_reply"
+        ],
+        "highlight_reel_type": "DEFAULT",
+        "is_added_to_main_grid": false,
+        "is_archived": false,
+        "show_expiration_tray_signal": false,
+        "pk": "17893209825281221"
+      }
+    },
+    "status": "ok"
+  }
+}
 ```
 
 </details>

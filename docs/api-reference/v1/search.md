@@ -233,7 +233,7 @@ Topsearch. Returns a list of matching results.
       "search_social_context_snippet_type": "typeahead_follow_count"
     }
   }
-  // ... truncated
+]
 ```
 
 </details>

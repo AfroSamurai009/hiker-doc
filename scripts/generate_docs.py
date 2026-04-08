@@ -517,12 +517,11 @@ def _generate_endpoint_section(path, operation, sdk_sigs, resource_key):
             # Re-format to consistent indentation
             data = json.loads(json_text)
             formatted = json.dumps(data, indent=2, ensure_ascii=False)
-            truncated = _truncate_json(formatted)
             lines.append("<details>")
             lines.append("<summary>Example response</summary>")
             lines.append("")
             lines.append("```json")
-            lines.append(truncated)
+            lines.append(formatted)
             lines.append("```")
             lines.append("")
             lines.append("</details>")
