@@ -2,12 +2,60 @@
 
 Account balance and rate limit info.
 
-**Endpoints:** [`/sys/balance`](#get-sysbalance)
-
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../getting-started/authentication.md). Error responses: [Response Codes](response-codes.md).
 
-[OAD(../openapi/sys.json)]
+**Endpoints:** [`/sys/balance`](#get-sysbalance)
+
+---
+
+### GET /sys/balance
+
+Balance
+
+=== "curl"
+
+    ```bash
+    curl -H "x-access-key: YOUR_TOKEN" \
+      "https://api.hikerapi.com/sys/balance"
+    ```
+
+=== "Python (requests)"
+
+    ```python
+    import requests
+
+    headers = {"x-access-key": "YOUR_TOKEN"}
+    response = requests.get(
+        "https://api.hikerapi.com/sys/balance",
+        headers=headers,
+    )
+    print(response.json())
+    ```
+
+=== "JavaScript"
+
+    ```javascript
+    const response = await fetch(
+      "https://api.hikerapi.com/sys/balance",
+      { headers: { "x-access-key": "YOUR_TOKEN" } }
+    );
+    const data = await response.json();
+    ```
+
+<details>
+<summary>Example response</summary>
+
+```json
+{
+  "requests": 2173100,
+  "rate": 15,
+  "currency": "USD",
+  "amount": 912.7024
+}
+```
+
+</details>
 
 ---
 
