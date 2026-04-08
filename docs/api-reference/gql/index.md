@@ -5,7 +5,7 @@ Instagram GraphQL endpoints with cursor-based pagination.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/g2/user/followers`](#get-g2userfollowers) | [`/g2/user/following`](#get-g2userfollowing) | [`/gql/comment/likers`](#get-gqlcommentlikers) | [`/gql/comment/likers/chunk`](#get-gqlcommentlikerschunk) | [`/gql/comments`](#get-gqlcomments) | [`/gql/comments/chunk`](#get-gqlcommentschunk) | [`/gql/comments/threaded`](#get-gqlcommentsthreaded) | [`/gql/comments/threaded/chunk`](#get-gqlcommentsthreadedchunk) | [`/gql/media/likers`](#get-gqlmedialikers) | [`/gql/media/usertags`](#get-gqlmediausertags) | [`/gql/topsearch`](#get-gqltopsearch) | [`/gql/user/by/id`](#get-gqluserbyid) | [`/gql/user/by/username`](#get-gqluserbyusername) | [`/gql/user/clips`](#get-gqluserclips) | [`/gql/user/followers`](#get-gqluserfollowers) | [`/gql/user/followers/chunk`](#get-gqluserfollowerschunk) | [`/gql/user/following`](#get-gqluserfollowing) | [`/gql/user/following/chunk`](#get-gqluserfollowingchunk) | [`/gql/user/medias`](#get-gqlusermedias) | [`/gql/user/related/profiles`](#get-gqluserrelatedprofiles) | [`/gql/user/reposts`](#get-gqluserreposts) | [`/gql/user/web_profile_info`](#get-gqluserweb_profile_info)
+**Endpoints:** [`/g2/user/followers`](#get-g2userfollowers) | [`/g2/user/following`](#get-g2userfollowing) | [`/gql/comment/likers/chunk`](#get-gqlcommentlikerschunk) | [`/gql/comments/chunk`](#get-gqlcommentschunk) | [`/gql/comments/threaded/chunk`](#get-gqlcommentsthreadedchunk) | [`/gql/media/likers`](#get-gqlmedialikers) | [`/gql/media/usertags`](#get-gqlmediausertags) | [`/gql/topsearch`](#get-gqltopsearch) | [`/gql/user/clips`](#get-gqluserclips) | [`/gql/user/followers/chunk`](#get-gqluserfollowerschunk) | [`/gql/user/following/chunk`](#get-gqluserfollowingchunk) | [`/gql/user/medias`](#get-gqlusermedias) | [`/gql/user/reposts`](#get-gqluserreposts) | [`/gql/user/web_profile_info`](#get-gqluserweb_profile_info)
 
 ---
 
@@ -269,87 +269,6 @@ Get part (one page) of following users with cursor. Returns a list of User objec
 
 ---
 
-### GET /gql/comment/likers
-
-Get likers on a comment
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `media_id` | string | Yes | Media Id |
-| `amount` | integer | No | Amount |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/comment/likers?media_id=18133609390533743"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/comment/likers",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"media_id": "18133609390533743"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/comment/likers?media_id=18133609390533743",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  {
-    "id": "72832180366",
-    "username": "abrayeva_maftuna",
-    "full_name": "Abrayeva Maftuna",
-    "profile_pic_url": "https://scontent-waw2-2.cdninstagram.com/...",
-    "is_private": false,
-    "is_verified": false,
-    "followed_by_viewer": false,
-    "requested_by_viewer": false
-  },
-  {
-    "id": "3597434682",
-    "username": "ehsanayzwan",
-    "full_name": "durrani",
-    "profile_pic_url": "https://scontent-waw2-2.cdninstagram.com/...",
-    "is_private": false,
-    "is_verified": false,
-    "followed_by_viewer": false,
-    "requested_by_viewer": false
-  },
-  {
-    "id": "79034400058",
-    "username": "safu.12311",
-    "full_name": "safu",
-    "profile_pic_url": "https://scontent-waw2-2.cdninstagram.com/...",
-    "is_private": false,
-    "is_verified": false,
-    "followed_by_viewer": false,
-    "requested_by_viewer": false
-  }
-]
-```
-
-</details>
-
----
-
 ### GET /gql/comment/likers/chunk
 
 Get likers on a comment
@@ -402,128 +321,6 @@ Get likers on a comment
     const data = await response.json();
     // Next page: add &end_cursor=... to URL
     ```
-
----
-
-### GET /gql/comments
-
-Get comments on a media
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `media_id` | string | Yes | Media Id |
-| `sort_order` | string | No | Sort Order |
-| `amount` | integer | No | Amount |
-| `max_requests` | integer | No | Max Requests |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/comments?media_id=3776832898280228145"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/comments",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"media_id": "3776832898280228145"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/comments?media_id=3776832898280228145",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  {
-    "pk": "17988842789786755",
-    "user": {
-      "is_verified": false,
-      "id": "57093755334",
-      "pk": "57093755334",
-      "username": "imsoumya_12",
-      "is_unpublished": null,
-      "profile_pic_url": "https://scontent-ber1-1.cdninstagram.com/...",
-      "fbid_v2": "17841456980046719"
-    },
-    "is_covered": false,
-    "child_comment_count": 0,
-    "restricted_status": null,
-    "parent_comment_id": null,
-    "has_translation": null,
-    "has_liked_comment": false,
-    "text": "I want to build a house there ☺️",
-    "created_at": 1774293705,
-    "comment_like_count": 0,
-    "giphy_media_info": null,
-    "__typename": "XDTCommentDict"
-  },
-  {
-    "pk": "18129360946549093",
-    "user": {
-      "is_verified": false,
-      "id": "77976112959",
-      "pk": "77976112959",
-      "username": "lenoid62",
-      "is_unpublished": null,
-      "profile_pic_url": "https://scontent-ams2-1.cdninstagram.com/...",
-      "fbid_v2": "17841477788797014"
-    },
-    "is_covered": false,
-    "child_comment_count": 0,
-    "restricted_status": null,
-    "parent_comment_id": null,
-    "has_translation": null,
-    "has_liked_comment": false,
-    "text": "What a rainforest that's all I do this rain",
-    "created_at": 1773230981,
-    "comment_like_count": 0,
-    "giphy_media_info": null,
-    "__typename": "XDTCommentDict"
-  },
-  {
-    "pk": "18111056248578971",
-    "user": {
-      "is_verified": false,
-      "id": "1336487531",
-      "pk": "1336487531",
-      "username": "uemaaru",
-      "is_unpublished": null,
-      "profile_pic_url": "https://scontent-ber1-1.cdninstagram.com/...",
-      "fbid_v2": "17841401185950882"
-    },
-    "is_covered": false,
-    "child_comment_count": 0,
-    "restricted_status": null,
-    "parent_comment_id": null,
-    "has_translation": null,
-    "has_liked_comment": false,
-    "text": "心地いい👂🏼",
-    "created_at": 1770335847,
-    "comment_like_count": 0,
-    "giphy_media_info": null,
-    "__typename": "XDTCommentDict"
-  }
-]
-```
-
-</details>
 
 ---
 
@@ -661,48 +458,6 @@ Get comments on a media. Returns Comment objects with cursor.
 ```
 
 </details>
-
----
-
-### GET /gql/comments/threaded
-
-Get threaded comments for comment
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `media_id` | string | Yes | Media Id |
-| `comment_id` | string | Yes | Comment Id |
-| `amount` | integer | No | Amount |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/comments/threaded?media_id=3776832898280228145&comment_id=17901801633335930"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/comments/threaded",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"media_id": "3776832898280228145", "comment_id": "17901801633335930"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/comments/threaded?media_id=3776832898280228145&comment_id=17901801633335930",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
 
 ---
 
@@ -1152,86 +907,6 @@ Search top content by keyword (GraphQL TopSerpQuery)
 ```
 
 </details>
-
----
-
-### GET /gql/user/by/id
-
-Get user object by id. Returns a User object.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | string | Yes | Id |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/user/by/id?id=787132"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/user/by/id",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"id": "787132"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/user/by/id?id=787132",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
----
-
-### GET /gql/user/by/username
-
-Get user object by username. Returns a User object.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `username` | string | Yes | Username |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/user/by/username?username=natgeo"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/user/by/username",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"username": "natgeo"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/user/by/username?username=natgeo",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
 
 ---
 
@@ -1907,47 +1582,6 @@ Get user clips. Returns a list of Media objects (Reels).
 
 ---
 
-### GET /gql/user/followers
-
-⚠️ Billing: 2 requests per call. Returns a list of User objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `user_id` | string | Yes | User Id |
-| `amount` | integer | No | Amount |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/user/followers?user_id=787132"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/user/followers",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"user_id": "787132"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/user/followers?user_id=787132",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
----
-
 ### GET /gql/user/followers/chunk
 
 ⚠️ Billing: 2 requests per call. Returns a list of User objects.
@@ -2073,47 +1707,6 @@ Get user clips. Returns a list of Media objects (Reels).
 ```
 
 </details>
-
----
-
-### GET /gql/user/following
-
-⚠️ Billing: 2 requests per call. Returns a list of User objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `user_id` | string | Yes | User Id |
-| `amount` | integer | No | Amount |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/user/following?user_id=787132"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/user/following",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"user_id": "787132"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/user/following?user_id=787132",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
 
 ---
 
@@ -3134,83 +2727,6 @@ Get user medias. Returns a list of Media objects.
     }
   ]
 }
-```
-
-</details>
-
----
-
-### GET /gql/user/related/profiles
-
-Get related profiles by user id
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | string | Yes | Id |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/user/related/profiles?id=787132"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/user/related/profiles",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"id": "787132"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/user/related/profiles?id=787132",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  {
-    "pk": "247944034",
-    "id": "247944034",
-    "username": "beyonce",
-    "full_name": "Beyoncé",
-    "profile_pic_url": "https://scontent-lax3-1.cdninstagram.com/...",
-    "is_private": false,
-    "is_verified": true
-  },
-  {
-    "pk": "11830955",
-    "id": "11830955",
-    "username": "taylorswift",
-    "full_name": "Taylor Swift",
-    "profile_pic_url": "https://scontent-lax3-1.cdninstagram.com/...",
-    "is_private": false,
-    "is_verified": true
-  },
-  {
-    "pk": "561009264",
-    "id": "561009264",
-    "username": "discovery",
-    "full_name": "Discovery",
-    "profile_pic_url": "https://scontent-lax3-1.cdninstagram.com/...",
-    "is_private": false,
-    "is_verified": true
-  }
-]
 ```
 
 </details>
@@ -4703,6 +4219,52 @@ Get user profile info by user id (GraphQL web_profile_info)
 ```
 
 </details>
+
+---
+
+## Deprecated endpoints
+
+These endpoints are still available but will be removed in a future version. Use the recommended alternatives.
+
+### ~~GET /gql/comment/likers~~
+
+!!! warning
+    WARNING: Preferable to use /gql/comment/likers/chunk
+
+### ~~GET /gql/comments~~
+
+!!! warning
+    WARNING: Preferable to use /gql/comments/chunk
+
+### ~~GET /gql/comments/threaded~~
+
+!!! warning
+    WARNING: Preferable to use /gql/comments/chunk
+
+### ~~GET /gql/user/by/id~~
+
+!!! warning
+    User By Id
+
+### ~~GET /gql/user/by/username~~
+
+!!! warning
+    Get user object by username (one request required)
+
+### ~~GET /gql/user/followers~~
+
+!!! warning
+    WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)
+
+### ~~GET /gql/user/following~~
+
+!!! warning
+    WARNING: Use /v2/user/following. Get a user following (one request is required for every 46 following)
+
+### ~~GET /gql/user/related/profiles~~
+
+!!! warning
+    Prefer using v2/user/suggested/profiles as this endpoint will be completely deprecated soon
 
 ---
 

@@ -571,7 +571,17 @@ def _generate_page(resource_key, spec, sdk_sigs):
     auth_link, codes_link = _get_auth_links(resource_key)
     utm_content = UTM[resource_key]
 
-    endpoints = _get_endpoints_for_resource(spec, resource_key)
+    all_endpoints = _get_endpoints_for_resource(spec, resource_key)
+
+    # Split into active and deprecated
+    active = []
+    deprecated = []
+    for ep in all_endpoints:
+        op = spec["paths"].get(ep, {}).get("get", {})
+        if op.get("deprecated"):
+            deprecated.append(ep)
+        else:
+            active.append(ep)
 
     lines = []
 
@@ -590,10 +600,10 @@ def _generate_page(resource_key, spec, sdk_sigs):
     )
     lines.append("")
 
-    # Endpoint index
-    if endpoints:
+    # Endpoint index (active only)
+    if active:
         anchors = []
-        for ep in endpoints:
+        for ep in active:
             anchor = _path_to_anchor(ep)
             anchors.append(f"[`{ep}`](#{anchor})")
         lines.append("**Endpoints:** " + " | ".join(anchors))
@@ -603,17 +613,38 @@ def _generate_page(resource_key, spec, sdk_sigs):
     lines.append("---")
     lines.append("")
 
-    # Each endpoint
-    for i, ep in enumerate(endpoints):
+    # Active endpoints (full rendering)
+    for i, ep in enumerate(active):
         path_methods = spec["paths"].get(ep, {})
         operation = path_methods.get("get", {})
         section = _generate_endpoint_section(ep, operation, sdk_sigs, resource_key)
         lines.append(section)
 
-        # Separator between endpoints
-        if i < len(endpoints) - 1:
+        if i < len(active) - 1:
             lines.append("---")
             lines.append("")
+
+    # Deprecated endpoints (minimal rendering)
+    if deprecated:
+        lines.append("---")
+        lines.append("")
+        lines.append("## Deprecated endpoints")
+        lines.append("")
+        lines.append(
+            "These endpoints are still available but will be removed "
+            "in a future version. Use the recommended alternatives."
+        )
+        lines.append("")
+        for ep in deprecated:
+            op = spec["paths"].get(ep, {}).get("get", {})
+            # summary has the WARNING text, description is generic
+            warn = op.get("summary", "") or op.get("description", "")
+            lines.append(f"### ~~GET {ep}~~")
+            lines.append("")
+            if warn:
+                lines.append("!!! warning")
+                lines.append(f"    {warn}")
+                lines.append("")
 
     # CTA footer
     lines.append("---")

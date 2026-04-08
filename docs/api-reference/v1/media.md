@@ -5,7 +5,7 @@ Get posts, reels, likes, comments, and media details.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/v1/media/by/code`](#get-v1mediabycode) | [`/v1/media/by/id`](#get-v1mediabyid) | [`/v1/media/by/url`](#get-v1mediabyurl) | [`/v1/media/code/from/pk`](#get-v1mediacodefrompk) | [`/v1/media/comments`](#get-v1mediacomments) | [`/v1/media/comments/chunk`](#get-v1mediacommentschunk) | [`/v1/media/download/photo`](#get-v1mediadownloadphoto) | [`/v1/media/download/photo/by/url`](#get-v1mediadownloadphotobyurl) | [`/v1/media/download/video`](#get-v1mediadownloadvideo) | [`/v1/media/download/video/by/url`](#get-v1mediadownloadvideobyurl) | [`/v1/media/insight`](#get-v1mediainsight) | [`/v1/media/likers`](#get-v1medialikers) | [`/v1/media/oembed`](#get-v1mediaoembed) | [`/v1/media/pk/from/code`](#get-v1mediapkfromcode) | [`/v1/media/pk/from/url`](#get-v1mediapkfromurl) | [`/v1/media/user`](#get-v1mediauser)
+**Endpoints:** [`/v1/media/by/code`](#get-v1mediabycode) | [`/v1/media/by/id`](#get-v1mediabyid) | [`/v1/media/by/url`](#get-v1mediabyurl) | [`/v1/media/code/from/pk`](#get-v1mediacodefrompk) | [`/v1/media/comments/chunk`](#get-v1mediacommentschunk) | [`/v1/media/insight`](#get-v1mediainsight) | [`/v1/media/likers`](#get-v1medialikers) | [`/v1/media/oembed`](#get-v1mediaoembed) | [`/v1/media/pk/from/code`](#get-v1mediapkfromcode) | [`/v1/media/pk/from/url`](#get-v1mediapkfromurl) | [`/v1/media/user`](#get-v1mediauser)
 
 ---
 
@@ -421,114 +421,6 @@ Get media code from pk
 
 ---
 
-### GET /v1/media/comments
-
-Get comments on a media. Returns a list of Comment objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | string | Yes | Id |
-| `amount` | integer | No | Amount |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/media/comments?id=3776832898280228145"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/media/comments",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"id": "3776832898280228145"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/media/comments?id=3776832898280228145",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  {
-    "pk": "17915190762228930",
-    "text": "Nature is brilliantly beautiful!🤩",
-    "user": {
-      "pk": "1393016141",
-      "id": "1393016141",
-      "username": "scubalover14",
-      "full_name": "Karen",
-      "profile_pic_url": "https://scontent-fra5-2.cdninstagram.com/...",
-      "profile_pic_url_hd": null,
-      "is_private": true,
-      "is_verified": false
-    },
-    "created_at_utc": "2025-11-29T22:36:22Z",
-    "content_type": "comment",
-    "status": "Active",
-    "has_liked": false,
-    "like_count": 66
-  },
-  {
-    "pk": "18053905025662507",
-    "text": "Thank you for the 0:22 second chill and calm :-)\nGreetings",
-    "user": {
-      "pk": "1741252659",
-      "id": "1741252659",
-      "username": "meadow.full.of.daisies",
-      "full_name": "𝕾𝖆𝖗𝖎𝖓𝖆",
-      "profile_pic_url": "https://scontent-fra5-1.cdninstagram.com/...",
-      "profile_pic_url_hd": null,
-      "is_private": false,
-      "is_verified": false
-    },
-    "created_at_utc": "2025-11-29T22:07:39Z",
-    "content_type": "comment",
-    "status": "Active",
-    "has_liked": false,
-    "like_count": 194
-  },
-  {
-    "pk": "18044552948484283",
-    "text": "Nice and beautiful sounds 😍",
-    "user": {
-      "pk": "6969485859",
-      "id": "6969485859",
-      "username": "valecillo_guillermo",
-      "full_name": "VF",
-      "profile_pic_url": "https://scontent-fra3-2.cdninstagram.com/...",
-      "profile_pic_url_hd": null,
-      "is_private": true,
-      "is_verified": false
-    },
-    "created_at_utc": "2025-11-30T01:30:42Z",
-    "content_type": "comment",
-    "status": "Active",
-    "has_liked": false,
-    "like_count": 7
-  }
-]
-```
-
-</details>
-
----
-
 ### GET /v1/media/comments/chunk
 
 Get comments on a media. Returns a list of Comment objects.
@@ -653,166 +545,6 @@ Get comments on a media. Returns a list of Comment objects.
 ```
 
 </details>
-
----
-
-### GET /v1/media/download/photo
-
-Download photo using media pk
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | string | Yes | Id |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/media/download/photo?id=3776832898280228145"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/media/download/photo",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"id": "3776832898280228145"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/media/download/photo?id=3776832898280228145",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
----
-
-### GET /v1/media/download/photo/by/url
-
-Download photo using URL
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `url` | string | Yes | Url |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/media/download/photo/by/url?url=https://www.instagram.com/p/DRqAYKuAIUx/"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/media/download/photo/by/url",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/media/download/photo/by/url?url=https://www.instagram.com/p/DRqAYKuAIUx/",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
----
-
-### GET /v1/media/download/video
-
-Download video using media pk
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | string | Yes | Id |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/media/download/video?id=3776832898280228145"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/media/download/video",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"id": "3776832898280228145"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/media/download/video?id=3776832898280228145",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
----
-
-### GET /v1/media/download/video/by/url
-
-Download video using URL
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `url` | string | Yes | Url |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/media/download/video/by/url?url=https://www.instagram.com/p/DRqAYKuAIUx/"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/media/download/video/by/url",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/media/download/video/by/url?url=https://www.instagram.com/p/DRqAYKuAIUx/",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
 
 ---
 
@@ -1241,6 +973,37 @@ Get author of the media
 ```
 
 </details>
+
+---
+
+## Deprecated endpoints
+
+These endpoints are still available but will be removed in a future version. Use the recommended alternatives.
+
+### ~~GET /v1/media/comments~~
+
+!!! warning
+    Get media comments (one request is required for every 20 comments)
+
+### ~~GET /v1/media/download/photo~~
+
+!!! warning
+    Photo Download
+
+### ~~GET /v1/media/download/photo/by/url~~
+
+!!! warning
+    Photo Download By Url
+
+### ~~GET /v1/media/download/video~~
+
+!!! warning
+    Video Download
+
+### ~~GET /v1/media/download/video/by/url~~
+
+!!! warning
+    Video Download By Url
 
 ---
 

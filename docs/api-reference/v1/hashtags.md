@@ -5,7 +5,7 @@ Get hashtag info, top and recent media.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/v1/hashtag/by/name`](#get-v1hashtagbyname) | [`/v1/hashtag/medias/clips`](#get-v1hashtagmediasclips) | [`/v1/hashtag/medias/clips/chunk`](#get-v1hashtagmediasclipschunk) | [`/v1/hashtag/medias/recent`](#get-v1hashtagmediasrecent) | [`/v1/hashtag/medias/recent/chunk`](#get-v1hashtagmediasrecentchunk) | [`/v1/hashtag/medias/top`](#get-v1hashtagmediastop) | [`/v1/hashtag/medias/top/chunk`](#get-v1hashtagmediastopchunk) | [`/v1/hashtag/medias/top/recent/chunk`](#get-v1hashtagmediastoprecentchunk)
+**Endpoints:** [`/v1/hashtag/by/name`](#get-v1hashtagbyname) | [`/v1/hashtag/medias/clips`](#get-v1hashtagmediasclips) | [`/v1/hashtag/medias/clips/chunk`](#get-v1hashtagmediasclipschunk) | [`/v1/hashtag/medias/top`](#get-v1hashtagmediastop) | [`/v1/hashtag/medias/top/chunk`](#get-v1hashtagmediastopchunk) | [`/v1/hashtag/medias/top/recent/chunk`](#get-v1hashtagmediastoprecentchunk)
 
 ---
 
@@ -572,112 +572,6 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
     }
   ],
   "WyIzMzBmNzAyNDkxM2Y0MzYyOWY4NjliNGNhYjJiODYxZCIsW10sMV0="
-]
-```
-
-</details>
-
----
-
-### GET /v1/hashtag/medias/recent
-
-Get hashtag medias top. Returns a list of Media objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `name` | string | Yes | Please make sure to use a clean hashtag without any special symbols. **Good one**: love, sea, dog, 공구 **Bad one**: #dog, sea_., tanjung.., #공구. |
-| `amount` | integer | No | Amount |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/hashtag/medias/recent?name=love"
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/hashtag/medias/recent",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"name": "love"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/hashtag/medias/recent?name=love",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[]
-```
-
-</details>
-
----
-
-### GET /v1/hashtag/medias/recent/chunk
-
-Get hashtag chunk of recent medias. Returns a list of Media objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `name` | string | Yes | Please make sure to use a clean hashtag without any special symbols. **Good one**: love, sea, dog, 공구 **Bad one**: #dog, sea_., tanjung.., #공구. |
-| `max_id` | string | No | Max Id |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/hashtag/medias/recent/chunk?name=love"
-    # Next page: add &max_id=... from previous response
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/hashtag/medias/recent/chunk",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"name": "love"},
-    )
-    # Next page: add "max_id": "..." to params
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/hashtag/medias/recent/chunk?name=love",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    // Next page: add &max_id=... to URL
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  [],
-  ""
 ]
 ```
 
@@ -1458,6 +1352,22 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
 ```
 
 </details>
+
+---
+
+## Deprecated endpoints
+
+These endpoints are still available but will be removed in a future version. Use the recommended alternatives.
+
+### ~~GET /v1/hashtag/medias/recent~~
+
+!!! warning
+    Hashtag Medias Recent
+
+### ~~GET /v1/hashtag/medias/recent/chunk~~
+
+!!! warning
+    Hashtag Medias Recent Chunk
 
 ---
 
