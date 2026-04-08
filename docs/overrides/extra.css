@@ -10,12 +10,6 @@
   background: var(--md-default-fg-color--lightest);
 }
 
-.md-banner {
-  position: sticky;
-  top: 0;
-  z-index: 3;
-}
-
 .stat-number {
   display: block;
   font-size: 2.5rem;
