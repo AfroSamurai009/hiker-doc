@@ -40,10 +40,9 @@ Search locations. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/fbsearch/places",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -145,10 +144,9 @@ Topsearch. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/fbsearch/topsearch",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -323,10 +321,9 @@ Search hashtags via topsearch. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/fbsearch/topsearch/hashtags",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "love"},
     )
     print(response.json())
@@ -382,10 +379,9 @@ Search hashtags. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/search/hashtags",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "love"},
     )
     print(response.json())
@@ -463,10 +459,9 @@ Search music. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/search/music",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -601,10 +596,9 @@ Search users. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/search/users",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -692,10 +686,9 @@ Get share object by code (aGlnaGxpZ2h0OjE4MTQ2MjE2Njk4MDIyMTc0 ->
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/share/by/code",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"code": "aGlnaGxpZ2h0OjE3ODkzMjA5ODI1MjgxMjIx"},
     )
     print(response.json())
@@ -756,10 +749,9 @@ https://www.ins...ram.com/s/aGlnaGxpZ2h0OjE4MTQ2MjE2Njk4MDIyMTc0 ->
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/share/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())
@@ -806,10 +798,9 @@ Returns shared content data.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/share/reel/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())

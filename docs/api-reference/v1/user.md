@@ -38,10 +38,9 @@ Get user object by id. Returns user about info.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/about",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "787132"},
     )
     print(response.json())
@@ -103,10 +102,9 @@ Get user object by id. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "787132"},
     )
     print(response.json())
@@ -193,10 +191,9 @@ Get user object by URL. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/natgeo/"},
     )
     print(response.json())
@@ -283,10 +280,9 @@ Get user object by username. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())
@@ -365,10 +361,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/clips",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -1183,10 +1178,9 @@ Trial publications have no "reshare_count" field if you need to filter them. Ret
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/clips/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -1990,10 +1984,9 @@ Get followers users. Returns a list of User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/followers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2078,10 +2071,9 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/followers/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2160,10 +2152,9 @@ Get following users. Returns a list of User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/following",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2248,10 +2239,9 @@ Get part (one page) of following users with cursor. Returns a list of User objec
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/following/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2329,10 +2319,9 @@ Get user guides. Returns guide data.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/guides",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2371,10 +2360,9 @@ Get user medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/medias",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -3153,10 +3141,9 @@ Get part of user medias with cursor. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/medias/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -3938,10 +3925,9 @@ Get user medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/medias/pinned",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -4721,10 +4707,9 @@ Search users by followers. Returns matching User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/search/followers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132", "query": "natgeo"},
     )
     print(response.json())
@@ -4810,10 +4795,9 @@ Search users by following users. Returns matching User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/search/following",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132", "query": "natgeo"},
     )
     print(response.json())
@@ -4889,10 +4873,9 @@ Prefer to use /v2/user/tag/medias
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/tag/medias",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -4940,10 +4923,9 @@ Get usertag medias
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/tag/medias/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -5367,10 +5349,9 @@ Get user videos
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/videos",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -5409,10 +5390,9 @@ Get part of user videos with cursor (default 50 media per request)
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/videos/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -5450,10 +5430,9 @@ WARNING: Deprecated. Instagram returns ~90% false UserNotFound since Feb 2, 2026
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/web_profile_info",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())

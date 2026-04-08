@@ -8,11 +8,19 @@ MEDIA_PK = "3776832898280228145_787132"
 MEDIA_CODE = "DRqAYKuAIUx"
 MEDIA_URL = f"https://www.instagram.com/p/{MEDIA_CODE}/"
 LOCATION_PK = "213131048"
-HIGHLIGHT_ID = "17893209825281221"
+HIGHLIGHT_ID = "18085475671830440"
 COMMENT_ID = "17901801633335930"
 HASHTAG_NAME = "love"
 SEARCH_QUERY = "natgeo"
-TRACK_ID = "578218498892498"
+TRACK_ID = "797665381922277"
+TRACK_CANONICAL_ID = "1218296241668996"
+
+# Entities with rich data for endpoints that need non-empty responses
+RICH_MEDIA_ID = "3691011991037807194"  # has comments
+RICH_COMMENT_MEDIA_ID = "3864286541032633353"  # has comment replies
+RICH_COMMENT_ID = "18142813870496178"  # has replies
+RICH_COMMENT_LIKERS_MEDIA_ID = "18133609390533743"  # has comment likers
+RICH_HIGHLIGHTS_USER_ID = "51089230684"  # has highlights
 STORY_URL = f"https://www.instagram.com/stories/{USER_USERNAME}/3776832898280228145/"  # noqa: E501
 SHARE_URL = f"https://www.instagram.com/p/{MEDIA_CODE}/"
 
@@ -56,8 +64,8 @@ ENDPOINT_PARAMS = {
     "/v2/user/following": {"user_id": USER_PK},
     "/v2/user/followers": {"user_id": USER_PK},
     "/v2/user/tag/medias": {"user_id": USER_PK},
-    "/v2/user/highlights": {"user_id": USER_PK},
-    "/v2/user/highlights/by/username": {"username": USER_USERNAME},
+    "/v2/user/highlights": {"user_id": "1114341851"},
+    "/v2/user/highlights/by/username": {"username": "nike"},
     "/v2/user/explore/businesses/by/id": {"user_id": USER_PK},
     "/v2/user/suggested/profiles": {"user_id": USER_PK},
     "/v2/user/medias": {"user_id": USER_PK},
@@ -100,10 +108,10 @@ ENDPOINT_PARAMS = {
     "/v2/media/info/by/id": {"id": MEDIA_ID},
     "/v2/media/info/by/code": {"code": MEDIA_CODE},
     "/v2/media/info/by/url": {"url": MEDIA_URL},
-    "/v2/media/comments": {"id": MEDIA_ID},
+    "/v2/media/comments": {"id": RICH_MEDIA_ID},
     "/v2/media/comments/replies": {
-        "media_id": MEDIA_ID,
-        "comment_id": COMMENT_ID,
+        "media_id": RICH_COMMENT_MEDIA_ID,
+        "comment_id": RICH_COMMENT_ID,
     },
     "/v2/media/likers": {"id": MEDIA_ID},
     "/v2/media/template": {"id": MEDIA_ID},
@@ -127,7 +135,7 @@ ENDPOINT_PARAMS = {
         "media_id": MEDIA_ID,
     },
     "/gql/comments": {"media_id": MEDIA_ID},
-    "/gql/comment/likers": {"media_id": MEDIA_ID},
+    "/gql/comment/likers": {"media_id": RICH_COMMENT_LIKERS_MEDIA_ID},
     "/gql/comments/threaded": {"media_id": MEDIA_ID, "comment_id": COMMENT_ID},
     # Story — v1
     "/v1/story/by/id": {"id": MEDIA_ID},
@@ -174,7 +182,7 @@ ENDPOINT_PARAMS = {
     # Track — v2
     "/v2/track/by/id": {"track_id": TRACK_ID},
     "/v2/track/stream/by/id": {"track_id": TRACK_ID},
-    "/v2/track/by/canonical/id": {"canonical_id": TRACK_ID},
+    "/v2/track/by/canonical/id": {"canonical_id": TRACK_CANONICAL_ID},
     # Search — v1
     "/v1/search/hashtags": {"query": HASHTAG_NAME},
     "/v1/search/users": {"query": SEARCH_QUERY},

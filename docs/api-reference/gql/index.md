@@ -30,10 +30,9 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/g2/user/followers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -185,10 +184,9 @@ Get part (one page) of following users with cursor. Returns a list of User objec
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/g2/user/following",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -210,11 +208,114 @@ Get part (one page) of following users with cursor. Returns a list of User objec
 ```json
 {
   "response": {
-    "users": [],
-    "next_max_id": null,
-    "has_more": false
+    "users": [
+      {
+        "__typename": "XDTUserDict",
+        "strong_id__": "14331657700",
+        "id": "14331657700",
+        "is_fulfilled__(name:\"XDTUserDict\")": true,
+        "allowed_commenter_type": null,
+        "fbid_v2": "17841414211021457",
+        "full_name": "ナショナルジオグラフィック日本版",
+        "has_anonymous_profile_picture": false,
+        "interop_messaging_user_fbid": null,
+        "is_private": false,
+        "is_verified": false,
+        "1llatest_reel_media": 0,
+        "liked_clips_count": null,
+        "account_badges": [],
+        "social_context": null,
+        "friendship_status": {
+          "following": false,
+          "incoming_request": false,
+          "is_bestie": false,
+          "is_feed_favorite": false,
+          "is_private": false,
+          "is_restricted": false,
+          "outgoing_request": false,
+          "is_viewer_unconnected": false,
+          "reachability_status": 0
+        },
+        "pk": "14331657700",
+        "profile_pic_id": "2073867961613189688_14331657700",
+        "profile_pic_url": "https://scontent-lax3-2.cdninstagram.com/v/t51.2885-19/65160972_483182759115510_2590728031043584000_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuYzIifQ&_nc_ht=scontent-lax3-2.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gFTbc0QknXQjYJQFLa362UgvdEX1iMPSy8zr9VQ-imM3jicHNFpm_MkQ0qZBrgDB9Q&_nc_ohc=7ujGFVqjyKQQ7kNvwEX384T&_nc_gid=3s1HyBTcctaVSN8L41LDHg&edm=AFFDd_gBAAAA&ccb=7-5&ig_cache_key=GAxH4gP2_rfAc7cBAAAAAABrHfQjbkULAAAB1501500j-ccb7-5&oh=00_Af1y13s5YNDmrSjDluJPQh58IYLYKdKZd1ymrzTGDzPP7w&oe=69DC5A2D&_nc_sid=421beb",
+        "reel_auto_archive": null,
+        "username": "natgeomagjp",
+        "all_media_count": null
+      },
+      {
+        "__typename": "XDTUserDict",
+        "strong_id__": "8958735",
+        "id": "8958735",
+        "is_fulfilled__(name:\"XDTUserDict\")": true,
+        "allowed_commenter_type": null,
+        "fbid_v2": "17841401882050139",
+        "full_name": "Christie Hemm Klok",
+        "has_anonymous_profile_picture": false,
+        "interop_messaging_user_fbid": null,
+        "is_private": false,
+        "is_verified": true,
+        "1llatest_reel_media": 0,
+        "liked_clips_count": null,
+        "account_badges": [],
+        "social_context": null,
+        "friendship_status": {
+          "following": false,
+          "incoming_request": false,
+          "is_bestie": false,
+          "is_feed_favorite": false,
+          "is_private": false,
+          "is_restricted": false,
+          "outgoing_request": false,
+          "is_viewer_unconnected": true,
+          "reachability_status": 6
+        },
+        "pk": "8958735",
+        "profile_pic_id": "3354861487016662033_8958735",
+        "profile_pic_url": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/439586899_1933783770387040_7648789920126959876_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=104&_nc_oc=Q6cZ2gFTbc0QknXQjYJQFLa362UgvdEX1iMPSy8zr9VQ-imM3jicHNFpm_MkQ0qZBrgDB9Q&_nc_ohc=78gK351qr6gQ7kNvwF7otdc&_nc_gid=3s1HyBTcctaVSN8L41LDHg&edm=AFFDd_gBAAAA&ccb=7-5&ig_cache_key=GFOQMxpg0rQexN4GAASBwUbo9SVqbkULAAAB1501500j-ccb7-5&oh=00_Af3VtVtoVJBAvYAer26lGADB1ob1X0fw8EMa3DhMpdhphA&oe=69DC42DC&_nc_sid=421beb",
+        "reel_auto_archive": null,
+        "username": "christiehemmklok",
+        "all_media_count": null
+      },
+      {
+        "__typename": "XDTUserDict",
+        "strong_id__": "2558720332",
+        "id": "2558720332",
+        "is_fulfilled__(name:\"XDTUserDict\")": true,
+        "allowed_commenter_type": null,
+        "fbid_v2": "17841402409979840",
+        "full_name": "National Geographic UK",
+        "has_anonymous_profile_picture": false,
+        "interop_messaging_user_fbid": null,
+        "is_private": false,
+        "is_verified": true,
+        "1llatest_reel_media": 0,
+        "liked_clips_count": null,
+        "account_badges": [],
+        "social_context": null,
+        "friendship_status": {
+          "following": false,
+          "incoming_request": false,
+          "is_bestie": false,
+          "is_feed_favorite": false,
+          "is_private": false,
+          "is_restricted": false,
+          "outgoing_request": false,
+          "is_viewer_unconnected": false,
+          "reachability_status": 0
+        },
+        "pk": "2558720332",
+        "profile_pic_id": "3358229400727377822_2558720332",
+        "profile_pic_url": "https://scontent-lax3-1.cdninstagram.com/v/t51.2885-19/440630431_977203300656368_371582942724719509_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40NTUuYzIifQ&_nc_ht=scontent-lax3-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gFTbc0QknXQjYJQFLa362UgvdEX1iMPSy8zr9VQ-imM3jicHNFpm_MkQ0qZBrgDB9Q&_nc_ohc=SlLyUBTIfn0Q7kNvwH9okbC&_nc_gid=3s1HyBTcctaVSN8L41LDHg&edm=AFFDd_gBAAAA&ccb=7-5&ig_cache_key=GJ98Qxrw5JvfwngDAJWDs7m3ICgFbkULAAAB1501500j-ccb7-5&oh=00_Af0tdj1UbJWuga6lpF4QCvdZFFoLbfxdMYuEmQlh5pgr7Q&oe=69DC4F82&_nc_sid=421beb",
+        "reel_auto_archive": null,
+        "username": "natgeouk",
+        "all_media_count": null
+      }
+    ],
+    "next_max_id": "25",
+    "has_more": true
   },
-  "next_page_id": null
+  "next_page_id": "25"
 }
 ```
 
@@ -235,7 +336,7 @@ Get likers on a comment
 
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/comment/likers?media_id=3776832898280228145"
+      "https://api.hikerapi.com/gql/comment/likers?media_id=18133609390533743"
     ```
 
 === "Python (requests)"
@@ -243,11 +344,10 @@ Get likers on a comment
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/comment/likers",
-        headers=headers,
-        params={"media_id": "3776832898280228145"},
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"media_id": "18133609390533743"},
     )
     print(response.json())
     ```
@@ -256,7 +356,7 @@ Get likers on a comment
 
     ```javascript
     const response = await fetch(
-      "https://api.hikerapi.com/gql/comment/likers?media_id=3776832898280228145",
+      "https://api.hikerapi.com/gql/comment/likers?media_id=18133609390533743",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
@@ -266,7 +366,38 @@ Get likers on a comment
 <summary>Example response</summary>
 
 ```json
-[]
+[
+  {
+    "id": "72832180366",
+    "username": "abrayeva_maftuna",
+    "full_name": "Abrayeva Maftuna",
+    "profile_pic_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.2885-19/482127443_1361873054996736_6689276385052757535_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MTIuYzIifQ&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_cat=100&_nc_oc=Q6cZ2gG2RVEUf21UtU2TB8Ij-xikS1ereKXHg-9jmy7m0u9ETNTGTvsr8CG2q_Jpo7ZIdHs&_nc_ohc=rd8Txt92s2IQ7kNvwFbMo7A&_nc_gid=XV_fGK0kVHXwojX6DqQWuA&edm=ABv8lbYBAAAA&ccb=7-5&oh=00_Af0vt81UdG-z7gT_ebep9pbIOE5f_GktLmY2DUvs6t0xpw&oe=69DC4AA2&_nc_sid=621f36",
+    "is_private": false,
+    "is_verified": false,
+    "followed_by_viewer": false,
+    "requested_by_viewer": false
+  },
+  {
+    "id": "3597434682",
+    "username": "ehsanayzwan",
+    "full_name": "durrani",
+    "profile_pic_url": "https://scontent-dfw6-1.cdninstagram.com/v/t51.2885-19/168077635_267373841642451_1194294772862184922_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_cat=103&_nc_oc=Q6cZ2gG2RVEUf21UtU2TB8Ij-xikS1ereKXHg-9jmy7m0u9ETNTGTvsr8CG2q_Jpo7ZIdHs&_nc_ohc=6BCuzO762HsQ7kNvwFZfLmF&_nc_gid=XV_fGK0kVHXwojX6DqQWuA&edm=ABv8lbYBAAAA&ccb=7-5&oh=00_Af0F69SPjiIWUxia4b5EvGch15aiWtq77zYFDJ3hgkKHbw&oe=69DC63FA&_nc_sid=621f36",
+    "is_private": false,
+    "is_verified": false,
+    "followed_by_viewer": false,
+    "requested_by_viewer": false
+  },
+  {
+    "id": "79034400058",
+    "username": "safu.12311",
+    "full_name": "safu",
+    "profile_pic_url": "https://scontent-dfw5-2.cdninstagram.com/v/t51.82787-19/588423364_17843021472632059_2481366518678795603_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby40ODAuYzIifQ&_nc_ht=scontent-dfw5-2.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gG2RVEUf21UtU2TB8Ij-xikS1ereKXHg-9jmy7m0u9ETNTGTvsr8CG2q_Jpo7ZIdHs&_nc_ohc=0dGeQiiFx1QQ7kNvwHf5YPB&_nc_gid=XV_fGK0kVHXwojX6DqQWuA&edm=ABv8lbYBAAAA&ccb=7-5&oh=00_Af0PCHwCkVaWgEYCEQFvczx6guu0oL-MEPgIXBH_gT4GFQ&oe=69DC62A8&_nc_sid=621f36",
+    "is_private": false,
+    "is_verified": false,
+    "followed_by_viewer": false,
+    "requested_by_viewer": false
+  }
+]
 ```
 
 </details>
@@ -304,10 +435,9 @@ Get likers on a comment
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/comment/likers/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"comment_id": "17901801633335930", "media_id": "3776832898280228145"},
     )
     print(response.json())
@@ -348,10 +478,9 @@ Get comments on a media
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/comments",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145"},
     )
     print(response.json())
@@ -479,10 +608,9 @@ Get comments on a media. Returns Comment objects with cursor.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/comments/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145"},
     )
     print(response.json())
@@ -604,10 +732,9 @@ Get threaded comments for comment
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/comments/threaded",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145", "comment_id": "17901801633335930"},
     )
     print(response.json())
@@ -656,10 +783,9 @@ Get threaded comments for comment
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/comments/threaded/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145", "comment_id": "17901801633335930"},
     )
     print(response.json())
@@ -706,10 +832,9 @@ Get likers on a media (paging is unavailable on this endpoint). Returns a list o
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/media/likers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145"},
     )
     print(response.json())
@@ -835,10 +960,9 @@ Returns users tagged in the video. You can pass up to 10 media ids
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/media/usertags",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_ids": "3776832898280228145"},
     )
     print(response.json())
@@ -922,10 +1046,9 @@ Search top content by keyword (GraphQL TopSerpQuery)
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/topsearch",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -1247,10 +1370,9 @@ Get user object by id. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "787132"},
     )
     print(response.json())
@@ -1288,10 +1410,9 @@ Get user object by username. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())
@@ -1341,10 +1462,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/clips",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2132,10 +2252,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/followers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2184,10 +2303,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/followers/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2299,10 +2417,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/following",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2351,10 +2468,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/following/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2443,10 +2559,9 @@ Get user medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/medias",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -3485,10 +3600,9 @@ Get related profiles by user id
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/related/profiles",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "787132"},
     )
     print(response.json())
@@ -3574,10 +3688,9 @@ Get user media reposts
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/reposts",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -5263,10 +5376,9 @@ Get user profile info by user id (GraphQL web_profile_info)
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/gql/user/web_profile_info",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())

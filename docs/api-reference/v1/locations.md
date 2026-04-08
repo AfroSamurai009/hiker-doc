@@ -38,10 +38,9 @@ Get location object by id. Returns a Location object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "213131048"},
     )
     print(response.json())
@@ -117,10 +116,9 @@ Get location guides. Returns location guide data.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/guides",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
     print(response.json())
@@ -168,10 +166,9 @@ Get location recent medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/medias/recent",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
     print(response.json())
@@ -727,10 +724,9 @@ Get location chunk of recent medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/medias/recent/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
     print(response.json())
@@ -1285,10 +1281,9 @@ Get location top medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/medias/top",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
     print(response.json())
@@ -1986,10 +1981,9 @@ Get location chunk of top medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/medias/top/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
     print(response.json())
@@ -2690,10 +2684,9 @@ Get locations using lat and long
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/location/search",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"lat": 40.7128, "lng": -74.006},
     )
     print(response.json())

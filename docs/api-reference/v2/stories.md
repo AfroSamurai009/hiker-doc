@@ -38,10 +38,9 @@ Get story object by id. Returns a Story object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/story/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -88,10 +87,9 @@ Get story object by id. Returns a Story object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/story/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/stories/natgeo/3776832898280228145/"},
     )
     print(response.json())

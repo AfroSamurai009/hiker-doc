@@ -39,10 +39,9 @@ Search accounts. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/fbsearch/accounts",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -214,10 +213,9 @@ Search places. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/fbsearch/places",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -328,10 +326,9 @@ Search top content by keyword. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/fbsearch/reels",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -1967,10 +1964,9 @@ Search top content by keyword. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/fbsearch/topsearch",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -8151,10 +8147,9 @@ Search accounts. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/search/accounts",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -8325,10 +8320,9 @@ Search hashtags. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/search/hashtags",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "love"},
     )
     print(response.json())
@@ -8420,10 +8414,9 @@ Search music. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/search/music",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -8642,10 +8635,9 @@ Search places. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/search/places",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -8748,10 +8740,9 @@ Search top content by keyword. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/search/reels",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())
@@ -10435,10 +10426,9 @@ Search top content by keyword. Returns a list of matching results.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/search/topsearch",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
     print(response.json())

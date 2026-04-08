@@ -353,10 +353,9 @@ def _build_requests_example(path, params):
     lines = [
         "import requests",
         "",
-        'headers = {"x-access-key": "YOUR_TOKEN"}',
         "response = requests.get(",
         f'    "{url}",',
-        "    headers=headers,",
+        '    headers={"x-access-key": "YOUR_TOKEN"},',
     ]
 
     if params:

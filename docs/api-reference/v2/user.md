@@ -38,10 +38,9 @@ Get user object
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/a2/user",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())
@@ -248,10 +247,9 @@ Get user object by id. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "787132"},
     )
     print(response.json())
@@ -709,10 +707,9 @@ Get user object by username. Returns a User object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())
@@ -1172,10 +1169,9 @@ Get user clips. Returns a list of Media objects (Reels).
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/clips",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -2813,10 +2809,9 @@ Get list of recommended accounts for business category of the user by his id. Re
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/explore/businesses/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -3049,10 +3044,9 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/followers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -3225,10 +3219,9 @@ Get part (one page) of following users. Returns a list of User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/following",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -3337,7 +3330,7 @@ Get part (one page) of following users. Returns a list of User objects.
 
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v2/user/highlights?user_id=787132"
+      "https://api.hikerapi.com/v2/user/highlights?user_id=1114341851"
     ```
 
 === "Python"
@@ -3346,7 +3339,7 @@ Get part (one page) of following users. Returns a list of User objects.
     from hikerapi import Client
 
     cl = Client(token="YOUR_TOKEN")
-    result = cl.user_highlights_v2(user_id="787132")
+    result = cl.user_highlights_v2(user_id="1114341851")
     ```
 
 === "Python (requests)"
@@ -3354,11 +3347,10 @@ Get part (one page) of following users. Returns a list of User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/highlights",
-        headers=headers,
-        params={"user_id": "787132"},
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"user_id": "1114341851"},
     )
     print(response.json())
     ```
@@ -3367,7 +3359,7 @@ Get part (one page) of following users. Returns a list of User objects.
 
     ```javascript
     const response = await fetch(
-      "https://api.hikerapi.com/v2/user/highlights?user_id=787132",
+      "https://api.hikerapi.com/v2/user/highlights?user_id=1114341851",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
@@ -3381,11 +3373,11 @@ Get part (one page) of following users. Returns a list of User objects.
   "response": {
     "tray": [
       {
-        "strong_id__": "highlight:17983616051768088",
-        "id": "highlight:17983616051768088",
+        "strong_id__": "highlight:18415168747119768",
+        "id": "highlight:18415168747119768",
         "reel_type": "highlight_reel",
-        "title": "Gift Guide",
-        "created_at": 1764846391,
+        "title": "Australia 25",
+        "created_at": 1760617676,
         "is_pinned_highlight": false,
         "prefetch_count": 0,
         "highlight_reel_type": "DEFAULT",
@@ -3395,50 +3387,54 @@ Get part (one page) of following users. Returns a list of User objects.
         "can_reshare": true,
         "is_archived": false,
         "cover_media": {
-          "crop_rect": null,
-          "media_id": null,
+          "crop_rect": [
+            0,
+            0.21843291995490413,
+            1
+          ],
+          "media_id": "3738052766552968887_1114341851",
           "upload_id": null,
           "cropped_image_version": {
             "height": 150,
             "scans_profile": "",
-            "url": "https://scontent-sea5-1.cdninstagram.com/v/t51.71878-15/588606107_1189628196448486_727960022166174119_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gGF1LlQnSG7ssR3CkoD5-zwxJc56ZKfJwA6Tz7AyM24FG--zsO4rlTvy-ZzqKvVx98&_nc_ohc=y1uvOTY1dWMQ7kNvwEg3yOs&_nc_gid=x_M-3yWkZUIMM3iQvxI0DA&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af2_B80UQHrcOdhmRyRG7b15w4kgq9FM3lE1wf6Ja25lxA&oe=69DC397C&_nc_sid=847350",
+            "url": "https://scontent-sea1-1.cdninstagram.com/v/t51.71878-15/561417446_3720983661371466_541272023475015468_n.jpg?stp=c0.248.640.640a_dst-jpg_e15_s150x150_tt6&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=106&_nc_oc=Q6cZ2gFubx0b2i1N83ggbaebWlJqip604nmp0nlMJlGP3NPsUXvr-gpljn9B1PEiyIxQZ7c&_nc_ohc=2zA4wG8LfHwQ7kNvwFVY-W3&_nc_gid=yJbZIdmPFk-ETUKEKBM86g&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af0BJmVmvDJCi1iy1w1p0Qi7ysDnLT5GKewg2xn06GgZ4Q&oe=69DC6E2F&_nc_sid=847350",
             "width": 150
           },
           "full_image_version": null
         },
-        "ranked_position": -1766243006,
-        "seen_ranked_position": -1766243006,
-        "media_count": 12,
-        "updated_timestamp": 1766243006,
-        "latest_reel_media": 1766242839,
+        "ranked_position": -1760617676,
+        "seen_ranked_position": -1760617676,
+        "media_count": 100,
+        "updated_timestamp": 1760617676,
+        "latest_reel_media": 1760084710,
         "seen": null,
-        "can_reply": false,
+        "can_reply": true,
         "can_react_with_avatar": false,
         "contains_stitched_media_blocked_by_rm": false,
         "user": {
-          "strong_id__": "787132",
-          "pk": "787132",
-          "pk_id": "787132",
-          "id": "787132",
-          "username": "natgeo",
-          "full_name": "National Geographic",
+          "strong_id__": "1114341851",
+          "pk": "1114341851",
+          "pk_id": "1114341851",
+          "id": "1114341851",
+          "username": "nilova.mila",
+          "full_name": "Mila Nilova | Путешествия, Семья, Дом, Творчество, Хоумскулинг",
           "is_private": false,
-          "is_verified": true,
-          "profile_pic_id": "3865702555259028436_787132",
-          "profile_pic_url": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/658394700_18646025323019133_1238097625523693065_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGF1LlQnSG7ssR3CkoD5-zwxJc56ZKfJwA6Tz7AyM24FG--zsO4rlTvy-ZzqKvVx98&_nc_ohc=XbeNvhLXv28Q7kNvwHmFjmd&_nc_gid=x_M-3yWkZUIMM3iQvxI0DA&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GExOPid9_9kTdj5CAAkmmA47my4RbmNDAQAB1501500j-ccb7-5&oh=00_Af2ZO22RU69iffU67j1H4GKjYC1zLW5ITIbr9lKTDYXAKA&oe=69DC51E9&_nc_sid=847350",
+          "is_verified": false,
+          "profile_pic_id": "3798513769124094296_1114341851",
+          "profile_pic_url": "https://scontent-sea1-1.cdninstagram.com/v/t51.82787-19/607913035_18547593838037852_3619425531352927300_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gFubx0b2i1N83ggbaebWlJqip604nmp0nlMJlGP3NPsUXvr-gpljn9B1PEiyIxQZ7c&_nc_ohc=dTVSH0nhJxsQ7kNvwF870NZ&_nc_gid=yJbZIdmPFk-ETUKEKBM86g&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GEsEPCRciyc28ORBAERMRR9YyDoybmNDAQAB1501500j-ccb7-5&oh=00_Af2eLGOs_IhTxeQONcUYr4HhRGY_-7oqcXVFmCIA9Ef-rA&oe=69DC72BF&_nc_sid=847350",
           "account_badges": [],
-          "interop_messaging_user_fbid": 113671860027320,
+          "interop_messaging_user_fbid": 115919179800872,
           "is_creator_agent_enabled": false
         },
-        "pk": "17983616051768088",
+        "pk": "18415168747119768",
         "items": []
       },
       {
-        "strong_id__": "highlight:18018069326790931",
-        "id": "highlight:18018069326790931",
+        "strong_id__": "highlight:17977344911917324",
+        "id": "highlight:17977344911917324",
         "reel_type": "highlight_reel",
-        "title": "BOTW 2026",
-        "created_at": 1761052067,
+        "title": "Australia 25",
+        "created_at": 1759698558,
         "is_pinned_highlight": false,
         "prefetch_count": 0,
         "highlight_reel_type": "DEFAULT",
@@ -3448,50 +3444,54 @@ Get part (one page) of following users. Returns a list of User objects.
         "can_reshare": true,
         "is_archived": false,
         "cover_media": {
-          "crop_rect": null,
-          "media_id": null,
+          "crop_rect": [
+            0,
+            0.26942567567567566,
+            1
+          ],
+          "media_id": "3735181374413487831_1114341851",
           "upload_id": null,
           "cropped_image_version": {
             "height": 150,
             "scans_profile": "",
-            "url": "https://scontent-sea5-1.cdninstagram.com/v/t51.71878-15/566565317_698760956040170_6433458010492878047_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gGF1LlQnSG7ssR3CkoD5-zwxJc56ZKfJwA6Tz7AyM24FG--zsO4rlTvy-ZzqKvVx98&_nc_ohc=KnNItKNMJcAQ7kNvwFT56Np&_nc_gid=x_M-3yWkZUIMM3iQvxI0DA&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af0z57bddAb5JkHQFTFJkslzbwFOyq97JHaLm78ENXTwlg&oe=69DC5233&_nc_sid=847350",
+            "url": "https://scontent-sea1-1.cdninstagram.com/v/t51.82787-15/558668250_18529760911037852_1660113461597584323_n.jpg?stp=c0.564.1179.1179a_dst-jpg_e15_s150x150_tt6&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gFubx0b2i1N83ggbaebWlJqip604nmp0nlMJlGP3NPsUXvr-gpljn9B1PEiyIxQZ7c&_nc_ohc=OOyjn9xOoqgQ7kNvwEF8EkP&_nc_gid=yJbZIdmPFk-ETUKEKBM86g&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af0eDtCRh3vP82QzIsohXrjzzXowTAcLVC1WXkf-AyioFA&oe=69DC4FE9&_nc_sid=847350",
             "width": 150
           },
           "full_image_version": null
         },
-        "ranked_position": -1762880767,
-        "seen_ranked_position": -1762880767,
-        "media_count": 11,
-        "updated_timestamp": 1762880767,
-        "latest_reel_media": 1762870363,
+        "ranked_position": -1759698558,
+        "seen_ranked_position": -1759698558,
+        "media_count": 80,
+        "updated_timestamp": 1759698558,
+        "latest_reel_media": 1759656472,
         "seen": null,
-        "can_reply": false,
+        "can_reply": true,
         "can_react_with_avatar": false,
         "contains_stitched_media_blocked_by_rm": false,
         "user": {
-          "strong_id__": "787132",
-          "pk": "787132",
-          "pk_id": "787132",
-          "id": "787132",
-          "username": "natgeo",
-          "full_name": "National Geographic",
+          "strong_id__": "1114341851",
+          "pk": "1114341851",
+          "pk_id": "1114341851",
+          "id": "1114341851",
+          "username": "nilova.mila",
+          "full_name": "Mila Nilova | Путешествия, Семья, Дом, Творчество, Хоумскулинг",
           "is_private": false,
-          "is_verified": true,
-          "profile_pic_id": "3865702555259028436_787132",
-          "profile_pic_url": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/658394700_18646025323019133_1238097625523693065_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGF1LlQnSG7ssR3CkoD5-zwxJc56ZKfJwA6Tz7AyM24FG--zsO4rlTvy-ZzqKvVx98&_nc_ohc=XbeNvhLXv28Q7kNvwHmFjmd&_nc_gid=x_M-3yWkZUIMM3iQvxI0DA&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GExOPid9_9kTdj5CAAkmmA47my4RbmNDAQAB1501500j-ccb7-5&oh=00_Af2ZO22RU69iffU67j1H4GKjYC1zLW5ITIbr9lKTDYXAKA&oe=69DC51E9&_nc_sid=847350",
+          "is_verified": false,
+          "profile_pic_id": "3798513769124094296_1114341851",
+          "profile_pic_url": "https://scontent-sea1-1.cdninstagram.com/v/t51.82787-19/607913035_18547593838037852_3619425531352927300_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gFubx0b2i1N83ggbaebWlJqip604nmp0nlMJlGP3NPsUXvr-gpljn9B1PEiyIxQZ7c&_nc_ohc=dTVSH0nhJxsQ7kNvwF870NZ&_nc_gid=yJbZIdmPFk-ETUKEKBM86g&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GEsEPCRciyc28ORBAERMRR9YyDoybmNDAQAB1501500j-ccb7-5&oh=00_Af2eLGOs_IhTxeQONcUYr4HhRGY_-7oqcXVFmCIA9Ef-rA&oe=69DC72BF&_nc_sid=847350",
           "account_badges": [],
-          "interop_messaging_user_fbid": 113671860027320,
+          "interop_messaging_user_fbid": 115919179800872,
           "is_creator_agent_enabled": false
         },
-        "pk": "18018069326790931",
+        "pk": "17977344911917324",
         "items": []
       },
       {
-        "strong_id__": "highlight:17893209825281221",
-        "id": "highlight:17893209825281221",
+        "strong_id__": "highlight:17934466041066904",
+        "id": "highlight:17934466041066904",
         "reel_type": "highlight_reel",
-        "title": "Limitless",
-        "created_at": 1754674432,
+        "title": "Australia 25",
+        "created_at": 1759322098,
         "is_pinned_highlight": false,
         "prefetch_count": 0,
         "highlight_reel_type": "DEFAULT",
@@ -3501,49 +3501,53 @@ Get part (one page) of following users. Returns a list of User objects.
         "can_reshare": true,
         "is_archived": false,
         "cover_media": {
-          "crop_rect": null,
-          "media_id": null,
+          "crop_rect": [
+            0,
+            0.3217905405405405,
+            1
+          ],
+          "media_id": "3732226846084715516_1114341851",
           "upload_id": null,
           "cropped_image_version": {
             "height": 150,
             "scans_profile": "",
-            "url": "https://scontent-sea5-1.cdninstagram.com/v/t51.71878-15/529839968_1442036193794395_3733404095584309526_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gGF1LlQnSG7ssR3CkoD5-zwxJc56ZKfJwA6Tz7AyM24FG--zsO4rlTvy-ZzqKvVx98&_nc_ohc=-NOYVJuE190Q7kNvwFnR-d9&_nc_gid=x_M-3yWkZUIMM3iQvxI0DA&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af1k5_R0Y3jijFj01yta8MXiJnOLr6Mi7smZ_QMnIkNHbQ&oe=69DC571C&_nc_sid=847350",
+            "url": "https://scontent-sea1-1.cdninstagram.com/v/t51.82787-15/554981201_18528911128037852_7685325799533315878_n.jpg?stp=c0.674.1179.1179a_dst-jpg_e15_s150x150_tt6&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gFubx0b2i1N83ggbaebWlJqip604nmp0nlMJlGP3NPsUXvr-gpljn9B1PEiyIxQZ7c&_nc_ohc=RWo9I1p5E-cQ7kNvwGnuwXq&_nc_gid=yJbZIdmPFk-ETUKEKBM86g&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af1ZEGSrQ47SqykQQdt8CEBtYzMoHNGQrjltUJN8qLqFFA&oe=69DC6585&_nc_sid=847350",
             "width": 150
           },
           "full_image_version": null
         },
-        "ranked_position": -1754674495,
-        "seen_ranked_position": -1754674495,
-        "media_count": 11,
-        "updated_timestamp": 1754674495,
-        "latest_reel_media": 1752840788,
+        "ranked_position": -1759322098,
+        "seen_ranked_position": -1759322098,
+        "media_count": 100,
+        "updated_timestamp": 1759322098,
+        "latest_reel_media": 1759239851,
         "seen": null,
-        "can_reply": false,
+        "can_reply": true,
         "can_react_with_avatar": false,
         "contains_stitched_media_blocked_by_rm": false,
         "user": {
-          "strong_id__": "787132",
-          "pk": "787132",
-          "pk_id": "787132",
-          "id": "787132",
-          "username": "natgeo",
-          "full_name": "National Geographic",
+          "strong_id__": "1114341851",
+          "pk": "1114341851",
+          "pk_id": "1114341851",
+          "id": "1114341851",
+          "username": "nilova.mila",
+          "full_name": "Mila Nilova | Путешествия, Семья, Дом, Творчество, Хоумскулинг",
           "is_private": false,
-          "is_verified": true,
-          "profile_pic_id": "3865702555259028436_787132",
-          "profile_pic_url": "https://scontent-sea5-1.cdninstagram.com/v/t51.82787-19/658394700_18646025323019133_1238097625523693065_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea5-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gGF1LlQnSG7ssR3CkoD5-zwxJc56ZKfJwA6Tz7AyM24FG--zsO4rlTvy-ZzqKvVx98&_nc_ohc=XbeNvhLXv28Q7kNvwHmFjmd&_nc_gid=x_M-3yWkZUIMM3iQvxI0DA&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GExOPid9_9kTdj5CAAkmmA47my4RbmNDAQAB1501500j-ccb7-5&oh=00_Af2ZO22RU69iffU67j1H4GKjYC1zLW5ITIbr9lKTDYXAKA&oe=69DC51E9&_nc_sid=847350",
+          "is_verified": false,
+          "profile_pic_id": "3798513769124094296_1114341851",
+          "profile_pic_url": "https://scontent-sea1-1.cdninstagram.com/v/t51.82787-19/607913035_18547593838037852_3619425531352927300_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=108&_nc_oc=Q6cZ2gFubx0b2i1N83ggbaebWlJqip604nmp0nlMJlGP3NPsUXvr-gpljn9B1PEiyIxQZ7c&_nc_ohc=dTVSH0nhJxsQ7kNvwF870NZ&_nc_gid=yJbZIdmPFk-ETUKEKBM86g&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GEsEPCRciyc28ORBAERMRR9YyDoybmNDAQAB1501500j-ccb7-5&oh=00_Af2eLGOs_IhTxeQONcUYr4HhRGY_-7oqcXVFmCIA9Ef-rA&oe=69DC72BF&_nc_sid=847350",
           "account_badges": [],
-          "interop_messaging_user_fbid": 113671860027320,
+          "interop_messaging_user_fbid": 115919179800872,
           "is_creator_agent_enabled": false
         },
-        "pk": "17893209825281221",
+        "pk": "17934466041066904",
         "items": []
       }
     ],
     "last_paginated_highlights_node_edited_at_ts": null,
     "has_fetched_all_remaining_highlights": null,
     "suggested_highlights": {},
-    "cursor": null,
+    "cursor": "QVFCdW5hd2JEQ1NIRmcyalpLbk5JV1FXaFQyNVVSbTRlNWw3WndjQ3c3NUlNdXpQX0E5NmlOV2oxeGRqNk90TFVrWlBCQy1IUVdYX0Vib0cyZVoxU3NWSA==",
     "highlights_tray_type": "DEFAULT",
     "status": "ok"
   },
@@ -3569,7 +3573,7 @@ Get part (one page) of following users. Returns a list of User objects.
 
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v2/user/highlights/by/username?username=natgeo"
+      "https://api.hikerapi.com/v2/user/highlights/by/username?username=nike"
     ```
 
 === "Python"
@@ -3578,7 +3582,7 @@ Get part (one page) of following users. Returns a list of User objects.
     from hikerapi import Client
 
     cl = Client(token="YOUR_TOKEN")
-    result = cl.user_highlights_by_username_v2(username="natgeo")
+    result = cl.user_highlights_by_username_v2(username="nike")
     ```
 
 === "Python (requests)"
@@ -3586,11 +3590,10 @@ Get part (one page) of following users. Returns a list of User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/highlights/by/username",
-        headers=headers,
-        params={"username": "natgeo"},
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"username": "nike"},
     )
     print(response.json())
     ```
@@ -3599,7 +3602,7 @@ Get part (one page) of following users. Returns a list of User objects.
 
     ```javascript
     const response = await fetch(
-      "https://api.hikerapi.com/v2/user/highlights/by/username?username=natgeo",
+      "https://api.hikerapi.com/v2/user/highlights/by/username?username=nike",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
@@ -3613,11 +3616,11 @@ Get part (one page) of following users. Returns a list of User objects.
   "response": {
     "tray": [
       {
-        "strong_id__": "highlight:17983616051768088",
-        "id": "highlight:17983616051768088",
+        "strong_id__": "highlight:17975319242920589",
+        "id": "highlight:17975319242920589",
         "reel_type": "highlight_reel",
-        "title": "Gift Guide",
-        "created_at": 1764846391,
+        "title": "Just Do It",
+        "created_at": 1757529224,
         "is_pinned_highlight": false,
         "prefetch_count": 0,
         "highlight_reel_type": "DEFAULT",
@@ -3633,142 +3636,36 @@ Get part (one page) of following users. Returns a list of User objects.
           "cropped_image_version": {
             "height": 150,
             "scans_profile": "",
-            "url": "https://scontent-xxb1-1.cdninstagram.com/v/t51.71878-15/588606107_1189628196448486_727960022166174119_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-xxb1-1.cdninstagram.com&_nc_cat=110&_nc_oc=Q6cZ2gHUalXwQ3giN2dX0L_-0yIuz9Kt0MsiiI9PT5YbPLbzZJqjEAM0qXEqHQMDEEAj-t0&_nc_ohc=y1uvOTY1dWMQ7kNvwGLVuhO&_nc_gid=rp2HsQQ6o3PpRPuZmzicMQ&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af1EzUg1rBSv0IjHf6RLhSYcCvVwKbzdGsBUinXznCXC1g&oe=69DC397C&_nc_sid=847350",
+            "url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.71878-15/544818894_2419507208428757_4822384952945732927_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_cat=105&_nc_oc=Q6cZ2gFAOQhrGwbE8e9NwjpurM9u-9x8bmwKpr5aIQiPj4fvU4ikySnNu1uG_B_QB2HWDR8&_nc_ohc=X2i_Nlk1pnsQ7kNvwGeKLxj&_nc_gid=TVNwKRhgc-lwrPVjfj2VxA&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af151n3iL2FlS8JKsw1AKKJ0h276shbfApcGSYSKKmElAw&oe=69DC51D1&_nc_sid=847350",
             "width": 150
           },
           "full_image_version": null
         },
-        "ranked_position": -1766243006,
-        "seen_ranked_position": -1766243006,
-        "media_count": 12,
-        "updated_timestamp": 1766243006,
-        "latest_reel_media": 1766242839,
+        "ranked_position": -1758300565,
+        "seen_ranked_position": -1758300565,
+        "media_count": 49,
+        "updated_timestamp": 1758300565,
+        "latest_reel_media": 1758300505,
         "seen": null,
-        "can_reply": false,
+        "can_reply": true,
         "can_react_with_avatar": false,
         "contains_stitched_media_blocked_by_rm": false,
         "user": {
-          "strong_id__": "787132",
-          "pk": "787132",
-          "pk_id": "787132",
-          "id": "787132",
-          "username": "natgeo",
-          "full_name": "National Geographic",
+          "strong_id__": "13460080",
+          "pk": "13460080",
+          "pk_id": "13460080",
+          "id": "13460080",
+          "username": "nike",
+          "full_name": "Nike",
           "is_private": false,
           "is_verified": true,
-          "profile_pic_id": "3865702555259028436_787132",
-          "profile_pic_url": "https://scontent-xxb1-1.cdninstagram.com/v/t51.82787-19/658394700_18646025323019133_1238097625523693065_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-xxb1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gHUalXwQ3giN2dX0L_-0yIuz9Kt0MsiiI9PT5YbPLbzZJqjEAM0qXEqHQMDEEAj-t0&_nc_ohc=XbeNvhLXv28Q7kNvwHnRixB&_nc_gid=rp2HsQQ6o3PpRPuZmzicMQ&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GExOPid9_9kTdj5CAAkmmA47my4RbmNDAQAB1501500j-ccb7-5&oh=00_Af3mo9N2O4fcffXx-q-2N79VMCiw9-Wkx9iUrrdfeqFLcQ&oe=69DC51E9&_nc_sid=847350",
+          "profile_pic_id": "3727349705534754477_13460080",
+          "profile_pic_url": "https://scontent-dfw5-1.cdninstagram.com/v/t51.82787-19/551608484_18567162979020081_1135468084872726555_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zOTkuYzIifQ&_nc_ht=scontent-dfw5-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gFAOQhrGwbE8e9NwjpurM9u-9x8bmwKpr5aIQiPj4fvU4ikySnNu1uG_B_QB2HWDR8&_nc_ohc=JBfXLgZscbAQ7kNvwGVz6IT&_nc_gid=TVNwKRhgc-lwrPVjfj2VxA&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GKTg4CAx7dmBvPZBABvIoQw1-sEPbmNDAQAB1501500j-ccb7-5&oh=00_Af0sN_5mXq0UBP_qL4n_rLX7Kc4pS6QV12O-Ebo3FI7n0g&oe=69DC447A&_nc_sid=847350",
           "account_badges": [],
-          "interop_messaging_user_fbid": 113671860027320,
+          "interop_messaging_user_fbid": 113294420064920,
           "is_creator_agent_enabled": false
         },
-        "pk": "17983616051768088",
-        "items": []
-      },
-      {
-        "strong_id__": "highlight:18018069326790931",
-        "id": "highlight:18018069326790931",
-        "reel_type": "highlight_reel",
-        "title": "BOTW 2026",
-        "created_at": 1761052067,
-        "is_pinned_highlight": false,
-        "prefetch_count": 0,
-        "highlight_reel_type": "DEFAULT",
-        "is_converted_to_clips": false,
-        "is_nux": false,
-        "can_gif_quick_reply": true,
-        "can_reshare": true,
-        "is_archived": false,
-        "cover_media": {
-          "crop_rect": null,
-          "media_id": null,
-          "upload_id": null,
-          "cropped_image_version": {
-            "height": 150,
-            "scans_profile": "",
-            "url": "https://scontent-xxb1-1.cdninstagram.com/v/t51.71878-15/566565317_698760956040170_6433458010492878047_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-xxb1-1.cdninstagram.com&_nc_cat=102&_nc_oc=Q6cZ2gHUalXwQ3giN2dX0L_-0yIuz9Kt0MsiiI9PT5YbPLbzZJqjEAM0qXEqHQMDEEAj-t0&_nc_ohc=KnNItKNMJcAQ7kNvwFTXxDq&_nc_gid=rp2HsQQ6o3PpRPuZmzicMQ&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af2oOBgPvitq3-AfqVRzEPIM8g68wibS8KkaeUzisArqDg&oe=69DC5233&_nc_sid=847350",
-            "width": 150
-          },
-          "full_image_version": null
-        },
-        "ranked_position": -1762880767,
-        "seen_ranked_position": -1762880767,
-        "media_count": 11,
-        "updated_timestamp": 1762880767,
-        "latest_reel_media": 1762870363,
-        "seen": null,
-        "can_reply": false,
-        "can_react_with_avatar": false,
-        "contains_stitched_media_blocked_by_rm": false,
-        "user": {
-          "strong_id__": "787132",
-          "pk": "787132",
-          "pk_id": "787132",
-          "id": "787132",
-          "username": "natgeo",
-          "full_name": "National Geographic",
-          "is_private": false,
-          "is_verified": true,
-          "profile_pic_id": "3865702555259028436_787132",
-          "profile_pic_url": "https://scontent-xxb1-1.cdninstagram.com/v/t51.82787-19/658394700_18646025323019133_1238097625523693065_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-xxb1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gHUalXwQ3giN2dX0L_-0yIuz9Kt0MsiiI9PT5YbPLbzZJqjEAM0qXEqHQMDEEAj-t0&_nc_ohc=XbeNvhLXv28Q7kNvwHnRixB&_nc_gid=rp2HsQQ6o3PpRPuZmzicMQ&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GExOPid9_9kTdj5CAAkmmA47my4RbmNDAQAB1501500j-ccb7-5&oh=00_Af3mo9N2O4fcffXx-q-2N79VMCiw9-Wkx9iUrrdfeqFLcQ&oe=69DC51E9&_nc_sid=847350",
-          "account_badges": [],
-          "interop_messaging_user_fbid": 113671860027320,
-          "is_creator_agent_enabled": false
-        },
-        "pk": "18018069326790931",
-        "items": []
-      },
-      {
-        "strong_id__": "highlight:17893209825281221",
-        "id": "highlight:17893209825281221",
-        "reel_type": "highlight_reel",
-        "title": "Limitless",
-        "created_at": 1754674432,
-        "is_pinned_highlight": false,
-        "prefetch_count": 0,
-        "highlight_reel_type": "DEFAULT",
-        "is_converted_to_clips": false,
-        "is_nux": false,
-        "can_gif_quick_reply": true,
-        "can_reshare": true,
-        "is_archived": false,
-        "cover_media": {
-          "crop_rect": null,
-          "media_id": null,
-          "upload_id": null,
-          "cropped_image_version": {
-            "height": 150,
-            "scans_profile": "",
-            "url": "https://scontent-xxb1-1.cdninstagram.com/v/t51.71878-15/529839968_1442036193794395_3733404095584309526_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_ht=scontent-xxb1-1.cdninstagram.com&_nc_cat=107&_nc_oc=Q6cZ2gHUalXwQ3giN2dX0L_-0yIuz9Kt0MsiiI9PT5YbPLbzZJqjEAM0qXEqHQMDEEAj-t0&_nc_ohc=-NOYVJuE190Q7kNvwEgDatK&_nc_gid=rp2HsQQ6o3PpRPuZmzicMQ&edm=ALbqBD0BAAAA&ccb=7-5&oh=00_Af00cfw6brMyQ66F5NTJgobF5gbi44rGn8gojk7umoCuMQ&oe=69DC571C&_nc_sid=847350",
-            "width": 150
-          },
-          "full_image_version": null
-        },
-        "ranked_position": -1754674495,
-        "seen_ranked_position": -1754674495,
-        "media_count": 11,
-        "updated_timestamp": 1754674495,
-        "latest_reel_media": 1752840788,
-        "seen": null,
-        "can_reply": false,
-        "can_react_with_avatar": false,
-        "contains_stitched_media_blocked_by_rm": false,
-        "user": {
-          "strong_id__": "787132",
-          "pk": "787132",
-          "pk_id": "787132",
-          "id": "787132",
-          "username": "natgeo",
-          "full_name": "National Geographic",
-          "is_private": false,
-          "is_verified": true,
-          "profile_pic_id": "3865702555259028436_787132",
-          "profile_pic_url": "https://scontent-xxb1-1.cdninstagram.com/v/t51.82787-19/658394700_18646025323019133_1238097625523693065_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=scontent-xxb1-1.cdninstagram.com&_nc_cat=1&_nc_oc=Q6cZ2gHUalXwQ3giN2dX0L_-0yIuz9Kt0MsiiI9PT5YbPLbzZJqjEAM0qXEqHQMDEEAj-t0&_nc_ohc=XbeNvhLXv28Q7kNvwHnRixB&_nc_gid=rp2HsQQ6o3PpRPuZmzicMQ&edm=ALbqBD0BAAAA&ccb=7-5&ig_cache_key=GExOPid9_9kTdj5CAAkmmA47my4RbmNDAQAB1501500j-ccb7-5&oh=00_Af3mo9N2O4fcffXx-q-2N79VMCiw9-Wkx9iUrrdfeqFLcQ&oe=69DC51E9&_nc_sid=847350",
-          "account_badges": [],
-          "interop_messaging_user_fbid": 113671860027320,
-          "is_creator_agent_enabled": false
-        },
-        "pk": "17893209825281221",
+        "pk": "17975319242920589",
         "items": []
       }
     ],
@@ -3809,10 +3706,9 @@ Get user medias. Results chunk. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/medias",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -5378,10 +5274,9 @@ Get user medias. Results chunk. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/stories",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -6202,10 +6097,9 @@ Get user medias. Results chunk. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/stories/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())
@@ -7027,10 +6921,9 @@ expand_suggestion=True for more detailed response
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/suggested/profiles",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -7149,10 +7042,9 @@ Get usertag medias
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/tag/medias",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -8151,10 +8043,9 @@ Get part of user videos with cursor (default 50 media per request)
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/user/videos",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -8201,10 +8092,9 @@ Get userstream (info) by id. Returns user stream data.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/userstream/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "787132"},
     )
     print(response.json())
@@ -8741,10 +8631,9 @@ Get userstream (info) by username. Returns user stream data.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v2/userstream/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())

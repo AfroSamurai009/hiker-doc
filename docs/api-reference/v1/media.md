@@ -38,10 +38,9 @@ Get media object. Returns a Media object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/by/code",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"code": "DRqAYKuAIUx"},
     )
     print(response.json())
@@ -308,10 +307,9 @@ Get media object. Returns a Media object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -581,10 +579,9 @@ Get media object. Returns a Media object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())
@@ -851,10 +848,9 @@ Get media code from pk
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/code/from/pk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"pk": "3776832898280228145"},
     )
     print(response.json())
@@ -902,10 +898,9 @@ Get comments on a media. Returns a list of Comment objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/comments",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -1022,10 +1017,9 @@ Get comments on a media. Returns a list of Comment objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/comments/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -1134,10 +1128,9 @@ Download photo using media pk
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/download/photo",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -1175,10 +1168,9 @@ Download photo using URL
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/download/photo/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())
@@ -1216,10 +1208,9 @@ Download video using media pk
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/download/video",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -1257,10 +1248,9 @@ Download video using URL
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/download/video/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())
@@ -1307,10 +1297,9 @@ Get media insight
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/insight",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145"},
     )
     print(response.json())
@@ -1394,10 +1383,9 @@ Get user's likers. Returns a list of User objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/likers",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -1481,10 +1469,9 @@ Return info about media and user from post URL
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/oembed",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())
@@ -1556,10 +1543,9 @@ Get media pk from code
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/pk/from/code",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"code": "DRqAYKuAIUx"},
     )
     print(response.json())
@@ -1615,10 +1601,9 @@ Get Media pk from URL
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/pk/from/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/p/DRqAYKuAIUx/"},
     )
     print(response.json())
@@ -1674,10 +1659,9 @@ Get author of the media
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/media/user",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145"},
     )
     print(response.json())

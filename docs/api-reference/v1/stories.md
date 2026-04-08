@@ -38,10 +38,9 @@ Get story object by id. Returns a Story object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/story/by/id",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -88,10 +87,9 @@ Get story object by id. Returns a Story object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/story/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/stories/natgeo/3776832898280228145/"},
     )
     print(response.json())
@@ -138,10 +136,9 @@ Download story media by story id. Returns story download data.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/story/download",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
     print(response.json())
@@ -190,10 +187,9 @@ Example: https://ins...ram.com/stories/example/30038568123745341231284. Returns 
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/story/download/by/story/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/stories/natgeo/3776832898280228145/"},
     )
     print(response.json())
@@ -244,10 +240,9 @@ Example: https://scontent-lga3-1.cdnins...ram.com/v/t66.30100-16/
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/story/download/by/url",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"url": "https://www.instagram.com/stories/natgeo/3776832898280228145/"},
     )
     print(response.json())
@@ -296,10 +291,9 @@ Example: https://scontent-lga3-1.cdnins...ram.com/v/t66.30100-16/
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/stories",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -526,10 +520,9 @@ Get user stories. Returns a list of Story objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/stories/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())

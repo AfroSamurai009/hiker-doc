@@ -21,7 +21,7 @@ Prefer v2/highlight/by/id. Returns a Highlight object.
 
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/highlight/by/id?id=17893209825281221"
+      "https://api.hikerapi.com/v1/highlight/by/id?id=18085475671830440"
     ```
 
 === "Python (requests)"
@@ -29,11 +29,10 @@ Prefer v2/highlight/by/id. Returns a Highlight object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/highlight/by/id",
-        headers=headers,
-        params={"id": "17893209825281221"},
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"id": "18085475671830440"},
     )
     print(response.json())
     ```
@@ -42,7 +41,7 @@ Prefer v2/highlight/by/id. Returns a Highlight object.
 
     ```javascript
     const response = await fetch(
-      "https://api.hikerapi.com/v1/highlight/by/id?id=17893209825281221",
+      "https://api.hikerapi.com/v1/highlight/by/id?id=18085475671830440",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
@@ -339,7 +338,7 @@ Get highlight object by id. Returns a Highlight object.
 
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/highlight/by/url?url=https://www.instagram.com/stories/highlights/17893209825281221/"
+      "https://api.hikerapi.com/v1/highlight/by/url?url=https://www.instagram.com/stories/highlights/18085475671830440/"
     ```
 
 === "Python"
@@ -348,7 +347,7 @@ Get highlight object by id. Returns a Highlight object.
     from hikerapi import Client
 
     cl = Client(token="YOUR_TOKEN")
-    result = cl.highlight_by_url_v1(url="https://www.instagram.com/stories/highlights/17893209825281221/")
+    result = cl.highlight_by_url_v1(url="https://www.instagram.com/stories/highlights/18085475671830440/")
     ```
 
 === "Python (requests)"
@@ -356,11 +355,10 @@ Get highlight object by id. Returns a Highlight object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/highlight/by/url",
-        headers=headers,
-        params={"url": "https://www.instagram.com/stories/highlights/17893209825281221/"},
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"url": "https://www.instagram.com/stories/highlights/18085475671830440/"},
     )
     print(response.json())
     ```
@@ -369,7 +367,7 @@ Get highlight object by id. Returns a Highlight object.
 
     ```javascript
     const response = await fetch(
-      "https://api.hikerapi.com/v1/highlight/by/url?url=https://www.instagram.com/stories/highlights/17893209825281221/",
+      "https://api.hikerapi.com/v1/highlight/by/url?url=https://www.instagram.com/stories/highlights/18085475671830440/",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
@@ -685,10 +683,9 @@ Get highlight object by id. Returns a Highlight object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/highlights",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
     print(response.json())
@@ -846,10 +843,9 @@ Get highlight object by id. Returns a Highlight object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/user/highlights/by/username",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"username": "natgeo"},
     )
     print(response.json())

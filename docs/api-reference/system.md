@@ -25,10 +25,9 @@ Balance
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/sys/balance",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
     )
     print(response.json())
     ```

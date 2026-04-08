@@ -38,10 +38,9 @@ Get hashtag object by name. Returns a Hashtag object.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/by/name",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -104,10 +103,9 @@ Get hashtag clips (reels). Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/clips",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -672,10 +670,9 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/clips/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -1208,10 +1205,9 @@ Get hashtag medias top. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/recent",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -1259,10 +1255,9 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/recent/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -1322,10 +1317,9 @@ Get hashtag medias top. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/top",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -1862,10 +1856,9 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/top/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
@@ -2443,10 +2436,9 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
     ```python
     import requests
 
-    headers = {"x-access-key": "YOUR_TOKEN"}
     response = requests.get(
         "https://api.hikerapi.com/v1/hashtag/medias/top/recent/chunk",
-        headers=headers,
+        headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
     print(response.json())
