@@ -23,6 +23,7 @@ Get music track object by canonical_id. Returns audio track data.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/track/by/canonical/id?canonical_id=1218296241668996"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -32,6 +33,7 @@ Get music track object by canonical_id. Returns audio track data.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.track_by_canonical_id_v2(canonical_id="1218296241668996")
+    # Next page: cl.track_by_canonical_id_v2(canonical_id="1218296241668996", page_id="...")
     ```
 
 === "Python (requests)"
@@ -44,6 +46,7 @@ Get music track object by canonical_id. Returns audio track data.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"canonical_id": "1218296241668996"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -55,6 +58,7 @@ Get music track object by canonical_id. Returns audio track data.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -2112,6 +2116,7 @@ Get music track object by id. Returns audio track data.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/track/by/id?track_id=797665381922277"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -2121,6 +2126,7 @@ Get music track object by id. Returns audio track data.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.track_by_id_v2(track_id="797665381922277")
+    # Next page: cl.track_by_id_v2(track_id="797665381922277", page_id="...")
     ```
 
 === "Python (requests)"
@@ -2133,6 +2139,7 @@ Get music track object by id. Returns audio track data.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"track_id": "797665381922277"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -2144,6 +2151,7 @@ Get music track object by id. Returns audio track data.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -4079,6 +4087,7 @@ Get music track object by id. Returns audio track data.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/track/stream/by/id?track_id=797665381922277"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -4088,6 +4097,7 @@ Get music track object by id. Returns audio track data.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.track_stream_by_id_v2(track_id="797665381922277")
+    # Next page: cl.track_stream_by_id_v2(track_id="797665381922277", page_id="...")
     ```
 
 === "Python (requests)"
@@ -4100,6 +4110,7 @@ Get music track object by id. Returns audio track data.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"track_id": "797665381922277"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -4111,6 +4122,7 @@ Get music track object by id. Returns audio track data.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -5907,6 +5919,7 @@ Search accounts. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v3/fbsearch/accounts?query=natgeo"
+    # Next page: add &page_token=... from previous response
     ```
 
 === "Python"
@@ -5916,6 +5929,7 @@ Search accounts. Returns a list of matching results.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.fbsearch_accounts_v3(query="natgeo")
+    # Next page: cl.fbsearch_accounts_v3(query="natgeo", page_token="...")
     ```
 
 === "Python (requests)"
@@ -5928,6 +5942,7 @@ Search accounts. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "page_token": "..." to params
     print(response.json())
     ```
 
@@ -5939,6 +5954,7 @@ Search accounts. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_token=... to URL
     ```
 
 <details>
@@ -6258,6 +6274,7 @@ Search reels by keyword. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v3/fbsearch/reels?query=natgeo"
+    # Next page: add &reels_max_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -6270,6 +6287,7 @@ Search reels by keyword. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "reels_max_id": "..." to params
     print(response.json())
     ```
 
@@ -6281,6 +6299,7 @@ Search reels by keyword. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &reels_max_id=... to URL
     ```
 
 <details>
@@ -8610,6 +8629,7 @@ Search top content by keyword. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v3/fbsearch/topsearch?query=natgeo"
+    # Next page: add &next_max_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -8622,6 +8642,7 @@ Search top content by keyword. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "next_max_id": "..." to params
     print(response.json())
     ```
 
@@ -8633,6 +8654,7 @@ Search top content by keyword. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &next_max_id=... to URL
     ```
 
 <details>

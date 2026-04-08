@@ -23,6 +23,7 @@ Search accounts. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/fbsearch/accounts?query=natgeo"
+    # Next page: add &page_token=... from previous response
     ```
 
 === "Python"
@@ -32,6 +33,7 @@ Search accounts. Returns a list of matching results.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.fbsearch_accounts_v2(query="natgeo")
+    # Next page: cl.fbsearch_accounts_v2(query="natgeo", page_token="...")
     ```
 
 === "Python (requests)"
@@ -44,6 +46,7 @@ Search accounts. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "page_token": "..." to params
     print(response.json())
     ```
 
@@ -55,6 +58,7 @@ Search accounts. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_token=... to URL
     ```
 
 <details>
@@ -310,6 +314,7 @@ Search top content by keyword. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/fbsearch/reels?query=natgeo"
+    # Next page: add &reels_max_id=... from previous response
     ```
 
 === "Python"
@@ -319,6 +324,7 @@ Search top content by keyword. Returns a list of matching results.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.fbsearch_reels_v2(query="natgeo")
+    # Next page: cl.fbsearch_reels_v2(query="natgeo", reels_max_id="...")
     ```
 
 === "Python (requests)"
@@ -331,6 +337,7 @@ Search top content by keyword. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "reels_max_id": "..." to params
     print(response.json())
     ```
 
@@ -342,6 +349,7 @@ Search top content by keyword. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &reels_max_id=... to URL
     ```
 
 <details>
@@ -1948,6 +1956,7 @@ Search top content by keyword. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/fbsearch/topsearch?query=natgeo"
+    # Next page: add &next_max_id=... from previous response
     ```
 
 === "Python"
@@ -1957,6 +1966,7 @@ Search top content by keyword. Returns a list of matching results.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.fbsearch_topsearch_v2(query="natgeo")
+    # Next page: cl.fbsearch_topsearch_v2(query="natgeo", next_max_id="...")
     ```
 
 === "Python (requests)"
@@ -1969,6 +1979,7 @@ Search top content by keyword. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "next_max_id": "..." to params
     print(response.json())
     ```
 
@@ -1980,6 +1991,7 @@ Search top content by keyword. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &next_max_id=... to URL
     ```
 
 <details>
@@ -8140,6 +8152,7 @@ Search accounts. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/search/accounts?query=natgeo"
+    # Next page: add &page_token=... from previous response
     ```
 
 === "Python (requests)"
@@ -8152,6 +8165,7 @@ Search accounts. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "page_token": "..." to params
     print(response.json())
     ```
 
@@ -8163,6 +8177,7 @@ Search accounts. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_token=... to URL
     ```
 
 <details>
@@ -8304,6 +8319,7 @@ Search hashtags. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/search/hashtags?query=love"
+    # Next page: add &page_token=... from previous response
     ```
 
 === "Python"
@@ -8313,6 +8329,7 @@ Search hashtags. Returns a list of matching results.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.search_hashtags_v2(query="love")
+    # Next page: cl.search_hashtags_v2(query="love", page_token="...")
     ```
 
 === "Python (requests)"
@@ -8325,6 +8342,7 @@ Search hashtags. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "love"},
     )
+    # Next page: add "page_token": "..." to params
     print(response.json())
     ```
 
@@ -8336,6 +8354,7 @@ Search hashtags. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_token=... to URL
     ```
 
 <details>
@@ -8398,6 +8417,7 @@ Search music. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/search/music?query=natgeo"
+    # Next page: add &next_max_id=... from previous response
     ```
 
 === "Python"
@@ -8407,6 +8427,7 @@ Search music. Returns a list of matching results.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.search_music_v2(query="natgeo")
+    # Next page: cl.search_music_v2(query="natgeo", next_max_id="...")
     ```
 
 === "Python (requests)"
@@ -8419,6 +8440,7 @@ Search music. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "next_max_id": "..." to params
     print(response.json())
     ```
 
@@ -8430,6 +8452,7 @@ Search music. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &next_max_id=... to URL
     ```
 
 <details>
@@ -8733,6 +8756,7 @@ Search top content by keyword. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/search/reels?query=natgeo"
+    # Next page: add &reels_max_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -8745,6 +8769,7 @@ Search top content by keyword. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "reels_max_id": "..." to params
     print(response.json())
     ```
 
@@ -8756,6 +8781,7 @@ Search top content by keyword. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &reels_max_id=... to URL
     ```
 
 <details>
@@ -10419,6 +10445,7 @@ Search top content by keyword. Returns a list of matching results.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/search/topsearch?query=natgeo"
+    # Next page: add &next_max_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -10431,6 +10458,7 @@ Search top content by keyword. Returns a list of matching results.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "next_max_id": "..." to params
     print(response.json())
     ```
 
@@ -10442,6 +10470,7 @@ Search top content by keyword. Returns a list of matching results.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &next_max_id=... to URL
     ```
 
 <details>

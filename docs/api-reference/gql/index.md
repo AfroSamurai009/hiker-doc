@@ -23,6 +23,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/g2/user/followers?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -35,6 +36,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -46,6 +48,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -177,6 +180,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/g2/user/following?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -189,6 +193,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -200,6 +205,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -419,6 +425,7 @@ Get likers on a comment
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/comment/likers/chunk?comment_id=17901801633335930&media_id=3776832898280228145"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -428,6 +435,7 @@ Get likers on a comment
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.comment_likers_chunk_gql(comment_id="17901801633335930", media_id="3776832898280228145")
+    # Next page: cl.comment_likers_chunk_gql(comment_id="17901801633335930", media_id="3776832898280228145", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -440,6 +448,7 @@ Get likers on a comment
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"comment_id": "17901801633335930", "media_id": "3776832898280228145"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -451,6 +460,7 @@ Get likers on a comment
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 ---
@@ -592,6 +602,7 @@ Get comments on a media. Returns Comment objects with cursor.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/comments/chunk?media_id=3776832898280228145"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -601,6 +612,7 @@ Get comments on a media. Returns Comment objects with cursor.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.comments_chunk_gql(media_id="3776832898280228145")
+    # Next page: cl.comments_chunk_gql(media_id="3776832898280228145", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -613,6 +625,7 @@ Get comments on a media. Returns Comment objects with cursor.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -624,6 +637,7 @@ Get comments on a media. Returns Comment objects with cursor.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
@@ -767,6 +781,7 @@ Get threaded comments for comment
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/comments/threaded/chunk?media_id=3776832898280228145&comment_id=17901801633335930"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -776,6 +791,7 @@ Get threaded comments for comment
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.comments_threaded_chunk_gql(media_id="3776832898280228145", comment_id="17901801633335930")
+    # Next page: cl.comments_threaded_chunk_gql(media_id="3776832898280228145", comment_id="17901801633335930", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -788,6 +804,7 @@ Get threaded comments for comment
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"media_id": "3776832898280228145", "comment_id": "17901801633335930"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -799,6 +816,7 @@ Get threaded comments for comment
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 ---
@@ -1030,6 +1048,7 @@ Search top content by keyword (GraphQL TopSerpQuery)
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/topsearch?query=natgeo"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -1039,6 +1058,7 @@ Search top content by keyword (GraphQL TopSerpQuery)
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.topsearch_gql(query="natgeo")
+    # Next page: cl.topsearch_gql(query="natgeo", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -1051,6 +1071,7 @@ Search top content by keyword (GraphQL TopSerpQuery)
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"query": "natgeo"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -1062,6 +1083,7 @@ Search top content by keyword (GraphQL TopSerpQuery)
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
@@ -1446,6 +1468,7 @@ Get user clips. Returns a list of Media objects (Reels).
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/user/clips?user_id=787132"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -1455,6 +1478,7 @@ Get user clips. Returns a list of Media objects (Reels).
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_clips_gql(user_id="787132")
+    # Next page: cl.user_clips_gql(user_id="787132", max_id="...")
     ```
 
 === "Python (requests)"
@@ -1467,6 +1491,7 @@ Get user clips. Returns a list of Media objects (Reels).
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -1478,6 +1503,7 @@ Get user clips. Returns a list of Media objects (Reels).
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -2287,6 +2313,7 @@ Get user clips. Returns a list of Media objects (Reels).
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/user/followers/chunk?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -2296,6 +2323,7 @@ Get user clips. Returns a list of Media objects (Reels).
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_followers_chunk_gql(user_id="787132")
+    # Next page: cl.user_followers_chunk_gql(user_id="787132", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -2308,6 +2336,7 @@ Get user clips. Returns a list of Media objects (Reels).
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -2319,6 +2348,7 @@ Get user clips. Returns a list of Media objects (Reels).
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
@@ -2452,6 +2482,7 @@ Get user clips. Returns a list of Media objects (Reels).
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/user/following/chunk?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -2461,6 +2492,7 @@ Get user clips. Returns a list of Media objects (Reels).
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_following_chunk_gql(user_id="787132")
+    # Next page: cl.user_following_chunk_gql(user_id="787132", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -2473,6 +2505,7 @@ Get user clips. Returns a list of Media objects (Reels).
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -2484,6 +2517,7 @@ Get user clips. Returns a list of Media objects (Reels).
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
@@ -2543,6 +2577,7 @@ Get user medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/user/medias?user_id=787132"
+    # Next page: add &profile_grid_items_cursor=... from previous response
     ```
 
 === "Python"
@@ -2552,6 +2587,7 @@ Get user medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_medias_gql(user_id="787132")
+    # Next page: cl.user_medias_gql(user_id="787132", profile_grid_items_cursor="...")
     ```
 
 === "Python (requests)"
@@ -2564,6 +2600,7 @@ Get user medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "profile_grid_items_cursor": "..." to params
     print(response.json())
     ```
 
@@ -2575,6 +2612,7 @@ Get user medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &profile_grid_items_cursor=... to URL
     ```
 
 <details>
@@ -3672,6 +3710,7 @@ Get user media reposts
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/gql/user/reposts?user_id=787132"
+    # Next page: add &repost_next_max_id=... from previous response
     ```
 
 === "Python"
@@ -3681,6 +3720,7 @@ Get user media reposts
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_reposts_gql(user_id="787132")
+    # Next page: cl.user_reposts_gql(user_id="787132", repost_next_max_id="...")
     ```
 
 === "Python (requests)"
@@ -3693,6 +3733,7 @@ Get user media reposts
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "repost_next_max_id": "..." to params
     print(response.json())
     ```
 
@@ -3704,6 +3745,7 @@ Get user media reposts
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &repost_next_max_id=... to URL
     ```
 
 <details>

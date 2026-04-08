@@ -654,6 +654,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/hashtag/medias/clips/chunk?name=love"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -663,6 +664,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.hashtag_medias_clips_chunk_v1(name="love")
+    # Next page: cl.hashtag_medias_clips_chunk_v1(name="love", max_id="...")
     ```
 
 === "Python (requests)"
@@ -675,6 +677,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -686,6 +689,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -1248,6 +1252,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/hashtag/medias/recent/chunk?name=love"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -1260,6 +1265,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -1271,6 +1277,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -1840,6 +1847,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/hashtag/medias/top/chunk?name=love"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -1849,6 +1857,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.hashtag_medias_top_chunk_v1(name="love")
+    # Next page: cl.hashtag_medias_top_chunk_v1(name="love", max_id="...")
     ```
 
 === "Python (requests)"
@@ -1861,6 +1870,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -1872,6 +1882,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -2420,6 +2431,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/hashtag/medias/top/recent/chunk?name=love"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -2429,6 +2441,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.hashtag_medias_top_recent_chunk_v1(name="love")
+    # Next page: cl.hashtag_medias_top_recent_chunk_v1(name="love", max_id="...")
     ```
 
 === "Python (requests)"
@@ -2441,6 +2454,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -2452,6 +2466,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>

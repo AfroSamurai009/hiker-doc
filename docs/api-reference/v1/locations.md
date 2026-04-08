@@ -708,6 +708,7 @@ Get location chunk of recent medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/location/medias/recent/chunk?location_pk=213131048"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -717,6 +718,7 @@ Get location chunk of recent medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.location_medias_recent_chunk_v1(location_pk="213131048")
+    # Next page: cl.location_medias_recent_chunk_v1(location_pk="213131048", max_id="...")
     ```
 
 === "Python (requests)"
@@ -729,6 +731,7 @@ Get location chunk of recent medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -740,6 +743,7 @@ Get location chunk of recent medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -1965,6 +1969,7 @@ Get location chunk of top medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/location/medias/top/chunk?location_pk=213131048"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -1974,6 +1979,7 @@ Get location chunk of top medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.location_medias_top_chunk_v1(location_pk="213131048")
+    # Next page: cl.location_medias_top_chunk_v1(location_pk="213131048", max_id="...")
     ```
 
 === "Python (requests)"
@@ -1986,6 +1992,7 @@ Get location chunk of top medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"location_pk": "213131048"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -1997,6 +2004,7 @@ Get location chunk of top medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>

@@ -1001,6 +1001,7 @@ Get comments on a media. Returns a list of Comment objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/media/comments/chunk?id=3776832898280228145"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -1010,6 +1011,7 @@ Get comments on a media. Returns a list of Comment objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.media_comments_chunk_v1(id="3776832898280228145")
+    # Next page: cl.media_comments_chunk_v1(id="3776832898280228145", max_id="...")
     ```
 
 === "Python (requests)"
@@ -1022,6 +1024,7 @@ Get comments on a media. Returns a list of Comment objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"id": "3776832898280228145"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -1033,6 +1036,7 @@ Get comments on a media. Returns a list of Comment objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>

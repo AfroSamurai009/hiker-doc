@@ -1153,6 +1153,7 @@ Get user clips. Returns a list of Media objects (Reels).
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/user/clips?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -1162,6 +1163,7 @@ Get user clips. Returns a list of Media objects (Reels).
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_clips_v2(user_id="787132")
+    # Next page: cl.user_clips_v2(user_id="787132", page_id="...")
     ```
 
 === "Python (requests)"
@@ -1174,6 +1176,7 @@ Get user clips. Returns a list of Media objects (Reels).
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -1185,6 +1188,7 @@ Get user clips. Returns a list of Media objects (Reels).
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -3028,6 +3032,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/user/followers?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -3037,6 +3042,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_followers_v2(user_id="787132")
+    # Next page: cl.user_followers_v2(user_id="787132", page_id="...")
     ```
 
 === "Python (requests)"
@@ -3049,6 +3055,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -3060,6 +3067,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -3203,6 +3211,7 @@ Get part (one page) of following users. Returns a list of User objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/user/following?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -3212,6 +3221,7 @@ Get part (one page) of following users. Returns a list of User objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_following_v2(user_id="787132")
+    # Next page: cl.user_following_v2(user_id="787132", page_id="...")
     ```
 
 === "Python (requests)"
@@ -3224,6 +3234,7 @@ Get part (one page) of following users. Returns a list of User objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -3235,6 +3246,7 @@ Get part (one page) of following users. Returns a list of User objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -3699,6 +3711,7 @@ Get user medias. Results chunk. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/user/medias?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -3711,6 +3724,7 @@ Get user medias. Results chunk. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -3722,6 +3736,7 @@ Get user medias. Results chunk. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -7026,6 +7041,7 @@ Get usertag medias
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/user/tag/medias?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -7035,6 +7051,7 @@ Get usertag medias
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_tag_medias_v2(user_id="787132")
+    # Next page: cl.user_tag_medias_v2(user_id="787132", page_id="...")
     ```
 
 === "Python (requests)"
@@ -7047,6 +7064,7 @@ Get usertag medias
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -7058,6 +7076,7 @@ Get usertag medias
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -8036,6 +8055,7 @@ Get part of user videos with cursor (default 50 media per request)
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/user/videos?user_id=787132"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -8048,6 +8068,7 @@ Get part of user videos with cursor (default 50 media per request)
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -8059,6 +8080,7 @@ Get part of user videos with cursor (default 50 media per request)
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 ---

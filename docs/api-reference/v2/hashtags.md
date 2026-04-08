@@ -95,6 +95,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/hashtag/medias/clips?name=love"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python (requests)"
@@ -107,6 +108,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -118,6 +120,7 @@ Get hashtag chunk of clips (reels). Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -3954,6 +3957,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/hashtag/medias/recent?name=love"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -3963,6 +3967,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.hashtag_medias_recent_v2(name="love")
+    # Next page: cl.hashtag_medias_recent_v2(name="love", page_id="...")
     ```
 
 === "Python (requests)"
@@ -3975,6 +3980,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -3986,6 +3992,7 @@ Get hashtag chunk of recent medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>
@@ -7856,6 +7863,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v2/hashtag/medias/top?name=love"
+    # Next page: add &page_id=... from previous response
     ```
 
 === "Python"
@@ -7865,6 +7873,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.hashtag_medias_top_v2(name="love")
+    # Next page: cl.hashtag_medias_top_v2(name="love", page_id="...")
     ```
 
 === "Python (requests)"
@@ -7877,6 +7886,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"name": "love"},
     )
+    # Next page: add "page_id": "..." to params
     print(response.json())
     ```
 
@@ -7888,6 +7898,7 @@ Get hashtag chunk of top medias. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &page_id=... to URL
     ```
 
 <details>

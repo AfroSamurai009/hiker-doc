@@ -1162,6 +1162,7 @@ Trial publications have no "reshare_count" field if you need to filter them. Ret
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/user/clips/chunk?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -1171,6 +1172,7 @@ Trial publications have no "reshare_count" field if you need to filter them. Ret
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_clips_chunk_v1(user_id="787132")
+    # Next page: cl.user_clips_chunk_v1(user_id="787132", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -1183,6 +1185,7 @@ Trial publications have no "reshare_count" field if you need to filter them. Ret
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -1194,6 +1197,7 @@ Trial publications have no "reshare_count" field if you need to filter them. Ret
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
@@ -2055,6 +2059,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/user/followers/chunk?user_id=787132"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -2064,6 +2069,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_followers_chunk_v1(user_id="787132")
+    # Next page: cl.user_followers_chunk_v1(user_id="787132", max_id="...")
     ```
 
 === "Python (requests)"
@@ -2076,6 +2082,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -2087,6 +2094,7 @@ Get part (one page) of followers users with cursor. Returns a list of User objec
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -2223,6 +2231,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/user/following/chunk?user_id=787132"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -2232,6 +2241,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_following_chunk_v1(user_id="787132")
+    # Next page: cl.user_following_chunk_v1(user_id="787132", max_id="...")
     ```
 
 === "Python (requests)"
@@ -2244,6 +2254,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -2255,6 +2266,7 @@ Get part (one page) of following users with cursor. Returns a list of User objec
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -3125,6 +3137,7 @@ Get part of user medias with cursor. Returns a list of Media objects.
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/user/medias/chunk?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python"
@@ -3134,6 +3147,7 @@ Get part of user medias with cursor. Returns a list of Media objects.
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_medias_chunk_v1(user_id="787132")
+    # Next page: cl.user_medias_chunk_v1(user_id="787132", end_cursor="...")
     ```
 
 === "Python (requests)"
@@ -3146,6 +3160,7 @@ Get part of user medias with cursor. Returns a list of Media objects.
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -3157,6 +3172,7 @@ Get part of user medias with cursor. Returns a list of Media objects.
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
@@ -4907,6 +4923,7 @@ Get usertag medias
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/user/tag/medias/chunk?user_id=787132"
+    # Next page: add &max_id=... from previous response
     ```
 
 === "Python"
@@ -4916,6 +4933,7 @@ Get usertag medias
 
     cl = Client(token="YOUR_TOKEN")
     result = cl.user_tag_medias_chunk_v1(user_id="787132")
+    # Next page: cl.user_tag_medias_chunk_v1(user_id="787132", max_id="...")
     ```
 
 === "Python (requests)"
@@ -4928,6 +4946,7 @@ Get usertag medias
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "max_id": "..." to params
     print(response.json())
     ```
 
@@ -4939,6 +4958,7 @@ Get usertag medias
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &max_id=... to URL
     ```
 
 <details>
@@ -5383,6 +5403,7 @@ Get part of user videos with cursor (default 50 media per request)
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
       "https://api.hikerapi.com/v1/user/videos/chunk?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
     ```
 
 === "Python (requests)"
@@ -5395,6 +5416,7 @@ Get part of user videos with cursor (default 50 media per request)
         headers={"x-access-key": "YOUR_TOKEN"},
         params={"user_id": "787132"},
     )
+    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -5406,6 +5428,7 @@ Get part of user videos with cursor (default 50 media per request)
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
+    // Next page: add &end_cursor=... to URL
     ```
 
 ---

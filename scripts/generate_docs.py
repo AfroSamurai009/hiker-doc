@@ -308,7 +308,7 @@ def _truncate_json(json_str, max_lines=MAX_RESPONSE_LINES):
     return result
 
 
-def _build_curl_example(path, params):
+def _build_curl_example(path, params, cursor_param=None):
     """Build a curl code example."""
     url = f"{API_BASE}{path}"
     if params:
@@ -317,10 +317,13 @@ def _build_curl_example(path, params):
     else:
         full_url = url
 
-    return f'curl -H "x-access-key: YOUR_TOKEN" \\\n' f'  "{full_url}"'
+    line = f'curl -H "x-access-key: YOUR_TOKEN" \\\n  "{full_url}"'
+    if cursor_param:
+        line += f"\n# Next page: add &{cursor_param}=... from previous response"
+    return line
 
 
-def _build_python_sdk_example(sdk_info, params):
+def _build_python_sdk_example(sdk_info, params, cursor_param=None):
     """Build a Python SDK code example."""
     method_name = sdk_info["method_name"]
     sdk_params = sdk_info["params"]
@@ -343,10 +346,14 @@ def _build_python_sdk_example(sdk_info, params):
         'cl = Client(token="YOUR_TOKEN")',
         f"result = cl.{method_name}({kwargs_str})",
     ]
+    if cursor_param:
+        lines.append(
+            f"# Next page: cl.{method_name}(" f'{kwargs_str}, {cursor_param}="...")'
+        )
     return "\n".join(lines)
 
 
-def _build_requests_example(path, params):
+def _build_requests_example(path, params, cursor_param=None):
     """Build a Python requests code example."""
     url = f"{API_BASE}{path}"
 
@@ -379,11 +386,13 @@ def _build_requests_example(path, params):
         lines.append(f"    params={params_str},")
 
     lines.append(")")
+    if cursor_param:
+        lines.append(f'# Next page: add "{cursor_param}": "..." to params')
     lines.append("print(response.json())")
     return "\n".join(lines)
 
 
-def _build_js_example(path, params):
+def _build_js_example(path, params, cursor_param=None):
     """Build a JavaScript fetch code example."""
     url = f"{API_BASE}{path}"
     if params:
@@ -399,6 +408,8 @@ def _build_js_example(path, params):
         ");",
         "const data = await response.json();",
     ]
+    if cursor_param:
+        lines.append(f"// Next page: add &{cursor_param}=... to URL")
     return "\n".join(lines)
 
 
@@ -452,6 +463,23 @@ def _generate_endpoint_section(path, operation, sdk_sigs, resource_key):
     # Example params from test_data
     example_params = _get_example_params(path)
 
+    # Detect pagination cursor param (optional, not in example_params)
+    cursor_names = {
+        "end_cursor",
+        "max_id",
+        "page_id",
+        "page_token",
+        "next_max_id",
+        "reels_max_id",
+        "repost_next_max_id",
+        "profile_grid_items_cursor",
+    }
+    cursor_param = None
+    for p in params:
+        if p.get("name") in cursor_names and not p.get("required"):
+            cursor_param = p.get("name")
+            break
+
     # Code tabs
     has_sdk = path in sdk_sigs
     sdk_info = sdk_sigs.get(path)
@@ -461,28 +489,32 @@ def _generate_endpoint_section(path, operation, sdk_sigs, resource_key):
         lines.append('=== "curl"')
         lines.append("")
         lines.append("    ```bash")
-        lines.extend(_indent(_build_curl_example(path, example_params)))
+        lines.extend(_indent(_build_curl_example(path, example_params, cursor_param)))
         lines.append("    ```")
         lines.append("")
 
         lines.append('=== "Python"')
         lines.append("")
         lines.append("    ```python")
-        lines.extend(_indent(_build_python_sdk_example(sdk_info, example_params)))
+        lines.extend(
+            _indent(_build_python_sdk_example(sdk_info, example_params, cursor_param))
+        )
         lines.append("    ```")
         lines.append("")
 
         lines.append('=== "Python (requests)"')
         lines.append("")
         lines.append("    ```python")
-        lines.extend(_indent(_build_requests_example(path, example_params)))
+        lines.extend(
+            _indent(_build_requests_example(path, example_params, cursor_param))
+        )
         lines.append("    ```")
         lines.append("")
 
         lines.append('=== "JavaScript"')
         lines.append("")
         lines.append("    ```javascript")
-        lines.extend(_indent(_build_js_example(path, example_params)))
+        lines.extend(_indent(_build_js_example(path, example_params, cursor_param)))
         lines.append("    ```")
         lines.append("")
     else:
@@ -490,21 +522,23 @@ def _generate_endpoint_section(path, operation, sdk_sigs, resource_key):
         lines.append('=== "curl"')
         lines.append("")
         lines.append("    ```bash")
-        lines.extend(_indent(_build_curl_example(path, example_params)))
+        lines.extend(_indent(_build_curl_example(path, example_params, cursor_param)))
         lines.append("    ```")
         lines.append("")
 
         lines.append('=== "Python (requests)"')
         lines.append("")
         lines.append("    ```python")
-        lines.extend(_indent(_build_requests_example(path, example_params)))
+        lines.extend(
+            _indent(_build_requests_example(path, example_params, cursor_param))
+        )
         lines.append("    ```")
         lines.append("")
 
         lines.append('=== "JavaScript"')
         lines.append("")
         lines.append("    ```javascript")
-        lines.extend(_indent(_build_js_example(path, example_params)))
+        lines.extend(_indent(_build_js_example(path, example_params, cursor_param)))
         lines.append("    ```")
         lines.append("")
 
