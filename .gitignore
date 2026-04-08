@@ -166,4 +166,7 @@ cython_debug/
 pm-sync.md
 docs/superpowers/
 
+# Cached API response examples (fetched by scripts/fetch_responses.py)
+docs/examples/*.json
+
 # End of https://www.toptal.com/developers/gitignore/api/python,jupyternotebooks

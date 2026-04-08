@@ -4,7 +4,7 @@ Make your first HikerAPI request in 5 minutes.
 
 ## 1. Get your API key
 
-[Sign up at hikerapi.com](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=quickstart-signup){ target=_blank } and grab your token from the [dashboard](https://hikerapi.com/tokens){ target=_blank }.
+[Sign up at hikerapi.com](https://hikerapi.com/p/7it8oc2i?utm_source=docs&utm_medium=cta&utm_content=quickstart-signup){ target=_blank } — **100 free requests included**, no credit card required. Grab your token from the [dashboard](https://hikerapi.com/tokens){ target=_blank }.
 
 ## 2. Make a request
 
