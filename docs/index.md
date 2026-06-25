@@ -22,7 +22,7 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
     ---
 
-    147 endpoints — REST v1, v2, and GraphQL
+    151 endpoints — REST v1, v2, and GraphQL
 
     [:octicons-arrow-right-24: Explore endpoints](api-reference/v1/index.md)
 
@@ -44,7 +44,7 @@ Access public Instagram profiles, posts, stories, reels, comments, followers, ha
 
     developers worldwide
 
--   **147**{ .stat-number }
+-   **151**{ .stat-number }
 
     API endpoints
 
