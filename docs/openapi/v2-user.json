@@ -30,6 +30,36 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response User By Username V2 User By Username Get"
+                },
+                "example": {
+                  "user": {
+                    "strong_id__": "25025320",
+                    "pk": 25025320,
+                    "id": "25025320",
+                    "full_name": "Instagram",
+                    "username": "instagram",
+                    "biography": "Discover what's new on Instagram 🔎✨",
+                    "profile_pic_url": "https://cdn.example.com/...",
+                    "is_opal_enabled": false,
+                    "eligible_for_text_app_activation_badge": false,
+                    "highlights_tray_type": "DEFAULT",
+                    "account_type": 3,
+                    "bio_links": [
+                      {
+                        "...": "..."
+                      }
+                    ],
+                    "is_call_to_action_enabled": false,
+                    "is_business": false,
+                    "biography_with_entities": {
+                      "raw_text": "Discover what's new on Instagram 🔎✨",
+                      "entities": [
+                        "..."
+                      ]
+                    },
+                    "...": "(219 more fields)"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -116,6 +146,23 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response User Stories V2 User Stories Get"
+                },
+                "example": {
+                  "reel": {
+                    "id": 25025320,
+                    "strong_id__": "25025320",
+                    "latest_reel_media": 1775146773,
+                    "seen": 0,
+                    "can_reply": false,
+                    "can_gif_quick_reply": true,
+                    "can_reshare": true,
+                    "reel_type": "user_reel",
+                    "can_react_with_avatar": false,
+                    "prefetch_count": 0,
+                    "expiring_at": 1775233173,
+                    "...": "(12 more fields)"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -167,6 +214,36 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response User By Id V2 User By Id Get"
+                },
+                "example": {
+                  "user": {
+                    "strong_id__": "25025320",
+                    "pk": 25025320,
+                    "id": "25025320",
+                    "full_name": "Instagram",
+                    "username": "instagram",
+                    "biography": "Discover what's new on Instagram 🔎✨",
+                    "profile_pic_url": "https://cdn.example.com/...",
+                    "is_opal_enabled": false,
+                    "eligible_for_text_app_activation_badge": false,
+                    "highlights_tray_type": "DEFAULT",
+                    "account_type": 3,
+                    "bio_links": [
+                      {
+                        "...": "..."
+                      }
+                    ],
+                    "is_call_to_action_enabled": false,
+                    "is_business": false,
+                    "biography_with_entities": {
+                      "raw_text": "Discover what's new on Instagram 🔎✨",
+                      "entities": [
+                        "..."
+                      ]
+                    },
+                    "...": "(219 more fields)"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -460,6 +537,23 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response User Stories By Username V2 User Stories By Username Get"
+                },
+                "example": {
+                  "reel": {
+                    "id": 25025320,
+                    "strong_id__": "25025320",
+                    "latest_reel_media": 1775146773,
+                    "seen": 0,
+                    "can_reply": false,
+                    "can_gif_quick_reply": true,
+                    "can_reshare": true,
+                    "reel_type": "user_reel",
+                    "can_react_with_avatar": false,
+                    "prefetch_count": 0,
+                    "expiring_at": 1775233173,
+                    "...": "(12 more fields)"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -566,6 +660,58 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response User A2 User Get"
+                },
+                "example": {
+                  "graphql": {
+                    "user": {
+                      "id": "25025320",
+                      "biography": "Discover what's new on Instagram 🔎✨",
+                      "full_name": "Instagram",
+                      "edge_followed_by": {
+                        "count": 700997627
+                      },
+                      "edge_follow": {
+                        "count": 234
+                      },
+                      "profile_pic_url": "https://cdn.example.com/...",
+                      "profile_pic_url_hd": "https://cdn.example.com/...",
+                      "edge_owner_to_timeline_media": {
+                        "count": 8389,
+                        "edges": [
+                          {
+                            "node": {
+                              "id": "3866530439053193313",
+                              "shortcode": "DExample",
+                              "display_url": "https://cdn.example.com/...",
+                              "thumbnail_url": "https://cdn.example.com/...",
+                              "__typename": "GraphImage",
+                              "product_type": "feed",
+                              "title": "",
+                              "edge_media_to_caption": {
+                                "edges": [
+                                  {
+                                    "node": {
+                                      "text": "Caption text"
+                                    }
+                                  }
+                                ]
+                              },
+                              "edge_media_to_comment": {
+                                "count": 12345
+                              },
+                              "edge_liked_by": {
+                                "count": 678901
+                              },
+                              "edge_media_preview_like": {
+                                "count": 678901
+                              }
+                            }
+                          },
+                          "... (11 more items)"
+                        ]
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -634,6 +780,19 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageResponse"
+                },
+                "example": {
+                  "response": {
+                    "tray": [
+                      {
+                        "...": "..."
+                      },
+                      "... (10 more items)"
+                    ],
+                    "suggested_highlights": {},
+                    "highlights_tray_type": "DEFAULT",
+                    "status": "ok"
+                  }
                 }
               }
             }
@@ -711,6 +870,19 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageResponse"
+                },
+                "example": {
+                  "response": {
+                    "tray": [
+                      {
+                        "...": "..."
+                      },
+                      "... (10 more items)"
+                    ],
+                    "suggested_highlights": {},
+                    "highlights_tray_type": "DEFAULT",
+                    "status": "ok"
+                  }
                 }
               }
             }
@@ -762,6 +934,36 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Userstream By Username V2 Userstream By Username Get"
+                },
+                "example": {
+                  "user": {
+                    "strong_id__": "25025320",
+                    "pk": 25025320,
+                    "id": "25025320",
+                    "full_name": "Instagram",
+                    "username": "instagram",
+                    "biography": "Discover what's new on Instagram 🔎✨",
+                    "profile_pic_url": "https://cdn.example.com/...",
+                    "is_opal_enabled": false,
+                    "eligible_for_text_app_activation_badge": false,
+                    "highlights_tray_type": "DEFAULT",
+                    "account_type": 3,
+                    "bio_links": [
+                      {
+                        "...": "..."
+                      }
+                    ],
+                    "is_call_to_action_enabled": false,
+                    "is_business": false,
+                    "biography_with_entities": {
+                      "raw_text": "Discover what's new on Instagram 🔎✨",
+                      "entities": [
+                        "..."
+                      ]
+                    },
+                    "...": "(219 more fields)"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -812,6 +1014,36 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Userstream By Id V2 Userstream By Id Get"
+                },
+                "example": {
+                  "user": {
+                    "strong_id__": "25025320",
+                    "pk": 25025320,
+                    "id": "25025320",
+                    "full_name": "Instagram",
+                    "username": "instagram",
+                    "biography": "Discover what's new on Instagram 🔎✨",
+                    "profile_pic_url": "https://cdn.example.com/...",
+                    "is_opal_enabled": false,
+                    "eligible_for_text_app_activation_badge": false,
+                    "highlights_tray_type": "DEFAULT",
+                    "account_type": 3,
+                    "bio_links": [
+                      {
+                        "...": "..."
+                      }
+                    ],
+                    "is_call_to_action_enabled": false,
+                    "is_business": false,
+                    "biography_with_entities": {
+                      "raw_text": "Discover what's new on Instagram 🔎✨",
+                      "entities": [
+                        "..."
+                      ]
+                    },
+                    "...": "(219 more fields)"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -1103,15 +1335,22 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Response",
-            "description": "Dict with full response.",
+            "description": "Raw Instagram API response dict. Structure varies by endpoint.",
             "examples": [
               {
-                "...": "...",
                 "items": [
                   {
-                    "...": "..."
+                    "...": "...",
+                    "id": "123456_789",
+                    "media_type": 1,
+                    "pk": 123456
                   }
-                ]
+                ],
+                "paging_info": {
+                  "max_id": "cursor_string",
+                  "more_available": true
+                },
+                "status": "ok"
               }
             ]
           },
@@ -1125,9 +1364,9 @@
               }
             ],
             "title": "Next Page Id",
-            "description": "Next Page ID. Use it value for next request",
+            "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
             "examples": [
-              "QEFerVFGGdsfd_1234567890"
+              "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
             ]
           }
         },

@@ -5,7 +5,7 @@ Search users, hashtags, locations, and music.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/v1/fbsearch/places`](#get-v1fbsearchplaces) | [`/v1/fbsearch/topsearch`](#get-v1fbsearchtopsearch) | [`/v1/fbsearch/topsearch/hashtags`](#get-v1fbsearchtopsearchhashtags) | [`/v1/search/hashtags`](#get-v1searchhashtags) | [`/v1/search/music`](#get-v1searchmusic) | [`/v1/search/users`](#get-v1searchusers) | [`/v1/share/by/code`](#get-v1sharebycode) | [`/v1/share/by/url`](#get-v1sharebyurl) | [`/v1/share/reel/by/url`](#get-v1sharereelbyurl)
+**Endpoints:** [`/v1/fbsearch/places`](#get-v1fbsearchplaces) | [`/v1/fbsearch/topsearch/hashtags`](#get-v1fbsearchtopsearchhashtags) | [`/v1/search/hashtags`](#get-v1searchhashtags) | [`/v1/search/music`](#get-v1searchmusic) | [`/v1/search/users`](#get-v1searchusers) | [`/v1/share/by/code`](#get-v1sharebycode) | [`/v1/share/by/url`](#get-v1sharebyurl) | [`/v1/share/reel/by/url`](#get-v1sharereelbyurl)
 
 ---
 
@@ -107,157 +107,6 @@ Search locations. Returns a list of matching results.
     "lat": 40.66595,
     "external_id": "103142692753506",
     "external_id_source": "facebook_places"
-  }
-]
-```
-
-</details>
-
----
-
-### GET /v1/fbsearch/topsearch
-
-Topsearch. Returns a list of matching results.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `query` | string | Yes | Query |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v1/fbsearch/topsearch?query=natgeo"
-    ```
-
-=== "Python"
-
-    ```python
-    from hikerapi import Client
-
-    cl = Client(token="YOUR_TOKEN")
-    result = cl.fbsearch_topsearch_v1(query="natgeo")
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v1/fbsearch/topsearch",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"query": "natgeo"},
-    )
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v1/fbsearch/topsearch?query=natgeo",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  {
-    "position": 0,
-    "user": {
-      "strong_id__": "787132",
-      "fbid_v2": 17841400573960012,
-      "pk": 787132,
-      "pk_id": "787132",
-      "is_verified_search_boosted": false,
-      "third_party_downloads_enabled": 2,
-      "id": "787132",
-      "full_name": "National Geographic",
-      "is_private": false,
-      "is_verified": true,
-      "profile_pic_id": "3865702555259028436_787132",
-      "profile_pic_url": "https://scontent-jnb2-1.cdninstagram.com/...",
-      "username": "natgeo",
-      "account_badges": [],
-      "has_anonymous_profile_picture": false,
-      "has_opt_eligible_shop": false,
-      "is_ring_creator": false,
-      "latest_reel_media": 1775659002,
-      "should_show_category": true,
-      "show_ig_app_switcher_badge": true,
-      "show_ring_award": false,
-      "show_text_post_app_badge": true,
-      "unseen_count": 0,
-      "social_context": "274M followers",
-      "search_social_context": "274M followers",
-      "search_social_context_snippet_type": "typeahead_follow_count"
-    }
-  },
-  {
-    "position": 1,
-    "user": {
-      "strong_id__": "1934468093",
-      "fbid_v2": 17841402042791808,
-      "pk": 1934468093,
-      "pk_id": "1934468093",
-      "is_verified_search_boosted": false,
-      "third_party_downloads_enabled": 1,
-      "id": "1934468093",
-      "full_name": "Nat Geo Channel Africa",
-      "is_private": false,
-      "is_verified": true,
-      "profile_pic_id": "3694842092895346377_1934468093",
-      "profile_pic_url": "https://scontent-jnb2-1.cdninstagram.com/...",
-      "username": "natgeo_africa",
-      "account_badges": [],
-      "has_anonymous_profile_picture": false,
-      "has_opt_eligible_shop": false,
-      "is_ring_creator": false,
-      "latest_reel_media": 0,
-      "should_show_category": true,
-      "show_ig_app_switcher_badge": true,
-      "show_ring_award": false,
-      "show_text_post_app_badge": true,
-      "unseen_count": 0,
-      "social_context": "241K followers",
-      "search_social_context": "241K followers",
-      "search_social_context_snippet_type": "typeahead_follow_count"
-    }
-  },
-  {
-    "position": 2,
-    "user": {
-      "strong_id__": "414805671",
-      "fbid_v2": 17841400650136481,
-      "pk": 414805671,
-      "pk_id": "414805671",
-      "is_verified_search_boosted": false,
-      "third_party_downloads_enabled": 2,
-      "id": "414805671",
-      "full_name": "National Geographic Science",
-      "is_private": false,
-      "is_verified": true,
-      "profile_pic_id": "3865701954660099001_414805671",
-      "profile_pic_url": "https://scontent-jnb2-1.cdninstagram.com/...",
-      "username": "natgeoscience",
-      "account_badges": [],
-      "has_anonymous_profile_picture": false,
-      "has_opt_eligible_shop": false,
-      "is_ring_creator": false,
-      "latest_reel_media": 1775642636,
-      "should_show_category": true,
-      "show_ring_award": false,
-      "show_text_post_app_badge": false,
-      "unseen_count": 0,
-      "social_context": "9.8M followers",
-      "search_social_context": "9.8M followers",
-      "search_social_context_snippet_type": "typeahead_follow_count"
-    }
   }
 ]
 ```
@@ -783,6 +632,17 @@ Returns shared content data.
     );
     const data = await response.json();
     ```
+
+---
+
+## Deprecated endpoints
+
+These endpoints are still available but will be removed in a future version. Use the recommended alternatives.
+
+### ~~GET /v1/fbsearch/topsearch~~
+
+!!! warning
+    Use /gql/topsearch instead (broken upstream — IG returns 5xx)
 
 ---
 

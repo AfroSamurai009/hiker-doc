@@ -40,7 +40,7 @@ V2_RESOURCES = {
 }
 
 GQL_RESOURCES = {
-    "gql.json": ["/gql/", "/g2/"],
+    "gql.json": ["/gql/", "/g1/", "/g2/"],
 }
 
 SYS_RESOURCES = {

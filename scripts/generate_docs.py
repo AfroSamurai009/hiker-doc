@@ -62,7 +62,7 @@ RESOURCES = {
         "excludes": [],
     },
     "v2/track": {"prefixes": ["/v2/track/", "/v3/"], "excludes": []},
-    "gql": {"prefixes": ["/gql/", "/g2/"], "excludes": []},
+    "gql": {"prefixes": ["/gql/", "/g1/", "/g2/"], "excludes": []},
     "system": {"prefixes": ["/sys/"], "excludes": []},
 }
 

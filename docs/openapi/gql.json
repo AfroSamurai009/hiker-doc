@@ -47,7 +47,21 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {},
+                "example": {
+                  "stream_rows": [
+                    {
+                      "data": {
+                        "...": "..."
+                      },
+                      "extensions": {
+                        "...": "..."
+                      },
+                      "status": "ok"
+                    },
+                    "... (13 more items)"
+                  ]
+                }
               }
             }
           },
@@ -88,6 +102,22 @@
             }
           },
           {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          },
+          {
             "name": "force",
             "in": "query",
             "required": false,
@@ -104,22 +134,6 @@
               "title": "Force"
             },
             "description": "Skip account privacy check"
-          },
-          {
-            "name": "end_cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "End Cursor"
-            }
           }
         ],
         "responses": {
@@ -197,6 +211,22 @@
             }
           },
           {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          },
+          {
             "name": "force",
             "in": "query",
             "required": false,
@@ -213,22 +243,6 @@
               "title": "Force"
             },
             "description": "Skip account privacy check"
-          },
-          {
-            "name": "end_cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "End Cursor"
-            }
           }
         ],
         "responses": {
@@ -409,7 +423,21 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {},
+                "example": {
+                  "stream_rows": [
+                    {
+                      "data": {
+                        "...": "..."
+                      },
+                      "extensions": {
+                        "...": "..."
+                      },
+                      "status": "ok"
+                    },
+                    "... (14 more items)"
+                  ]
+                }
               }
             }
           },
@@ -431,6 +459,97 @@
             "label": "Python"
           }
         ],
+        "required": false
+      }
+    },
+    "/g1/user/followers": {
+      "get": {
+        "summary": "Get a user followers via legacy public GraphQL (one request required)",
+        "description": "⚠️ Billing: 1 requests per call. Returns a list of User objects.",
+        "operationId": "user_followers_g1_user_followers_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers) with end_cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserShortWithReel"
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response User Followers G1 User Followers Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 1,
         "required": false
       }
     },
@@ -466,6 +585,17 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageResponse"
+                },
+                "example": {
+                  "response": {
+                    "users": [
+                      {
+                        "...": "..."
+                      },
+                      "... (40 more items)"
+                    ],
+                    "should_limit_list_of_followers": true
+                  }
                 }
               }
             }
@@ -481,6 +611,97 @@
             }
           }
         }
+      }
+    },
+    "/g1/user/following": {
+      "get": {
+        "summary": "Get a user following via legacy public GraphQL (one request required)",
+        "description": "⚠️ Billing: 1 requests per call. Returns a list of User objects.",
+        "operationId": "user_following_g1_user_following_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following) with end_cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserShort"
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response User Following G1 User Following Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 1,
+        "required": false
       }
     },
     "/g2/user/following": {
@@ -515,6 +736,136 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PageResponse"
+                },
+                "example": {
+                  "response": {
+                    "users": [],
+                    "has_more": false
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gql/user/about": {
+      "get": {
+        "summary": "User About",
+        "description": "Get the \"About this account\" panel for a user: verified status,\ncountry of registration, date the account was created, and the list\nof former usernames. Returns user about info.",
+        "operationId": "user_about_gql_user_about_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/About"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_about_gql(id=\"25025320\")\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/g2/user/medias": {
+      "get": {
+        "summary": "Get a user profile media (one page)",
+        "description": "Get part (one page) of user medias. Returns a list of Media objects.",
+        "operationId": "user_medias_g2_user_medias_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "next_page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Next Page Id"
+            }
+          },
+          {
+            "name": "flat",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true,
+              "title": "Flat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User's profile media grid. Media counters (play_count, like_count, comment_count, etc.) are returned as Instagram sends them. For the next page, pass the envelope's `next_page_id` back as the `next_page_id` query parameter. Ignore the raw `next_max_id` inside `response` — it is IG-internal metadata, not the cursor for this endpoint.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                },
+                "example": {
+                  "response": {
+                    "items": [
+                      {
+                        "id": "3894831928272017840_80117947544",
+                        "code": "DYNOQDIgNmw",
+                        "play_count": 5041,
+                        "ig_play_count": 2427,
+                        "fb_play_count": 2614,
+                        "...": "..."
+                      }
+                    ],
+                    "next_max_id": "QVFB...",
+                    "more_available": true
+                  },
+                  "next_page_id": "QVFB..."
                 }
               }
             }
@@ -553,7 +904,43 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {},
+                "example": {
+                  "friendship_status": {
+                    "following": false,
+                    "blocking": false,
+                    "is_feed_favorite": false,
+                    "outgoing_request": false,
+                    "followed_by": false,
+                    "incoming_request": false,
+                    "is_restricted": false,
+                    "is_bestie": false,
+                    "muting": false,
+                    "is_muting_reel": false
+                  },
+                  "fbid_v2": "17841400039600391",
+                  "is_memorialized": false,
+                  "is_private": false,
+                  "is_coppa_enforced": false,
+                  "is_regulated_c18": false,
+                  "bio_links": [
+                    {
+                      "image_url": "",
+                      "is_pinned": false,
+                      "link_type": "external",
+                      "lynx_url": "https://cdn.example.com/...",
+                      "media_accent_color_hex": "",
+                      "media_type": "none",
+                      "title": "",
+                      "url": "http://help.instagram.com",
+                      "creation_source": "NONE"
+                    }
+                  ],
+                  "text_post_app_badge_label": "instagram",
+                  "show_text_post_app_badge": true,
+                  "username": "instagram",
+                  "...": "(47 more fields)"
+                }
               }
             }
           },
@@ -655,7 +1042,31 @@
                     "additionalProperties": true
                   },
                   "title": "Response Media Likers Gql Media Likers Get"
-                }
+                },
+                "example": [
+                  {
+                    "pk": "2256048641",
+                    "__typename": "XDTUserDict",
+                    "username": "bowling_1141",
+                    "full_name": "Bowling Thitirat",
+                    "profile_pic_url": "https://cdn.example.com/...",
+                    "is_verified": false,
+                    "friendship_status": {
+                      "blocking": false,
+                      "is_feed_favorite": false,
+                      "following": false,
+                      "is_muting_reel": false,
+                      "muting": false,
+                      "outgoing_request": false,
+                      "followed_by": false,
+                      "incoming_request": false,
+                      "is_restricted": false,
+                      "is_bestie": false
+                    },
+                    "id": "2256048641"
+                  },
+                  "... (76 more items)"
+                ]
               }
             }
           },
@@ -674,218 +1085,6 @@
           {
             "lang": "Python",
             "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nlikers = await cl.media_likers_gql(media_id=\"3162273595027945978\")\n",
-            "label": "Python"
-          }
-        ],
-        "required": false
-      }
-    },
-    "/gql/comments/chunk": {
-      "get": {
-        "summary": "Media Comments Chunk",
-        "description": "Get comments on a media. Returns Comment objects with cursor.",
-        "operationId": "media_comments_chunk_gql_comments_chunk_get",
-        "parameters": [
-          {
-            "name": "media_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Media Id"
-            }
-          },
-          {
-            "name": "sort_order",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "enum": [
-                    "recent",
-                    "popular"
-                  ],
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "default": "recent",
-              "title": "Sort Order"
-            }
-          },
-          {
-            "name": "end_cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "End Cursor"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "prefixItems": [
-                    {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "additionalProperties": true
-                      }
-                    },
-                    {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "null"
-                        }
-                      ]
-                    }
-                  ],
-                  "minItems": 2,
-                  "maxItems": 2,
-                  "title": "Response Media Comments Chunk Gql Comments Chunk Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = await cl.comments_chunk_gql(\n    media_id=\"3162273595027945978\", end_cursor=None\n)\n",
-            "label": "Python"
-          },
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-            "label": "Python"
-          }
-        ],
-        "required": false
-      }
-    },
-    "/gql/comments/threaded/chunk": {
-      "get": {
-        "summary": "Media Comments Threaded Chunk",
-        "description": "Get threaded comments for comment",
-        "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
-        "parameters": [
-          {
-            "name": "media_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Media Id"
-            }
-          },
-          {
-            "name": "comment_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "Comment Id"
-            }
-          },
-          {
-            "name": "end_cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "End Cursor"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "prefixItems": [
-                    {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "additionalProperties": true
-                      }
-                    },
-                    {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "null"
-                        }
-                      ]
-                    }
-                  ],
-                  "minItems": 2,
-                  "maxItems": 2,
-                  "title": "Response Media Comments Threaded Chunk Gql Comments Threaded Chunk Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = cl.comments_threaded_chunk_gql(comment_id=\"2321157652140500761\", end_cursor=None)\n",
-            "label": "Python"
-          },
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_threaded_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
             "label": "Python"
           }
         ],
@@ -972,7 +1171,23 @@
                   "minItems": 2,
                   "maxItems": 2,
                   "title": "Response Comment Likers Chunk Gql Comment Likers Chunk Get"
-                }
+                },
+                "example": [
+                  [
+                    {
+                      "id": "13277463868",
+                      "username": "example_user",
+                      "full_name": "Example User",
+                      "profile_pic_url": "https://cdn.example.com/...",
+                      "is_private": true,
+                      "is_verified": false,
+                      "followed_by_viewer": false,
+                      "requested_by_viewer": false
+                    },
+                    "... (49 more items)"
+                  ],
+                  "QVFEbzJ..."
+                ]
               }
             }
           },
@@ -1005,7 +1220,7 @@
     "/gql/topsearch": {
       "get": {
         "summary": "Topsearch",
-        "description": "Search top content by keyword (GraphQL TopSerpQuery)",
+        "description": "Search top content by keyword.\n\nReturns top accounts AND top media interleaved in one stream —\ndiscriminate by `__typename` (`XDTUserDict` / `XDTMediaDict`).\n\n`flat=true` returns flat `items[]` instead of `stream_rows`.",
         "operationId": "topsearch_gql_topsearch_get",
         "parameters": [
           {
@@ -1032,11 +1247,11 @@
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Flatten nested response into simple items list",
+              "description": "Flatten stream_rows into a single items[] list",
               "default": false,
               "title": "Flat"
             },
-            "description": "Flatten nested response into simple items list"
+            "description": "Flatten stream_rows into a single items[] list"
           }
         ],
         "responses": {
@@ -1048,6 +1263,20 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Topsearch Gql Topsearch Get"
+                },
+                "example": {
+                  "stream_rows": [
+                    {
+                      "data": {
+                        "...": "..."
+                      },
+                      "extensions": {
+                        "...": "..."
+                      },
+                      "status": "ok"
+                    },
+                    "... (16 more items)"
+                  ]
                 }
               }
             }
@@ -1062,12 +1291,146 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [],
+        "required": false
+      }
+    },
+    "/gql/comments/chunk": {
+      "get": {
+        "summary": "Use /v1/media/comments/chunk or /v2/media/comments instead",
+        "description": "Get comments on a media. Returns Comment objects with cursor.",
+        "operationId": "media_comments_chunk_gql_comments_chunk_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "recent",
+                    "popular"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": "recent",
+              "title": "Sort Order"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response Media Comments Chunk Gql Comments Chunk Get"
+                },
+                "example": [
+                  [
+                    {
+                      "pk": "18105432715897450",
+                      "user": {
+                        "...": "..."
+                      },
+                      "is_covered": false,
+                      "child_comment_count": 0,
+                      "has_liked_comment": false,
+                      "text": "❤️❤️❤️❤️",
+                      "created_at": 1775175316,
+                      "comment_like_count": 0,
+                      "__typename": "XDTCommentDict"
+                    },
+                    "... (14 more items)"
+                  ],
+                  "... (1 more items)"
+                ]
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = await cl.comments_chunk_gql(\n    media_id=\"3162273595027945978\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "required": false
       }
     },
     "/gql/comments": {
       "get": {
-        "summary": "WARNING: Preferable to use /gql/comments/chunk",
+        "summary": "Use /v1/media/comments/chunk or /v2/media/comments instead",
         "description": "Get comments on a media",
         "operationId": "media_comments_gql_comments_get",
         "deprecated": true,
@@ -1135,7 +1498,26 @@
                     "additionalProperties": true
                   },
                   "title": "Response Media Comments Gql Comments Get"
-                }
+                },
+                "example": [
+                  [
+                    {
+                      "pk": "18105432715897450",
+                      "user": {
+                        "...": "..."
+                      },
+                      "is_covered": false,
+                      "child_comment_count": 0,
+                      "has_liked_comment": false,
+                      "text": "❤️❤️❤️❤️",
+                      "created_at": 1775175316,
+                      "comment_like_count": 0,
+                      "__typename": "XDTCommentDict"
+                    },
+                    "... (14 more items)"
+                  ],
+                  "... (1 more items)"
+                ]
               }
             }
           },
@@ -1154,6 +1536,126 @@
           {
             "lang": "Python",
             "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.comments_gql(media_id=\"3162273595027945978\", amount=10)\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/gql/comments/threaded/chunk": {
+      "get": {
+        "summary": "Use /v2/media/comments/replies instead",
+        "description": "Get threaded comments for comment",
+        "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "media_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Media Id"
+            }
+          },
+          {
+            "name": "comment_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Comment Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response Media Comments Threaded Chunk Gql Comments Threaded Chunk Get"
+                },
+                "example": [
+                  [
+                    {
+                      "pk": "18105432715897450",
+                      "user": {
+                        "...": "..."
+                      },
+                      "is_covered": false,
+                      "child_comment_count": 0,
+                      "has_liked_comment": false,
+                      "text": "❤️❤️❤️❤️",
+                      "created_at": 1775175316,
+                      "comment_like_count": 0,
+                      "__typename": "XDTCommentDict"
+                    },
+                    "... (14 more items)"
+                  ],
+                  "... (1 more items)"
+                ]
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = cl.comments_threaded_chunk_gql(comment_id=\"2321157652140500761\", end_cursor=None)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_threaded_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
             "label": "Python"
           }
         ],
@@ -1199,7 +1701,23 @@
                     "additionalProperties": true
                   },
                   "title": "Response Comment Likers Gql Comment Likers Get"
-                }
+                },
+                "example": [
+                  [
+                    {
+                      "id": "13277463868",
+                      "username": "example_user",
+                      "full_name": "Example User",
+                      "profile_pic_url": "https://cdn.example.com/...",
+                      "is_private": true,
+                      "is_verified": false,
+                      "followed_by_viewer": false,
+                      "requested_by_viewer": false
+                    },
+                    "... (49 more items)"
+                  ],
+                  "QVFEbzJ..."
+                ]
               }
             }
           },
@@ -1279,7 +1797,7 @@
     },
     "/gql/comments/threaded": {
       "get": {
-        "summary": "WARNING: Preferable to use /gql/comments/chunk",
+        "summary": "Use /v2/media/comments/replies instead",
         "description": "Get threaded comments for comment",
         "operationId": "media_comments_threaded_gql_comments_threaded_get",
         "deprecated": true,
@@ -1325,7 +1843,26 @@
                     "additionalProperties": true
                   },
                   "title": "Response Media Comments Threaded Gql Comments Threaded Get"
-                }
+                },
+                "example": [
+                  [
+                    {
+                      "pk": "18105432715897450",
+                      "user": {
+                        "...": "..."
+                      },
+                      "is_covered": false,
+                      "child_comment_count": 0,
+                      "has_liked_comment": false,
+                      "text": "❤️❤️❤️❤️",
+                      "created_at": 1775175316,
+                      "comment_like_count": 0,
+                      "__typename": "XDTCommentDict"
+                    },
+                    "... (14 more items)"
+                  ],
+                  "... (1 more items)"
+                ]
               }
             }
           },
@@ -1563,6 +2100,72 @@
   },
   "components": {
     "schemas": {
+      "About": {
+        "properties": {
+          "username": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Username",
+            "default": ""
+          },
+          "is_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Verified",
+            "default": false
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country",
+            "default": ""
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date",
+            "default": ""
+          },
+          "former_usernames": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Former Usernames",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "About"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -1582,15 +2185,22 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Response",
-            "description": "Dict with full response.",
+            "description": "Raw Instagram API response dict. Structure varies by endpoint.",
             "examples": [
               {
-                "...": "...",
                 "items": [
                   {
-                    "...": "..."
+                    "...": "...",
+                    "id": "123456_789",
+                    "media_type": 1,
+                    "pk": 123456
                   }
-                ]
+                ],
+                "paging_info": {
+                  "max_id": "cursor_string",
+                  "more_available": true
+                },
+                "status": "ok"
               }
             ]
           },
@@ -1604,9 +2214,9 @@
               }
             ],
             "title": "Next Page Id",
-            "description": "Next Page ID. Use it value for next request",
+            "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
             "examples": [
-              "QEFerVFGGdsfd_1234567890"
+              "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
             ]
           }
         },

@@ -11,7 +11,9 @@ Get user profiles, followers, following lists, and search.
 
 ### GET /v1/user/about
 
-Get user object by id. Returns user about info.
+Get the "About this account" panel for a user: verified status,
+country of registration, date the account was created, and the list
+of former usernames. Returns user about info.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|

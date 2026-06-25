@@ -8,7 +8,7 @@
             "name": "Pricing",
             "url": "https://hikerapi.com/pricing"
         },
-        "version": "1.7.7"
+        "version": "1.7.9"
     },
     "paths": {
         "/v2/fbsearch/topsearch": {
@@ -54,6 +54,41 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Top V2 Fbsearch Topsearch Get"
+                                },
+                                "example": {
+                                    "list": [
+                                        {
+                                            "position": 0,
+                                            "user": {
+                                                "...": "..."
+                                            }
+                                        },
+                                        "... (1 more items)"
+                                    ],
+                                    "rank_token": "551e3787-6b05-4aa8-9c6f-c5cd184f7af6",
+                                    "clear_client_cache": false,
+                                    "more_results_header": "Posts",
+                                    "entity_results_header": "Accounts",
+                                    "media_grid": {
+                                        "refinements": {},
+                                        "sections": [
+                                            {
+                                                "...": "..."
+                                            },
+                                            "... (3 more items)"
+                                        ],
+                                        "rank_token": "551e3787-6b05-4aa8-9c6f-c5cd184f7af6",
+                                        "next_max_id": "968edc0e78c741ada0c35e55288deb5e",
+                                        "has_more": true,
+                                        "auto_load_more_enabled": true,
+                                        "grid_post_click_experience": "contextual",
+                                        "topic_status": -1,
+                                        "reels_max_id": "r:0f59cf5ea79d4c2a9e897fb63e42357c",
+                                        "has_more_reels": true,
+                                        "reels_page_index": 3,
+                                        "autoplay_type": "single"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -201,6 +236,36 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response User By Username V2 User By Username Get"
+                                },
+                                "example": {
+                                    "user": {
+                                        "strong_id__": "25025320",
+                                        "pk": 25025320,
+                                        "id": "25025320",
+                                        "full_name": "Instagram",
+                                        "username": "instagram",
+                                        "biography": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                        "profile_pic_url": "https://cdn.example.com/...",
+                                        "is_opal_enabled": false,
+                                        "eligible_for_text_app_activation_badge": false,
+                                        "highlights_tray_type": "DEFAULT",
+                                        "account_type": 3,
+                                        "bio_links": [
+                                            {
+                                                "...": "..."
+                                            }
+                                        ],
+                                        "is_call_to_action_enabled": false,
+                                        "is_business": false,
+                                        "biography_with_entities": {
+                                            "raw_text": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                            "entities": [
+                                                "..."
+                                            ]
+                                        },
+                                        "...": "(219 more fields)"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -280,7 +345,21 @@
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {},
+                                "example": {
+                                    "stream_rows": [
+                                        {
+                                            "data": {
+                                                "...": "..."
+                                            },
+                                            "extensions": {
+                                                "...": "..."
+                                            },
+                                            "status": "ok"
+                                        },
+                                        "... (13 more items)"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -379,6 +458,23 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response User Stories V2 User Stories Get"
+                                },
+                                "example": {
+                                    "reel": {
+                                        "id": 25025320,
+                                        "strong_id__": "25025320",
+                                        "latest_reel_media": 1775146773,
+                                        "seen": 0,
+                                        "can_reply": false,
+                                        "can_gif_quick_reply": true,
+                                        "can_reshare": true,
+                                        "reel_type": "user_reel",
+                                        "can_react_with_avatar": false,
+                                        "prefetch_count": 0,
+                                        "expiring_at": 1775233173,
+                                        "...": "(12 more fields)"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -441,6 +537,36 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response User By Id V2 User By Id Get"
+                                },
+                                "example": {
+                                    "user": {
+                                        "strong_id__": "25025320",
+                                        "pk": 25025320,
+                                        "id": "25025320",
+                                        "full_name": "Instagram",
+                                        "username": "instagram",
+                                        "biography": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                        "profile_pic_url": "https://cdn.example.com/...",
+                                        "is_opal_enabled": false,
+                                        "eligible_for_text_app_activation_badge": false,
+                                        "highlights_tray_type": "DEFAULT",
+                                        "account_type": 3,
+                                        "bio_links": [
+                                            {
+                                                "...": "..."
+                                            }
+                                        ],
+                                        "is_call_to_action_enabled": false,
+                                        "is_business": false,
+                                        "biography_with_entities": {
+                                            "raw_text": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                            "entities": [
+                                                "..."
+                                            ]
+                                        },
+                                        "...": "(219 more fields)"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -592,8 +718,8 @@
                 "tags": [
                     "User Profile"
                 ],
-                "summary": "User About",
-                "description": "Get user object by id",
+                "summary": "We recommend switching to /gql/user/about",
+                "description": "Get the \"About this account\" panel for a user: verified status,\ncountry of registration, date the account was created, and the list\nof former usernames.",
                 "operationId": "user_about_v1_user_about_get",
                 "security": [
                     {
@@ -810,6 +936,22 @@
                         }
                     },
                     {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    },
+                    {
                         "name": "force",
                         "in": "query",
                         "required": false,
@@ -826,22 +968,6 @@
                             "title": "Force"
                         },
                         "description": "Skip account privacy check"
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "End Cursor"
-                        }
                     }
                 ],
                 "responses": {
@@ -930,6 +1056,22 @@
                         }
                     },
                     {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    },
+                    {
                         "name": "force",
                         "in": "query",
                         "required": false,
@@ -946,22 +1088,6 @@
                             "title": "Force"
                         },
                         "description": "Skip account privacy check"
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "End Cursor"
-                        }
                     }
                 ],
                 "responses": {
@@ -1363,6 +1489,23 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response User Stories By Username V2 User Stories By Username Get"
+                                },
+                                "example": {
+                                    "reel": {
+                                        "id": 25025320,
+                                        "strong_id__": "25025320",
+                                        "latest_reel_media": 1775146773,
+                                        "seen": 0,
+                                        "can_reply": false,
+                                        "can_gif_quick_reply": true,
+                                        "can_reshare": true,
+                                        "reel_type": "user_reel",
+                                        "can_react_with_avatar": false,
+                                        "prefetch_count": 0,
+                                        "expiring_at": 1775233173,
+                                        "...": "(12 more fields)"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -1584,6 +1727,58 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response User A2 User Get"
+                                },
+                                "example": {
+                                    "graphql": {
+                                        "user": {
+                                            "id": "25025320",
+                                            "biography": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                            "full_name": "Instagram",
+                                            "edge_followed_by": {
+                                                "count": 700997627
+                                            },
+                                            "edge_follow": {
+                                                "count": 234
+                                            },
+                                            "profile_pic_url": "https://cdn.example.com/...",
+                                            "profile_pic_url_hd": "https://cdn.example.com/...",
+                                            "edge_owner_to_timeline_media": {
+                                                "count": 8389,
+                                                "edges": [
+                                                    {
+                                                        "node": {
+                                                            "id": "3866530439053193313",
+                                                            "shortcode": "DExample",
+                                                            "display_url": "https://cdn.example.com/...",
+                                                            "thumbnail_url": "https://cdn.example.com/...",
+                                                            "__typename": "GraphImage",
+                                                            "product_type": "feed",
+                                                            "title": "",
+                                                            "edge_media_to_caption": {
+                                                                "edges": [
+                                                                    {
+                                                                        "node": {
+                                                                            "text": "Caption text"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "edge_media_to_comment": {
+                                                                "count": 12345
+                                                            },
+                                                            "edge_liked_by": {
+                                                                "count": 678901
+                                                            },
+                                                            "edge_media_preview_like": {
+                                                                "count": 678901
+                                                            }
+                                                        }
+                                                    },
+                                                    "... (11 more items)"
+                                                ]
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -1664,6 +1859,19 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PageResponse"
+                                },
+                                "example": {
+                                    "response": {
+                                        "tray": [
+                                            {
+                                                "...": "..."
+                                            },
+                                            "... (10 more items)"
+                                        ],
+                                        "suggested_highlights": {},
+                                        "highlights_tray_type": "DEFAULT",
+                                        "status": "ok"
+                                    }
                                 }
                             }
                         }
@@ -1753,6 +1961,19 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PageResponse"
+                                },
+                                "example": {
+                                    "response": {
+                                        "tray": [
+                                            {
+                                                "...": "..."
+                                            },
+                                            "... (10 more items)"
+                                        ],
+                                        "suggested_highlights": {},
+                                        "highlights_tray_type": "DEFAULT",
+                                        "status": "ok"
+                                    }
                                 }
                             }
                         }
@@ -1939,7 +2160,21 @@
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {},
+                                "example": {
+                                    "stream_rows": [
+                                        {
+                                            "data": {
+                                                "...": "..."
+                                            },
+                                            "extensions": {
+                                                "...": "..."
+                                            },
+                                            "status": "ok"
+                                        },
+                                        "... (14 more items)"
+                                    ]
+                                }
                             }
                         }
                     },
@@ -2059,6 +2294,36 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Userstream By Username V2 Userstream By Username Get"
+                                },
+                                "example": {
+                                    "user": {
+                                        "strong_id__": "25025320",
+                                        "pk": 25025320,
+                                        "id": "25025320",
+                                        "full_name": "Instagram",
+                                        "username": "instagram",
+                                        "biography": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                        "profile_pic_url": "https://cdn.example.com/...",
+                                        "is_opal_enabled": false,
+                                        "eligible_for_text_app_activation_badge": false,
+                                        "highlights_tray_type": "DEFAULT",
+                                        "account_type": 3,
+                                        "bio_links": [
+                                            {
+                                                "...": "..."
+                                            }
+                                        ],
+                                        "is_call_to_action_enabled": false,
+                                        "is_business": false,
+                                        "biography_with_entities": {
+                                            "raw_text": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                            "entities": [
+                                                "..."
+                                            ]
+                                        },
+                                        "...": "(219 more fields)"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -2120,6 +2385,36 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Userstream By Id V2 Userstream By Id Get"
+                                },
+                                "example": {
+                                    "user": {
+                                        "strong_id__": "25025320",
+                                        "pk": 25025320,
+                                        "id": "25025320",
+                                        "full_name": "Instagram",
+                                        "username": "instagram",
+                                        "biography": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                        "profile_pic_url": "https://cdn.example.com/...",
+                                        "is_opal_enabled": false,
+                                        "eligible_for_text_app_activation_badge": false,
+                                        "highlights_tray_type": "DEFAULT",
+                                        "account_type": 3,
+                                        "bio_links": [
+                                            {
+                                                "...": "..."
+                                            }
+                                        ],
+                                        "is_call_to_action_enabled": false,
+                                        "is_business": false,
+                                        "biography_with_entities": {
+                                            "raw_text": "Discover what's new on Instagram \ud83d\udd0e\u2728",
+                                            "entities": [
+                                                "..."
+                                            ]
+                                        },
+                                        "...": "(219 more fields)"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -2508,6 +2803,108 @@
                 "required": false
             }
         },
+        "/g1/user/followers": {
+            "get": {
+                "tags": [
+                    "User Profile"
+                ],
+                "summary": "Get a user followers via legacy public GraphQL (one request required)",
+                "description": "\u26a0\ufe0f Billing: 1 requests per call.",
+                "operationId": "user_followers_g1_user_followers_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users (followers) with end_cursor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserShortWithReel"
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response User Followers G1 User Followers Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+                        "label": "Python"
+                    },
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+                        "label": "Python"
+                    }
+                ],
+                "x-reqs-cost": 1,
+                "required": false
+            }
+        },
         "/g2/user/followers": {
             "get": {
                 "tags": [
@@ -2548,6 +2945,17 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PageResponse"
+                                },
+                                "example": {
+                                    "response": {
+                                        "users": [
+                                            {
+                                                "...": "..."
+                                            },
+                                            "... (40 more items)"
+                                        ],
+                                        "should_limit_list_of_followers": true
+                                    }
                                 }
                             }
                         }
@@ -2566,6 +2974,108 @@
                         }
                     }
                 }
+            }
+        },
+        "/g1/user/following": {
+            "get": {
+                "tags": [
+                    "User Profile"
+                ],
+                "summary": "Get a user following via legacy public GraphQL (one request required)",
+                "description": "\u26a0\ufe0f Billing: 1 requests per call.",
+                "operationId": "user_following_g1_user_following_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users (following) with end_cursor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserShort"
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response User Following G1 User Following Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+                        "label": "Python"
+                    },
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+                        "label": "Python"
+                    }
+                ],
+                "x-reqs-cost": 1,
+                "required": false
             }
         },
         "/g2/user/following": {
@@ -2608,6 +3118,12 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/PageResponse"
+                                },
+                                "example": {
+                                    "response": {
+                                        "users": [],
+                                        "has_more": false
+                                    }
                                 }
                             }
                         }
@@ -2748,6 +3264,152 @@
                 }
             }
         },
+        "/gql/user/about": {
+            "get": {
+                "tags": [
+                    "User Profile"
+                ],
+                "summary": "User About",
+                "description": "Get the \"About this account\" panel for a user: verified status,\ncountry of registration, date the account was created, and the list\nof former usernames.",
+                "operationId": "user_about_gql_user_about_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/About"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.user_about_gql(id=\"25025320\")\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/g2/user/medias": {
+            "get": {
+                "tags": [
+                    "User Profile"
+                ],
+                "summary": "Get a user profile media (one page)",
+                "description": "Get part (one page) of user medias.",
+                "operationId": "user_medias_g2_user_medias_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "next_page_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "title": "Next Page Id"
+                        }
+                    },
+                    {
+                        "name": "flat",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "default": true,
+                            "title": "Flat"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User's profile media grid. Media counters (play_count, like_count, comment_count, etc.) are returned as Instagram sends them. For the next page, pass the envelope's `next_page_id` back as the `next_page_id` query parameter. Ignore the raw `next_max_id` inside `response` \u2014 it is IG-internal metadata, not the cursor for this endpoint.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageResponse"
+                                },
+                                "example": {
+                                    "response": {
+                                        "items": [
+                                            {
+                                                "id": "3894831928272017840_80117947544",
+                                                "code": "DYNOQDIgNmw",
+                                                "play_count": 5041,
+                                                "ig_play_count": 2427,
+                                                "fb_play_count": 2614,
+                                                "...": "..."
+                                            }
+                                        ],
+                                        "next_max_id": "QVFB...",
+                                        "more_available": true
+                                    },
+                                    "next_page_id": "QVFB..."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/gql/user/web_profile_info": {
             "get": {
                 "tags": [
@@ -2777,7 +3439,43 @@
                         "description": "Successful Response",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {},
+                                "example": {
+                                    "friendship_status": {
+                                        "following": false,
+                                        "blocking": false,
+                                        "is_feed_favorite": false,
+                                        "outgoing_request": false,
+                                        "followed_by": false,
+                                        "incoming_request": false,
+                                        "is_restricted": false,
+                                        "is_bestie": false,
+                                        "muting": false,
+                                        "is_muting_reel": false
+                                    },
+                                    "fbid_v2": "17841400039600391",
+                                    "is_memorialized": false,
+                                    "is_private": false,
+                                    "is_coppa_enforced": false,
+                                    "is_regulated_c18": false,
+                                    "bio_links": [
+                                        {
+                                            "image_url": "",
+                                            "is_pinned": false,
+                                            "link_type": "external",
+                                            "lynx_url": "https://cdn.example.com/...",
+                                            "media_accent_color_hex": "",
+                                            "media_type": "none",
+                                            "title": "",
+                                            "url": "http://help.instagram.com",
+                                            "creation_source": "NONE"
+                                        }
+                                    ],
+                                    "text_post_app_badge_label": "instagram",
+                                    "show_text_post_app_badge": true,
+                                    "username": "instagram",
+                                    "...": "(47 more fields)"
+                                }
                             }
                         }
                     },
@@ -3242,7 +3940,7 @@
                 "tags": [
                     "Post Details"
                 ],
-                "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+                "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Note: promoted/ad posts (product_type=ad) may return 404 \u2014 use /v1/media/by/code instead for those.",
                 "description": "Get media object",
                 "operationId": "media_info_by_code_v2_media_info_by_code_get",
                 "security": [
@@ -3270,6 +3968,32 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media Info By Code V2 Media Info By Code Get"
+                                },
+                                "example": {
+                                    "num_results": 1,
+                                    "more_available": false,
+                                    "items": [
+                                        {
+                                            "strong_id__": "3162273595027945978_123123",
+                                            "id": "3162273595027945978_123123",
+                                            "fbid": 17975970359404749,
+                                            "deleted_reason": 0,
+                                            "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                                            "integrity_review_decision": "pending",
+                                            "pk": 3162273595027945978,
+                                            "has_delayed_metadata": false,
+                                            "mezql_token": "",
+                                            "should_request_ads": false,
+                                            "has_privately_liked": false,
+                                            "is_quiet_post": false,
+                                            "collaborator_edit_eligibility": false,
+                                            "share_count_disabled": false,
+                                            "is_visual_reply_commenter_notice_enabled": true,
+                                            "...": "(96 more fields)"
+                                        }
+                                    ],
+                                    "auto_load_more_enabled": true,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -3407,6 +4131,27 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media Likers V2 Media Likers Get"
+                                },
+                                "example": {
+                                    "users": [
+                                        {
+                                            "strong_id__": "59560451506",
+                                            "pk": 59560451506,
+                                            "pk_id": "59560451506",
+                                            "id": "59560451506",
+                                            "username": "batcha_de_leon",
+                                            "full_name": "Just call me Batcha",
+                                            "is_private": false,
+                                            "is_verified": false,
+                                            "profile_pic_id": "3839024502038602130_59560451506",
+                                            "profile_pic_url": "https://cdn.example.com/...",
+                                            "is_new": false,
+                                            "latest_reel_media": 0
+                                        },
+                                        "... (54 more items)"
+                                    ],
+                                    "user_count": 55,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -3602,7 +4347,7 @@
                 "tags": [
                     "Post Details"
                 ],
-                "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/",
+                "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/. Note: promoted/ad posts (product_type=ad) may return 404 \u2014 use /v1/media/by/url instead for those.",
                 "description": "Get media object",
                 "operationId": "media_info_by_url_v2_media_info_by_url_get",
                 "security": [
@@ -3630,6 +4375,32 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media Info By Url V2 Media Info By Url Get"
+                                },
+                                "example": {
+                                    "num_results": 1,
+                                    "more_available": false,
+                                    "items": [
+                                        {
+                                            "strong_id__": "3162273595027945978_123123",
+                                            "id": "3162273595027945978_123123",
+                                            "fbid": 17975970359404749,
+                                            "deleted_reason": 0,
+                                            "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                                            "integrity_review_decision": "pending",
+                                            "pk": 3162273595027945978,
+                                            "has_delayed_metadata": false,
+                                            "mezql_token": "",
+                                            "should_request_ads": false,
+                                            "has_privately_liked": false,
+                                            "is_quiet_post": false,
+                                            "collaborator_edit_eligibility": false,
+                                            "share_count_disabled": false,
+                                            "is_visual_reply_commenter_notice_enabled": true,
+                                            "...": "(96 more fields)"
+                                        }
+                                    ],
+                                    "auto_load_more_enabled": true,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -3722,7 +4493,7 @@
                 "tags": [
                     "Post Details"
                 ],
-                "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+                "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Note: promoted/ad posts (product_type=ad) may return 404 \u2014 use /v1/media/by/id instead for those.",
                 "description": "Get media object",
                 "operationId": "media_info_by_id_v2_media_info_by_id_get",
                 "security": [
@@ -3750,6 +4521,32 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media Info By Id V2 Media Info By Id Get"
+                                },
+                                "example": {
+                                    "num_results": 1,
+                                    "more_available": false,
+                                    "items": [
+                                        {
+                                            "strong_id__": "3162273595027945978_123123",
+                                            "id": "3162273595027945978_123123",
+                                            "fbid": 17975970359404749,
+                                            "deleted_reason": 0,
+                                            "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                                            "integrity_review_decision": "pending",
+                                            "pk": 3162273595027945978,
+                                            "has_delayed_metadata": false,
+                                            "mezql_token": "",
+                                            "should_request_ads": false,
+                                            "has_privately_liked": false,
+                                            "is_quiet_post": false,
+                                            "collaborator_edit_eligibility": false,
+                                            "share_count_disabled": false,
+                                            "is_visual_reply_commenter_notice_enabled": true,
+                                            "...": "(96 more fields)"
+                                        }
+                                    ],
+                                    "auto_load_more_enabled": true,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -4133,7 +4930,31 @@
                                         "additionalProperties": true
                                     },
                                     "title": "Response Media Likers Gql Media Likers Get"
-                                }
+                                },
+                                "example": [
+                                    {
+                                        "pk": "2256048641",
+                                        "__typename": "XDTUserDict",
+                                        "username": "bowling_1141",
+                                        "full_name": "Bowling Thitirat",
+                                        "profile_pic_url": "https://cdn.example.com/...",
+                                        "is_verified": false,
+                                        "friendship_status": {
+                                            "blocking": false,
+                                            "is_feed_favorite": false,
+                                            "following": false,
+                                            "is_muting_reel": false,
+                                            "muting": false,
+                                            "outgoing_request": false,
+                                            "followed_by": false,
+                                            "incoming_request": false,
+                                            "is_restricted": false,
+                                            "is_bestie": false
+                                        },
+                                        "id": "2256048641"
+                                    },
+                                    "... (76 more items)"
+                                ]
                             }
                         }
                     },
@@ -4194,6 +5015,34 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media Template V2 Media Template Get"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "media": {
+                                                "...": "..."
+                                            }
+                                        }
+                                    ],
+                                    "metadata": {
+                                        "template_clips_media_creator": "use_template",
+                                        "clips_count": "1 reel",
+                                        "image_versions2": {
+                                            "additional_candidates": {
+                                                "...": "..."
+                                            },
+                                            "candidates": [
+                                                "..."
+                                            ]
+                                        },
+                                        "template_title": "Original template"
+                                    },
+                                    "paging_info": {
+                                        "max_id": "QVFCcnhIWE82OUswLXBt...",
+                                        "more_available": true
+                                    },
+                                    "status": "ok",
+                                    "status_code": "200"
                                 }
                             }
                         }
@@ -4520,240 +5369,6 @@
                 "required": false
             }
         },
-        "/gql/comments/chunk": {
-            "get": {
-                "tags": [
-                    "Comments"
-                ],
-                "summary": "Media Comments Chunk",
-                "description": "Get comments on a media",
-                "operationId": "media_comments_chunk_gql_comments_chunk_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "media_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Media Id"
-                        }
-                    },
-                    {
-                        "name": "sort_order",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "enum": [
-                                        "recent",
-                                        "popular"
-                                    ],
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "default": "recent",
-                            "title": "Sort Order"
-                        }
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "End Cursor"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "prefixItems": [
-                                        {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "additionalProperties": true
-                                            }
-                                        },
-                                        {
-                                            "anyOf": [
-                                                {
-                                                    "type": "string"
-                                                },
-                                                {
-                                                    "type": "null"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "minItems": 2,
-                                    "maxItems": 2,
-                                    "title": "Response Media Comments Chunk Gql Comments Chunk Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = await cl.comments_chunk_gql(\n    media_id=\"3162273595027945978\", end_cursor=None\n)\n",
-                        "label": "Python"
-                    },
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-                        "label": "Python"
-                    }
-                ],
-                "required": false
-            }
-        },
-        "/gql/comments/threaded/chunk": {
-            "get": {
-                "tags": [
-                    "Comments"
-                ],
-                "summary": "Media Comments Threaded Chunk",
-                "description": "Get threaded comments for comment",
-                "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "media_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Media Id"
-                        }
-                    },
-                    {
-                        "name": "comment_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Comment Id"
-                        }
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "End Cursor"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "prefixItems": [
-                                        {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "additionalProperties": true
-                                            }
-                                        },
-                                        {
-                                            "anyOf": [
-                                                {
-                                                    "type": "string"
-                                                },
-                                                {
-                                                    "type": "null"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "minItems": 2,
-                                    "maxItems": 2,
-                                    "title": "Response Media Comments Threaded Chunk Gql Comments Threaded Chunk Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = cl.comments_threaded_chunk_gql(comment_id=\"2321157652140500761\", end_cursor=None)\n",
-                        "label": "Python"
-                    },
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_threaded_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-                        "label": "Python"
-                    }
-                ],
-                "required": false
-            }
-        },
         "/gql/comment/likers/chunk": {
             "get": {
                 "tags": [
@@ -4842,7 +5457,23 @@
                                     "minItems": 2,
                                     "maxItems": 2,
                                     "title": "Response Comment Likers Chunk Gql Comment Likers Chunk Get"
-                                }
+                                },
+                                "example": [
+                                    [
+                                        {
+                                            "id": "13277463868",
+                                            "username": "example_user",
+                                            "full_name": "Example User",
+                                            "profile_pic_url": "https://cdn.example.com/...",
+                                            "is_private": true,
+                                            "is_verified": false,
+                                            "followed_by_viewer": false,
+                                            "requested_by_viewer": false
+                                        },
+                                        "... (49 more items)"
+                                    ],
+                                    "QVFEbzJ..."
+                                ]
                             }
                         }
                     },
@@ -4873,81 +5504,6 @@
                     }
                 ],
                 "required": false
-            }
-        },
-        "/gql/topsearch": {
-            "get": {
-                "tags": [
-                    "Comments",
-                    "Search"
-                ],
-                "summary": "Topsearch",
-                "description": "Search top content by keyword (GraphQL TopSerpQuery)",
-                "operationId": "topsearch_gql_topsearch_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "query",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Query"
-                        }
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "title": "End Cursor"
-                        }
-                    },
-                    {
-                        "name": "flat",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "boolean",
-                            "description": "Flatten nested response into simple items list",
-                            "default": false,
-                            "title": "Flat"
-                        },
-                        "description": "Flatten nested response into simple items list"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "additionalProperties": true,
-                                    "title": "Response Topsearch Gql Topsearch Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
         "/v3/fbsearch/accounts": {
@@ -4992,6 +5548,27 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Accounts V3 Fbsearch Accounts Get"
+                                },
+                                "example": {
+                                    "num_results": 20,
+                                    "users": [
+                                        {
+                                            "strong_id__": "528817151",
+                                            "fbid_v2": 17841401474538262,
+                                            "pk": 528817151,
+                                            "pk_id": "528817151",
+                                            "is_verified_search_boosted": false,
+                                            "search_serp_type": 3,
+                                            "third_party_downloads_enabled": 1,
+                                            "...": "(31 more fields)"
+                                        },
+                                        "... (19 more items)"
+                                    ],
+                                    "has_more": true,
+                                    "rank_token": "rank_token_value...",
+                                    "clear_client_cache": false,
+                                    "page_token": "7d4d340812a243db9b494e4f013826e6",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -5009,7 +5586,9 @@
                             }
                         }
                     }
-                }
+                },
+                "x-codeSamples": [],
+                "required": false
             }
         },
         "/v1/search/hashtags": {
@@ -5169,6 +5748,15 @@
                             "type": "string",
                             "title": "Reels Max Id"
                         }
+                    },
+                    {
+                        "name": "rank_token",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "title": "Rank Token"
+                        }
                     }
                 ],
                 "responses": {
@@ -5180,6 +5768,21 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Reels V2 Fbsearch Reels Get"
+                                },
+                                "example": {
+                                    "reels_serp_modules": [
+                                        {
+                                            "module_type": "clips",
+                                            "clips": [
+                                                "..."
+                                            ]
+                                        }
+                                    ],
+                                    "has_more": true,
+                                    "reels_max_id": "r:b3fbe8219cce4db48b0fa020c8488872",
+                                    "page_index": 12,
+                                    "rank_token": "219b370d-514f-4eb9-b140-06321c037237",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -5250,6 +5853,37 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Accounts V2 Fbsearch Accounts Get"
+                                },
+                                "example": {
+                                    "num_results": 20,
+                                    "users": [
+                                        {
+                                            "strong_id__": "528817151",
+                                            "fbid_v2": 17841401474538262,
+                                            "pk": 528817151,
+                                            "pk_id": "528817151",
+                                            "is_verified_search_boosted": false,
+                                            "search_serp_type": 3,
+                                            "third_party_downloads_enabled": 1,
+                                            "id": "528817151",
+                                            "full_name": "NASA",
+                                            "is_private": false,
+                                            "is_verified": true,
+                                            "profile_pic_id": "1735715738009579084_528817151",
+                                            "profile_pic_url": "https://cdn.example.com/...",
+                                            "username": "nasa",
+                                            "account_badges": [
+                                                "..."
+                                            ],
+                                            "...": "(11 more fields)"
+                                        },
+                                        "... (19 more items)"
+                                    ],
+                                    "has_more": true,
+                                    "rank_token": "rank_token_value...",
+                                    "clear_client_cache": false,
+                                    "page_token": "6cce7521a797481a871e466d5e59c388",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -5320,6 +5954,26 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Search Music V2 Search Music Get"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "track": {
+                                                "...": "..."
+                                            },
+                                            "metadata": {
+                                                "...": "..."
+                                            }
+                                        },
+                                        "... (11 more items)"
+                                    ],
+                                    "page_info": {
+                                        "next_max_id": "10",
+                                        "more_available": true
+                                    },
+                                    "alacorn_session_id": "0DkZIOgpApKxuqBo77100",
+                                    "licensed_music_eligibility_state": "ELIGIBLE",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -5390,6 +6044,23 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Search Hashtags V2 Search Hashtags Get"
+                                },
+                                "example": {
+                                    "results": [
+                                        {
+                                            "id": 17841538786105345,
+                                            "name": "pythonprogramming",
+                                            "media_count": 1125287,
+                                            "formatted_media_count": "1.1M",
+                                            "search_result_subtitle": "1.1M posts",
+                                            "use_default_avatar": true,
+                                            "challenge_id": 1
+                                        },
+                                        "... (54 more items)"
+                                    ],
+                                    "has_more": false,
+                                    "rank_token": "rank_token_value...",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -5415,6 +6086,96 @@
                         "label": "Python"
                     }
                 ],
+                "required": false
+            }
+        },
+        "/gql/topsearch": {
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Topsearch",
+                "description": "Search top content by keyword.\n\nReturns top accounts AND top media interleaved in one stream \u2014\ndiscriminate by `__typename` (`XDTUserDict` / `XDTMediaDict`).\n\n`flat=true` returns flat `items[]` instead of `stream_rows`.",
+                "operationId": "topsearch_gql_topsearch_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "title": "End Cursor"
+                        }
+                    },
+                    {
+                        "name": "flat",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean",
+                            "description": "Flatten stream_rows into a single items[] list",
+                            "default": false,
+                            "title": "Flat"
+                        },
+                        "description": "Flatten stream_rows into a single items[] list"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "title": "Response Topsearch Gql Topsearch Get"
+                                },
+                                "example": {
+                                    "stream_rows": [
+                                        {
+                                            "data": {
+                                                "...": "..."
+                                            },
+                                            "extensions": {
+                                                "...": "..."
+                                            },
+                                            "status": "ok"
+                                        },
+                                        "... (16 more items)"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [],
                 "required": false
             }
         },
@@ -5451,62 +6212,21 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Places V3 Fbsearch Places Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/fbsearch/topsearch": {
-            "get": {
-                "tags": [
-                    "Search"
-                ],
-                "summary": "Fbsearch Topsearch",
-                "description": "Topsearch",
-                "operationId": "fbsearch_topsearch_v1_fbsearch_topsearch_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "query",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "Query"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "additionalProperties": true
-                                    },
-                                    "title": "Response Fbsearch Topsearch V1 Fbsearch Topsearch Get"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "location": {
+                                                "...": "..."
+                                            },
+                                            "title": "Resorts World New York City",
+                                            "subtitle": "110-00 Rockaway Blvd"
+                                        },
+                                        "... (29 more items)"
+                                    ],
+                                    "has_more": false,
+                                    "rank_token": "rank_token_value...",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -5525,13 +6245,7 @@
                         }
                     }
                 },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_topsearch_v1(query=\"Berlin\")\n",
-                        "label": "Python"
-                    }
-                ],
+                "x-codeSamples": [],
                 "required": false
             }
         },
@@ -5791,6 +6505,21 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Places V2 Fbsearch Places Get"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "location": {
+                                                "...": "..."
+                                            },
+                                            "title": "New York",
+                                            "subtitle": "3.1mi"
+                                        },
+                                        "... (29 more items)"
+                                    ],
+                                    "has_more": false,
+                                    "rank_token": "rank_token_value...",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -6135,73 +6864,18 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Hashtag By Name V2 Hashtag By Name Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v1/hashtag/medias/clips": {
-            "get": {
-                "tags": [
-                    "Hashtags"
-                ],
-                "summary": "Hashtag Medias Clips",
-                "description": "Get hashtag clips (reels)",
-                "operationId": "hashtag_medias_clips_v1_hashtag_medias_clips_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. ",
-                            "title": "Name"
-                        },
-                        "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. "
-                    },
-                    {
-                        "name": "amount",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 27,
-                            "title": "Amount"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Media"
-                                    },
-                                    "title": "Response Hashtag Medias Clips V1 Hashtag Medias Clips Get"
+                                },
+                                "example": {
+                                    "id": "17841562870113513",
+                                    "name": "python",
+                                    "media_count": 6917175,
+                                    "allow_muting_story": true,
+                                    "show_follow_drop_down": false,
+                                    "formatted_media_count": "6.9M",
+                                    "is_trending": true,
+                                    "hide_use_hashtag_button": false,
+                                    "status": "ok",
+                                    "allow_following": false
                                 }
                             }
                         }
@@ -6220,13 +6894,7 @@
                         }
                     }
                 },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.hashtag_medias_clips_v1(name=\"love\", amount=10)\n",
-                        "label": "Python"
-                    }
-                ],
+                "x-codeSamples": [],
                 "required": false
             }
         },
@@ -6315,81 +6983,6 @@
                     {
                         "lang": "Python",
                         "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.hashtag_medias_clips_chunk_v1(name=\"love\", max_id=None)\n",
-                        "label": "Python"
-                    }
-                ],
-                "required": false
-            }
-        },
-        "/v1/hashtag/medias/top": {
-            "get": {
-                "tags": [
-                    "Hashtags"
-                ],
-                "summary": "Hashtag Medias Top",
-                "description": "Get hashtag medias top",
-                "operationId": "hashtag_medias_top_v1_hashtag_medias_top_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. ",
-                            "title": "Name"
-                        },
-                        "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. "
-                    },
-                    {
-                        "name": "amount",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 9,
-                            "title": "Amount"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful Response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Media"
-                                    },
-                                    "title": "Response Hashtag Medias Top V1 Hashtag Medias Top Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.hashtag_medias_top_v1(name=\"love\", amount=10)\n",
                         "label": "Python"
                     }
                 ],
@@ -7261,6 +7854,45 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Story By Url V2 Story By Url Get"
+                                },
+                                "example": {
+                                    "reel": {
+                                        "id": 25025320,
+                                        "strong_id__": "25025320",
+                                        "latest_reel_media": 1775146773,
+                                        "seen": 0,
+                                        "can_reply": false,
+                                        "can_reshare": true,
+                                        "reel_type": "user_reel",
+                                        "items": [
+                                            {
+                                                "pk": "3866000000000000000",
+                                                "id": "3866000000000000000_25025320",
+                                                "code": "DExample",
+                                                "media_type": 1,
+                                                "taken_at": 1775146773,
+                                                "image_versions2": {
+                                                    "...": "..."
+                                                },
+                                                "user": {
+                                                    "pk": 25025320,
+                                                    "username": "instagram"
+                                                },
+                                                "expiring_at": 1775233173
+                                            }
+                                        ],
+                                        "user": {
+                                            "pk": 25025320,
+                                            "username": "instagram",
+                                            "full_name": "Instagram",
+                                            "is_private": false,
+                                            "is_verified": true,
+                                            "profile_pic_url": "https://cdn.example.com/..."
+                                        },
+                                        "prefetch_count": 0,
+                                        "expiring_at": 1775233173
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -7432,6 +8064,45 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Story By Id V2 Story By Id Get"
+                                },
+                                "example": {
+                                    "reel": {
+                                        "id": 25025320,
+                                        "strong_id__": "25025320",
+                                        "latest_reel_media": 1775146773,
+                                        "seen": 0,
+                                        "can_reply": false,
+                                        "can_reshare": true,
+                                        "reel_type": "user_reel",
+                                        "items": [
+                                            {
+                                                "pk": "3866000000000000000",
+                                                "id": "3866000000000000000_25025320",
+                                                "code": "DExample",
+                                                "media_type": 1,
+                                                "taken_at": 1775146773,
+                                                "image_versions2": {
+                                                    "...": "..."
+                                                },
+                                                "user": {
+                                                    "pk": 25025320,
+                                                    "username": "instagram"
+                                                },
+                                                "expiring_at": 1775233173
+                                            }
+                                        ],
+                                        "user": {
+                                            "pk": 25025320,
+                                            "username": "instagram",
+                                            "full_name": "Instagram",
+                                            "is_private": false,
+                                            "is_verified": true,
+                                            "profile_pic_url": "https://cdn.example.com/..."
+                                        },
+                                        "prefetch_count": 0,
+                                        "expiring_at": 1775233173
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -8020,6 +8691,149 @@
                 "required": false
             }
         },
+        "/gql/comments/chunk": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "Use /v1/media/comments/chunk or /v2/media/comments instead",
+                "description": "Get comments on a media",
+                "operationId": "media_comments_chunk_gql_comments_chunk_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "media_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Media Id"
+                        }
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "enum": [
+                                        "recent",
+                                        "popular"
+                                    ],
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": "recent",
+                            "title": "Sort Order"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "additionalProperties": true
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response Media Comments Chunk Gql Comments Chunk Get"
+                                },
+                                "example": [
+                                    [
+                                        {
+                                            "pk": "18105432715897450",
+                                            "user": {
+                                                "...": "..."
+                                            },
+                                            "is_covered": false,
+                                            "child_comment_count": 0,
+                                            "has_liked_comment": false,
+                                            "text": "\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f",
+                                            "created_at": 1775175316,
+                                            "comment_like_count": 0,
+                                            "__typename": "XDTCommentDict"
+                                        },
+                                        "... (14 more items)"
+                                    ],
+                                    "... (1 more items)"
+                                ]
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = await cl.comments_chunk_gql(\n    media_id=\"3162273595027945978\", end_cursor=None\n)\n",
+                        "label": "Python"
+                    },
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
         "/v2/hashtag/medias/clips": {
             "get": {
                 "tags": [
@@ -8127,6 +8941,18 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Top V3 Fbsearch Topsearch Get"
+                                },
+                                "example": {
+                                    "stream_rows": [
+                                        {
+                                            "clear_client_cache": false,
+                                            "client_hints": {
+                                                "...": "..."
+                                            },
+                                            "status": "ok"
+                                        },
+                                        "... (2 more items)"
+                                    ]
                                 }
                             }
                         }
@@ -8144,7 +8970,9 @@
                             }
                         }
                     }
-                }
+                },
+                "x-codeSamples": [],
+                "required": false
             }
         },
         "/v3/fbsearch/reels": {
@@ -8190,6 +9018,21 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Fbsearch Reels V3 Fbsearch Reels Get"
+                                },
+                                "example": {
+                                    "reels_serp_modules": [
+                                        {
+                                            "module_type": "clips",
+                                            "clips": [
+                                                "..."
+                                            ]
+                                        }
+                                    ],
+                                    "has_more": true,
+                                    "reels_max_id": "r:8dbadf9889174a4792854d3f59cb0057",
+                                    "page_index": 11,
+                                    "rank_token": "b790b05c-639f-4a2d-8cc3-29ce5e2c94ae",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -8207,7 +9050,9 @@
                             }
                         }
                     }
-                }
+                },
+                "x-codeSamples": [],
+                "required": false
             }
         },
         "/gql/comments": {
@@ -8215,7 +9060,7 @@
                 "tags": [
                     "Legacy"
                 ],
-                "summary": "WARNING: Preferable to use /gql/comments/chunk",
+                "summary": "Use /v1/media/comments/chunk or /v2/media/comments instead",
                 "description": "Get comments on a media",
                 "operationId": "media_comments_gql_comments_get",
                 "deprecated": true,
@@ -8288,7 +9133,26 @@
                                         "additionalProperties": true
                                     },
                                     "title": "Response Media Comments Gql Comments Get"
-                                }
+                                },
+                                "example": [
+                                    [
+                                        {
+                                            "pk": "18105432715897450",
+                                            "user": {
+                                                "...": "..."
+                                            },
+                                            "is_covered": false,
+                                            "child_comment_count": 0,
+                                            "has_liked_comment": false,
+                                            "text": "\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f",
+                                            "created_at": 1775175316,
+                                            "comment_like_count": 0,
+                                            "__typename": "XDTCommentDict"
+                                        },
+                                        "... (14 more items)"
+                                    ],
+                                    "... (1 more items)"
+                                ]
                             }
                         }
                     },
@@ -8310,6 +9174,137 @@
                     {
                         "lang": "Python",
                         "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.comments_gql(media_id=\"3162273595027945978\", amount=10)\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/gql/comments/threaded/chunk": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "Use /v2/media/comments/replies instead",
+                "description": "Get threaded comments for comment",
+                "operationId": "media_comments_threaded_chunk_gql_comments_threaded_chunk_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "media_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Media Id"
+                        }
+                    },
+                    {
+                        "name": "comment_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Comment Id"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "additionalProperties": true
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response Media Comments Threaded Chunk Gql Comments Threaded Chunk Get"
+                                },
+                                "example": [
+                                    [
+                                        {
+                                            "pk": "18105432715897450",
+                                            "user": {
+                                                "...": "..."
+                                            },
+                                            "is_covered": false,
+                                            "child_comment_count": 0,
+                                            "has_liked_comment": false,
+                                            "text": "\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f",
+                                            "created_at": 1775175316,
+                                            "comment_like_count": 0,
+                                            "__typename": "XDTCommentDict"
+                                        },
+                                        "... (14 more items)"
+                                    ],
+                                    "... (1 more items)"
+                                ]
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\ncomments, end_cursor = cl.comments_threaded_chunk_gql(comment_id=\"2321157652140500761\", end_cursor=None)\n",
+                        "label": "Python"
+                    },
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.comments_threaded_chunk_gql(\"3162273595027945978\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
                         "label": "Python"
                     }
                 ],
@@ -8363,7 +9358,23 @@
                                         "additionalProperties": true
                                     },
                                     "title": "Response Comment Likers Gql Comment Likers Get"
-                                }
+                                },
+                                "example": [
+                                    [
+                                        {
+                                            "id": "13277463868",
+                                            "username": "example_user",
+                                            "full_name": "Example User",
+                                            "profile_pic_url": "https://cdn.example.com/...",
+                                            "is_private": true,
+                                            "is_verified": false,
+                                            "followed_by_viewer": false,
+                                            "requested_by_viewer": false
+                                        },
+                                        "... (49 more items)"
+                                    ],
+                                    "QVFEbzJ..."
+                                ]
                             }
                         }
                     },
@@ -8434,6 +9445,37 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Search Accounts V2 Search Accounts Get"
+                                },
+                                "example": {
+                                    "num_results": 20,
+                                    "users": [
+                                        {
+                                            "strong_id__": "528817151",
+                                            "fbid_v2": 17841401474538262,
+                                            "pk": 528817151,
+                                            "pk_id": "528817151",
+                                            "is_verified_search_boosted": false,
+                                            "search_serp_type": 3,
+                                            "third_party_downloads_enabled": 1,
+                                            "id": "528817151",
+                                            "full_name": "NASA",
+                                            "is_private": false,
+                                            "is_verified": true,
+                                            "profile_pic_id": "1735715738009579084_528817151",
+                                            "profile_pic_url": "https://cdn.example.com/...",
+                                            "username": "nasa",
+                                            "account_badges": [
+                                                "..."
+                                            ],
+                                            "...": "(11 more fields)"
+                                        },
+                                        "... (19 more items)"
+                                    ],
+                                    "has_more": true,
+                                    "rank_token": "rank_token_value...",
+                                    "clear_client_cache": false,
+                                    "page_token": "9a8ac4dc95484777a37c6b412b140da4",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -8523,6 +9565,41 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Search Top V2 Search Topsearch Get"
+                                },
+                                "example": {
+                                    "list": [
+                                        {
+                                            "position": 0,
+                                            "user": {
+                                                "...": "..."
+                                            }
+                                        },
+                                        "... (1 more items)"
+                                    ],
+                                    "rank_token": "e3343f72-f8eb-4f6a-9258-400ac3c8dfd6",
+                                    "clear_client_cache": false,
+                                    "more_results_header": "Posts",
+                                    "entity_results_header": "Accounts",
+                                    "media_grid": {
+                                        "refinements": {},
+                                        "sections": [
+                                            {
+                                                "...": "..."
+                                            },
+                                            "... (3 more items)"
+                                        ],
+                                        "rank_token": "e3343f72-f8eb-4f6a-9258-400ac3c8dfd6",
+                                        "next_max_id": "a8a28cb5a7804b6aaf431da977ce30b0",
+                                        "has_more": true,
+                                        "auto_load_more_enabled": true,
+                                        "grid_post_click_experience": "contextual",
+                                        "topic_status": -1,
+                                        "reels_max_id": "r:b1713f1c3cbc4c8eb5c780f05543f87e",
+                                        "has_more_reels": true,
+                                        "reels_page_index": 3,
+                                        "autoplay_type": "single"
+                                    },
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -8696,6 +9773,21 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Search Reels V2 Search Reels Get"
+                                },
+                                "example": {
+                                    "reels_serp_modules": [
+                                        {
+                                            "module_type": "clips",
+                                            "clips": [
+                                                "..."
+                                            ]
+                                        }
+                                    ],
+                                    "has_more": true,
+                                    "reels_max_id": "r:72817d134a134e1aa5d7ec6e8290e978",
+                                    "page_index": 11,
+                                    "rank_token": "e717651f-d8db-4e43-895b-b0cedf6bcc2d",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -8758,6 +9850,21 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Search Places V2 Search Places Get"
+                                },
+                                "example": {
+                                    "items": [
+                                        {
+                                            "location": {
+                                                "...": "..."
+                                            },
+                                            "title": "New York",
+                                            "subtitle": "3.1mi"
+                                        },
+                                        "... (29 more items)"
+                                    ],
+                                    "has_more": false,
+                                    "rank_token": "rank_token_value...",
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -8780,6 +9887,71 @@
                     {
                         "lang": "Python",
                         "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_places_v2(query=\"rock\")\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/v1/fbsearch/topsearch": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "Use /gql/topsearch instead (broken upstream \u2014 IG returns 5xx)",
+                "description": "Topsearch",
+                "operationId": "fbsearch_topsearch_v1_fbsearch_topsearch_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Query"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": true
+                                    },
+                                    "title": "Response Fbsearch Topsearch V1 Fbsearch Topsearch Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.fbsearch_topsearch_v1(query=\"Berlin\")\n",
                         "label": "Python"
                     }
                 ],
@@ -8916,7 +10088,7 @@
                 "tags": [
                     "Legacy"
                 ],
-                "summary": "WARNING: Preferable to use /gql/comments/chunk",
+                "summary": "Use /v2/media/comments/replies instead",
                 "description": "Get threaded comments for comment",
                 "operationId": "media_comments_threaded_gql_comments_threaded_get",
                 "deprecated": true,
@@ -8967,7 +10139,26 @@
                                         "additionalProperties": true
                                     },
                                     "title": "Response Media Comments Threaded Gql Comments Threaded Get"
-                                }
+                                },
+                                "example": [
+                                    [
+                                        {
+                                            "pk": "18105432715897450",
+                                            "user": {
+                                                "...": "..."
+                                            },
+                                            "is_covered": false,
+                                            "child_comment_count": 0,
+                                            "has_liked_comment": false,
+                                            "text": "\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f",
+                                            "created_at": 1775175316,
+                                            "comment_like_count": 0,
+                                            "__typename": "XDTCommentDict"
+                                        },
+                                        "... (14 more items)"
+                                    ],
+                                    "... (1 more items)"
+                                ]
                             }
                         }
                     },
@@ -9249,6 +10440,82 @@
                 "required": false
             }
         },
+        "/v1/hashtag/medias/clips": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "Use /v1/hashtag/medias/clips/chunk or /v2/hashtag/medias/clips instead",
+                "description": "Get hashtag clips (reels)",
+                "operationId": "hashtag_medias_clips_v1_hashtag_medias_clips_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. ",
+                            "title": "Name"
+                        },
+                        "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. "
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 27,
+                            "title": "Amount"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Media"
+                                    },
+                                    "title": "Response Hashtag Medias Clips V1 Hashtag Medias Clips Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.hashtag_medias_clips_v1(name=\"love\", amount=10)\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
         "/v1/hashtag/medias/recent": {
             "get": {
                 "tags": [
@@ -9411,6 +10678,82 @@
                     {
                         "lang": "Python",
                         "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.hashtag_medias_recent_chunk_v1(name=\"love\", max_id=None)\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/v1/hashtag/medias/top": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "Use /v1/hashtag/medias/top/chunk or /v2/hashtag/medias/top instead",
+                "description": "Get hashtag medias top",
+                "operationId": "hashtag_medias_top_v1_hashtag_medias_top_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. ",
+                            "title": "Name"
+                        },
+                        "description": "Please make sure to use a clean hashtag without any special symbols. \n\n**Good one**: love, sea, dog, \uacf5\uad6c \n\n**Bad one**: #dog, sea_., tanjung.., #\uacf5\uad6c. "
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 9,
+                            "title": "Amount"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Media"
+                                    },
+                                    "title": "Response Hashtag Medias Top V1 Hashtag Medias Top Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.hashtag_medias_top_v1(name=\"love\", amount=10)\n",
                         "label": "Python"
                     }
                 ],
@@ -10314,6 +11657,32 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media By Code V2 Media By Code Get"
+                                },
+                                "example": {
+                                    "num_results": 1,
+                                    "more_available": false,
+                                    "items": [
+                                        {
+                                            "strong_id__": "3162273595027945978_123123",
+                                            "id": "3162273595027945978_123123",
+                                            "fbid": 17975970359404749,
+                                            "deleted_reason": 0,
+                                            "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                                            "integrity_review_decision": "pending",
+                                            "pk": 3162273595027945978,
+                                            "has_delayed_metadata": false,
+                                            "mezql_token": "",
+                                            "should_request_ads": false,
+                                            "has_privately_liked": false,
+                                            "is_quiet_post": false,
+                                            "collaborator_edit_eligibility": false,
+                                            "share_count_disabled": false,
+                                            "is_visual_reply_commenter_notice_enabled": true,
+                                            "...": "(96 more fields)"
+                                        }
+                                    ],
+                                    "auto_load_more_enabled": true,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -10376,6 +11745,32 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media By Id V2 Media By Id Get"
+                                },
+                                "example": {
+                                    "num_results": 1,
+                                    "more_available": false,
+                                    "items": [
+                                        {
+                                            "strong_id__": "3162273595027945978_123123",
+                                            "id": "3162273595027945978_123123",
+                                            "fbid": 17975970359404749,
+                                            "deleted_reason": 0,
+                                            "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                                            "integrity_review_decision": "pending",
+                                            "pk": 3162273595027945978,
+                                            "has_delayed_metadata": false,
+                                            "mezql_token": "",
+                                            "should_request_ads": false,
+                                            "has_privately_liked": false,
+                                            "is_quiet_post": false,
+                                            "collaborator_edit_eligibility": false,
+                                            "share_count_disabled": false,
+                                            "is_visual_reply_commenter_notice_enabled": true,
+                                            "...": "(96 more fields)"
+                                        }
+                                    ],
+                                    "auto_load_more_enabled": true,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -10438,6 +11833,32 @@
                                     "type": "object",
                                     "additionalProperties": true,
                                     "title": "Response Media By Url V2 Media By Url Get"
+                                },
+                                "example": {
+                                    "num_results": 1,
+                                    "more_available": false,
+                                    "items": [
+                                        {
+                                            "strong_id__": "3162273595027945978_123123",
+                                            "id": "3162273595027945978_123123",
+                                            "fbid": 17975970359404749,
+                                            "deleted_reason": 0,
+                                            "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                                            "integrity_review_decision": "pending",
+                                            "pk": 3162273595027945978,
+                                            "has_delayed_metadata": false,
+                                            "mezql_token": "",
+                                            "should_request_ads": false,
+                                            "has_privately_liked": false,
+                                            "is_quiet_post": false,
+                                            "collaborator_edit_eligibility": false,
+                                            "share_count_disabled": false,
+                                            "is_visual_reply_commenter_notice_enabled": true,
+                                            "...": "(96 more fields)"
+                                        }
+                                    ],
+                                    "auto_load_more_enabled": true,
+                                    "status": "ok"
                                 }
                             }
                         }
@@ -11425,15 +12846,22 @@
                         "additionalProperties": true,
                         "type": "object",
                         "title": "Response",
-                        "description": "Dict with full response.",
+                        "description": "Raw Instagram API response dict. Structure varies by endpoint.",
                         "examples": [
                             {
-                                "...": "...",
                                 "items": [
                                     {
-                                        "...": "..."
+                                        "...": "...",
+                                        "id": "123456_789",
+                                        "media_type": 1,
+                                        "pk": 123456
                                     }
-                                ]
+                                ],
+                                "paging_info": {
+                                    "max_id": "cursor_string",
+                                    "more_available": true
+                                },
+                                "status": "ok"
                             }
                         ]
                     },
@@ -11447,9 +12875,9 @@
                             }
                         ],
                         "title": "Next Page Id",
-                        "description": "Next Page ID. Use it value for next request",
+                        "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
                         "examples": [
-                            "QEFerVFGGdsfd_1234567890"
+                            "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
                         ]
                     }
                 },

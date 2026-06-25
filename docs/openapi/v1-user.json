@@ -103,8 +103,8 @@
     },
     "/v1/user/about": {
       "get": {
-        "summary": "User About",
-        "description": "Get user object by id. Returns user about info.",
+        "summary": "We recommend switching to /gql/user/about",
+        "description": "Get the \"About this account\" panel for a user: verified status,\ncountry of registration, date the account was created, and the list\nof former usernames. Returns user about info.",
         "operationId": "user_about_v1_user_about_get",
         "parameters": [
           {

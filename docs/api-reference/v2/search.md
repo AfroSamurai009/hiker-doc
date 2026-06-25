@@ -284,6 +284,7 @@ Search top content by keyword. Returns a list of matching results.
 |-----------|------|----------|-------------|
 | `query` | string | Yes | Query |
 | `reels_max_id` | string | No | Reels Max Id |
+| `rank_token` | string | No | Rank Token |
 
 === "curl"
 

@@ -39,6 +39,41 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Top V2 Fbsearch Topsearch Get"
+                },
+                "example": {
+                  "list": [
+                    {
+                      "position": 0,
+                      "user": {
+                        "...": "..."
+                      }
+                    },
+                    "... (1 more items)"
+                  ],
+                  "rank_token": "551e3787-6b05-4aa8-9c6f-c5cd184f7af6",
+                  "clear_client_cache": false,
+                  "more_results_header": "Posts",
+                  "entity_results_header": "Accounts",
+                  "media_grid": {
+                    "refinements": {},
+                    "sections": [
+                      {
+                        "...": "..."
+                      },
+                      "... (3 more items)"
+                    ],
+                    "rank_token": "551e3787-6b05-4aa8-9c6f-c5cd184f7af6",
+                    "next_max_id": "968edc0e78c741ada0c35e55288deb5e",
+                    "has_more": true,
+                    "auto_load_more_enabled": true,
+                    "grid_post_click_experience": "contextual",
+                    "topic_status": -1,
+                    "reels_max_id": "r:0f59cf5ea79d4c2a9e897fb63e42357c",
+                    "has_more_reels": true,
+                    "reels_page_index": 3,
+                    "autoplay_type": "single"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -87,6 +122,15 @@
               "type": "string",
               "title": "Reels Max Id"
             }
+          },
+          {
+            "name": "rank_token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Rank Token"
+            }
           }
         ],
         "responses": {
@@ -98,6 +142,21 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Reels V2 Fbsearch Reels Get"
+                },
+                "example": {
+                  "reels_serp_modules": [
+                    {
+                      "module_type": "clips",
+                      "clips": [
+                        "..."
+                      ]
+                    }
+                  ],
+                  "has_more": true,
+                  "reels_max_id": "r:b3fbe8219cce4db48b0fa020c8488872",
+                  "page_index": 12,
+                  "rank_token": "219b370d-514f-4eb9-b140-06321c037237",
+                  "status": "ok"
                 }
               }
             }
@@ -157,6 +216,37 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Accounts V2 Fbsearch Accounts Get"
+                },
+                "example": {
+                  "num_results": 20,
+                  "users": [
+                    {
+                      "strong_id__": "528817151",
+                      "fbid_v2": 17841401474538262,
+                      "pk": 528817151,
+                      "pk_id": "528817151",
+                      "is_verified_search_boosted": false,
+                      "search_serp_type": 3,
+                      "third_party_downloads_enabled": 1,
+                      "id": "528817151",
+                      "full_name": "NASA",
+                      "is_private": false,
+                      "is_verified": true,
+                      "profile_pic_id": "1735715738009579084_528817151",
+                      "profile_pic_url": "https://cdn.example.com/...",
+                      "username": "nasa",
+                      "account_badges": [
+                        "..."
+                      ],
+                      "...": "(11 more fields)"
+                    },
+                    "... (19 more items)"
+                  ],
+                  "has_more": true,
+                  "rank_token": "rank_token_value...",
+                  "clear_client_cache": false,
+                  "page_token": "6cce7521a797481a871e466d5e59c388",
+                  "status": "ok"
                 }
               }
             }
@@ -216,6 +306,26 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Search Music V2 Search Music Get"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "track": {
+                        "...": "..."
+                      },
+                      "metadata": {
+                        "...": "..."
+                      }
+                    },
+                    "... (11 more items)"
+                  ],
+                  "page_info": {
+                    "next_max_id": "10",
+                    "more_available": true
+                  },
+                  "alacorn_session_id": "0DkZIOgpApKxuqBo77100",
+                  "licensed_music_eligibility_state": "ELIGIBLE",
+                  "status": "ok"
                 }
               }
             }
@@ -275,6 +385,23 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Search Hashtags V2 Search Hashtags Get"
+                },
+                "example": {
+                  "results": [
+                    {
+                      "id": 17841538786105345,
+                      "name": "pythonprogramming",
+                      "media_count": 1125287,
+                      "formatted_media_count": "1.1M",
+                      "search_result_subtitle": "1.1M posts",
+                      "use_default_avatar": true,
+                      "challenge_id": 1
+                    },
+                    "... (54 more items)"
+                  ],
+                  "has_more": false,
+                  "rank_token": "rank_token_value...",
+                  "status": "ok"
                 }
               }
             }
@@ -325,6 +452,21 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Places V2 Fbsearch Places Get"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "location": {
+                        "...": "..."
+                      },
+                      "title": "New York",
+                      "subtitle": "3.1mi"
+                    },
+                    "... (29 more items)"
+                  ],
+                  "has_more": false,
+                  "rank_token": "rank_token_value...",
+                  "status": "ok"
                 }
               }
             }
@@ -385,6 +527,37 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Search Accounts V2 Search Accounts Get"
+                },
+                "example": {
+                  "num_results": 20,
+                  "users": [
+                    {
+                      "strong_id__": "528817151",
+                      "fbid_v2": 17841401474538262,
+                      "pk": 528817151,
+                      "pk_id": "528817151",
+                      "is_verified_search_boosted": false,
+                      "search_serp_type": 3,
+                      "third_party_downloads_enabled": 1,
+                      "id": "528817151",
+                      "full_name": "NASA",
+                      "is_private": false,
+                      "is_verified": true,
+                      "profile_pic_id": "1735715738009579084_528817151",
+                      "profile_pic_url": "https://cdn.example.com/...",
+                      "username": "nasa",
+                      "account_badges": [
+                        "..."
+                      ],
+                      "...": "(11 more fields)"
+                    },
+                    "... (19 more items)"
+                  ],
+                  "has_more": true,
+                  "rank_token": "rank_token_value...",
+                  "clear_client_cache": false,
+                  "page_token": "9a8ac4dc95484777a37c6b412b140da4",
+                  "status": "ok"
                 }
               }
             }
@@ -463,6 +636,41 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Search Top V2 Search Topsearch Get"
+                },
+                "example": {
+                  "list": [
+                    {
+                      "position": 0,
+                      "user": {
+                        "...": "..."
+                      }
+                    },
+                    "... (1 more items)"
+                  ],
+                  "rank_token": "e3343f72-f8eb-4f6a-9258-400ac3c8dfd6",
+                  "clear_client_cache": false,
+                  "more_results_header": "Posts",
+                  "entity_results_header": "Accounts",
+                  "media_grid": {
+                    "refinements": {},
+                    "sections": [
+                      {
+                        "...": "..."
+                      },
+                      "... (3 more items)"
+                    ],
+                    "rank_token": "e3343f72-f8eb-4f6a-9258-400ac3c8dfd6",
+                    "next_max_id": "a8a28cb5a7804b6aaf431da977ce30b0",
+                    "has_more": true,
+                    "auto_load_more_enabled": true,
+                    "grid_post_click_experience": "contextual",
+                    "topic_status": -1,
+                    "reels_max_id": "r:b1713f1c3cbc4c8eb5c780f05543f87e",
+                    "has_more_reels": true,
+                    "reels_page_index": 3,
+                    "autoplay_type": "single"
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -532,6 +740,21 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Search Reels V2 Search Reels Get"
+                },
+                "example": {
+                  "reels_serp_modules": [
+                    {
+                      "module_type": "clips",
+                      "clips": [
+                        "..."
+                      ]
+                    }
+                  ],
+                  "has_more": true,
+                  "reels_max_id": "r:72817d134a134e1aa5d7ec6e8290e978",
+                  "page_index": 11,
+                  "rank_token": "e717651f-d8db-4e43-895b-b0cedf6bcc2d",
+                  "status": "ok"
                 }
               }
             }
@@ -583,6 +806,21 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Search Places V2 Search Places Get"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "location": {
+                        "...": "..."
+                      },
+                      "title": "New York",
+                      "subtitle": "3.1mi"
+                    },
+                    "... (29 more items)"
+                  ],
+                  "has_more": false,
+                  "rank_token": "rank_token_value...",
+                  "status": "ok"
                 }
               }
             }

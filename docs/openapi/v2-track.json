@@ -39,6 +39,27 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Accounts V3 Fbsearch Accounts Get"
+                },
+                "example": {
+                  "num_results": 20,
+                  "users": [
+                    {
+                      "strong_id__": "528817151",
+                      "fbid_v2": 17841401474538262,
+                      "pk": 528817151,
+                      "pk_id": "528817151",
+                      "is_verified_search_boosted": false,
+                      "search_serp_type": 3,
+                      "third_party_downloads_enabled": 1,
+                      "...": "(31 more fields)"
+                    },
+                    "... (19 more items)"
+                  ],
+                  "has_more": true,
+                  "rank_token": "rank_token_value...",
+                  "clear_client_cache": false,
+                  "page_token": "7d4d340812a243db9b494e4f013826e6",
+                  "status": "ok"
                 }
               }
             }
@@ -53,7 +74,9 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [],
+        "required": false
       }
     },
     "/v3/fbsearch/places": {
@@ -81,6 +104,21 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Places V3 Fbsearch Places Get"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "location": {
+                        "...": "..."
+                      },
+                      "title": "Resorts World New York City",
+                      "subtitle": "110-00 Rockaway Blvd"
+                    },
+                    "... (29 more items)"
+                  ],
+                  "has_more": false,
+                  "rank_token": "rank_token_value...",
+                  "status": "ok"
                 }
               }
             }
@@ -95,7 +133,9 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [],
+        "required": false
       }
     },
     "/v2/track/by/id": {
@@ -313,6 +353,18 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Top V3 Fbsearch Topsearch Get"
+                },
+                "example": {
+                  "stream_rows": [
+                    {
+                      "clear_client_cache": false,
+                      "client_hints": {
+                        "...": "..."
+                      },
+                      "status": "ok"
+                    },
+                    "... (2 more items)"
+                  ]
                 }
               }
             }
@@ -327,7 +379,9 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [],
+        "required": false
       }
     },
     "/v3/fbsearch/reels": {
@@ -365,6 +419,21 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Fbsearch Reels V3 Fbsearch Reels Get"
+                },
+                "example": {
+                  "reels_serp_modules": [
+                    {
+                      "module_type": "clips",
+                      "clips": [
+                        "..."
+                      ]
+                    }
+                  ],
+                  "has_more": true,
+                  "reels_max_id": "r:8dbadf9889174a4792854d3f59cb0057",
+                  "page_index": 11,
+                  "rank_token": "b790b05c-639f-4a2d-8cc3-29ce5e2c94ae",
+                  "status": "ok"
                 }
               }
             }
@@ -379,7 +448,9 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [],
+        "required": false
       }
     }
   },
@@ -404,15 +475,22 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Response",
-            "description": "Dict with full response.",
+            "description": "Raw Instagram API response dict. Structure varies by endpoint.",
             "examples": [
               {
-                "...": "...",
                 "items": [
                   {
-                    "...": "..."
+                    "...": "...",
+                    "id": "123456_789",
+                    "media_type": 1,
+                    "pk": 123456
                   }
-                ]
+                ],
+                "paging_info": {
+                  "max_id": "cursor_string",
+                  "more_available": true
+                },
+                "status": "ok"
               }
             ]
           },
@@ -426,9 +504,9 @@
               }
             ],
             "title": "Next Page Id",
-            "description": "Next Page ID. Use it value for next request",
+            "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
             "examples": [
-              "QEFerVFGGdsfd_1234567890"
+              "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
             ]
           }
         },

@@ -5,7 +5,208 @@ Instagram GraphQL endpoints with cursor-based pagination.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/g2/user/followers`](#get-g2userfollowers) | [`/g2/user/following`](#get-g2userfollowing) | [`/gql/comment/likers/chunk`](#get-gqlcommentlikerschunk) | [`/gql/comments/chunk`](#get-gqlcommentschunk) | [`/gql/comments/threaded/chunk`](#get-gqlcommentsthreadedchunk) | [`/gql/media/likers`](#get-gqlmedialikers) | [`/gql/media/usertags`](#get-gqlmediausertags) | [`/gql/topsearch`](#get-gqltopsearch) | [`/gql/user/clips`](#get-gqluserclips) | [`/gql/user/followers/chunk`](#get-gqluserfollowerschunk) | [`/gql/user/following/chunk`](#get-gqluserfollowingchunk) | [`/gql/user/medias`](#get-gqlusermedias) | [`/gql/user/reposts`](#get-gqluserreposts) | [`/gql/user/web_profile_info`](#get-gqluserweb_profile_info)
+**Endpoints:** [`/g1/user/followers`](#get-g1userfollowers) | [`/g1/user/following`](#get-g1userfollowing) | [`/g2/user/followers`](#get-g2userfollowers) | [`/g2/user/following`](#get-g2userfollowing) | [`/g2/user/medias`](#get-g2usermedias) | [`/gql/comment/likers/chunk`](#get-gqlcommentlikerschunk) | [`/gql/media/likers`](#get-gqlmedialikers) | [`/gql/media/usertags`](#get-gqlmediausertags) | [`/gql/topsearch`](#get-gqltopsearch) | [`/gql/user/about`](#get-gqluserabout) | [`/gql/user/clips`](#get-gqluserclips) | [`/gql/user/followers/chunk`](#get-gqluserfollowerschunk) | [`/gql/user/following/chunk`](#get-gqluserfollowingchunk) | [`/gql/user/medias`](#get-gqlusermedias) | [`/gql/user/reposts`](#get-gqluserreposts) | [`/gql/user/web_profile_info`](#get-gqluserweb_profile_info)
+
+---
+
+### GET /g1/user/followers
+
+⚠️ Billing: 1 requests per call. Returns a list of User objects.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `user_id` | string | Yes | User Id |
+| `end_cursor` | string | No | End Cursor |
+
+=== "curl"
+
+    ```bash
+    curl -H "x-access-key: YOUR_TOKEN" \
+      "https://api.hikerapi.com/g1/user/followers?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
+    ```
+
+=== "Python (requests)"
+
+    ```python
+    import requests
+
+    response = requests.get(
+        "https://api.hikerapi.com/g1/user/followers",
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"user_id": "787132"},
+    )
+    # Next page: add "end_cursor": "..." to params
+    print(response.json())
+    ```
+
+=== "JavaScript"
+
+    ```javascript
+    const response = await fetch(
+      "https://api.hikerapi.com/g1/user/followers?user_id=787132",
+      { headers: { "x-access-key": "YOUR_TOKEN" } }
+    );
+    const data = await response.json();
+    // Next page: add &end_cursor=... to URL
+    ```
+
+<details>
+<summary>Example response</summary>
+
+```json
+[
+  [
+    {
+      "pk": "16456403414",
+      "id": "16456403414",
+      "username": "akaporto78j",
+      "full_name": "",
+      "profile_pic_url": "https://instagram.fsac1-2.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fsac1-2.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gHFE3eBz3TDgeyKG-N4mRCcbEN7ETNgZrkI0Bc5cUEPCSlWPKkAkN6e5wehS-cjqbhcA2wDD0GlTm_dsYSVXKRi&_nc_ohc=bhH7TUwRnv4Q7kNvwFm-w3d&_nc_gid=fKdlCKrXGSXAhU90kYk5eQ&edm=AL4D0a4BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af8Oo0p1T392rmVIMTTY1-B4CGfEWRC-v78igJCm81oySA&oe=6A430B6A&_nc_sid=9e8221",
+      "is_private": false,
+      "is_verified": false,
+      "reel": {
+        "id": 16456403414,
+        "expiring_at": 1782478387,
+        "has_pride_media": false,
+        "latest_reel_media": 0,
+        "owner": {
+          "id": 16456403414,
+          "profile_pic_url": "https://instagram.fsac1-2.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fsac1-2.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gHFE3eBz3TDgeyKG-N4mRCcbEN7ETNgZrkI0Bc5cUEPCSlWPKkAkN6e5wehS-cjqbhcA2wDD0GlTm_dsYSVXKRi&_nc_ohc=bhH7TUwRnv4Q7kNvwFm-w3d&_nc_gid=fKdlCKrXGSXAhU90kYk5eQ&edm=AL4D0a4BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af8Oo0p1T392rmVIMTTY1-B4CGfEWRC-v78igJCm81oySA&oe=6A430B6A&_nc_sid=9e8221",
+          "username": "akaporto78j"
+        }
+      }
+    },
+    {
+      "pk": "23983965254",
+      "id": "23983965254",
+      "username": "ridfebres",
+      "full_name": "Richard Febres",
+      "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
+      "is_private": false,
+      "is_verified": false,
+      "reel": {
+        "id": 23983965254,
+        "expiring_at": 1782478387,
+        "has_pride_media": false,
+        "latest_reel_media": 0,
+        "owner": {
+          "id": 23983965254,
+          "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
+          "username": "ridfebres"
+        }
+      }
+    },
+    {
+      "pk": "75427741203",
+      "id": "75427741203",
+      "username": "crips.susu",
+      "full_name": "liiiiii",
+      "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
+      "is_private": false,
+      "is_verified": false,
+      "reel": {
+        "id": 75427741203,
+        "expiring_at": 1782478387,
+        "has_pride_media": false,
+        "latest_reel_media": 1782385358,
+        "owner": {
+          "id": 75427741203,
+          "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
+          "username": "crips.susu"
+        }
+      }
+    }
+  ],
+  "QVFBOENSMDNreHg0dm43UVZJS01mMGtCaXItRkV5NG5aX2tFX0ZWWmJyclNiYjFqOHFjQS1nRm43R0V2RTk4MnpSWDNFbC12dS1TcGdvQjlvaUQwVkc5UA=="
+]
+```
+
+</details>
+
+---
+
+### GET /g1/user/following
+
+⚠️ Billing: 1 requests per call. Returns a list of User objects.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `user_id` | string | Yes | User Id |
+| `end_cursor` | string | No | End Cursor |
+
+=== "curl"
+
+    ```bash
+    curl -H "x-access-key: YOUR_TOKEN" \
+      "https://api.hikerapi.com/g1/user/following?user_id=787132"
+    # Next page: add &end_cursor=... from previous response
+    ```
+
+=== "Python (requests)"
+
+    ```python
+    import requests
+
+    response = requests.get(
+        "https://api.hikerapi.com/g1/user/following",
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"user_id": "787132"},
+    )
+    # Next page: add "end_cursor": "..." to params
+    print(response.json())
+    ```
+
+=== "JavaScript"
+
+    ```javascript
+    const response = await fetch(
+      "https://api.hikerapi.com/g1/user/following?user_id=787132",
+      { headers: { "x-access-key": "YOUR_TOKEN" } }
+    );
+    const data = await response.json();
+    // Next page: add &end_cursor=... to URL
+    ```
+
+<details>
+<summary>Example response</summary>
+
+```json
+[
+  [
+    {
+      "pk": "364094780",
+      "id": "364094780",
+      "username": "marcuswestbergphotography",
+      "full_name": "Photographer & Storyteller",
+      "profile_pic_url": "https://scontent-dfw5-2.cdninstagram.com/...",
+      "is_private": false,
+      "is_verified": false
+    },
+    {
+      "pk": "68012770661",
+      "id": "68012770661",
+      "username": "natgeofamily",
+      "full_name": "National Geographic Family",
+      "profile_pic_url": "https://scontent-dfw6-2.cdninstagram.com/...",
+      "is_private": false,
+      "is_verified": true
+    },
+    {
+      "pk": "20650647",
+      "id": "20650647",
+      "username": "russwest44",
+      "full_name": "Russell Westbrook",
+      "profile_pic_url": "https://scontent-dfw5-3.cdninstagram.com/...",
+      "is_private": false,
+      "is_verified": true
+    }
+  ],
+  "QVFBcHhxWl95eXYxUlNPRGRzd3lsQ08tYlhTMXM3Q2pSMHpyem1yc0h4bkN2VjBSWTg1Y0w0ZmxURGpobFdtUVdfM1BYbkhkMVJYaEZLNWdYRHgyTC14dw=="
+]
+```
+
+</details>
 
 ---
 
@@ -269,6 +470,47 @@ Get part (one page) of following users with cursor. Returns a list of User objec
 
 ---
 
+### GET /g2/user/medias
+
+Get part (one page) of user medias. Returns a list of Media objects.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `user_id` | string | Yes | User Id |
+| `next_page_id` | string | No | Next Page Id |
+| `flat` | boolean | No | Flat |
+
+=== "curl"
+
+    ```bash
+    curl -H "x-access-key: YOUR_TOKEN" \
+      "https://api.hikerapi.com/g2/user/medias"
+    ```
+
+=== "Python (requests)"
+
+    ```python
+    import requests
+
+    response = requests.get(
+        "https://api.hikerapi.com/g2/user/medias",
+        headers={"x-access-key": "YOUR_TOKEN"},
+    )
+    print(response.json())
+    ```
+
+=== "JavaScript"
+
+    ```javascript
+    const response = await fetch(
+      "https://api.hikerapi.com/g2/user/medias",
+      { headers: { "x-access-key": "YOUR_TOKEN" } }
+    );
+    const data = await response.json();
+    ```
+
+---
+
 ### GET /gql/comment/likers/chunk
 
 Get likers on a comment
@@ -316,198 +558,6 @@ Get likers on a comment
     ```javascript
     const response = await fetch(
       "https://api.hikerapi.com/gql/comment/likers/chunk?comment_id=17901801633335930&media_id=3776832898280228145",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    // Next page: add &end_cursor=... to URL
-    ```
-
----
-
-### GET /gql/comments/chunk
-
-Get comments on a media. Returns Comment objects with cursor.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `media_id` | string | Yes | Media Id |
-| `sort_order` | string | No | Sort Order |
-| `end_cursor` | string | No | End Cursor |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/comments/chunk?media_id=3776832898280228145"
-    # Next page: add &end_cursor=... from previous response
-    ```
-
-=== "Python"
-
-    ```python
-    from hikerapi import Client
-
-    cl = Client(token="YOUR_TOKEN")
-    result = cl.comments_chunk_gql(media_id="3776832898280228145")
-    # Next page: cl.comments_chunk_gql(media_id="3776832898280228145", end_cursor="...")
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/comments/chunk",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"media_id": "3776832898280228145"},
-    )
-    # Next page: add "end_cursor": "..." to params
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/comments/chunk?media_id=3776832898280228145",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    // Next page: add &end_cursor=... to URL
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  [
-    {
-      "pk": "17988842789786755",
-      "user": {
-        "is_verified": false,
-        "id": "57093755334",
-        "pk": "57093755334",
-        "username": "imsoumya_12",
-        "is_unpublished": null,
-        "profile_pic_url": "https://scontent-lga3-1.cdninstagram.com/...",
-        "fbid_v2": "17841456980046719"
-      },
-      "is_covered": false,
-      "child_comment_count": 0,
-      "restricted_status": null,
-      "parent_comment_id": null,
-      "has_translation": null,
-      "has_liked_comment": false,
-      "text": "I want to build a house there ☺️",
-      "created_at": 1774293705,
-      "comment_like_count": 0,
-      "giphy_media_info": null,
-      "__typename": "XDTCommentDict"
-    },
-    {
-      "pk": "18129360946549093",
-      "user": {
-        "is_verified": false,
-        "id": "77976112959",
-        "pk": "77976112959",
-        "username": "lenoid62",
-        "is_unpublished": null,
-        "profile_pic_url": "https://instagram.fepa9-2.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fepa9-2.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gEzUsG58lgNS1Q0SfT9LaIniFluibgAjDuzYSDqg3-Xxdfj1mUkyIp3I9G09rl858au0UvzogtFkApXzHkwvaho&_nc_ohc=xpiLrADWZlUQ7kNvwEKmzej&_nc_gid=45WJUSqiGkd5IWbEXHXCeQ&edm=ABFeTR8BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af0yKFQmZ6elPNUeGw59FFp4EpSbxV32Z_6w5t4sOc1oVw&oe=69DC6EAA&_nc_sid=8ad95d",
-        "fbid_v2": "17841477788797014"
-      },
-      "is_covered": false,
-      "child_comment_count": 0,
-      "restricted_status": null,
-      "parent_comment_id": null,
-      "has_translation": null,
-      "has_liked_comment": false,
-      "text": "What a rainforest that's all I do this rain",
-      "created_at": 1773230981,
-      "comment_like_count": 0,
-      "giphy_media_info": null,
-      "__typename": "XDTCommentDict"
-    },
-    {
-      "pk": "18111056248578971",
-      "user": {
-        "is_verified": false,
-        "id": "1336487531",
-        "pk": "1336487531",
-        "username": "uemaaru",
-        "is_unpublished": null,
-        "profile_pic_url": "https://scontent-lga3-1.cdninstagram.com/...",
-        "fbid_v2": "17841401185950882"
-      },
-      "is_covered": false,
-      "child_comment_count": 0,
-      "restricted_status": null,
-      "parent_comment_id": null,
-      "has_translation": null,
-      "has_liked_comment": false,
-      "text": "心地いい👂🏼",
-      "created_at": 1770335847,
-      "comment_like_count": 0,
-      "giphy_media_info": null,
-      "__typename": "XDTCommentDict"
-    }
-  ],
-  "{\"server_cursor\": \"QVFDLV80THRPbWVCMGJvaTNiVVRubjN6NUp2eTVPT3IxWG01UFdBSG42M3ZUSzhnal82N1EyV1Z4eExMNDlLVzZ1cU94bE9fclNaZU1nRlFtMC02YXdiRQ==\", \"is_server_cursor_inverse\": true}"
-]
-```
-
-</details>
-
----
-
-### GET /gql/comments/threaded/chunk
-
-Get threaded comments for comment
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `media_id` | string | Yes | Media Id |
-| `comment_id` | string | Yes | Comment Id |
-| `end_cursor` | string | No | End Cursor |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/gql/comments/threaded/chunk?media_id=3776832898280228145&comment_id=17901801633335930"
-    # Next page: add &end_cursor=... from previous response
-    ```
-
-=== "Python"
-
-    ```python
-    from hikerapi import Client
-
-    cl = Client(token="YOUR_TOKEN")
-    result = cl.comments_threaded_chunk_gql(media_id="3776832898280228145", comment_id="17901801633335930")
-    # Next page: cl.comments_threaded_chunk_gql(media_id="3776832898280228145", comment_id="17901801633335930", end_cursor="...")
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/gql/comments/threaded/chunk",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"media_id": "3776832898280228145", "comment_id": "17901801633335930"},
-    )
-    # Next page: add "end_cursor": "..." to params
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/gql/comments/threaded/chunk?media_id=3776832898280228145&comment_id=17901801633335930",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
@@ -690,13 +740,18 @@ Returns users tagged in the video. You can pass up to 10 media ids
 
 ### GET /gql/topsearch
 
-Search top content by keyword (GraphQL TopSerpQuery)
+Search top content by keyword.
+
+Returns top accounts AND top media interleaved in one stream —
+discriminate by `__typename` (`XDTUserDict` / `XDTMediaDict`).
+
+`flat=true` returns flat `items[]` instead of `stream_rows`.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `query` | string | Yes | Query |
 | `end_cursor` | string | No | End Cursor |
-| `flat` | boolean | No | Flatten nested response into simple items list |
+| `flat` | boolean | No | Flatten stream_rows into a single items[] list |
 
 === "curl"
 
@@ -903,6 +958,63 @@ Search top content by keyword (GraphQL TopSerpQuery)
       }
     ]
   ]
+}
+```
+
+</details>
+
+---
+
+### GET /gql/user/about
+
+Get the "About this account" panel for a user: verified status,
+country of registration, date the account was created, and the list
+of former usernames. Returns user about info.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `id` | string | Yes | Id |
+
+=== "curl"
+
+    ```bash
+    curl -H "x-access-key: YOUR_TOKEN" \
+      "https://api.hikerapi.com/gql/user/about?id=787132"
+    ```
+
+=== "Python (requests)"
+
+    ```python
+    import requests
+
+    response = requests.get(
+        "https://api.hikerapi.com/gql/user/about",
+        headers={"x-access-key": "YOUR_TOKEN"},
+        params={"id": "787132"},
+    )
+    print(response.json())
+    ```
+
+=== "JavaScript"
+
+    ```javascript
+    const response = await fetch(
+      "https://api.hikerapi.com/gql/user/about?id=787132",
+      { headers: { "x-access-key": "YOUR_TOKEN" } }
+    );
+    const data = await response.json();
+    ```
+
+<details>
+<summary>Example response</summary>
+
+```json
+{
+  "username": "natgeo",
+  "is_verified": true,
+  "country": "United States",
+  "date": "November 2010",
+  "former_usernames": ""
 }
 ```
 
@@ -1589,8 +1701,8 @@ Get user clips. Returns a list of Media objects (Reels).
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `user_id` | string | Yes | User Id |
-| `force` | boolean | No | Skip account privacy check |
 | `end_cursor` | string | No | End Cursor |
+| `force` | boolean | No | Skip account privacy check |
 
 === "curl"
 
@@ -1717,8 +1829,8 @@ Get user clips. Returns a list of Media objects (Reels).
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `user_id` | string | Yes | User Id |
-| `force` | boolean | No | Skip account privacy check |
 | `end_cursor` | string | No | End Cursor |
+| `force` | boolean | No | Skip account privacy check |
 
 === "curl"
 
@@ -4234,12 +4346,22 @@ These endpoints are still available but will be removed in a future version. Use
 ### ~~GET /gql/comments~~
 
 !!! warning
-    WARNING: Preferable to use /gql/comments/chunk
+    Use /v1/media/comments/chunk or /v2/media/comments instead
+
+### ~~GET /gql/comments/chunk~~
+
+!!! warning
+    Use /v1/media/comments/chunk or /v2/media/comments instead
 
 ### ~~GET /gql/comments/threaded~~
 
 !!! warning
-    WARNING: Preferable to use /gql/comments/chunk
+    Use /v2/media/comments/replies instead
+
+### ~~GET /gql/comments/threaded/chunk~~
+
+!!! warning
+    Use /v2/media/comments/replies instead
 
 ### ~~GET /gql/user/by/id~~
 

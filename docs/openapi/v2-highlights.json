@@ -84,15 +84,22 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Response",
-            "description": "Dict with full response.",
+            "description": "Raw Instagram API response dict. Structure varies by endpoint.",
             "examples": [
               {
-                "...": "...",
                 "items": [
                   {
-                    "...": "..."
+                    "...": "...",
+                    "id": "123456_789",
+                    "media_type": 1,
+                    "pk": 123456
                   }
-                ]
+                ],
+                "paging_info": {
+                  "max_id": "cursor_string",
+                  "more_available": true
+                },
+                "status": "ok"
               }
             ]
           },
@@ -106,9 +113,9 @@
               }
             ],
             "title": "Next Page Id",
-            "description": "Next Page ID. Use it value for next request",
+            "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
             "examples": [
-              "QEFerVFGGdsfd_1234567890"
+              "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
             ]
           }
         },

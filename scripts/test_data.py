@@ -75,7 +75,11 @@ ENDPOINT_PARAMS = {
     # User — g2
     "/g2/user/followers": {"user_id": USER_PK},
     "/g2/user/following": {"user_id": USER_PK},
+    # User — g1 (legacy public GraphQL)
+    "/g1/user/followers": {"user_id": USER_PK},
+    "/g1/user/following": {"user_id": USER_PK},
     # User — gql
+    "/gql/user/about": {"id": USER_PK},
     "/gql/user/medias": {"user_id": USER_PK},
     "/gql/user/following/chunk": {"user_id": USER_PK},
     "/gql/user/followers/chunk": {"user_id": USER_PK},

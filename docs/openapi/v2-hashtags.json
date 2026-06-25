@@ -134,6 +134,18 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Hashtag By Name V2 Hashtag By Name Get"
+                },
+                "example": {
+                  "id": "17841562870113513",
+                  "name": "python",
+                  "media_count": 6917175,
+                  "allow_muting_story": true,
+                  "show_follow_drop_down": false,
+                  "formatted_media_count": "6.9M",
+                  "is_trending": true,
+                  "hide_use_hashtag_button": false,
+                  "status": "ok",
+                  "allow_following": false
                 }
               }
             }
@@ -148,7 +160,9 @@
               }
             }
           }
-        }
+        },
+        "x-codeSamples": [],
+        "required": false
       }
     },
     "/v2/hashtag/medias/clips": {
@@ -226,15 +240,22 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Response",
-            "description": "Dict with full response.",
+            "description": "Raw Instagram API response dict. Structure varies by endpoint.",
             "examples": [
               {
-                "...": "...",
                 "items": [
                   {
-                    "...": "..."
+                    "...": "...",
+                    "id": "123456_789",
+                    "media_type": 1,
+                    "pk": 123456
                   }
-                ]
+                ],
+                "paging_info": {
+                  "max_id": "cursor_string",
+                  "more_available": true
+                },
+                "status": "ok"
               }
             ]
           },
@@ -248,9 +269,9 @@
               }
             ],
             "title": "Next Page Id",
-            "description": "Next Page ID. Use it value for next request",
+            "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
             "examples": [
-              "QEFerVFGGdsfd_1234567890"
+              "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
             ]
           }
         },

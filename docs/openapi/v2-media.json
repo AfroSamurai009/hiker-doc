@@ -79,7 +79,7 @@
     },
     "/v2/media/info/by/code": {
       "get": {
-        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Note: promoted/ad posts (product_type=ad) may return 404 — use /v1/media/by/code instead for those.",
         "description": "Get media object",
         "operationId": "media_info_by_code_v2_media_info_by_code_get",
         "parameters": [
@@ -102,6 +102,32 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media Info By Code V2 Media Info By Code Get"
+                },
+                "example": {
+                  "num_results": 1,
+                  "more_available": false,
+                  "items": [
+                    {
+                      "strong_id__": "3162273595027945978_123123",
+                      "id": "3162273595027945978_123123",
+                      "fbid": 17975970359404749,
+                      "deleted_reason": 0,
+                      "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                      "integrity_review_decision": "pending",
+                      "pk": 3162273595027945978,
+                      "has_delayed_metadata": false,
+                      "mezql_token": "",
+                      "should_request_ads": false,
+                      "has_privately_liked": false,
+                      "is_quiet_post": false,
+                      "collaborator_edit_eligibility": false,
+                      "share_count_disabled": false,
+                      "is_visual_reply_commenter_notice_enabled": true,
+                      "...": "(96 more fields)"
+                    }
+                  ],
+                  "auto_load_more_enabled": true,
+                  "status": "ok"
                 }
               }
             }
@@ -216,6 +242,27 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media Likers V2 Media Likers Get"
+                },
+                "example": {
+                  "users": [
+                    {
+                      "strong_id__": "59560451506",
+                      "pk": 59560451506,
+                      "pk_id": "59560451506",
+                      "id": "59560451506",
+                      "username": "batcha_de_leon",
+                      "full_name": "Just call me Batcha",
+                      "is_private": false,
+                      "is_verified": false,
+                      "profile_pic_id": "3839024502038602130_59560451506",
+                      "profile_pic_url": "https://cdn.example.com/...",
+                      "is_new": false,
+                      "latest_reel_media": 0
+                    },
+                    "... (54 more items)"
+                  ],
+                  "user_count": 55,
+                  "status": "ok"
                 }
               }
             }
@@ -243,7 +290,7 @@
     },
     "/v2/media/info/by/url": {
       "get": {
-        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/",
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Attention! Use with https://ins...ram.com/p/CA2aJYrg6cZ/. Note: promoted/ad posts (product_type=ad) may return 404 — use /v1/media/by/url instead for those.",
         "description": "Get media object",
         "operationId": "media_info_by_url_v2_media_info_by_url_get",
         "parameters": [
@@ -266,6 +313,32 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media Info By Url V2 Media Info By Url Get"
+                },
+                "example": {
+                  "num_results": 1,
+                  "more_available": false,
+                  "items": [
+                    {
+                      "strong_id__": "3162273595027945978_123123",
+                      "id": "3162273595027945978_123123",
+                      "fbid": 17975970359404749,
+                      "deleted_reason": 0,
+                      "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                      "integrity_review_decision": "pending",
+                      "pk": 3162273595027945978,
+                      "has_delayed_metadata": false,
+                      "mezql_token": "",
+                      "should_request_ads": false,
+                      "has_privately_liked": false,
+                      "is_quiet_post": false,
+                      "collaborator_edit_eligibility": false,
+                      "share_count_disabled": false,
+                      "is_visual_reply_commenter_notice_enabled": true,
+                      "...": "(96 more fields)"
+                    }
+                  ],
+                  "auto_load_more_enabled": true,
+                  "status": "ok"
                 }
               }
             }
@@ -293,7 +366,7 @@
     },
     "/v2/media/info/by/id": {
       "get": {
-        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video.",
+        "summary": "Returns 200 for found posts and 404 for unavailable or deleted posts. Other responses are not provided. Doesn't return usertags for video. Note: promoted/ad posts (product_type=ad) may return 404 — use /v1/media/by/id instead for those.",
         "description": "Get media object",
         "operationId": "media_info_by_id_v2_media_info_by_id_get",
         "parameters": [
@@ -316,6 +389,32 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media Info By Id V2 Media Info By Id Get"
+                },
+                "example": {
+                  "num_results": 1,
+                  "more_available": false,
+                  "items": [
+                    {
+                      "strong_id__": "3162273595027945978_123123",
+                      "id": "3162273595027945978_123123",
+                      "fbid": 17975970359404749,
+                      "deleted_reason": 0,
+                      "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                      "integrity_review_decision": "pending",
+                      "pk": 3162273595027945978,
+                      "has_delayed_metadata": false,
+                      "mezql_token": "",
+                      "should_request_ads": false,
+                      "has_privately_liked": false,
+                      "is_quiet_post": false,
+                      "collaborator_edit_eligibility": false,
+                      "share_count_disabled": false,
+                      "is_visual_reply_commenter_notice_enabled": true,
+                      "...": "(96 more fields)"
+                    }
+                  ],
+                  "auto_load_more_enabled": true,
+                  "status": "ok"
                 }
               }
             }
@@ -423,6 +522,34 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media Template V2 Media Template Get"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "media": {
+                        "...": "..."
+                      }
+                    }
+                  ],
+                  "metadata": {
+                    "template_clips_media_creator": "use_template",
+                    "clips_count": "1 reel",
+                    "image_versions2": {
+                      "additional_candidates": {
+                        "...": "..."
+                      },
+                      "candidates": [
+                        "..."
+                      ]
+                    },
+                    "template_title": "Original template"
+                  },
+                  "paging_info": {
+                    "max_id": "QVFCcnhIWE82OUswLXBt...",
+                    "more_available": true
+                  },
+                  "status": "ok",
+                  "status_code": "200"
                 }
               }
             }
@@ -474,6 +601,32 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media By Code V2 Media By Code Get"
+                },
+                "example": {
+                  "num_results": 1,
+                  "more_available": false,
+                  "items": [
+                    {
+                      "strong_id__": "3162273595027945978_123123",
+                      "id": "3162273595027945978_123123",
+                      "fbid": 17975970359404749,
+                      "deleted_reason": 0,
+                      "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                      "integrity_review_decision": "pending",
+                      "pk": 3162273595027945978,
+                      "has_delayed_metadata": false,
+                      "mezql_token": "",
+                      "should_request_ads": false,
+                      "has_privately_liked": false,
+                      "is_quiet_post": false,
+                      "collaborator_edit_eligibility": false,
+                      "share_count_disabled": false,
+                      "is_visual_reply_commenter_notice_enabled": true,
+                      "...": "(96 more fields)"
+                    }
+                  ],
+                  "auto_load_more_enabled": true,
+                  "status": "ok"
                 }
               }
             }
@@ -525,6 +678,32 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media By Id V2 Media By Id Get"
+                },
+                "example": {
+                  "num_results": 1,
+                  "more_available": false,
+                  "items": [
+                    {
+                      "strong_id__": "3162273595027945978_123123",
+                      "id": "3162273595027945978_123123",
+                      "fbid": 17975970359404749,
+                      "deleted_reason": 0,
+                      "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                      "integrity_review_decision": "pending",
+                      "pk": 3162273595027945978,
+                      "has_delayed_metadata": false,
+                      "mezql_token": "",
+                      "should_request_ads": false,
+                      "has_privately_liked": false,
+                      "is_quiet_post": false,
+                      "collaborator_edit_eligibility": false,
+                      "share_count_disabled": false,
+                      "is_visual_reply_commenter_notice_enabled": true,
+                      "...": "(96 more fields)"
+                    }
+                  ],
+                  "auto_load_more_enabled": true,
+                  "status": "ok"
                 }
               }
             }
@@ -576,6 +755,32 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Media By Url V2 Media By Url Get"
+                },
+                "example": {
+                  "num_results": 1,
+                  "more_available": false,
+                  "items": [
+                    {
+                      "strong_id__": "3162273595027945978_123123",
+                      "id": "3162273595027945978_123123",
+                      "fbid": 17975970359404749,
+                      "deleted_reason": 0,
+                      "client_cache_key": "MzE2MjI3MzU5NTAyNzk0NTk3OA==.3",
+                      "integrity_review_decision": "pending",
+                      "pk": 3162273595027945978,
+                      "has_delayed_metadata": false,
+                      "mezql_token": "",
+                      "should_request_ads": false,
+                      "has_privately_liked": false,
+                      "is_quiet_post": false,
+                      "collaborator_edit_eligibility": false,
+                      "share_count_disabled": false,
+                      "is_visual_reply_commenter_notice_enabled": true,
+                      "...": "(96 more fields)"
+                    }
+                  ],
+                  "auto_load_more_enabled": true,
+                  "status": "ok"
                 }
               }
             }
@@ -623,15 +828,22 @@
             "additionalProperties": true,
             "type": "object",
             "title": "Response",
-            "description": "Dict with full response.",
+            "description": "Raw Instagram API response dict. Structure varies by endpoint.",
             "examples": [
               {
-                "...": "...",
                 "items": [
                   {
-                    "...": "..."
+                    "...": "...",
+                    "id": "123456_789",
+                    "media_type": 1,
+                    "pk": 123456
                   }
-                ]
+                ],
+                "paging_info": {
+                  "max_id": "cursor_string",
+                  "more_available": true
+                },
+                "status": "ok"
               }
             ]
           },
@@ -645,9 +857,9 @@
               }
             ],
             "title": "Next Page Id",
-            "description": "Next Page ID. Use it value for next request",
+            "description": "Cursor for the next page. Pass as page_id in the next request. null if no more pages.",
             "examples": [
-              "QEFerVFGGdsfd_1234567890"
+              "QVFCcnhIWE82OUswLXBtNzlpZ0ZaUnhWZEhr..."
             ]
           }
         },

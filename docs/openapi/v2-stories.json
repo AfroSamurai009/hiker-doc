@@ -30,6 +30,45 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Story By Url V2 Story By Url Get"
+                },
+                "example": {
+                  "reel": {
+                    "id": 25025320,
+                    "strong_id__": "25025320",
+                    "latest_reel_media": 1775146773,
+                    "seen": 0,
+                    "can_reply": false,
+                    "can_reshare": true,
+                    "reel_type": "user_reel",
+                    "items": [
+                      {
+                        "pk": "3866000000000000000",
+                        "id": "3866000000000000000_25025320",
+                        "code": "DExample",
+                        "media_type": 1,
+                        "taken_at": 1775146773,
+                        "image_versions2": {
+                          "...": "..."
+                        },
+                        "user": {
+                          "pk": 25025320,
+                          "username": "instagram"
+                        },
+                        "expiring_at": 1775233173
+                      }
+                    ],
+                    "user": {
+                      "pk": 25025320,
+                      "username": "instagram",
+                      "full_name": "Instagram",
+                      "is_private": false,
+                      "is_verified": true,
+                      "profile_pic_url": "https://cdn.example.com/..."
+                    },
+                    "prefetch_count": 0,
+                    "expiring_at": 1775233173
+                  },
+                  "status": "ok"
                 }
               }
             }
@@ -72,6 +111,45 @@
                   "type": "object",
                   "additionalProperties": true,
                   "title": "Response Story By Id V2 Story By Id Get"
+                },
+                "example": {
+                  "reel": {
+                    "id": 25025320,
+                    "strong_id__": "25025320",
+                    "latest_reel_media": 1775146773,
+                    "seen": 0,
+                    "can_reply": false,
+                    "can_reshare": true,
+                    "reel_type": "user_reel",
+                    "items": [
+                      {
+                        "pk": "3866000000000000000",
+                        "id": "3866000000000000000_25025320",
+                        "code": "DExample",
+                        "media_type": 1,
+                        "taken_at": 1775146773,
+                        "image_versions2": {
+                          "...": "..."
+                        },
+                        "user": {
+                          "pk": 25025320,
+                          "username": "instagram"
+                        },
+                        "expiring_at": 1775233173
+                      }
+                    ],
+                    "user": {
+                      "pk": 25025320,
+                      "username": "instagram",
+                      "full_name": "Instagram",
+                      "is_private": false,
+                      "is_verified": true,
+                      "profile_pic_url": "https://cdn.example.com/..."
+                    },
+                    "prefetch_count": 0,
+                    "expiring_at": 1775233173
+                  },
+                  "status": "ok"
                 }
               }
             }
