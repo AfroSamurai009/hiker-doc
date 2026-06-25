@@ -38,6 +38,9 @@ exclude_docs: |
 plugins:
   - search
 
+hooks:
+  - scripts/endpoint_count_hook.py
+
 markdown_extensions:
   - admonition
   - pymdownx.details
