@@ -5,7 +5,7 @@ Enhanced user data with pagination via page_id.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/a2/user`](#get-a2user) | [`/v2/user/by/id`](#get-v2userbyid) | [`/v2/user/by/username`](#get-v2userbyusername) | [`/v2/user/clips`](#get-v2userclips) | [`/v2/user/explore/businesses/by/id`](#get-v2userexplorebusinessesbyid) | [`/v2/user/followers`](#get-v2userfollowers) | [`/v2/user/following`](#get-v2userfollowing) | [`/v2/user/highlights`](#get-v2userhighlights) | [`/v2/user/highlights/by/username`](#get-v2userhighlightsbyusername) | [`/v2/user/stories`](#get-v2userstories) | [`/v2/user/stories/by/username`](#get-v2userstoriesbyusername) | [`/v2/user/suggested/profiles`](#get-v2usersuggestedprofiles) | [`/v2/user/tag/medias`](#get-v2usertagmedias) | [`/v2/userstream/by/id`](#get-v2userstreambyid) | [`/v2/userstream/by/username`](#get-v2userstreambyusername)
+**Endpoints:** [`/a2/user`](#get-a2user) | [`/v2/user/by/id`](#get-v2userbyid) | [`/v2/user/by/username`](#get-v2userbyusername) | [`/v2/user/clips`](#get-v2userclips) | [`/v2/user/explore/businesses/by/id`](#get-v2userexplorebusinessesbyid) | [`/v2/user/following`](#get-v2userfollowing) | [`/v2/user/highlights`](#get-v2userhighlights) | [`/v2/user/highlights/by/username`](#get-v2userhighlightsbyusername) | [`/v2/user/stories`](#get-v2userstories) | [`/v2/user/stories/by/username`](#get-v2userstoriesbyusername) | [`/v2/user/suggested/profiles`](#get-v2usersuggestedprofiles) | [`/v2/user/tag/medias`](#get-v2usertagmedias) | [`/v2/userstream/by/id`](#get-v2userstreambyid) | [`/v2/userstream/by/username`](#get-v2userstreambyusername)
 
 ---
 
@@ -2467,186 +2467,6 @@ Get list of recommended accounts for business category of the user by his id. Re
     }
   ],
   "status": "ok"
-}
-```
-
-</details>
-
----
-
-### GET /v2/user/followers
-
-Get part (one page) of followers users with cursor. Returns a list of User objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `user_id` | string | No | Id of user account |
-| `page_id` | string | No | Use value of field `next_page_id` from response for getting next page |
-| `safe_int` | boolean | No | Convert all big integers to strings |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/v2/user/followers?user_id=787132"
-    # Next page: add &page_id=... from previous response
-    ```
-
-=== "Python"
-
-    ```python
-    from hikerapi import Client
-
-    cl = Client(token="YOUR_TOKEN")
-    result = cl.user_followers_v2(user_id="787132")
-    # Next page: cl.user_followers_v2(user_id="787132", page_id="...")
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/v2/user/followers",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"user_id": "787132"},
-    )
-    # Next page: add "page_id": "..." to params
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/v2/user/followers?user_id=787132",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    // Next page: add &page_id=... to URL
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-{
-  "response": {
-    "users": [
-      {
-        "pk": "32456705511",
-        "id": "32456705511",
-        "username": "was_wildanimalssurvival",
-        "full_name": "Wild Animals Survival",
-        "profile_pic_url": "https://scontent-ord5-3.cdninstagram.com/...",
-        "profile_pic_url_hd": null,
-        "is_private": false,
-        "is_verified": false,
-        "account_badges": null,
-        "fbid_v2": null,
-        "has_anonymous_profile_picture": null,
-        "latest_reel_media": 0,
-        "pk_id": null,
-        "profile_pic_id": null,
-        "strong_id__": null,
-        "third_party_downloads_enabled": null,
-        "reel": {
-          "id": "32456705511",
-          "expiring_at": 1775755421,
-          "has_pride_media": false,
-          "latest_reel_media": 0,
-          "seen": null,
-          "owner": {
-            "__typename": "GraphUser",
-            "id": "32456705511",
-            "profile_pic_url": "https://scontent-ord5-3.cdninstagram.com/...",
-            "username": "was_wildanimalssurvival"
-          }
-        },
-        "followed_by_viewer": false,
-        "follows_viewer": false,
-        "requested_by_viewer": false
-      },
-      {
-        "pk": "39324947303",
-        "id": "39324947303",
-        "username": "jeans.jcs",
-        "full_name": "Jean",
-        "profile_pic_url": "https://scontent-ord5-3.cdninstagram.com/...",
-        "profile_pic_url_hd": null,
-        "is_private": true,
-        "is_verified": false,
-        "account_badges": null,
-        "fbid_v2": null,
-        "has_anonymous_profile_picture": null,
-        "latest_reel_media": null,
-        "pk_id": null,
-        "profile_pic_id": null,
-        "strong_id__": null,
-        "third_party_downloads_enabled": null,
-        "reel": {
-          "id": "39324947303",
-          "expiring_at": 1775755421,
-          "has_pride_media": false,
-          "latest_reel_media": null,
-          "seen": null,
-          "owner": {
-            "__typename": "GraphUser",
-            "id": "39324947303",
-            "profile_pic_url": "https://scontent-ord5-3.cdninstagram.com/...",
-            "username": "jeans.jcs"
-          }
-        },
-        "followed_by_viewer": false,
-        "follows_viewer": false,
-        "requested_by_viewer": false
-      },
-      {
-        "pk": "37609441463",
-        "id": "37609441463",
-        "username": "megisbe",
-        "full_name": "Megan",
-        "profile_pic_url": "https://instagram.fcau13-1.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fcau13-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gFG1WWORGUVMDLlSZa4UBnzz8IU32EqmT98EaBar_qlpeMiyD0-VB4jJSFnF0FJ0h0&_nc_ohc=xpiLrADWZlUQ7kNvwE0zbQd&_nc_gid=lGpAp1TvpxZhEpZB_CvmXg&edm=AL4D0a4BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af2v4WZQ3jpjxa7RMWvRxqp3PmaJjBeywfbWvaisFJpcGw&oe=69DC6EAA&_nc_sid=9e8221",
-        "profile_pic_url_hd": null,
-        "is_private": true,
-        "is_verified": false,
-        "account_badges": null,
-        "fbid_v2": null,
-        "has_anonymous_profile_picture": null,
-        "latest_reel_media": null,
-        "pk_id": null,
-        "profile_pic_id": null,
-        "strong_id__": null,
-        "third_party_downloads_enabled": null,
-        "reel": {
-          "id": "37609441463",
-          "expiring_at": 1775755421,
-          "has_pride_media": false,
-          "latest_reel_media": null,
-          "seen": null,
-          "owner": {
-            "__typename": "GraphUser",
-            "id": "37609441463",
-            "profile_pic_url": "https://instagram.fcau13-1.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fcau13-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gFG1WWORGUVMDLlSZa4UBnzz8IU32EqmT98EaBar_qlpeMiyD0-VB4jJSFnF0FJ0h0&_nc_ohc=xpiLrADWZlUQ7kNvwE0zbQd&_nc_gid=lGpAp1TvpxZhEpZB_CvmXg&edm=AL4D0a4BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af2v4WZQ3jpjxa7RMWvRxqp3PmaJjBeywfbWvaisFJpcGw&oe=69DC6EAA&_nc_sid=9e8221",
-            "username": "megisbe"
-          }
-        },
-        "followed_by_viewer": false,
-        "follows_viewer": false,
-        "requested_by_viewer": false
-      }
-    ],
-    "big_list": null,
-    "page_size": null,
-    "next_max_id": null,
-    "has_more": null,
-    "should_limit_list_of_followers": null,
-    "use_clickable_see_more": null,
-    "show_spam_follow_request_tab": null,
-    "status": null
-  },
-  "next_page_id": "QVFETUZtTGJraVZqMzJ1TU0tMENvNVBsbEVWUUMzOHJDcUxLZWs3WjV1Rjg3TzdfMFZBeVpVS2Z6QlNWNDFKS1kwS25tNUpnRldNVzdsTHBaS3J1WTVMSQ=="
 }
 ```
 
@@ -6804,6 +6624,11 @@ Get userstream (info) by username. Returns user stream data.
 ## Deprecated endpoints
 
 These endpoints are deprecated — use the recommended alternatives. Retired ones respond with **410 Gone** and are never charged (see [Response Codes](../response-codes.md)); the rest still work but will be removed in a future version.
+
+### ~~GET /v2/user/followers~~
+
+!!! warning
+    WARNING: Use /g2/user/followers. Get a user followers (one request required)
 
 ### ~~GET /v2/user/medias~~
 

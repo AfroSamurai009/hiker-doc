@@ -931,7 +931,7 @@
     },
     "/v1/user/followers": {
       "get": {
-        "summary": "WARNING: Use /v2/user/followers of /v1/user/followers/chunk. Get first page user followers",
+        "summary": "WARNING: Use /g2/user/followers of /v1/user/followers/chunk. Get first page user followers",
         "description": "Get followers users. Returns a list of User objects.",
         "operationId": "user_followers_v1_user_followers_get",
         "deprecated": true,

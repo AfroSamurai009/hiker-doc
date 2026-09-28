@@ -305,87 +305,6 @@
         "required": false
       }
     },
-    "/v2/user/followers": {
-      "get": {
-        "summary": "Get a user followers (one request required). Prefer /g2/user/followers",
-        "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
-        "operationId": "user_followers_v2_user_followers_get",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Id of user account",
-              "default": "",
-              "title": "User Id"
-            },
-            "description": "Id of user account"
-          },
-          {
-            "name": "page_id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Use value of field `next_page_id` from response for getting next page",
-              "default": "",
-              "title": "Page Id"
-            },
-            "description": "Use value of field `next_page_id` from response for getting next page"
-          },
-          {
-            "name": "safe_int",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "boolean"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "description": "Convert all big integers to strings",
-              "title": "Safe Int"
-            },
-            "description": "Convert all big integers to strings"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, next_page_id = await cl.user_followers_v2(\n    user_id=\"123123\", page_id=None).values()\n",
-            "label": "Python"
-          }
-        ],
-        "required": false
-      }
-    },
     "/v2/user/following": {
       "get": {
         "summary": "Get a user following (one request required). Prefer /g2/user/following",
@@ -1473,6 +1392,88 @@
           {
             "lang": "Python",
             "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nmedias, next_page_id = await cl.user_medias_v2(user_id=\"123123\", page_id=None).values()\n",
+            "label": "Python"
+          }
+        ],
+        "required": false
+      }
+    },
+    "/v2/user/followers": {
+      "get": {
+        "summary": "WARNING: Use /g2/user/followers. Get a user followers (one request required)",
+        "description": "Get part (one page) of followers users with cursor. Returns a list of User objects.",
+        "operationId": "user_followers_v2_user_followers_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Id of user account",
+              "default": "",
+              "title": "User Id"
+            },
+            "description": "Id of user account"
+          },
+          {
+            "name": "page_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Use value of field `next_page_id` from response for getting next page",
+              "default": "",
+              "title": "Page Id"
+            },
+            "description": "Use value of field `next_page_id` from response for getting next page"
+          },
+          {
+            "name": "safe_int",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Convert all big integers to strings",
+              "title": "Safe Int"
+            },
+            "description": "Convert all big integers to strings"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, next_page_id = await cl.user_followers_v2(\n    user_id=\"123123\", page_id=None).values()\n",
             "label": "Python"
           }
         ],

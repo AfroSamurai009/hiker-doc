@@ -2183,7 +2183,7 @@ These endpoints are deprecated — use the recommended alternatives. Retired one
 ### ~~GET /v1/user/followers~~
 
 !!! warning
-    WARNING: Use /v2/user/followers of /v1/user/followers/chunk. Get first page user followers
+    WARNING: Use /g2/user/followers of /v1/user/followers/chunk. Get first page user followers
 
 ### ~~GET /v1/user/following~~
 

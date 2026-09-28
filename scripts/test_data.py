@@ -21,6 +21,8 @@ RICH_COMMENT_MEDIA_ID = "3864286541032633353"  # has comment replies
 RICH_COMMENT_ID = "18142813870496178"  # has replies
 RICH_COMMENT_LIKERS_MEDIA_ID = "18133609390533743"  # has comment likers
 RICH_HIGHLIGHTS_USER_ID = "51089230684"  # has highlights
+SHOP_USER_ID = "254591602"  # buffbunny_collection: storefront + chunk 200 (28.09.26)
+SHOP_COLLECTION_ID = "all_products:630954291743565:254591602"
 CLIP_MEDIA_ID = (
     "3973791230319739409"  # public reel with music, clean clips_metadata response
 )
@@ -118,6 +120,11 @@ ENDPOINT_PARAMS = {
     "/v2/media/info/by/url": {"url": MEDIA_URL},
     "/v2/media/comments": {"id": RICH_MEDIA_ID},
     "/v2/media/comments/infos": {"media_ids": RICH_MEDIA_ID},
+    "/v1/shop/about": {"user_id": SHOP_USER_ID},
+    "/v1/shop/storefront": {"user_id": SHOP_USER_ID},
+    "/v1/shop/products/by_collection/chunk": {
+        "encoded_collection_id": SHOP_COLLECTION_ID
+    },
     "/v2/media/comments/replies": {
         "media_id": RICH_COMMENT_MEDIA_ID,
         "comment_id": RICH_COMMENT_ID,
@@ -170,6 +177,7 @@ ENDPOINT_PARAMS = {
     "/v1/share/reel/by/url": {"url": SHARE_URL},
     # Location — v1
     "/v1/location/by/id": {"id": LOCATION_PK},
+    "/g2/location/by/id": {"id": LOCATION_PK},
     "/v1/location/medias/top": {"location_pk": LOCATION_PK},
     "/v1/location/medias/recent": {"location_pk": LOCATION_PK},
     "/v1/location/medias/top/chunk": {"location_pk": LOCATION_PK},

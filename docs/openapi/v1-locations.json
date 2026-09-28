@@ -358,8 +358,8 @@
     },
     "/v1/location/by/id": {
       "get": {
-        "summary": "Location By Id",
-        "description": "Get location object by id. Returns a Location object.",
+        "summary": "Get location object by id (legacy: lat/lng are no longer returned — prefer /g2/location/by/id)",
+        "description": "Legacy endpoint: Instagram no longer returns lat/lng here (always null).\nFor coordinates, category and description use /g2/location/by/id. Returns a Location object.",
         "operationId": "location_by_id_v1_location_by_id_get",
         "parameters": [
           {

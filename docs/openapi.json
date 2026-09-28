@@ -8,7 +8,7 @@
             "name": "Pricing",
             "url": "https://hikerapi.com/pricing"
         },
-        "version": "1.8.1"
+        "version": "1.8.2"
     },
     "paths": {
         "/v2/fbsearch/topsearch": {
@@ -834,98 +834,6 @@
                         }
                     }
                 }
-            }
-        },
-        "/v2/user/followers": {
-            "get": {
-                "tags": [
-                    "User Profile"
-                ],
-                "summary": "Get a user followers (one request required). Prefer /g2/user/followers",
-                "description": "Get part (one page) of followers users with cursor",
-                "operationId": "user_followers_v2_user_followers_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "user_id",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "description": "Id of user account",
-                            "default": "",
-                            "title": "User Id"
-                        },
-                        "description": "Id of user account"
-                    },
-                    {
-                        "name": "page_id",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "description": "Use value of field `next_page_id` from response for getting next page",
-                            "default": "",
-                            "title": "Page Id"
-                        },
-                        "description": "Use value of field `next_page_id` from response for getting next page"
-                    },
-                    {
-                        "name": "safe_int",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "boolean"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "description": "Convert all big integers to strings",
-                            "title": "Safe Int"
-                        },
-                        "description": "Convert all big integers to strings"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of users (followers)",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/PageResponse"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, next_page_id = await cl.user_followers_v2(\n    user_id=\"123123\", page_id=None).values()\n",
-                        "label": "Python"
-                    }
-                ],
-                "required": false
             }
         },
         "/v2/user/following": {
@@ -3033,108 +2941,6 @@
                 "required": false
             }
         },
-        "/g1/user/followers": {
-            "get": {
-                "tags": [
-                    "User Profile"
-                ],
-                "summary": "Get a user followers via legacy public GraphQL (one request required)",
-                "description": "\u26a0\ufe0f Billing: 1 requests per call.",
-                "operationId": "user_followers_g1_user_followers_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "user_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "User Id"
-                        }
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "End Cursor"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of users (followers) with end_cursor",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "prefixItems": [
-                                        {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/UserShortWithReel"
-                                            }
-                                        },
-                                        {
-                                            "anyOf": [
-                                                {
-                                                    "type": "string"
-                                                },
-                                                {
-                                                    "type": "null"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "minItems": 2,
-                                    "maxItems": 2,
-                                    "title": "Response User Followers G1 User Followers Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
-                        "label": "Python"
-                    },
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-                        "label": "Python"
-                    }
-                ],
-                "x-reqs-cost": 1,
-                "required": false
-            }
-        },
         "/g2/user/followers": {
             "get": {
                 "tags": [
@@ -3204,108 +3010,6 @@
                         }
                     }
                 }
-            }
-        },
-        "/g1/user/following": {
-            "get": {
-                "tags": [
-                    "User Profile"
-                ],
-                "summary": "Get a user following via legacy public GraphQL (one request required)",
-                "description": "\u26a0\ufe0f Billing: 1 requests per call.",
-                "operationId": "user_following_g1_user_following_get",
-                "security": [
-                    {
-                        "APIKeyHeader": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "user_id",
-                        "in": "query",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "title": "User Id"
-                        }
-                    },
-                    {
-                        "name": "end_cursor",
-                        "in": "query",
-                        "required": false,
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "End Cursor"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "List of users (following) with end_cursor",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "prefixItems": [
-                                        {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/UserShort"
-                                            }
-                                        },
-                                        {
-                                            "anyOf": [
-                                                {
-                                                    "type": "string"
-                                                },
-                                                {
-                                                    "type": "null"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "minItems": 2,
-                                    "maxItems": 2,
-                                    "title": "Response User Following G1 User Following Get"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Not found"
-                    },
-                    "422": {
-                        "description": "Validation Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/HTTPValidationError"
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-codeSamples": [
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
-                        "label": "Python"
-                    },
-                    {
-                        "lang": "Python",
-                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-                        "label": "Python"
-                    }
-                ],
-                "x-reqs-cost": 1,
-                "required": false
             }
         },
         "/g2/user/following": {
@@ -8024,6 +7728,59 @@
                 "required": false
             }
         },
+        "/g2/location/by/id": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get location details by id (name, lat/lng, category, description)",
+                "description": "Location details via mobile GraphQL \u2014 replaces /v1/location/by/id,\nwhere Instagram stopped returning lat/lng",
+                "operationId": "location_by_id_g2_location_by_id_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "title": "Response Location By Id G2 Location By Id Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/v1/location/medias/recent/chunk": {
             "get": {
                 "tags": [
@@ -8435,8 +8192,8 @@
                 "tags": [
                     "Location"
                 ],
-                "summary": "Location By Id",
-                "description": "Get location object by id",
+                "summary": "Get location object by id (legacy: lat/lng are no longer returned \u2014 prefer /g2/location/by/id)",
+                "description": "Legacy endpoint: Instagram no longer returns lat/lng here (always null).\nFor coordinates, category and description use /g2/location/by/id",
                 "operationId": "location_by_id_v1_location_by_id_get",
                 "security": [
                     {
@@ -9200,6 +8957,222 @@
                     {
                         "lang": "Python",
                         "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.highlight_by_url_v1(url=\"url_to_highlight\")\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/v1/shop/about": {
+            "get": {
+                "tags": [
+                    "Shop"
+                ],
+                "summary": "Shop About",
+                "description": "Get \"About this shop\": seller name, address, contacts, privacy policy\n\n`user_id` is the pk of the account that owns the shop; a merchant id\n(`17841...`) is accepted too.",
+                "operationId": "shop_about_v1_shop_about_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShopInfo"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.shop_about_v1(user_id=\"23410080\")\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/v1/shop/products/by_collection/chunk": {
+            "get": {
+                "tags": [
+                    "Shop"
+                ],
+                "summary": "Shop Products By Collection Chunk",
+                "description": "Get a chunk of products of a shop collection\n\n`encoded_collection_id` comes from `collections[]` of\n`/v1/shop/storefront`. The Instagram pagination payload is ~10 KB, too\nlong for a query string, so it is kept server-side and the client gets an\nopaque 64-char `cursor` that lives 24 hours.",
+                "operationId": "shop_products_by_collection_chunk_v1_shop_products_by_collection_chunk_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "encoded_collection_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Encoded Collection Id"
+                        }
+                    },
+                    {
+                        "name": "cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Use value of the second element of the previous response. The cursor is valid for 24 hours.",
+                            "title": "Cursor"
+                        },
+                        "description": "Use value of the second element of the previous response. The cursor is valid for 24 hours."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ShopProduct"
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response Shop Products By Collection Chunk V1 Shop Products By Collection Chunk Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.shop_products_by_collection_chunk_v1(\n    encoded_collection_id=\"all_products:520286110349397:23410080\"\n)\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/v1/shop/storefront": {
+            "get": {
+                "tags": [
+                    "Shop"
+                ],
+                "summary": "Shop Storefront",
+                "description": "Get shop storefront: merchant ids, collections and first-screen products\n\nA shop exists when `/v2/user/by/username` returns\n`seller_shoppable_feed_type == \"mini_shop_wave_2\"`; an account without a\nshop answers 404 `ShopNotFound`. Use `encoded_collection_id` from\n`collections[]` to page through products. A storefront made of curated\ncollections only can return an empty `products[]` \u2014 that is not an error.",
+                "operationId": "shop_storefront_v1_shop_storefront_get",
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShopStorefront"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.shop_storefront_v1(user_id=\"23410080\")\n",
                         "label": "Python"
                     }
                 ],
@@ -10957,6 +10930,212 @@
                 "required": false
             }
         },
+        "/g1/user/followers": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "WARNING: Use /g2/user/followers. Get a user followers via legacy public GraphQL (one request required)",
+                "description": "\u26a0\ufe0f Billing: 1 requests per call.",
+                "operationId": "user_followers_g1_user_followers_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users (followers) with end_cursor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserShortWithReel"
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response User Followers G1 User Followers Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+                        "label": "Python"
+                    },
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+                        "label": "Python"
+                    }
+                ],
+                "x-reqs-cost": 1,
+                "required": false
+            }
+        },
+        "/g1/user/following": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "WARNING: Use /g2/user/following. Get a user following via legacy public GraphQL (one request required)",
+                "description": "\u26a0\ufe0f Billing: 1 requests per call.",
+                "operationId": "user_following_g1_user_following_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "end_cursor",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "End Cursor"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users (following) with end_cursor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "prefixItems": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/UserShort"
+                                            }
+                                        },
+                                        {
+                                            "anyOf": [
+                                                {
+                                                    "type": "string"
+                                                },
+                                                {
+                                                    "type": "null"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "minItems": 2,
+                                    "maxItems": 2,
+                                    "title": "Response User Following G1 User Following Get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+                        "label": "Python"
+                    },
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+                        "label": "Python"
+                    }
+                ],
+                "x-reqs-cost": 1,
+                "required": false
+            }
+        },
         "/gql/comments/threaded": {
             "get": {
                 "tags": [
@@ -11169,7 +11348,7 @@
                 "tags": [
                     "Legacy"
                 ],
-                "summary": "WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)",
+                "summary": "WARNING: Use /g2/user/followers. Get a user followers (one request is required for every 46 followers)",
                 "description": "\u26a0\ufe0f Billing: 2 requests per call.",
                 "operationId": "user_followers_gql_user_followers_get",
                 "deprecated": true,
@@ -12071,7 +12250,7 @@
                 "tags": [
                     "Legacy"
                 ],
-                "summary": "WARNING: Use /v2/user/followers of /v1/user/followers/chunk. Get first page user followers",
+                "summary": "WARNING: Use /g2/user/followers of /v1/user/followers/chunk. Get first page user followers",
                 "description": "Get followers users",
                 "operationId": "user_followers_v1_user_followers_get",
                 "deprecated": true,
@@ -12901,6 +13080,99 @@
                     {
                         "lang": "Python",
                         "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nres = await cl.media_by_url_v2(url=\"https://ins...ram.com/p/CA2aJYrg6cZ/\")\n",
+                        "label": "Python"
+                    }
+                ],
+                "required": false
+            }
+        },
+        "/v2/user/followers": {
+            "get": {
+                "tags": [
+                    "Legacy"
+                ],
+                "summary": "WARNING: Use /g2/user/followers. Get a user followers (one request required)",
+                "description": "Get part (one page) of followers users with cursor",
+                "operationId": "user_followers_v2_user_followers_get",
+                "deprecated": true,
+                "security": [
+                    {
+                        "APIKeyHeader": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "Id of user account",
+                            "default": "",
+                            "title": "User Id"
+                        },
+                        "description": "Id of user account"
+                    },
+                    {
+                        "name": "page_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "description": "Use value of field `next_page_id` from response for getting next page",
+                            "default": "",
+                            "title": "Page Id"
+                        },
+                        "description": "Use value of field `next_page_id` from response for getting next page"
+                    },
+                    {
+                        "name": "safe_int",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Convert all big integers to strings",
+                            "title": "Safe Int"
+                        },
+                        "description": "Convert all big integers to strings"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users (followers)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-codeSamples": [
+                    {
+                        "lang": "Python",
+                        "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, next_page_id = await cl.user_followers_v2(\n    user_id=\"123123\", page_id=None).values()\n",
                         "label": "Python"
                     }
                 ],
@@ -14104,6 +14376,332 @@
                     "type"
                 ],
                 "title": "Share"
+            },
+            "ShopCollection": {
+                "properties": {
+                    "encoded_collection_id": {
+                        "type": "string",
+                        "title": "Encoded Collection Id"
+                    },
+                    "collection_type": {
+                        "type": "string",
+                        "title": "Collection Type"
+                    },
+                    "collection_page_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Collection Page Id"
+                    },
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "encoded_collection_id",
+                    "collection_type"
+                ],
+                "title": "ShopCollection",
+                "description": "\u041f\u043e\u0434\u0431\u043e\u0440\u043a\u0430 \u0442\u043e\u0432\u0430\u0440\u043e\u0432 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430: \u0432\u043a\u043b\u0430\u0434\u043a\u0430 \u0432\u0438\u0442\u0440\u0438\u043d\u044b."
+            },
+            "ShopInfo": {
+                "properties": {
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    },
+                    "business_address": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Business Address"
+                    },
+                    "email": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Email"
+                    },
+                    "phone": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Phone"
+                    },
+                    "website_url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Website Url"
+                    },
+                    "privacy_policy_url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Privacy Policy Url"
+                    },
+                    "shop_logo_url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Shop Logo Url"
+                    }
+                },
+                "type": "object",
+                "title": "ShopInfo",
+                "description": "\u00abAbout this shop\u00bb: com.bloks.www.bloks.commerce.about_shop"
+            },
+            "ShopProduct": {
+                "properties": {
+                    "product_id": {
+                        "type": "string",
+                        "title": "Product Id"
+                    },
+                    "merchant_id": {
+                        "type": "string",
+                        "title": "Merchant Id"
+                    },
+                    "merchant_pk": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Merchant Pk"
+                    },
+                    "merchant_username": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Merchant Username"
+                    },
+                    "title": {
+                        "type": "string",
+                        "title": "Title"
+                    },
+                    "price": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Price"
+                    },
+                    "full_price": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Full Price"
+                    },
+                    "price_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Price Amount"
+                    },
+                    "full_price_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Full Price Amount"
+                    },
+                    "image_url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Image Url"
+                    },
+                    "image_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Image Id"
+                    },
+                    "image_width": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Image Width"
+                    },
+                    "image_height": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Image Height"
+                    },
+                    "external_url": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "External Url"
+                    },
+                    "checkout_style": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Checkout Style"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "product_id",
+                    "merchant_id",
+                    "title"
+                ],
+                "title": "ShopProduct"
+            },
+            "ShopStorefront": {
+                "properties": {
+                    "merchant_id": {
+                        "type": "string",
+                        "title": "Merchant Id"
+                    },
+                    "merchant_pk": {
+                        "type": "integer",
+                        "title": "Merchant Pk"
+                    },
+                    "merchant_username": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Merchant Username"
+                    },
+                    "collections": {
+                        "items": {
+                            "$ref": "#/components/schemas/ShopCollection"
+                        },
+                        "type": "array",
+                        "title": "Collections"
+                    },
+                    "products": {
+                        "items": {
+                            "$ref": "#/components/schemas/ShopProduct"
+                        },
+                        "type": "array",
+                        "title": "Products"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "merchant_id",
+                    "merchant_pk",
+                    "collections",
+                    "products"
+                ],
+                "title": "ShopStorefront",
+                "description": "\u0412\u0438\u0442\u0440\u0438\u043d\u0430 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430: com.bloks.www.minishops.storefront.ig"
             },
             "Story": {
                 "properties": {
@@ -15649,6 +16247,14 @@
             "externalDocs": {
                 "description": "Documentation",
                 "url": "https://hiker-doc.readthedocs.io/en/latest/python.html#hikerapi.AsyncClient.highlight_by_id_v1"
+            }
+        },
+        {
+            "name": "Shop",
+            "description": "Instagram shop: about, storefront, products by collection",
+            "externalDocs": {
+                "description": "Documentation",
+                "url": "https://hiker-doc.readthedocs.io/en/latest/python.html"
             }
         },
         {

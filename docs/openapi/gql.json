@@ -462,97 +462,6 @@
         "required": false
       }
     },
-    "/g1/user/followers": {
-      "get": {
-        "summary": "Get a user followers via legacy public GraphQL (one request required)",
-        "description": "⚠️ Billing: 1 requests per call. Returns a list of User objects.",
-        "operationId": "user_followers_g1_user_followers_get",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "User Id"
-            }
-          },
-          {
-            "name": "end_cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "End Cursor"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of users (followers) with end_cursor",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "prefixItems": [
-                    {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserShortWithReel"
-                      }
-                    },
-                    {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "null"
-                        }
-                      ]
-                    }
-                  ],
-                  "minItems": 2,
-                  "maxItems": 2,
-                  "title": "Response User Followers G1 User Followers Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
-            "label": "Python"
-          },
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-            "label": "Python"
-          }
-        ],
-        "x-reqs-cost": 1,
-        "required": false
-      }
-    },
     "/g2/user/followers": {
       "get": {
         "summary": "Get a user followers (one request required)",
@@ -611,97 +520,6 @@
             }
           }
         }
-      }
-    },
-    "/g1/user/following": {
-      "get": {
-        "summary": "Get a user following via legacy public GraphQL (one request required)",
-        "description": "⚠️ Billing: 1 requests per call. Returns a list of User objects.",
-        "operationId": "user_following_g1_user_following_get",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "title": "User Id"
-            }
-          },
-          {
-            "name": "end_cursor",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "title": "End Cursor"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of users (following) with end_cursor",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "prefixItems": [
-                    {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserShort"
-                      }
-                    },
-                    {
-                      "anyOf": [
-                        {
-                          "type": "string"
-                        },
-                        {
-                          "type": "null"
-                        }
-                      ]
-                    }
-                  ],
-                  "minItems": 2,
-                  "maxItems": 2,
-                  "title": "Response User Following G1 User Following Get"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            }
-          }
-        },
-        "x-codeSamples": [
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
-            "label": "Python"
-          },
-          {
-            "lang": "Python",
-            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
-            "label": "Python"
-          }
-        ],
-        "x-reqs-cost": 1,
-        "required": false
       }
     },
     "/g2/user/following": {
@@ -1345,6 +1163,48 @@
         "required": false
       }
     },
+    "/g2/location/by/id": {
+      "get": {
+        "summary": "Get location details by id (name, lat/lng, category, description)",
+        "description": "Location details via mobile GraphQL — replaces /v1/location/by/id,\nwhere Instagram stopped returning lat/lng. Returns a Location object.",
+        "operationId": "location_by_id_g2_location_by_id_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Location By Id G2 Location By Id Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/gql/comments/chunk": {
       "get": {
         "summary": "Use /v1/media/comments/chunk or /v2/media/comments instead",
@@ -1844,6 +1704,190 @@
         "required": false
       }
     },
+    "/g1/user/followers": {
+      "get": {
+        "summary": "WARNING: Use /g2/user/followers. Get a user followers via legacy public GraphQL (one request required)",
+        "description": "⚠️ Billing: 1 requests per call. Returns a list of User objects.",
+        "operationId": "user_followers_g1_user_followers_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (followers) with end_cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserShortWithReel"
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response User Followers G1 User Followers Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowers, end_cursor = await cl.user_followers_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_followers_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 1,
+        "required": false
+      }
+    },
+    "/g1/user/following": {
+      "get": {
+        "summary": "WARNING: Use /g2/user/following. Get a user following via legacy public GraphQL (one request required)",
+        "description": "⚠️ Billing: 1 requests per call. Returns a list of User objects.",
+        "operationId": "user_following_g1_user_following_get",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "end_cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users (following) with end_cursor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserShort"
+                      }
+                    },
+                    {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  ],
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "title": "Response User Following G1 User Following Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nfollowings, end_cursor = await cl.user_following_gql_chunk(\n    user_id=\"123123\", end_cursor=None\n)\n",
+            "label": "Python"
+          },
+          {
+            "lang": "Python",
+            "source": "from hikerapi import Client\n\ncl = Client(<ACCESS_KEY>)\nitems_list = []\nend_cursor = None\nwhile True:\n    items, end_cursor = cl.user_following_gql_chunk(\"123123\", end_cursor=end_cursor)\n    items_list.extend(items)\n    if not end_cursor:\n        break\n        ",
+            "label": "Python"
+          }
+        ],
+        "x-reqs-cost": 1,
+        "required": false
+      }
+    },
     "/gql/comments/threaded": {
       "get": {
         "summary": "Use /v2/media/comments/replies instead",
@@ -2020,7 +2064,7 @@
     },
     "/gql/user/followers": {
       "get": {
-        "summary": "WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)",
+        "summary": "WARNING: Use /g2/user/followers. Get a user followers (one request is required for every 46 followers)",
         "description": "⚠️ Billing: 2 requests per call. Returns a list of User objects.",
         "operationId": "user_followers_gql_user_followers_get",
         "deprecated": true,

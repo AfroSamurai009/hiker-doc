@@ -17,6 +17,7 @@ V1_RESOURCES = {
     "v1-highlights.json": ["/v1/highlight/", "/v1/user/highlights"],
     "v1-hashtags.json": ["/v1/hashtag/"],
     "v1-locations.json": ["/v1/location/"],
+    "v1-shop.json": ["/v1/shop/"],
     "v1-search.json": [
         "/v1/search/",
         "/v1/fbsearch/",

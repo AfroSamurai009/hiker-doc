@@ -5,25 +5,24 @@ Instagram GraphQL endpoints with cursor-based pagination.
 !!! info "Authentication & errors"
     All endpoints require `x-access-key` header. See [Authentication](../../getting-started/authentication.md). Error responses: [Response Codes](../response-codes.md).
 
-**Endpoints:** [`/g1/user/followers`](#get-g1userfollowers) | [`/g1/user/following`](#get-g1userfollowing) | [`/g2/user/followers`](#get-g2userfollowers) | [`/g2/user/following`](#get-g2userfollowing) | [`/g2/user/medias`](#get-g2usermedias) | [`/gql/comment/likers/chunk`](#get-gqlcommentlikerschunk) | [`/gql/media/clips_metadata`](#get-gqlmediaclips_metadata) | [`/gql/media/likers`](#get-gqlmedialikers) | [`/gql/media/usertags`](#get-gqlmediausertags) | [`/gql/topsearch`](#get-gqltopsearch) | [`/gql/user/about`](#get-gqluserabout) | [`/gql/user/clips`](#get-gqluserclips) | [`/gql/user/followers/chunk`](#get-gqluserfollowerschunk) | [`/gql/user/following/chunk`](#get-gqluserfollowingchunk) | [`/gql/user/medias`](#get-gqlusermedias) | [`/gql/user/reposts`](#get-gqluserreposts) | [`/gql/user/web_profile_info`](#get-gqluserweb_profile_info)
+**Endpoints:** [`/g2/location/by/id`](#get-g2locationbyid) | [`/g2/user/followers`](#get-g2userfollowers) | [`/g2/user/following`](#get-g2userfollowing) | [`/g2/user/medias`](#get-g2usermedias) | [`/gql/comment/likers/chunk`](#get-gqlcommentlikerschunk) | [`/gql/media/clips_metadata`](#get-gqlmediaclips_metadata) | [`/gql/media/likers`](#get-gqlmedialikers) | [`/gql/media/usertags`](#get-gqlmediausertags) | [`/gql/topsearch`](#get-gqltopsearch) | [`/gql/user/about`](#get-gqluserabout) | [`/gql/user/clips`](#get-gqluserclips) | [`/gql/user/followers/chunk`](#get-gqluserfollowerschunk) | [`/gql/user/following/chunk`](#get-gqluserfollowingchunk) | [`/gql/user/medias`](#get-gqlusermedias) | [`/gql/user/reposts`](#get-gqluserreposts) | [`/gql/user/web_profile_info`](#get-gqluserweb_profile_info)
 
 ---
 
-### GET /g1/user/followers
+### GET /g2/location/by/id
 
-⚠️ Billing: 1 requests per call. Returns a list of User objects.
+Location details via mobile GraphQL — replaces /v1/location/by/id,
+where Instagram stopped returning lat/lng. Returns a Location object.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `user_id` | string | Yes | User Id |
-| `end_cursor` | string | No | End Cursor |
+| `id` | string | Yes | Id |
 
 === "curl"
 
     ```bash
     curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/g1/user/followers?user_id=787132"
-    # Next page: add &end_cursor=... from previous response
+      "https://api.hikerapi.com/g2/location/by/id?id=213131048"
     ```
 
 === "Python (requests)"
@@ -32,11 +31,10 @@ Instagram GraphQL endpoints with cursor-based pagination.
     import requests
 
     response = requests.get(
-        "https://api.hikerapi.com/g1/user/followers",
+        "https://api.hikerapi.com/g2/location/by/id",
         headers={"x-access-key": "YOUR_TOKEN"},
-        params={"user_id": "787132"},
+        params={"id": "213131048"},
     )
-    # Next page: add "end_cursor": "..." to params
     print(response.json())
     ```
 
@@ -44,166 +42,27 @@ Instagram GraphQL endpoints with cursor-based pagination.
 
     ```javascript
     const response = await fetch(
-      "https://api.hikerapi.com/g1/user/followers?user_id=787132",
+      "https://api.hikerapi.com/g2/location/by/id?id=213131048",
       { headers: { "x-access-key": "YOUR_TOKEN" } }
     );
     const data = await response.json();
-    // Next page: add &end_cursor=... to URL
     ```
 
 <details>
 <summary>Example response</summary>
 
 ```json
-[
-  [
-    {
-      "pk": "16456403414",
-      "id": "16456403414",
-      "username": "akaporto78j",
-      "full_name": "",
-      "profile_pic_url": "https://instagram.fsac1-2.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fsac1-2.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gHFE3eBz3TDgeyKG-N4mRCcbEN7ETNgZrkI0Bc5cUEPCSlWPKkAkN6e5wehS-cjqbhcA2wDD0GlTm_dsYSVXKRi&_nc_ohc=bhH7TUwRnv4Q7kNvwFm-w3d&_nc_gid=fKdlCKrXGSXAhU90kYk5eQ&edm=AL4D0a4BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af8Oo0p1T392rmVIMTTY1-B4CGfEWRC-v78igJCm81oySA&oe=6A430B6A&_nc_sid=9e8221",
-      "is_private": false,
-      "is_verified": false,
-      "reel": {
-        "id": 16456403414,
-        "expiring_at": 1782478387,
-        "has_pride_media": false,
-        "latest_reel_media": 0,
-        "owner": {
-          "id": 16456403414,
-          "profile_pic_url": "https://instagram.fsac1-2.fna.fbcdn.net/v/t51.2885-19/573323465_1219825463302212_7278921664109726296_n.png?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xNTAuYzIifQ&_nc_ht=instagram.fsac1-2.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gHFE3eBz3TDgeyKG-N4mRCcbEN7ETNgZrkI0Bc5cUEPCSlWPKkAkN6e5wehS-cjqbhcA2wDD0GlTm_dsYSVXKRi&_nc_ohc=bhH7TUwRnv4Q7kNvwFm-w3d&_nc_gid=fKdlCKrXGSXAhU90kYk5eQ&edm=AL4D0a4BAAAA&ccb=7-5&ig_cache_key=YW5vbnltb3VzX3Byb2ZpbGVfcGlj.3-ccb7-5&oh=00_Af8Oo0p1T392rmVIMTTY1-B4CGfEWRC-v78igJCm81oySA&oe=6A430B6A&_nc_sid=9e8221",
-          "username": "akaporto78j"
-        }
-      }
-    },
-    {
-      "pk": "23983965254",
-      "id": "23983965254",
-      "username": "ridfebres",
-      "full_name": "Richard Febres",
-      "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
-      "is_private": false,
-      "is_verified": false,
-      "reel": {
-        "id": 23983965254,
-        "expiring_at": 1782478387,
-        "has_pride_media": false,
-        "latest_reel_media": 0,
-        "owner": {
-          "id": 23983965254,
-          "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
-          "username": "ridfebres"
-        }
-      }
-    },
-    {
-      "pk": "75427741203",
-      "id": "75427741203",
-      "username": "crips.susu",
-      "full_name": "liiiiii",
-      "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
-      "is_private": false,
-      "is_verified": false,
-      "reel": {
-        "id": 75427741203,
-        "expiring_at": 1782478387,
-        "has_pride_media": false,
-        "latest_reel_media": 1782385358,
-        "owner": {
-          "id": 75427741203,
-          "profile_pic_url": "https://scontent-fml1-1.cdninstagram.com/...",
-          "username": "crips.susu"
-        }
-      }
-    }
-  ],
-  "QVFBOENSMDNreHg0dm43UVZJS01mMGtCaXItRkV5NG5aX2tFX0ZWWmJyclNiYjFqOHFjQS1nRm43R0V2RTk4MnpSWDNFbC12dS1TcGdvQjlvaUQwVkc5UA=="
-]
-```
-
-</details>
-
----
-
-### GET /g1/user/following
-
-⚠️ Billing: 1 requests per call. Returns a list of User objects.
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `user_id` | string | Yes | User Id |
-| `end_cursor` | string | No | End Cursor |
-
-=== "curl"
-
-    ```bash
-    curl -H "x-access-key: YOUR_TOKEN" \
-      "https://api.hikerapi.com/g1/user/following?user_id=787132"
-    # Next page: add &end_cursor=... from previous response
-    ```
-
-=== "Python (requests)"
-
-    ```python
-    import requests
-
-    response = requests.get(
-        "https://api.hikerapi.com/g1/user/following",
-        headers={"x-access-key": "YOUR_TOKEN"},
-        params={"user_id": "787132"},
-    )
-    # Next page: add "end_cursor": "..." to params
-    print(response.json())
-    ```
-
-=== "JavaScript"
-
-    ```javascript
-    const response = await fetch(
-      "https://api.hikerapi.com/g1/user/following?user_id=787132",
-      { headers: { "x-access-key": "YOUR_TOKEN" } }
-    );
-    const data = await response.json();
-    // Next page: add &end_cursor=... to URL
-    ```
-
-<details>
-<summary>Example response</summary>
-
-```json
-[
-  [
-    {
-      "pk": "364094780",
-      "id": "364094780",
-      "username": "marcuswestbergphotography",
-      "full_name": "Photographer & Storyteller",
-      "profile_pic_url": "https://scontent-dfw5-2.cdninstagram.com/...",
-      "is_private": false,
-      "is_verified": false
-    },
-    {
-      "pk": "68012770661",
-      "id": "68012770661",
-      "username": "natgeofamily",
-      "full_name": "National Geographic Family",
-      "profile_pic_url": "https://scontent-dfw6-2.cdninstagram.com/...",
-      "is_private": false,
-      "is_verified": true
-    },
-    {
-      "pk": "20650647",
-      "id": "20650647",
-      "username": "russwest44",
-      "full_name": "Russell Westbrook",
-      "profile_pic_url": "https://scontent-dfw5-3.cdninstagram.com/...",
-      "is_private": false,
-      "is_verified": true
-    }
-  ],
-  "QVFBcHhxWl95eXYxUlNPRGRzd3lsQ08tYlhTMXM3Q2pSMHpyem1yc0h4bkN2VjBSWTg1Y0w0ZmxURGpobFdtUVdfM1BYbkhkMVJYaEZLNWdYRHgyTC14dw=="
-]
+{
+  "name": "Berlin, Germany",
+  "lat": 52.518391,
+  "lng": 13.401251,
+  "category": "Region",
+  "description": "Berlin is the capital and the largest city of Germany as well as one of its 16 constituent states. With a population of approximately 3.7 million, Berlin is the second most populous city proper in the European Union and the seventh most populous urban area in the European Union. Located in northeastern Germany on the banks of the rivers Spree and Havel, it is the centre of the Berlin-Brandenburg Metropolitan Region, which has roughly 6 million residents from more than 180 nations. Due to its location in the European Plain, Berlin is influenced by a temperate seasonal climate. Around one-third of the city's area is composed of forests, parks, gardens, rivers, canals and lakes.First documented in the 13th century and situated at the crossing of two important historic trade routes, Berlin became the capital of the Margraviate of Brandenburg, the Kingdom of Prussia (1701–1918), the German Empire (1871–1918), the Weimar Republic (1919–1933) and the Third Reich (1933–1945). Berlin in the 1920s was the third largest municipality in the world. After World War II and its subsequent occupation by the victorious countries, the city was divided; East Berlin was declared capital of East Germany, while West Berlin became a de facto West German exclave, surrounded by the Berlin Wall (1961–1989) and East German territory. Following German reunification in 1990, Berlin once again became the capital of all of Germany.",
+  "thumbnail_url": null,
+  "external_id": "111175118906315",
+  "external_id_source": "facebook_places",
+  "pk": "213131048"
+}
 ```
 
 </details>
@@ -5809,6 +5668,16 @@ Get user profile info by user id (GraphQL web_profile_info)
 
 These endpoints are deprecated — use the recommended alternatives. Retired ones respond with **410 Gone** and are never charged (see [Response Codes](../response-codes.md)); the rest still work but will be removed in a future version.
 
+### ~~GET /g1/user/followers~~
+
+!!! warning
+    WARNING: Use /g2/user/followers. Get a user followers via legacy public GraphQL (one request required)
+
+### ~~GET /g1/user/following~~
+
+!!! warning
+    WARNING: Use /g2/user/following. Get a user following via legacy public GraphQL (one request required)
+
 ### ~~GET /gql/comment/likers~~
 
 !!! warning
@@ -5847,7 +5716,7 @@ These endpoints are deprecated — use the recommended alternatives. Retired one
 ### ~~GET /gql/user/followers~~
 
 !!! warning
-    WARNING: Use /v2/user/followers. Get a user followers (one request is required for every 46 followers)
+    WARNING: Use /g2/user/followers. Get a user followers (one request is required for every 46 followers)
 
 ### ~~GET /gql/user/following~~
 

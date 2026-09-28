@@ -11,7 +11,8 @@ Get location info and media by location ID.
 
 ### GET /v1/location/by/id
 
-Get location object by id. Returns a Location object.
+Legacy endpoint: Instagram no longer returns lat/lng here (always null).
+For coordinates, category and description use /g2/location/by/id. Returns a Location object.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|

@@ -45,6 +45,7 @@ RESOURCES = {
     },
     "v1/hashtags": {"prefixes": ["/v1/hashtag/"], "excludes": []},
     "v1/locations": {"prefixes": ["/v1/location/"], "excludes": []},
+    "v1/shop": {"prefixes": ["/v1/shop/"], "excludes": []},
     "v1/search": {
         "prefixes": ["/v1/search/", "/v1/fbsearch/", "/v1/share/"],
         "excludes": [],
@@ -75,6 +76,7 @@ OUTPUT_FILES = {
     "v1/highlights": API_REF_DIR / "v1" / "highlights.md",
     "v1/hashtags": API_REF_DIR / "v1" / "hashtags.md",
     "v1/locations": API_REF_DIR / "v1" / "locations.md",
+    "v1/shop": API_REF_DIR / "v1" / "shop.md",
     "v1/search": API_REF_DIR / "v1" / "search.md",
     "v2/user": API_REF_DIR / "v2" / "user.md",
     "v2/media": API_REF_DIR / "v2" / "media.md",
@@ -96,6 +98,7 @@ SPEC_FILES = {
     "v1/highlights": "v1-highlights.json",
     "v1/hashtags": "v1-hashtags.json",
     "v1/locations": "v1-locations.json",
+    "v1/shop": "v1-shop.json",
     "v1/search": "v1-search.json",
     "v2/user": "v2-user.json",
     "v2/media": "v2-media.json",
@@ -134,6 +137,10 @@ PAGE_META = {
     "v1/locations": (
         "Location Endpoints",
         "Get location info and media by location ID.",
+    ),
+    "v1/shop": (
+        "Shop Endpoints",
+        "Instagram Shop: seller info, storefront collections and products.",
     ),
     "v1/search": (
         "Search Endpoints",
@@ -184,6 +191,7 @@ UTM = {
     "v1/highlights": "api-v1-highlights",
     "v1/hashtags": "api-v1-hashtags",
     "v1/locations": "api-v1-locations",
+    "v1/shop": "api-v1-shop",
     "v1/search": "api-v1-search",
     "v2/user": "api-v2-user",
     "v2/media": "api-v2-media",
